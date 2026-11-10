@@ -5229,6 +5229,30 @@ func (e DeliveryEnum) Valid() bool {
 	}
 }
 
+// Defines values for DemoPresetLoadJobStateEnum.
+const (
+	DemoPresetLoadJobStateEnumDone    DemoPresetLoadJobStateEnum = "done"
+	DemoPresetLoadJobStateEnumErred   DemoPresetLoadJobStateEnum = "erred"
+	DemoPresetLoadJobStateEnumPending DemoPresetLoadJobStateEnum = "pending"
+	DemoPresetLoadJobStateEnumRunning DemoPresetLoadJobStateEnum = "running"
+)
+
+// Valid indicates whether the value is a known member of the DemoPresetLoadJobStateEnum enum.
+func (e DemoPresetLoadJobStateEnum) Valid() bool {
+	switch e {
+	case DemoPresetLoadJobStateEnumDone:
+		return true
+	case DemoPresetLoadJobStateEnumErred:
+		return true
+	case DemoPresetLoadJobStateEnumPending:
+		return true
+	case DemoPresetLoadJobStateEnumRunning:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DependencyLogicOperatorEnum.
 const (
 	And DependencyLogicOperatorEnum = "and"
@@ -5781,6 +5805,24 @@ func (e EffectiveRouteSourceEnum) Valid() bool {
 	}
 }
 
+// Defines values for ElevatedAccessEnum.
+const (
+	ElevatedAccessEnumStaff   ElevatedAccessEnum = "staff"
+	ElevatedAccessEnumSupport ElevatedAccessEnum = "support"
+)
+
+// Valid indicates whether the value is a known member of the ElevatedAccessEnum enum.
+func (e ElevatedAccessEnum) Valid() bool {
+	switch e {
+	case ElevatedAccessEnumStaff:
+		return true
+	case ElevatedAccessEnumSupport:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for EligibleFromEnum.
 const (
 	EligibleFromEnumAnyUser             EligibleFromEnum = "any_user"
@@ -6183,6 +6225,8 @@ const (
 	EventMetadataResponseEventGroupsNotifyExternalUser                               EventMetadataResponseEventGroups = "notify_external_user"
 	EventMetadataResponseEventGroupsNotifyOrganizationOwners                         EventMetadataResponseEventGroups = "notify_organization_owners"
 	EventMetadataResponseEventGroupsNotifyProjectTeam                                EventMetadataResponseEventGroups = "notify_project_team"
+	EventMetadataResponseEventGroupsOauthConsentDenied                               EventMetadataResponseEventGroups = "oauth_consent_denied"
+	EventMetadataResponseEventGroupsOauthConsentGranted                              EventMetadataResponseEventGroups = "oauth_consent_granted"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetCreationSucceeded            EventMetadataResponseEventGroups = "offering_access_subnet_creation_succeeded"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetDeletionSucceeded            EventMetadataResponseEventGroups = "offering_access_subnet_deletion_succeeded"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetUpdateSucceeded              EventMetadataResponseEventGroups = "offering_access_subnet_update_succeeded"
@@ -6796,6 +6840,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsNotifyOrganizationOwners:
 		return true
 	case EventMetadataResponseEventGroupsNotifyProjectTeam:
+		return true
+	case EventMetadataResponseEventGroupsOauthConsentDenied:
+		return true
+	case EventMetadataResponseEventGroupsOauthConsentGranted:
 		return true
 	case EventMetadataResponseEventGroupsOfferingAccessSubnetCreationSucceeded:
 		return true
@@ -7569,6 +7617,8 @@ const (
 	EventTypesEnumNotifyExternalUser                               EventTypesEnum = "notify_external_user"
 	EventTypesEnumNotifyOrganizationOwners                         EventTypesEnum = "notify_organization_owners"
 	EventTypesEnumNotifyProjectTeam                                EventTypesEnum = "notify_project_team"
+	EventTypesEnumOauthConsentDenied                               EventTypesEnum = "oauth_consent_denied"
+	EventTypesEnumOauthConsentGranted                              EventTypesEnum = "oauth_consent_granted"
 	EventTypesEnumOfferingAccessSubnetCreationSucceeded            EventTypesEnum = "offering_access_subnet_creation_succeeded"
 	EventTypesEnumOfferingAccessSubnetDeletionSucceeded            EventTypesEnum = "offering_access_subnet_deletion_succeeded"
 	EventTypesEnumOfferingAccessSubnetUpdateSucceeded              EventTypesEnum = "offering_access_subnet_update_succeeded"
@@ -8182,6 +8232,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumNotifyOrganizationOwners:
 		return true
 	case EventTypesEnumNotifyProjectTeam:
+		return true
+	case EventTypesEnumOauthConsentDenied:
+		return true
+	case EventTypesEnumOauthConsentGranted:
 		return true
 	case EventTypesEnumOfferingAccessSubnetCreationSucceeded:
 		return true
@@ -21663,6 +21717,27 @@ func (e RecipientsEnum) Valid() bool {
 	}
 }
 
+// Defines values for RegistrationSourceEnum.
+const (
+	RegistrationSourceEnumCimd   RegistrationSourceEnum = "cimd"
+	RegistrationSourceEnumDcr    RegistrationSourceEnum = "dcr"
+	RegistrationSourceEnumManual RegistrationSourceEnum = "manual"
+)
+
+// Valid indicates whether the value is a known member of the RegistrationSourceEnum enum.
+func (e RegistrationSourceEnum) Valid() bool {
+	switch e {
+	case RegistrationSourceEnumCimd:
+		return true
+	case RegistrationSourceEnumDcr:
+		return true
+	case RegistrationSourceEnumManual:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for RelationshipTypeEnum.
 const (
 	RelationshipTypeEnumBoard      RelationshipTypeEnum = "board"
@@ -34617,6 +34692,51 @@ type ConnectionStats struct {
 	Waiting *int `json:"waiting,omitempty"`
 }
 
+// ConsentDecisionRequest defines model for ConsentDecisionRequest.
+type ConsentDecisionRequest struct {
+	Allow               bool      `json:"allow"`
+	ClientId            string    `json:"client_id"`
+	CodeChallenge       string    `json:"code_challenge"`
+	CodeChallengeMethod string    `json:"code_challenge_method"`
+	RedirectUri         *string   `json:"redirect_uri,omitempty"`
+	Resource            *[]string `json:"resource,omitempty"`
+	ResponseType        string    `json:"response_type"`
+	Scope               *string   `json:"scope,omitempty"`
+	State               *string   `json:"state,omitempty"`
+}
+
+// ConsentDetails defines model for ConsentDetails.
+type ConsentDetails struct {
+	ClientHost         *string                        `json:"client_host"`
+	ClientName         string                         `json:"client_name"`
+	ElevatedAccess     *ConsentDetails_ElevatedAccess `json:"elevated_access"`
+	RedirectHost       string                         `json:"redirect_host"`
+	RegistrationSource RegistrationSourceEnum         `json:"registration_source"`
+	Scopes             []ConsentScope                 `json:"scopes"`
+}
+
+// ConsentDetails_ElevatedAccess defines model for ConsentDetails.ElevatedAccess.
+type ConsentDetails_ElevatedAccess struct {
+	union json.RawMessage
+}
+
+// ConsentError defines model for ConsentError.
+type ConsentError struct {
+	Error            string `json:"error"`
+	ErrorDescription string `json:"error_description"`
+}
+
+// ConsentResult defines model for ConsentResult.
+type ConsentResult struct {
+	RedirectUrl string `json:"redirect_url"`
+}
+
+// ConsentScope defines model for ConsentScope.
+type ConsentScope struct {
+	Description string `json:"description"`
+	Name        string `json:"name"`
+}
+
 // ConsoleUrl defines model for ConsoleUrl.
 type ConsoleUrl struct {
 	Url *string `json:"url,omitempty"`
@@ -38141,6 +38261,20 @@ type DemoPreset struct {
 	Version      *string         `json:"version,omitempty"`
 }
 
+// DemoPresetLoadJob defines model for DemoPresetLoadJob.
+type DemoPresetLoadJob struct {
+	Created      *time.Time                  `json:"created,omitempty"`
+	ErrorMessage *string                     `json:"error_message,omitempty"`
+	FinishedAt   *time.Time                  `json:"finished_at,omitempty"`
+	Preset       *string                     `json:"preset,omitempty"`
+	StartedAt    *time.Time                  `json:"started_at,omitempty"`
+	State        *DemoPresetLoadJobStateEnum `json:"state,omitempty"`
+	Uuid         *openapi_types.UUID         `json:"uuid,omitempty"`
+}
+
+// DemoPresetLoadJobStateEnum defines model for DemoPresetLoadJobStateEnum.
+type DemoPresetLoadJobStateEnum string
+
 // DemoPresetLoadRequestRequest defines model for DemoPresetLoadRequestRequest.
 type DemoPresetLoadRequestRequest struct {
 	// CleanupFirst Clean up existing data before loading the preset
@@ -38162,6 +38296,18 @@ type DemoPresetLoadResponse struct {
 	Output  *string           `json:"output,omitempty"`
 	Success bool              `json:"success"`
 	Users   *[]DemoPresetUser `json:"users,omitempty"`
+}
+
+// DemoPresetStatus defines model for DemoPresetStatus.
+type DemoPresetStatus struct {
+	// Load The latest load, if any.
+	Load *DemoPresetLoadJob `json:"load"`
+
+	// Loading Whether a load is pending or running; the API answers 503 meanwhile.
+	Loading bool `json:"loading"`
+
+	// Users The loaded preset's users without a staff or support role, for quick login, once the latest load is done.
+	Users []DemoPresetUser `json:"users"`
 }
 
 // DemoPresetUser defines model for DemoPresetUser.
@@ -39099,6 +39245,9 @@ type EffectiveRoutesResponse struct {
 	Routes             []EffectiveRoute `json:"routes"`
 	Snat               *bool            `json:"snat"`
 }
+
+// ElevatedAccessEnum defines model for ElevatedAccessEnum.
+type ElevatedAccessEnum string
 
 // EligibilityCheck defines model for EligibilityCheck.
 type EligibilityCheck struct {
@@ -44068,6 +44217,9 @@ type MergedPluginOptions struct {
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
 
+	// ShowOrderPeriodTotals If set to True, the UI can show each limit-based component of a resource for the whole order period: the usage summed since the resource was created against the current limit times the months of the order. Ordering, billing and enforcement do not change.
+	ShowOrderPeriodTotals *bool `json:"show_order_period_totals,omitempty"`
+
 	// ShowSshKeyLossWarning Show a warning about unrecoverable loss of the SSH private key on the OpenStack instance order form.
 	ShowSshKeyLossWarning *bool `json:"show_ssh_key_loss_warning,omitempty"`
 
@@ -44446,6 +44598,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ServiceProviderCanCreateOfferingUser Service provider can create offering user
 	ServiceProviderCanCreateOfferingUser *bool `json:"service_provider_can_create_offering_user,omitempty"`
+
+	// ShowOrderPeriodTotals If set to True, the UI can show each limit-based component of a resource for the whole order period: the usage summed since the resource was created against the current limit times the months of the order. Ordering, billing and enforcement do not change.
+	ShowOrderPeriodTotals *bool `json:"show_order_period_totals,omitempty"`
 
 	// ShowSshKeyLossWarning Show a warning about unrecoverable loss of the SSH private key on the OpenStack instance order form.
 	ShowSshKeyLossWarning *bool `json:"show_ssh_key_loss_warning,omitempty"`
@@ -51628,6 +51783,15 @@ type OrderErrorDetailsRequest struct {
 // OrderInfoResponse defines model for OrderInfoResponse.
 type OrderInfoResponse struct {
 	Detail *string `json:"detail,omitempty"`
+}
+
+// OrderPeriodUsage defines model for OrderPeriodUsage.
+type OrderPeriodUsage struct {
+	// Type Component type
+	Type *string `json:"type,omitempty"`
+
+	// Usage Usage summed since the resource was created, counting each billing period with its highest reported usage
+	Usage *float64 `json:"usage,omitempty"`
 }
 
 // OrderProviderInfoRequest defines model for OrderProviderInfoRequest.
@@ -61229,6 +61393,9 @@ type ReferenceNumberRequest struct {
 	ReferenceNumber *string `json:"reference_number,omitempty"`
 }
 
+// RegistrationSourceEnum defines model for RegistrationSourceEnum.
+type RegistrationSourceEnum string
+
 // RejectRequestedOfferingRequest defines model for RejectRequestedOfferingRequest.
 type RejectRequestedOfferingRequest struct {
 	// Reason Why the offering does not take part, for the call's managers.
@@ -62735,18 +62902,6 @@ type ResourceSetStateErredRequest struct {
 // ResourceSlugRequest defines model for ResourceSlugRequest.
 type ResourceSlugRequest struct {
 	Slug string `json:"slug"`
-}
-
-// ResourceSpendingLimits defines model for ResourceSpendingLimits.
-type ResourceSpendingLimits struct {
-	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
-	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
-}
-
-// ResourceSpendingLimitsRequest defines model for ResourceSpendingLimitsRequest.
-type ResourceSpendingLimitsRequest struct {
-	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
-	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
 }
 
 // ResourceState defines model for ResourceState.
@@ -65307,6 +65462,18 @@ type SetOfferingsUsernameRequest struct {
 type SetPartitionQoSRequest struct {
 	PartitionUuid *openapi_types.UUID       `json:"partition_uuid,omitempty"`
 	QosOptions    []PartitionQoSItemRequest `json:"qos_options"`
+}
+
+// SetResourceSpendingLimits defines model for SetResourceSpendingLimits.
+type SetResourceSpendingLimits struct {
+	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
+	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
+}
+
+// SetResourceSpendingLimitsRequest defines model for SetResourceSpendingLimitsRequest.
+type SetResourceSpendingLimitsRequest struct {
+	// SpendingLimits The resource's spending limits, replacing the current ones: {component_type: {period: amount}}. A missing or null period clears that limit; an empty object clears them all.
+	SpendingLimits map[string]*map[string]*float64 `json:"spending_limits"`
 }
 
 // SetTokenQuotaRequest defines model for SetTokenQuotaRequest.
@@ -87580,6 +87747,18 @@ type NotificationMessagesCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// OauthConsentRetrieveParams defines parameters for OauthConsentRetrieve.
+type OauthConsentRetrieveParams struct {
+	ClientId            string    `form:"client_id" json:"client_id"`
+	CodeChallenge       string    `form:"code_challenge" json:"code_challenge"`
+	CodeChallengeMethod string    `form:"code_challenge_method" json:"code_challenge_method"`
+	RedirectUri         *string   `form:"redirect_uri,omitempty" json:"redirect_uri,omitempty"`
+	Resource            *[]string `form:"resource,omitempty" json:"resource,omitempty"`
+	ResponseType        string    `form:"response_type" json:"response_type"`
+	Scope               *string   `form:"scope,omitempty" json:"scope,omitempty"`
+	State               *string   `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // OnboardingJustificationsListParams defines parameters for OnboardingJustificationsList.
 type OnboardingJustificationsListParams struct {
 	// O Ordering
@@ -101422,7 +101601,7 @@ type MarketplaceResourcesSetRestrictMemberAccessJSONRequestBody = ResourceRestri
 type MarketplaceResourcesSetSlugJSONRequestBody = ResourceSlugRequest
 
 // MarketplaceResourcesSetSpendingLimitsJSONRequestBody defines body for MarketplaceResourcesSetSpendingLimits for application/json ContentType.
-type MarketplaceResourcesSetSpendingLimitsJSONRequestBody = ResourceSpendingLimitsRequest
+type MarketplaceResourcesSetSpendingLimitsJSONRequestBody = SetResourceSpendingLimitsRequest
 
 // MarketplaceResourcesSwitchPlanJSONRequestBody defines body for MarketplaceResourcesSwitchPlan for application/json ContentType.
 type MarketplaceResourcesSwitchPlanJSONRequestBody = ResourceSwitchPlanRequest
@@ -101686,6 +101865,9 @@ type NotificationMessagesPartialUpdateJSONRequestBody = PatchedNotificationReque
 
 // NotificationMessagesUpdateJSONRequestBody defines body for NotificationMessagesUpdate for application/json ContentType.
 type NotificationMessagesUpdateJSONRequestBody = NotificationRequest
+
+// OauthConsentJSONRequestBody defines body for OauthConsent for application/json ContentType.
+type OauthConsentJSONRequestBody = ConsentDecisionRequest
 
 // OnboardingJustificationsCreateJustificationJSONRequestBody defines body for OnboardingJustificationsCreateJustification for application/json ContentType.
 type OnboardingJustificationsCreateJustificationJSONRequestBody = OnboardingJustificationCreateRequest
@@ -105256,6 +105438,68 @@ func (t CompleteRoundResponse_UndecidedAtRoundCompletion) MarshalJSON() ([]byte,
 }
 
 func (t *CompleteRoundResponse_UndecidedAtRoundCompletion) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsElevatedAccessEnum returns the union data inside the ConsentDetails_ElevatedAccess as a ElevatedAccessEnum
+func (t ConsentDetails_ElevatedAccess) AsElevatedAccessEnum() (ElevatedAccessEnum, error) {
+	var body ElevatedAccessEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromElevatedAccessEnum overwrites any union data inside the ConsentDetails_ElevatedAccess as the provided ElevatedAccessEnum
+func (t *ConsentDetails_ElevatedAccess) FromElevatedAccessEnum(v ElevatedAccessEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeElevatedAccessEnum performs a merge with any union data inside the ConsentDetails_ElevatedAccess, using the provided ElevatedAccessEnum
+func (t *ConsentDetails_ElevatedAccess) MergeElevatedAccessEnum(v ElevatedAccessEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ConsentDetails_ElevatedAccess as a NullEnum
+func (t ConsentDetails_ElevatedAccess) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ConsentDetails_ElevatedAccess as the provided NullEnum
+func (t *ConsentDetails_ElevatedAccess) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ConsentDetails_ElevatedAccess, using the provided NullEnum
+func (t *ConsentDetails_ElevatedAccess) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ConsentDetails_ElevatedAccess) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ConsentDetails_ElevatedAccess) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -126251,6 +126495,13 @@ type ClientInterface interface {
 	// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
 	DebugPubsubQueuesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// DemoPresetStatusRetrieve Demo preset load status
+	//
+	// Reports whether a demo preset is loading and the latest load. Once that load is done, lists the preset's users without a staff or support role, with their passwords for quick login. Public; answers 404 unless the deployment enables demo presets.
+	//
+	// Corresponds with GET /api/demo-preset-status/ (the `DemoPresetStatusRetrieve` operationId).
+	DemoPresetStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// DigitaloceanDropletsList performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 	DigitaloceanDropletsList(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -129214,7 +129465,7 @@ type ClientInterface interface {
 
 	// MarketplaceDemoPresetsLoadWithBody Load demo preset
 	//
-	// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+	// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -129223,7 +129474,7 @@ type ClientInterface interface {
 
 	// MarketplaceDemoPresetsLoad Load demo preset
 	//
-	// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+	// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -130799,7 +131050,7 @@ type ClientInterface interface {
 
 	// MarketplacePlansPartialUpdateWithBody Partially update a provider plan
 	//
-	// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -130808,7 +131059,7 @@ type ClientInterface interface {
 
 	// MarketplacePlansPartialUpdate Partially update a provider plan
 	//
-	// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -130817,7 +131068,7 @@ type ClientInterface interface {
 
 	// MarketplacePlansUpdateWithBody Update a provider plan
 	//
-	// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -130826,7 +131077,7 @@ type ClientInterface interface {
 
 	// MarketplacePlansUpdate Update a provider plan
 	//
-	// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -132883,6 +133134,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-provider-resources/{uuid}/offering_for_subresources/ (the `MarketplaceProviderResourcesOfferingForSubresourcesList` operationId).
 	MarketplaceProviderResourcesOfferingForSubresourcesList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesOrderPeriodUsageList Get usage for the whole order period
+	//
+	// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+	//
+	// Corresponds with GET /api/marketplace-provider-resources/{uuid}/order_period_usage/ (the `MarketplaceProviderResourcesOrderPeriodUsageList` operationId).
+	MarketplaceProviderResourcesOrderPeriodUsageList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesPlanPeriodsList List resource plan periods
 	//
 	// Returns a list of active and future plan periods for the resource. Each period includes the plan details and current component usage.
@@ -134108,6 +134366,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/marketplace-resources/{uuid}/offering_for_subresources/ (the `MarketplaceResourcesOfferingForSubresourcesList` operationId).
 	MarketplaceResourcesOfferingForSubresourcesList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesOrderPeriodUsageList Get usage for the whole order period
+	//
+	// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+	//
+	// Corresponds with GET /api/marketplace-resources/{uuid}/order_period_usage/ (the `MarketplaceResourcesOrderPeriodUsageList` operationId).
+	MarketplaceResourcesOrderPeriodUsageList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesPlanPeriodsList List resource plan periods
 	//
@@ -137016,6 +137281,23 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/notification-messages/{uuid}/enable/ (the `NotificationMessagesEnable` operationId).
 	NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConsentRetrieve performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
+	//
+	// Describe the client asking for access, for the consent page.
+	OauthConsentRetrieve(ctx context.Context, params *OauthConsentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConsentWithBody performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Record the user's decision and return where to send the browser.
+	OauthConsentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConsent performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Record the user's decision and return where to send the browser.
+	OauthConsent(ctx context.Context, body OauthConsentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OnboardingJustificationsList performs a GET /api/onboarding-justifications/ (the `OnboardingJustificationsList` operationId) request.
 	OnboardingJustificationsList(ctx context.Context, params *OnboardingJustificationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -142210,7 +142492,7 @@ type ClientInterface interface {
 
 	// ProposalProposalsAwardedResourcesList performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 	//
-	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved (their own offerings' items) see it at any time; the applicant team once the decision is released; a results reader of the managing organization (CALL.VIEW_RESULTS) once the round's results are published and the decision is released, while the proposal is not rejected or canceled.
 	ProposalProposalsAwardedResourcesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProposalsAwardedResourcesSetWithBody performs a POST /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesSet` operationId) request,
@@ -158324,6 +158606,23 @@ func (c *Client) DebugPubsubQueuesCount(ctx context.Context, reqEditors ...Reque
 	return c.Client.Do(req)
 }
 
+// DemoPresetStatusRetrieve Demo preset load status
+//
+// Reports whether a demo preset is loading and the latest load. Once that load is done, lists the preset's users without a staff or support role, with their passwords for quick login. Public; answers 404 unless the deployment enables demo presets.
+//
+// Corresponds with GET /api/demo-preset-status/ (the `DemoPresetStatusRetrieve` operationId).
+func (c *Client) DemoPresetStatusRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDemoPresetStatusRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // DigitaloceanDropletsList performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 func (c *Client) DigitaloceanDropletsList(ctx context.Context, params *DigitaloceanDropletsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDigitaloceanDropletsListRequest(c.Server, params)
@@ -165912,7 +166211,7 @@ func (c *Client) MarketplaceDemoPresetsListCount(ctx context.Context, params *Ma
 
 // MarketplaceDemoPresetsLoadWithBody Load demo preset
 //
-// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 //
 // Takes any type of body and a specified content type.
 //
@@ -165931,7 +166230,7 @@ func (c *Client) MarketplaceDemoPresetsLoadWithBody(ctx context.Context, name st
 
 // MarketplaceDemoPresetsLoad Load demo preset
 //
-// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -170213,7 +170512,7 @@ func (c *Client) MarketplacePlansRetrieve(ctx context.Context, uuid openapi_type
 
 // MarketplacePlansPartialUpdateWithBody Partially update a provider plan
 //
-// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170232,7 +170531,7 @@ func (c *Client) MarketplacePlansPartialUpdateWithBody(ctx context.Context, uuid
 
 // MarketplacePlansPartialUpdate Partially update a provider plan
 //
-// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -170251,7 +170550,7 @@ func (c *Client) MarketplacePlansPartialUpdate(ctx context.Context, uuid openapi
 
 // MarketplacePlansUpdateWithBody Update a provider plan
 //
-// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170270,7 +170569,7 @@ func (c *Client) MarketplacePlansUpdateWithBody(ctx context.Context, uuid openap
 
 // MarketplacePlansUpdate Update a provider plan
 //
-// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -175057,6 +175356,23 @@ func (c *Client) MarketplaceProviderResourcesOfferingForSubresourcesList(ctx con
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderResourcesOrderPeriodUsageList Get usage for the whole order period
+//
+// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+//
+// Corresponds with GET /api/marketplace-provider-resources/{uuid}/order_period_usage/ (the `MarketplaceProviderResourcesOrderPeriodUsageList` operationId).
+func (c *Client) MarketplaceProviderResourcesOrderPeriodUsageList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesOrderPeriodUsageListRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderResourcesPlanPeriodsList List resource plan periods
 //
 // Returns a list of active and future plan periods for the resource. Each period includes the plan details and current component usage.
@@ -177941,6 +178257,23 @@ func (c *Client) MarketplaceResourcesOfferingRetrieve(ctx context.Context, uuid 
 // Corresponds with GET /api/marketplace-resources/{uuid}/offering_for_subresources/ (the `MarketplaceResourcesOfferingForSubresourcesList` operationId).
 func (c *Client) MarketplaceResourcesOfferingForSubresourcesList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesOfferingForSubresourcesListRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesOrderPeriodUsageList Get usage for the whole order period
+//
+// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+//
+// Corresponds with GET /api/marketplace-resources/{uuid}/order_period_usage/ (the `MarketplaceResourcesOrderPeriodUsageList` operationId).
+func (c *Client) MarketplaceResourcesOrderPeriodUsageList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesOrderPeriodUsageListRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -185420,6 +185753,53 @@ func (c *Client) NotificationMessagesDisable(ctx context.Context, uuid openapi_t
 // Corresponds with POST /api/notification-messages/{uuid}/enable/ (the `NotificationMessagesEnable` operationId).
 func (c *Client) NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewNotificationMessagesEnableRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConsentRetrieve performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
+//
+// Describe the client asking for access, for the consent page.
+func (c *Client) OauthConsentRetrieve(ctx context.Context, params *OauthConsentRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConsentRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConsentWithBody performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request,
+// with any type of body and a specified content type.
+//
+// Record the user's decision and return where to send the browser.
+func (c *Client) OauthConsentWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConsentRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConsent performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Record the user's decision and return where to send the browser.
+func (c *Client) OauthConsent(ctx context.Context, body OauthConsentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConsentRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -198447,7 +198827,7 @@ func (c *Client) ProposalProposalsAttachDocumentWithFormdataBody(ctx context.Con
 
 // ProposalProposalsAwardedResourcesList performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 //
-// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved (their own offerings' items) see it at any time; the applicant team once the decision is released; a results reader of the managing organization (CALL.VIEW_RESULTS) once the round's results are published and the decision is released, while the proposal is not rejected or canceled.
 func (c *Client) ProposalProposalsAwardedResourcesList(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProposalsAwardedResourcesListRequest(c.Server, uuid, params)
 	if err != nil {
@@ -251412,6 +251792,33 @@ func NewDebugPubsubQueuesCountRequest(server string) (*http.Request, error) {
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDemoPresetStatusRetrieveRequest constructs an http.Request for the DemoPresetStatusRetrieve method
+func NewDemoPresetStatusRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/demo-preset-status/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -313130,6 +313537,40 @@ func NewMarketplaceProviderResourcesOfferingForSubresourcesListRequest(server st
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesOrderPeriodUsageListRequest constructs an http.Request for the MarketplaceProviderResourcesOrderPeriodUsageList method
+func NewMarketplaceProviderResourcesOrderPeriodUsageListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/order_period_usage/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesPlanPeriodsListRequest constructs an http.Request for the MarketplaceProviderResourcesPlanPeriodsList method
 func NewMarketplaceProviderResourcesPlanPeriodsListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -323606,6 +324047,40 @@ func NewMarketplaceResourcesOfferingForSubresourcesListRequest(server string, uu
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/offering_for_subresources/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesOrderPeriodUsageListRequest constructs an http.Request for the MarketplaceResourcesOrderPeriodUsageList method
+func NewMarketplaceResourcesOrderPeriodUsageListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/order_period_usage/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -356140,6 +356615,168 @@ func NewNotificationMessagesEnableRequest(server string, uuid openapi_types.UUID
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewOauthConsentRetrieveRequest constructs an http.Request for the OauthConsentRetrieve method
+func NewOauthConsentRetrieveRequest(server string, params *OauthConsentRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth/consent/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "client_id", params.ClientId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "code_challenge", params.CodeChallenge, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "code_challenge_method", params.CodeChallengeMethod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.RedirectUri != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "redirect_uri", *params.RedirectUri, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Resource != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource", *params.Resource, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "response_type", params.ResponseType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.Scope != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope", *params.Scope, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOauthConsentRequest calls the generic OauthConsent builder with application/json body
+func NewOauthConsentRequest(server string, body OauthConsentJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewOauthConsentRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewOauthConsentRequestWithBody constructs an http.Request for the OauthConsent method, with any body, and a specified content type
+func NewOauthConsentRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth/consent/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -470304,6 +470941,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with HEAD /api/debug/pubsub/queues/ (the `DebugPubsubQueuesCount` operationId).
 	DebugPubsubQueuesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DebugPubsubQueuesCountResponse, error)
 
+	// DemoPresetStatusRetrieveWithResponse Demo preset load status
+	//
+	// Reports whether a demo preset is loading and the latest load. Once that load is done, lists the preset's users without a staff or support role, with their passwords for quick login. Public; answers 404 unless the deployment enables demo presets.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/demo-preset-status/ (the `DemoPresetStatusRetrieve` operationId).
+	DemoPresetStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DemoPresetStatusRetrieveResponse, error)
+
 	// DigitaloceanDropletsListWithResponse performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -473855,7 +474501,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceDemoPresetsLoadWithBodyWithResponse Load demo preset
 	//
-	// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+	// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -473864,7 +474510,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceDemoPresetsLoadWithResponse Load demo preset
 	//
-	// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+	// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -475792,7 +476438,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplacePlansPartialUpdateWithBodyWithResponse Partially update a provider plan
 	//
-	// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -475801,7 +476447,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplacePlansPartialUpdateWithResponse Partially update a provider plan
 	//
-	// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -475810,7 +476456,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplacePlansUpdateWithBodyWithResponse Update a provider plan
 	//
-	// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -475819,7 +476465,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplacePlansUpdateWithResponse Update a provider plan
 	//
-	// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+	// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478120,6 +478766,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-provider-resources/{uuid}/offering_for_subresources/ (the `MarketplaceProviderResourcesOfferingForSubresourcesList` operationId).
 	MarketplaceProviderResourcesOfferingForSubresourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOfferingForSubresourcesListResponse, error)
 
+	// MarketplaceProviderResourcesOrderPeriodUsageListWithResponse Get usage for the whole order period
+	//
+	// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-resources/{uuid}/order_period_usage/ (the `MarketplaceProviderResourcesOrderPeriodUsageList` operationId).
+	MarketplaceProviderResourcesOrderPeriodUsageListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOrderPeriodUsageListResponse, error)
+
 	// MarketplaceProviderResourcesPlanPeriodsListWithResponse List resource plan periods
 	//
 	// Returns a list of active and future plan periods for the resource. Each period includes the plan details and current component usage.
@@ -479495,6 +480150,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/marketplace-resources/{uuid}/offering_for_subresources/ (the `MarketplaceResourcesOfferingForSubresourcesList` operationId).
 	MarketplaceResourcesOfferingForSubresourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOfferingForSubresourcesListResponse, error)
+
+	// MarketplaceResourcesOrderPeriodUsageListWithResponse Get usage for the whole order period
+	//
+	// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resources/{uuid}/order_period_usage/ (the `MarketplaceResourcesOrderPeriodUsageList` operationId).
+	MarketplaceResourcesOrderPeriodUsageListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOrderPeriodUsageListResponse, error)
 
 	// MarketplaceResourcesPlanPeriodsListWithResponse List resource plan periods
 	//
@@ -483029,6 +483693,27 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/notification-messages/{uuid}/enable/ (the `NotificationMessagesEnable` operationId).
 	NotificationMessagesEnableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*NotificationMessagesEnableResponse, error)
+
+	// OauthConsentRetrieveWithResponse performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
+	//
+	// Describe the client asking for access, for the consent page.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OauthConsentRetrieveWithResponse(ctx context.Context, params *OauthConsentRetrieveParams, reqEditors ...RequestEditorFn) (*OauthConsentRetrieveResponse, error)
+
+	// OauthConsentWithBodyWithResponse performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Record the user's decision and return where to send the browser.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OauthConsentWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OauthConsentResponse, error)
+
+	// OauthConsentWithResponse performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Record the user's decision and return where to send the browser.
+	OauthConsentWithResponse(ctx context.Context, body OauthConsentJSONRequestBody, reqEditors ...RequestEditorFn) (*OauthConsentResponse, error)
 
 	// OnboardingJustificationsListWithResponse performs a GET /api/onboarding-justifications/ (the `OnboardingJustificationsList` operationId) request.
 	//
@@ -489131,7 +489816,7 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProposalsAwardedResourcesListWithResponse performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 	//
-	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+	// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved (their own offerings' items) see it at any time; the applicant team once the decision is released; a results reader of the managing organization (CALL.VIEW_RESULTS) once the round's results are published and the decision is released, while the proposal is not rejected or canceled.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProposalsAwardedResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsAwardedResourcesListResponse, error)
@@ -516392,6 +517077,47 @@ func (r DebugPubsubQueuesCountResponse) ContentType() string {
 	return ""
 }
 
+type DemoPresetStatusRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *DemoPresetStatus
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r DemoPresetStatusRetrieveResponse) GetJSON200() *DemoPresetStatus {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r DemoPresetStatusRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DemoPresetStatusRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DemoPresetStatusRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DemoPresetStatusRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // DigitaloceanDropletsListResponse200Headers the declared response headers of an HTTP 200 response for DigitaloceanDropletsList
 type DigitaloceanDropletsListResponse200Headers struct {
 	XResultCount *int
@@ -530548,11 +531274,18 @@ type MarketplaceDemoPresetsLoadResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *DemoPresetLoadResponse
+	// JSON202 the response for an HTTP 202 `application/json` response
+	JSON202 *DemoPresetLoadJob
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r MarketplaceDemoPresetsLoadResponse) GetJSON200() *DemoPresetLoadResponse {
 	return r.JSON200
+}
+
+// GetJSON202 returns the response for an HTTP 202 `application/json` response
+func (r MarketplaceDemoPresetsLoadResponse) GetJSON202() *DemoPresetLoadJob {
+	return r.JSON202
 }
 
 // GetBody returns the raw response body bytes
@@ -546272,6 +547005,68 @@ func (r MarketplaceProviderResourcesOfferingForSubresourcesListResponse) Content
 	return ""
 }
 
+// MarketplaceProviderResourcesOrderPeriodUsageListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderResourcesOrderPeriodUsageList
+type MarketplaceProviderResourcesOrderPeriodUsageListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceProviderResourcesOrderPeriodUsageListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OrderPeriodUsage
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *string
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *string
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceProviderResourcesOrderPeriodUsageListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) GetJSON200() *[]OrderPeriodUsage {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) GetJSON400() *string {
+	return r.JSON400
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) GetJSON403() *string {
+	return r.JSON403
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesOrderPeriodUsageListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceProviderResourcesPlanPeriodsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderResourcesPlanPeriodsList
 type MarketplaceProviderResourcesPlanPeriodsListResponse200Headers struct {
 	XResultCount *int
@@ -550988,6 +551783,68 @@ func (r MarketplaceResourcesOfferingForSubresourcesListResponse) ContentType() s
 	return ""
 }
 
+// MarketplaceResourcesOrderPeriodUsageListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceResourcesOrderPeriodUsageList
+type MarketplaceResourcesOrderPeriodUsageListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceResourcesOrderPeriodUsageListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OrderPeriodUsage
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *string
+	// JSON403 the response for an HTTP 403 `application/json` response
+	JSON403 *string
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceResourcesOrderPeriodUsageListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) GetJSON200() *[]OrderPeriodUsage {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) GetJSON400() *string {
+	return r.JSON400
+}
+
+// GetJSON403 returns the response for an HTTP 403 `application/json` response
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) GetJSON403() *string {
+	return r.JSON403
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesOrderPeriodUsageListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceResourcesPlanPeriodsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceResourcesPlanPeriodsList
 type MarketplaceResourcesPlanPeriodsListResponse200Headers struct {
 	XResultCount *int
@@ -551440,11 +552297,11 @@ type MarketplaceResourcesSetSpendingLimitsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *ResourceSpendingLimits
+	JSON200 *SetResourceSpendingLimits
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceResourcesSetSpendingLimitsResponse) GetJSON200() *ResourceSpendingLimits {
+func (r MarketplaceResourcesSetSpendingLimitsResponse) GetJSON200() *SetResourceSpendingLimits {
 	return r.JSON200
 }
 
@@ -565845,6 +566702,102 @@ func (r NotificationMessagesEnableResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r NotificationMessagesEnableResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OauthConsentRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ConsentDetails
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ConsentError
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OauthConsentRetrieveResponse) GetJSON200() *ConsentDetails {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r OauthConsentRetrieveResponse) GetJSON400() *ConsentError {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConsentRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConsentRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConsentRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConsentRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OauthConsentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ConsentResult
+	// JSON400 the response for an HTTP 400 `application/json` response
+	JSON400 *ConsentError
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OauthConsentResponse) GetJSON200() *ConsentResult {
+	return r.JSON200
+}
+
+// GetJSON400 returns the response for an HTTP 400 `application/json` response
+func (r OauthConsentResponse) GetJSON400() *ConsentError {
+	return r.JSON400
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConsentResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConsentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConsentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConsentResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -632047,6 +633000,21 @@ func (c *ClientWithResponses) DebugPubsubQueuesCountWithResponse(ctx context.Con
 	return ParseDebugPubsubQueuesCountResponse(rsp)
 }
 
+// DemoPresetStatusRetrieveWithResponse Demo preset load status
+//
+// Reports whether a demo preset is loading and the latest load. Once that load is done, lists the preset's users without a staff or support role, with their passwords for quick login. Public; answers 404 unless the deployment enables demo presets.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/demo-preset-status/ (the `DemoPresetStatusRetrieve` operationId).
+func (c *ClientWithResponses) DemoPresetStatusRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*DemoPresetStatusRetrieveResponse, error) {
+	rsp, err := c.DemoPresetStatusRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDemoPresetStatusRetrieveResponse(rsp)
+}
+
 // DigitaloceanDropletsListWithResponse performs a GET /api/digitalocean-droplets/ (the `DigitaloceanDropletsList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -638372,7 +639340,7 @@ func (c *ClientWithResponses) MarketplaceDemoPresetsListCountWithResponse(ctx co
 
 // MarketplaceDemoPresetsLoadWithBodyWithResponse Load demo preset
 //
-// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -638387,7 +639355,7 @@ func (c *ClientWithResponses) MarketplaceDemoPresetsLoadWithBodyWithResponse(ctx
 
 // MarketplaceDemoPresetsLoadWithResponse Load demo preset
 //
-// Load a demo preset into the database. This operation will optionally clean up existing data before loading. Staff access only.
+// Load a demo preset into the database. A load runs in the background and answers 202 with the load; follow it with /api/demo-preset-status/. While it runs the rest of the API answers 503. A load with cleanup first drops every task queued for the workers. A dry run is answered directly with its output. Answers 409 while another load runs, and 503 if the task queue cannot be reached. Staff access only.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -641937,7 +642905,7 @@ func (c *ClientWithResponses) MarketplacePlansRetrieveWithResponse(ctx context.C
 
 // MarketplacePlansPartialUpdateWithBodyWithResponse Partially update a provider plan
 //
-// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -641952,7 +642920,7 @@ func (c *ClientWithResponses) MarketplacePlansPartialUpdateWithBodyWithResponse(
 
 // MarketplacePlansPartialUpdateWithResponse Partially update a provider plan
 //
-// Partially updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Partially updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -641967,7 +642935,7 @@ func (c *ClientWithResponses) MarketplacePlansPartialUpdateWithResponse(ctx cont
 
 // MarketplacePlansUpdateWithBodyWithResponse Update a provider plan
 //
-// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -641982,7 +642950,7 @@ func (c *ClientWithResponses) MarketplacePlansUpdateWithBodyWithResponse(ctx con
 
 // MarketplacePlansUpdateWithResponse Update a provider plan
 //
-// Updates an existing plan. Note: A plan cannot be updated if it is already used by resources.
+// Updates an existing plan. Note: while resources use the plan, its unit and billing mode cannot be changed; prices change through update_prices.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645917,6 +646885,21 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesOfferingForSubresource
 	return ParseMarketplaceProviderResourcesOfferingForSubresourcesListResponse(rsp)
 }
 
+// MarketplaceProviderResourcesOrderPeriodUsageListWithResponse Get usage for the whole order period
+//
+// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-resources/{uuid}/order_period_usage/ (the `MarketplaceProviderResourcesOrderPeriodUsageList` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesOrderPeriodUsageListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesOrderPeriodUsageListResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesOrderPeriodUsageList(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesOrderPeriodUsageListResponse(rsp)
+}
+
 // MarketplaceProviderResourcesPlanPeriodsListWithResponse List resource plan periods
 //
 // Returns a list of active and future plan periods for the resource. Each period includes the plan details and current component usage.
@@ -648289,6 +649272,21 @@ func (c *ClientWithResponses) MarketplaceResourcesOfferingForSubresourcesListWit
 		return nil, err
 	}
 	return ParseMarketplaceResourcesOfferingForSubresourcesListResponse(rsp)
+}
+
+// MarketplaceResourcesOrderPeriodUsageListWithResponse Get usage for the whole order period
+//
+// Returns the usage of each limit-based, non-prepaid component with a monthly limit period, summed since the resource was created, counting each billing period with its highest reported usage. Available when the offering has show_order_period_totals enabled. Not shown to users who see the resource only through a ResourceProject role.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resources/{uuid}/order_period_usage/ (the `MarketplaceResourcesOrderPeriodUsageList` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesOrderPeriodUsageListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourcesOrderPeriodUsageListResponse, error) {
+	rsp, err := c.MarketplaceResourcesOrderPeriodUsageList(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesOrderPeriodUsageListResponse(rsp)
 }
 
 // MarketplaceResourcesPlanPeriodsListWithResponse List resource plan periods
@@ -654564,6 +655562,45 @@ func (c *ClientWithResponses) NotificationMessagesEnableWithResponse(ctx context
 		return nil, err
 	}
 	return ParseNotificationMessagesEnableResponse(rsp)
+}
+
+// OauthConsentRetrieveWithResponse performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
+//
+// Describe the client asking for access, for the consent page.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OauthConsentRetrieveWithResponse(ctx context.Context, params *OauthConsentRetrieveParams, reqEditors ...RequestEditorFn) (*OauthConsentRetrieveResponse, error) {
+	rsp, err := c.OauthConsentRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConsentRetrieveResponse(rsp)
+}
+
+// OauthConsentWithBodyWithResponse performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request,
+// with any type of body and a specified content type.
+//
+// Record the user's decision and return where to send the browser.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OauthConsentWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OauthConsentResponse, error) {
+	rsp, err := c.OauthConsentWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConsentResponse(rsp)
+}
+
+// OauthConsentWithResponse performs a POST /api/oauth/consent/ (the `OauthConsent` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Record the user's decision and return where to send the browser.
+func (c *ClientWithResponses) OauthConsentWithResponse(ctx context.Context, body OauthConsentJSONRequestBody, reqEditors ...RequestEditorFn) (*OauthConsentResponse, error) {
+	rsp, err := c.OauthConsent(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConsentResponse(rsp)
 }
 
 // OnboardingJustificationsListWithResponse performs a GET /api/onboarding-justifications/ (the `OnboardingJustificationsList` operationId) request.
@@ -665369,7 +666406,7 @@ func (c *ClientWithResponses) ProposalProposalsAttachDocumentWithFormdataBodyWit
 
 // ProposalProposalsAwardedResourcesListWithResponse performs a GET /api/proposal-proposals/{uuid}/awarded_resources/ (the `ProposalProposalsAwardedResourcesList` operationId) request.
 //
-// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved see it at any time; the applicant team once the decision is released.
+// List what the allocation decision awards the proposal. Staff, support, the call's managers and organizers, and the managers of the offerings involved (their own offerings' items) see it at any time; the applicant team once the decision is released; a results reader of the managing organization (CALL.VIEW_RESULTS) once the round's results are published and the decision is released, while the proposal is not rejected or canceled.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProposalsAwardedResourcesListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProposalsAwardedResourcesListParams, reqEditors ...RequestEditorFn) (*ProposalProposalsAwardedResourcesListResponse, error) {
@@ -692435,6 +693472,35 @@ func ParseDebugPubsubQueuesCountResponse(rsp *http.Response) (*DebugPubsubQueues
 	return response, nil
 }
 
+// ParseDemoPresetStatusRetrieveResponse parses an HTTP response from a DemoPresetStatusRetrieveWithResponse call
+func ParseDemoPresetStatusRetrieveResponse(rsp *http.Response) (*DemoPresetStatusRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DemoPresetStatusRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DemoPresetStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 404:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
 // ParseDigitaloceanDropletsListResponse parses an HTTP response from a DigitaloceanDropletsListWithResponse call
 func ParseDigitaloceanDropletsListResponse(rsp *http.Response) (*DigitaloceanDropletsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -701372,10 +702438,23 @@ func ParseMarketplaceDemoPresetsLoadResponse(rsp *http.Response) (*MarketplaceDe
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest DemoPresetLoadJob
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
 	case rsp.StatusCode == 400:
 		break // No content-type
 
 	case rsp.StatusCode == 404:
+		break // No content-type
+
+	case rsp.StatusCode == 409:
+		break // No content-type
+
+	case rsp.StatusCode == 503:
 		break // No content-type
 
 	}
@@ -711242,6 +712321,59 @@ func ParseMarketplaceProviderResourcesOfferingForSubresourcesListResponse(rsp *h
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesOrderPeriodUsageListResponse parses an HTTP response from a MarketplaceProviderResourcesOrderPeriodUsageListWithResponse call
+func ParseMarketplaceProviderResourcesOrderPeriodUsageListResponse(rsp *http.Response) (*MarketplaceProviderResourcesOrderPeriodUsageListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesOrderPeriodUsageListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OrderPeriodUsage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceProviderResourcesOrderPeriodUsageListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesPlanPeriodsListResponse parses an HTTP response from a MarketplaceProviderResourcesPlanPeriodsListWithResponse call
 func ParseMarketplaceProviderResourcesPlanPeriodsListResponse(rsp *http.Response) (*MarketplaceProviderResourcesPlanPeriodsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -714283,6 +715415,59 @@ func ParseMarketplaceResourcesOfferingForSubresourcesListResponse(rsp *http.Resp
 	return response, nil
 }
 
+// ParseMarketplaceResourcesOrderPeriodUsageListResponse parses an HTTP response from a MarketplaceResourcesOrderPeriodUsageListWithResponse call
+func ParseMarketplaceResourcesOrderPeriodUsageListResponse(rsp *http.Response) (*MarketplaceResourcesOrderPeriodUsageListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesOrderPeriodUsageListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OrderPeriodUsage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest string
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON403 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceResourcesOrderPeriodUsageListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceResourcesPlanPeriodsListResponse parses an HTTP response from a MarketplaceResourcesPlanPeriodsListWithResponse call
 func ParseMarketplaceResourcesPlanPeriodsListResponse(rsp *http.Response) (*MarketplaceResourcesPlanPeriodsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -714579,7 +715764,7 @@ func ParseMarketplaceResourcesSetSpendingLimitsResponse(rsp *http.Response) (*Ma
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ResourceSpendingLimits
+		var dest SetResourceSpendingLimits
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -723871,6 +725056,72 @@ func ParseNotificationMessagesEnableResponse(rsp *http.Response) (*NotificationM
 	response := &NotificationMessagesEnableResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOauthConsentRetrieveResponse parses an HTTP response from a OauthConsentRetrieveWithResponse call
+func ParseOauthConsentRetrieveResponse(rsp *http.Response) (*OauthConsentRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConsentRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ConsentDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ConsentError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOauthConsentResponse parses an HTTP response from a OauthConsentWithResponse call
+func ParseOauthConsentResponse(rsp *http.Response) (*OauthConsentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConsentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ConsentResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest ConsentError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
 	}
 
 	return response, nil
