@@ -35091,6 +35091,7 @@ type ConstanceSettings struct {
 	ONBOARDINGDNBCLIENTSECRET                        *string                                                          `json:"ONBOARDING_DNB_CLIENT_SECRET,omitempty"`
 	ONBOARDINGDNBRTSAPIURL                           *string                                                          `json:"ONBOARDING_DNB_RTS_API_URL,omitempty"`
 	ONBOARDINGDNBTOKENURL                            *string                                                          `json:"ONBOARDING_DNB_TOKEN_URL,omitempty"`
+	ONBOARDINGNOTIFICATIONEMAILS                     *string                                                          `json:"ONBOARDING_NOTIFICATION_EMAILS,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettings_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -35536,6 +35537,7 @@ type ConstanceSettingsRequest struct {
 	ONBOARDINGDNBCLIENTSECRET                        *string                                                                 `json:"ONBOARDING_DNB_CLIENT_SECRET,omitempty"`
 	ONBOARDINGDNBRTSAPIURL                           *string                                                                 `json:"ONBOARDING_DNB_RTS_API_URL,omitempty"`
 	ONBOARDINGDNBTOKENURL                            *string                                                                 `json:"ONBOARDING_DNB_TOKEN_URL,omitempty"`
+	ONBOARDINGNOTIFICATIONEMAILS                     *string                                                                 `json:"ONBOARDING_NOTIFICATION_EMAILS,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequest_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                    `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                 `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -35981,6 +35983,7 @@ type ConstanceSettingsRequestForm struct {
 	ONBOARDINGDNBCLIENTSECRET                        *string                                                                     `json:"ONBOARDING_DNB_CLIENT_SECRET,omitempty"`
 	ONBOARDINGDNBRTSAPIURL                           *string                                                                     `json:"ONBOARDING_DNB_RTS_API_URL,omitempty"`
 	ONBOARDINGDNBTOKENURL                            *string                                                                     `json:"ONBOARDING_DNB_TOKEN_URL,omitempty"`
+	ONBOARDINGNOTIFICATIONEMAILS                     *string                                                                     `json:"ONBOARDING_NOTIFICATION_EMAILS,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequestForm_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                        `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                     `json:"ONBOARDING_WICO_API_URL,omitempty"`
@@ -36426,6 +36429,7 @@ type ConstanceSettingsRequestMultipart struct {
 	ONBOARDINGDNBCLIENTSECRET                        *string                                                                          `json:"ONBOARDING_DNB_CLIENT_SECRET,omitempty"`
 	ONBOARDINGDNBRTSAPIURL                           *string                                                                          `json:"ONBOARDING_DNB_RTS_API_URL,omitempty"`
 	ONBOARDINGDNBTOKENURL                            *string                                                                          `json:"ONBOARDING_DNB_TOKEN_URL,omitempty"`
+	ONBOARDINGNOTIFICATIONEMAILS                     *string                                                                          `json:"ONBOARDING_NOTIFICATION_EMAILS,omitempty"`
 	ONBOARDINGVALIDATIONMETHODS                      *[]ConstanceSettingsRequestMultipart_ONBOARDINGVALIDATIONMETHODS_Item            `json:"ONBOARDING_VALIDATION_METHODS,omitempty"`
 	ONBOARDINGVERIFICATIONEXPIRYHOURS                *int                                                                             `json:"ONBOARDING_VERIFICATION_EXPIRY_HOURS,omitempty"`
 	ONBOARDINGWICOAPIURL                             *string                                                                          `json:"ONBOARDING_WICO_API_URL,omitempty"`
