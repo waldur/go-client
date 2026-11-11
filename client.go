@@ -1197,6 +1197,24 @@ func (e AuthorizedViaEnum) Valid() bool {
 	}
 }
 
+// Defines values for AutomaticDecisionGuardEnum.
+const (
+	EarlierStep        AutomaticDecisionGuardEnum = "earlier_step"
+	ProviderFulfilment AutomaticDecisionGuardEnum = "provider_fulfilment"
+)
+
+// Valid indicates whether the value is a known member of the AutomaticDecisionGuardEnum enum.
+func (e AutomaticDecisionGuardEnum) Valid() bool {
+	switch e {
+	case EarlierStep:
+		return true
+	case ProviderFulfilment:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AvailableChecklistsResponseChecklistTypeEnum.
 const (
 	AvailableChecklistsResponseChecklistTypeEnumAll      AvailableChecklistsResponseChecklistTypeEnum = "all"
@@ -1739,6 +1757,7 @@ func (e BillingUnit) Valid() bool {
 
 // Defines values for BookingResourceFieldEnum.
 const (
+	BookingResourceFieldEnumApiKeyCounts               BookingResourceFieldEnum = "api_key_counts"
 	BookingResourceFieldEnumAttributes                 BookingResourceFieldEnum = "attributes"
 	BookingResourceFieldEnumAvailableActions           BookingResourceFieldEnum = "available_actions"
 	BookingResourceFieldEnumBackendId                  BookingResourceFieldEnum = "backend_id"
@@ -1845,6 +1864,8 @@ const (
 // Valid indicates whether the value is a known member of the BookingResourceFieldEnum enum.
 func (e BookingResourceFieldEnum) Valid() bool {
 	switch e {
+	case BookingResourceFieldEnumApiKeyCounts:
+		return true
 	case BookingResourceFieldEnumAttributes:
 		return true
 	case BookingResourceFieldEnumAvailableActions:
@@ -5247,6 +5268,51 @@ func (e DemoPresetLoadJobStateEnum) Valid() bool {
 	case DemoPresetLoadJobStateEnumPending:
 		return true
 	case DemoPresetLoadJobStateEnumRunning:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for DemoPresetPreviewFeatureChangeSourceEnum.
+const (
+	DemoPresetPreviewFeatureChangeSourceEnumDefault DemoPresetPreviewFeatureChangeSourceEnum = "default"
+	DemoPresetPreviewFeatureChangeSourceEnumOverlay DemoPresetPreviewFeatureChangeSourceEnum = "overlay"
+	DemoPresetPreviewFeatureChangeSourceEnumPreset  DemoPresetPreviewFeatureChangeSourceEnum = "preset"
+)
+
+// Valid indicates whether the value is a known member of the DemoPresetPreviewFeatureChangeSourceEnum enum.
+func (e DemoPresetPreviewFeatureChangeSourceEnum) Valid() bool {
+	switch e {
+	case DemoPresetPreviewFeatureChangeSourceEnumDefault:
+		return true
+	case DemoPresetPreviewFeatureChangeSourceEnumOverlay:
+		return true
+	case DemoPresetPreviewFeatureChangeSourceEnumPreset:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for DemoPresetPreviewSettingChangeSourceEnum.
+const (
+	DemoPresetPreviewSettingChangeSourceEnumDefault    DemoPresetPreviewSettingChangeSourceEnum = "default"
+	DemoPresetPreviewSettingChangeSourceEnumDeployment DemoPresetPreviewSettingChangeSourceEnum = "deployment"
+	DemoPresetPreviewSettingChangeSourceEnumOverlay    DemoPresetPreviewSettingChangeSourceEnum = "overlay"
+	DemoPresetPreviewSettingChangeSourceEnumPreset     DemoPresetPreviewSettingChangeSourceEnum = "preset"
+)
+
+// Valid indicates whether the value is a known member of the DemoPresetPreviewSettingChangeSourceEnum enum.
+func (e DemoPresetPreviewSettingChangeSourceEnum) Valid() bool {
+	switch e {
+	case DemoPresetPreviewSettingChangeSourceEnumDefault:
+		return true
+	case DemoPresetPreviewSettingChangeSourceEnumDeployment:
+		return true
+	case DemoPresetPreviewSettingChangeSourceEnumOverlay:
+		return true
+	case DemoPresetPreviewSettingChangeSourceEnumPreset:
 		return true
 	default:
 		return false
@@ -19589,6 +19655,7 @@ const (
 	ProtectedCallFieldEnumPanelViceChair                      ProtectedCallFieldEnum = "panel_vice_chair"
 	ProtectedCallFieldEnumPanelViceChairName                  ProtectedCallFieldEnum = "panel_vice_chair_name"
 	ProtectedCallFieldEnumPanelViceChairUuid                  ProtectedCallFieldEnum = "panel_vice_chair_uuid"
+	ProtectedCallFieldEnumProjectNameTemplate                 ProtectedCallFieldEnum = "project_name_template"
 	ProtectedCallFieldEnumProposalFieldConfig                 ProtectedCallFieldEnum = "proposal_field_config"
 	ProtectedCallFieldEnumProposalFieldMetadata               ProtectedCallFieldEnum = "proposal_field_metadata"
 	ProtectedCallFieldEnumProposalSlugTemplate                ProtectedCallFieldEnum = "proposal_slug_template"
@@ -19699,6 +19766,8 @@ func (e ProtectedCallFieldEnum) Valid() bool {
 	case ProtectedCallFieldEnumPanelViceChairName:
 		return true
 	case ProtectedCallFieldEnumPanelViceChairUuid:
+		return true
+	case ProtectedCallFieldEnumProjectNameTemplate:
 		return true
 	case ProtectedCallFieldEnumProposalFieldConfig:
 		return true
@@ -20328,6 +20397,7 @@ const (
 	PublicCallFieldEnumMaxPrepaidDurationMonths            PublicCallFieldEnum = "max_prepaid_duration_months"
 	PublicCallFieldEnumName                                PublicCallFieldEnum = "name"
 	PublicCallFieldEnumOfferings                           PublicCallFieldEnum = "offerings"
+	PublicCallFieldEnumProjectNameTemplate                 PublicCallFieldEnum = "project_name_template"
 	PublicCallFieldEnumProposalFieldConfig                 PublicCallFieldEnum = "proposal_field_config"
 	PublicCallFieldEnumPublishResults                      PublicCallFieldEnum = "publish_results"
 	PublicCallFieldEnumResourceTemplateSelectionMode       PublicCallFieldEnum = "resource_template_selection_mode"
@@ -20382,6 +20452,8 @@ func (e PublicCallFieldEnum) Valid() bool {
 	case PublicCallFieldEnumName:
 		return true
 	case PublicCallFieldEnumOfferings:
+		return true
+	case PublicCallFieldEnumProjectNameTemplate:
 		return true
 	case PublicCallFieldEnumProposalFieldConfig:
 		return true
@@ -22194,8 +22266,45 @@ func (e ResourceApiKeyState) Valid() bool {
 	}
 }
 
+// Defines values for ResourceApiKeyStatusOEnum.
+const (
+	ResourceApiKeyStatusOEnumCreated            ResourceApiKeyStatusOEnum = "created"
+	ResourceApiKeyStatusOEnumEstimatedCost      ResourceApiKeyStatusOEnum = "estimated_cost"
+	ResourceApiKeyStatusOEnumIssuedAt           ResourceApiKeyStatusOEnum = "issued_at"
+	ResourceApiKeyStatusOEnumMinusCreated       ResourceApiKeyStatusOEnum = "-created"
+	ResourceApiKeyStatusOEnumMinusEstimatedCost ResourceApiKeyStatusOEnum = "-estimated_cost"
+	ResourceApiKeyStatusOEnumMinusIssuedAt      ResourceApiKeyStatusOEnum = "-issued_at"
+	ResourceApiKeyStatusOEnumMinusState         ResourceApiKeyStatusOEnum = "-state"
+	ResourceApiKeyStatusOEnumState              ResourceApiKeyStatusOEnum = "state"
+)
+
+// Valid indicates whether the value is a known member of the ResourceApiKeyStatusOEnum enum.
+func (e ResourceApiKeyStatusOEnum) Valid() bool {
+	switch e {
+	case ResourceApiKeyStatusOEnumCreated:
+		return true
+	case ResourceApiKeyStatusOEnumEstimatedCost:
+		return true
+	case ResourceApiKeyStatusOEnumIssuedAt:
+		return true
+	case ResourceApiKeyStatusOEnumMinusCreated:
+		return true
+	case ResourceApiKeyStatusOEnumMinusEstimatedCost:
+		return true
+	case ResourceApiKeyStatusOEnumMinusIssuedAt:
+		return true
+	case ResourceApiKeyStatusOEnumMinusState:
+		return true
+	case ResourceApiKeyStatusOEnumState:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ResourceFieldEnum.
 const (
+	ResourceFieldEnumApiKeyCounts               ResourceFieldEnum = "api_key_counts"
 	ResourceFieldEnumAttributes                 ResourceFieldEnum = "attributes"
 	ResourceFieldEnumAvailableActions           ResourceFieldEnum = "available_actions"
 	ResourceFieldEnumBackendId                  ResourceFieldEnum = "backend_id"
@@ -22295,6 +22404,8 @@ const (
 // Valid indicates whether the value is a known member of the ResourceFieldEnum enum.
 func (e ResourceFieldEnum) Valid() bool {
 	switch e {
+	case ResourceFieldEnumApiKeyCounts:
+		return true
 	case ResourceFieldEnumAttributes:
 		return true
 	case ResourceFieldEnumAvailableActions:
@@ -30419,6 +30530,9 @@ type AuthTypeEnum string
 // AuthorizedViaEnum defines model for AuthorizedViaEnum.
 type AuthorizedViaEnum string
 
+// AutomaticDecisionGuardEnum defines model for AutomaticDecisionGuardEnum.
+type AutomaticDecisionGuardEnum string
+
 // AvailabilityZoneResponse defines model for AvailabilityZoneResponse.
 type AvailabilityZoneResponse struct {
 	Name  string `json:"name"`
@@ -31083,6 +31197,8 @@ type BookingOrderUUID struct {
 
 // BookingResource defines model for BookingResource.
 type BookingResource struct {
+	// ApiKeyCounts How many keys the resource has in each state, deleted ones left out, as {state: count}. States with no keys are absent.
+	ApiKeyCounts               *map[string]int         `json:"api_key_counts,omitempty"`
 	Attributes                 *map[string]interface{} `json:"attributes,omitempty"`
 	AvailableActions           *[]string               `json:"available_actions,omitempty"`
 	BackendId                  *string                 `json:"backend_id,omitempty"`
@@ -32576,6 +32692,9 @@ type CallWorkflowStep struct {
 	AssignsRoles      *[]openapi_types.UUID `json:"assigns_roles,omitempty"`
 	AssignsRolesNames *[]string             `json:"assigns_roles_names,omitempty"`
 
+	// AutomaticDecisionGuard Automatic decision: what stops an unsuitable proposal -- an enabled earlier step that can reject it (earlier_step), or a person at the provider acting on every order the award places, on every accepted offering of the call (provider_fulfilment).
+	AutomaticDecisionGuard *AutomaticDecisionGuardEnum `json:"automatic_decision_guard,omitempty"`
+
 	// BlindReview Evaluators cannot see each other's assessments.
 	BlindReview   *bool               `json:"blind_review,omitempty"`
 	CallName      *string             `json:"call_name,omitempty"`
@@ -32803,6 +32922,9 @@ type CallWorkflowStepRequest struct {
 
 	// AssignsRoles Assignment step: the call's evaluator roles whose holders the completer picks, such as a lead and a second rapporteur.
 	AssignsRoles *[]openapi_types.UUID `json:"assigns_roles,omitempty"`
+
+	// AutomaticDecisionGuard Automatic decision: what stops an unsuitable proposal -- an enabled earlier step that can reject it (earlier_step), or a person at the provider acting on every order the award places, on every accepted offering of the call (provider_fulfilment).
+	AutomaticDecisionGuard *AutomaticDecisionGuardEnum `json:"automatic_decision_guard,omitempty"`
 
 	// BlindReview Evaluators cannot see each other's assessments.
 	BlindReview *bool               `json:"blind_review,omitempty"`
@@ -38296,6 +38418,131 @@ type DemoPresetLoadResponse struct {
 	Output  *string           `json:"output,omitempty"`
 	Success bool              `json:"success"`
 	Users   *[]DemoPresetUser `json:"users,omitempty"`
+}
+
+// DemoPresetPreview defines model for DemoPresetPreview.
+type DemoPresetPreview struct {
+	Description  *string         `json:"description,omitempty"`
+	EntityCounts *map[string]int `json:"entity_counts,omitempty"`
+
+	// FeatureChanges Features the load changes, and every feature the preset sets.
+	FeatureChanges *[]DemoPresetPreviewFeatureChange `json:"feature_changes,omitempty"`
+	Name           *string                           `json:"name,omitempty"`
+
+	// Offerings The preset's offerings, grouped by type and category.
+	Offerings     *[]DemoPresetPreviewOfferingGroup `json:"offerings,omitempty"`
+	Organizations *[]DemoPresetPreviewOrganization  `json:"organizations,omitempty"`
+
+	// Overlay The deployment's overlay preset imported after this one, if any.
+	Overlay *string `json:"overlay,omitempty"`
+
+	// OverlayContents What the deployment's overlay preset adds after this one.
+	OverlayContents *DemoPresetPreviewOverlayContents `json:"overlay_contents,omitempty"`
+	Scenarios       *[]string                         `json:"scenarios,omitempty"`
+
+	// SettingsChanges Settings the load changes, and every setting the preset sets.
+	SettingsChanges *[]DemoPresetPreviewSettingChange `json:"settings_changes,omitempty"`
+	Title           *string                           `json:"title,omitempty"`
+	Users           *[]DemoPresetPreviewUser          `json:"users,omitempty"`
+	Version         *string                           `json:"version,omitempty"`
+
+	// Warnings What would not work after the load, such as a feature whose deployment configuration is missing.
+	Warnings *[]string `json:"warnings,omitempty"`
+}
+
+// DemoPresetPreviewFeatureChange defines model for DemoPresetPreviewFeatureChange.
+type DemoPresetPreviewFeatureChange struct {
+	Changed      bool   `json:"changed"`
+	CurrentValue bool   `json:"current_value"`
+	Key          string `json:"key"`
+	NewValue     bool   `json:"new_value"`
+
+	// Source Where the value after the load comes from.
+	Source DemoPresetPreviewFeatureChangeSourceEnum `json:"source"`
+}
+
+// DemoPresetPreviewFeatureChangeSourceEnum defines model for DemoPresetPreviewFeatureChangeSourceEnum.
+type DemoPresetPreviewFeatureChangeSourceEnum string
+
+// DemoPresetPreviewOfferingGroup defines model for DemoPresetPreviewOfferingGroup.
+type DemoPresetPreviewOfferingGroup struct {
+	Category string   `json:"category"`
+	Names    []string `json:"names"`
+	Type     string   `json:"type"`
+}
+
+// DemoPresetPreviewOrganization defines model for DemoPresetPreviewOrganization.
+type DemoPresetPreviewOrganization struct {
+	Name     string                     `json:"name"`
+	Projects []DemoPresetPreviewProject `json:"projects"`
+}
+
+// DemoPresetPreviewOverlayContents defines model for DemoPresetPreviewOverlayContents.
+type DemoPresetPreviewOverlayContents struct {
+	Offerings     []DemoPresetPreviewOfferingGroup `json:"offerings"`
+	Organizations []DemoPresetPreviewOrganization  `json:"organizations"`
+	Users         []DemoPresetPreviewUser          `json:"users"`
+}
+
+// DemoPresetPreviewProject defines model for DemoPresetPreviewProject.
+type DemoPresetPreviewProject struct {
+	Name string `json:"name"`
+
+	// Resources Names of the project's resources.
+	Resources []string `json:"resources"`
+}
+
+// DemoPresetPreviewRole defines model for DemoPresetPreviewRole.
+type DemoPresetPreviewRole struct {
+	// Role Role name, such as CUSTOMER.OWNER.
+	Role string `json:"role"`
+
+	// ScopeName Name of the role's scope in the preset.
+	ScopeName string `json:"scope_name"`
+
+	// ScopeType Type of the role's scope, such as structure.customer.
+	ScopeType string `json:"scope_type"`
+}
+
+// DemoPresetPreviewSettingChange defines model for DemoPresetPreviewSettingChange.
+type DemoPresetPreviewSettingChange struct {
+	// Changed Whether the load changes the value.
+	Changed bool `json:"changed"`
+
+	// CurrentValue Null for a secret.
+	CurrentValue *map[string]interface{} `json:"current_value"`
+	Key          string                  `json:"key"`
+
+	// NewValue Value after the load. Null for a secret.
+	NewValue *map[string]interface{} `json:"new_value"`
+
+	// Secret Values of secrets are never shown.
+	Secret bool `json:"secret"`
+
+	// Skipped The preset sets a setting the deployment owns; it keeps its value.
+	Skipped bool `json:"skipped"`
+
+	// Source Where the value after the load comes from: the preset, the deployment's overlay preset, the setting's default, or the deployment, which owns the setting.
+	Source DemoPresetPreviewSettingChangeSourceEnum `json:"source"`
+}
+
+// DemoPresetPreviewSettingChangeSourceEnum defines model for DemoPresetPreviewSettingChangeSourceEnum.
+type DemoPresetPreviewSettingChangeSourceEnum string
+
+// DemoPresetPreviewUser defines model for DemoPresetPreviewUser.
+type DemoPresetPreviewUser struct {
+	Email    string `json:"email"`
+	FullName string `json:"full_name"`
+
+	// IsActive An inactive user is imported but cannot log in.
+	IsActive  bool `json:"is_active"`
+	IsStaff   bool `json:"is_staff"`
+	IsSupport bool `json:"is_support"`
+
+	// Password The preset's password for this user. Never given for staff, support or inactive users, or for the overlay's users.
+	Password *string                 `json:"password"`
+	Roles    []DemoPresetPreviewRole `json:"roles"`
+	Username string                  `json:"username"`
 }
 
 // DemoPresetStatus defines model for DemoPresetStatus.
@@ -52449,6 +52696,9 @@ type PatchedCallWorkflowStepRequest struct {
 	// AssignsRoles Assignment step: the call's evaluator roles whose holders the completer picks, such as a lead and a second rapporteur.
 	AssignsRoles *[]openapi_types.UUID `json:"assigns_roles,omitempty"`
 
+	// AutomaticDecisionGuard Automatic decision: what stops an unsuitable proposal -- an enabled earlier step that can reject it (earlier_step), or a person at the provider acting on every order the award places, on every accepted offering of the call (provider_fulfilment).
+	AutomaticDecisionGuard *AutomaticDecisionGuardEnum `json:"automatic_decision_guard,omitempty"`
+
 	// BlindReview Evaluators cannot see each other's assessments.
 	BlindReview *bool               `json:"blind_review,omitempty"`
 	Checklist   *openapi_types.UUID `json:"checklist,omitempty"`
@@ -54213,9 +54463,12 @@ type PatchedProtectedCallRequest struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -54305,9 +54558,12 @@ type PatchedProtectedCallRequestForm struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -54397,9 +54653,12 @@ type PatchedProtectedCallRequestMultipart struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -58232,15 +58491,18 @@ type ProtectedCall struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID      `json:"order_author_user,omitempty"`
-	OrderAuthorUserName *string                  `json:"order_author_user_name,omitempty"`
-	OrderAuthorUserUuid *openapi_types.UUID      `json:"order_author_user_uuid,omitempty"`
-	PanelChair          *openapi_types.UUID      `json:"panel_chair,omitempty"`
-	PanelChairName      *string                  `json:"panel_chair_name,omitempty"`
-	PanelChairUuid      *openapi_types.UUID      `json:"panel_chair_uuid,omitempty"`
-	PanelViceChair      *openapi_types.UUID      `json:"panel_vice_chair,omitempty"`
-	PanelViceChairName  *string                  `json:"panel_vice_chair_name,omitempty"`
-	PanelViceChairUuid  *openapi_types.UUID      `json:"panel_vice_chair_uuid,omitempty"`
+	OrderAuthorUser     *openapi_types.UUID `json:"order_author_user,omitempty"`
+	OrderAuthorUserName *string             `json:"order_author_user_name,omitempty"`
+	OrderAuthorUserUuid *openapi_types.UUID `json:"order_author_user_uuid,omitempty"`
+	PanelChair          *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelChairName      *string             `json:"panel_chair_name,omitempty"`
+	PanelChairUuid      *openapi_types.UUID `json:"panel_chair_uuid,omitempty"`
+	PanelViceChair      *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+	PanelViceChairName  *string             `json:"panel_vice_chair_name,omitempty"`
+	PanelViceChairUuid  *openapi_types.UUID `json:"panel_vice_chair_uuid,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                  `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfig `json:"proposal_field_config,omitempty"`
 
 	// ProposalFieldMetadata Per-field state, permitted transitions and downstream consumers for the Project details step.
@@ -58354,9 +58616,12 @@ type ProtectedCallRequest struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -58447,9 +58712,12 @@ type ProtectedCallRequestForm struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -58540,9 +58808,12 @@ type ProtectedCallRequestMultipart struct {
 	OrderAuthor *OrderAuthorEnum `json:"order_author,omitempty"`
 
 	// OrderAuthorUser The person orders are attributed to when the author is a named contact. Must hold a role on this call or on the organization managing it.
-	OrderAuthorUser     *openapi_types.UUID             `json:"order_author_user,omitempty"`
-	PanelChair          *openapi_types.UUID             `json:"panel_chair,omitempty"`
-	PanelViceChair      *openapi_types.UUID             `json:"panel_vice_chair,omitempty"`
+	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
+	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
+	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
 
 	// ProposalSlugTemplate Template for proposal slugs. Supports: {call_slug}, {round_slug}, {org_slug}, {year}, {month}, {counter}, {counter_padded}. Default: {round_slug}-{counter_padded}
@@ -59534,7 +59805,10 @@ type PublicCall struct {
 	MaxPrepaidDurationMonths *int                       `json:"max_prepaid_duration_months,omitempty"`
 	Name                     *string                    `json:"name,omitempty"`
 	Offerings                *[]NestedRequestedOffering `json:"offerings,omitempty"`
-	ProposalFieldConfig      *CallProposalFieldConfig   `json:"proposal_field_config,omitempty"`
+
+	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
+	ProjectNameTemplate *string                  `json:"project_name_template,omitempty"`
+	ProposalFieldConfig *CallProposalFieldConfig `json:"proposal_field_config,omitempty"`
 
 	// PublishResults When applicants learn the allocation decision: as soon as it is made, or for every proposal of a round together when a call manager publishes the round's results. Cannot be changed while decisions are held.
 	PublishResults *PublishResultsEnum `json:"publish_results,omitempty"`
@@ -62131,6 +62405,8 @@ type ResolutionEnum string
 
 // Resource defines model for Resource.
 type Resource struct {
+	// ApiKeyCounts How many keys the resource has in each state, deleted ones left out, as {state: count}. States with no keys are absent.
+	ApiKeyCounts     *map[string]int         `json:"api_key_counts,omitempty"`
 	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
 	AvailableActions *[]string               `json:"available_actions,omitempty"`
 	BackendId        *string                 `json:"backend_id,omitempty"`
@@ -62283,11 +62559,20 @@ type ResourceApiKey struct {
 	ApiKey        *string             `json:"api_key,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	Description   *string             `json:"description,omitempty"`
+
+	// CustomerName The consuming organization.
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid The consuming organization.
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description  *string             `json:"description,omitempty"`
 
 	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
 	EffectiveModels *[]string `json:"effective_models,omitempty"`
 	ErrorMessage    *string   `json:"error_message,omitempty"`
+
+	// EstimatedCost What the key's usage this month costs at the unit prices of the resource's plan, without discounts or credits. Zero until the first usage report of the month; recomputed on every report.
+	EstimatedCost *string `json:"estimated_cost,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
 	IssuedAt *time.Time `json:"issued_at,omitempty"`
@@ -62296,15 +62581,24 @@ type ResourceApiKey struct {
 	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
 
 	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
-	Limits   *map[string]float64 `json:"limits,omitempty"`
-	Modified *time.Time          `json:"modified,omitempty"`
+	Limits       *map[string]float64 `json:"limits,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// PausedByLimit Waldur paused the key because its usage reached a limit. Such a key is resumed automatically once its usage is under its limits again: when the period of the limit resets, or when a limit is raised. A total limit never resets, so only raising or clearing it does.
-	PausedByLimit       *bool                         `json:"paused_by_limit,omitempty"`
-	PendingAction       *ResourceApiKey_PendingAction `json:"pending_action,omitempty"`
-	ResourceBackendId   *string                       `json:"resource_backend_id,omitempty"`
-	ResourceUuid        *openapi_types.UUID           `json:"resource_uuid,omitempty"`
-	SpendingLimitStatus *[]SpendingLimitUsage         `json:"spending_limit_status,omitempty"`
+	PausedByLimit     *bool                         `json:"paused_by_limit,omitempty"`
+	PendingAction     *ResourceApiKey_PendingAction `json:"pending_action,omitempty"`
+	ProjectName       *string                       `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID           `json:"project_uuid,omitempty"`
+	ResourceBackendId *string                       `json:"resource_backend_id,omitempty"`
+	ResourceName      *string                       `json:"resource_name,omitempty"`
+	ResourcePlanUuid  *openapi_types.UUID           `json:"resource_plan_uuid,omitempty"`
+
+	// ResourceSpendingLimits The resource's spending limits, per component and period, which cap every key of the resource.
+	ResourceSpendingLimits *map[string]*map[string]*float64 `json:"resource_spending_limits,omitempty"`
+	ResourceUuid           *openapi_types.UUID              `json:"resource_uuid,omitempty"`
+	SpendingLimitStatus    *[]SpendingLimitUsage            `json:"spending_limit_status,omitempty"`
 
 	// SpendingLimits Limits per component type and period.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
@@ -62369,11 +62663,20 @@ type ResourceApiKeyStatus struct {
 	AllowedModels *[]string           `json:"allowed_models,omitempty"`
 	ClientId      *string             `json:"client_id,omitempty"`
 	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	Description   *string             `json:"description,omitempty"`
+
+	// CustomerName The consuming organization.
+	CustomerName *string `json:"customer_name,omitempty"`
+
+	// CustomerUuid The consuming organization.
+	CustomerUuid *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description  *string             `json:"description,omitempty"`
 
 	// EffectiveModels The models the key can call: the resource's selection, then the key's list. The site agent applies this one.
 	EffectiveModels *[]string `json:"effective_models,omitempty"`
 	ErrorMessage    *string   `json:"error_message,omitempty"`
+
+	// EstimatedCost What the key's usage this month costs at the unit prices of the resource's plan, without discounts or credits. Zero until the first usage report of the month; recomputed on every report.
+	EstimatedCost *string `json:"estimated_cost,omitempty"`
 
 	// IssuedAt When the agent last stored a value for this key: its creation or its latest rotation. Unlike modified, a pause or an edit leaves it alone.
 	IssuedAt *time.Time `json:"issued_at,omitempty"`
@@ -62382,15 +62685,24 @@ type ResourceApiKeyStatus struct {
 	LimitResumesAt *time.Time `json:"limit_resumes_at,omitempty"`
 
 	// Limits The month limits of spending_limits, per component type, for clients that know only monthly limits.
-	Limits   *map[string]float64 `json:"limits,omitempty"`
-	Modified *time.Time          `json:"modified,omitempty"`
+	Limits       *map[string]float64 `json:"limits,omitempty"`
+	Modified     *time.Time          `json:"modified,omitempty"`
+	OfferingName *string             `json:"offering_name,omitempty"`
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// PausedByLimit Waldur paused the key because its usage reached a limit. Such a key is resumed automatically once its usage is under its limits again: when the period of the limit resets, or when a limit is raised. A total limit never resets, so only raising or clearing it does.
-	PausedByLimit       *bool                               `json:"paused_by_limit,omitempty"`
-	PendingAction       *ResourceApiKeyStatus_PendingAction `json:"pending_action,omitempty"`
-	ResourceBackendId   *string                             `json:"resource_backend_id,omitempty"`
-	ResourceUuid        *openapi_types.UUID                 `json:"resource_uuid,omitempty"`
-	SpendingLimitStatus *[]SpendingLimitUsage               `json:"spending_limit_status,omitempty"`
+	PausedByLimit     *bool                               `json:"paused_by_limit,omitempty"`
+	PendingAction     *ResourceApiKeyStatus_PendingAction `json:"pending_action,omitempty"`
+	ProjectName       *string                             `json:"project_name,omitempty"`
+	ProjectUuid       *openapi_types.UUID                 `json:"project_uuid,omitempty"`
+	ResourceBackendId *string                             `json:"resource_backend_id,omitempty"`
+	ResourceName      *string                             `json:"resource_name,omitempty"`
+	ResourcePlanUuid  *openapi_types.UUID                 `json:"resource_plan_uuid,omitempty"`
+
+	// ResourceSpendingLimits The resource's spending limits, per component and period, which cap every key of the resource.
+	ResourceSpendingLimits *map[string]*map[string]*float64 `json:"resource_spending_limits,omitempty"`
+	ResourceUuid           *openapi_types.UUID              `json:"resource_uuid,omitempty"`
+	SpendingLimitStatus    *[]SpendingLimitUsage            `json:"spending_limit_status,omitempty"`
 
 	// SpendingLimits Limits per component type and period.
 	SpendingLimits *map[string]*map[string]*float64 `json:"spending_limits,omitempty"`
@@ -62406,6 +62718,9 @@ type ResourceApiKeyStatus_PendingAction struct {
 	union json.RawMessage
 }
 
+// ResourceApiKeyStatusOEnum defines model for ResourceApiKeyStatusOEnum.
+type ResourceApiKeyStatusOEnum string
+
 // ResourceApiKeyUsageRequest defines model for ResourceApiKeyUsageRequest.
 type ResourceApiKeyUsageRequest struct {
 	// BillingPeriod Any day of the month usages belongs to; the current month when omitted. A later month than the key holds starts afresh. An earlier one, from the start of the current year or of the previous month when that is earlier, raises that month's figure for a total limit; older ones are refused.
@@ -62420,7 +62735,10 @@ type ResourceApiKeyUsageRequest struct {
 
 // ResourceApiKeyUsageTotals defines model for ResourceApiKeyUsageTotals.
 type ResourceApiKeyUsageTotals struct {
-	// Usages Usage per component type in the current month, summed over the resource's keys, deleted ones included.
+	// EstimatedCost The keys' estimated cost this month, summed. Unlike the usages it adds up across offerings.
+	EstimatedCost string `json:"estimated_cost"`
+
+	// Usages Usage per component type in the current month, summed over the keys, deleted ones included. Only comparable within one offering.
 	Usages map[string]float64 `json:"usages"`
 }
 
@@ -69640,13 +69958,16 @@ type WorkflowDescriptionStage struct {
 
 // WorkflowDescriptionStep defines model for WorkflowDescriptionStep.
 type WorkflowDescriptionStep struct {
-	AllocationTime              *string                       `json:"allocation_time"`
-	AllowsChangeRequests        bool                          `json:"allows_change_requests"`
-	AllowsConditionalAcceptance bool                          `json:"allows_conditional_acceptance"`
-	Applicant                   WorkflowDescriptionApplicant  `json:"applicant"`
-	AssignsRoles                []string                      `json:"assigns_roles"`
-	BlindReview                 bool                          `json:"blind_review"`
-	Checklist                   *WorkflowDescriptionChecklist `json:"checklist"`
+	AllocationTime              *string                      `json:"allocation_time"`
+	AllowsChangeRequests        bool                         `json:"allows_change_requests"`
+	AllowsConditionalAcceptance bool                         `json:"allows_conditional_acceptance"`
+	Applicant                   WorkflowDescriptionApplicant `json:"applicant"`
+	AssignsRoles                []string                     `json:"assigns_roles"`
+
+	// AutomaticDecisionGuard What stops an unsuitable proposal before the automatic decision awards it; null unless the step decides automatically.
+	AutomaticDecisionGuard *WorkflowDescriptionStep_AutomaticDecisionGuard `json:"automatic_decision_guard"`
+	BlindReview            bool                                            `json:"blind_review"`
+	Checklist              *WorkflowDescriptionChecklist                   `json:"checklist"`
 
 	// CoiDeclaration The conflict-of-interest declaration the step's evaluators confirm; null on a step asking for none.
 	CoiDeclaration              *WorkflowDescriptionCoiDeclaration `json:"coi_declaration"`
@@ -69694,6 +70015,11 @@ type WorkflowDescriptionStep struct {
 	// StatusLabels The step's status labels as configured, for both audiences.
 	StatusLabels   StepStatusLabels `json:"status_labels"`
 	TransitionMode *string          `json:"transition_mode"`
+}
+
+// WorkflowDescriptionStep_AutomaticDecisionGuard What stops an unsuitable proposal before the automatic decision awards it; null unless the step decides automatically.
+type WorkflowDescriptionStep_AutomaticDecisionGuard struct {
+	union json.RawMessage
 }
 
 // WorkflowDescriptionTrigger defines model for WorkflowDescriptionTrigger.
@@ -82075,11 +82401,18 @@ type MarketplaceRemoteSynchronisationsCountParams struct {
 
 // MarketplaceResourceApiKeysListParams defines parameters for MarketplaceResourceApiKeysList.
 type MarketplaceResourceApiKeysListParams struct {
+	// CustomerUuid Consumer organization UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
 	// HasPendingAction Has a pending command
 	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
 
 	// ModifiedBefore Modified before
 	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -82090,9 +82423,18 @@ type MarketplaceResourceApiKeysListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
 	// PendingAction Pending command
 	//
 	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Keys of resources of the offerings of this service provider organization, to callers the provider resource list shows those resources to.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -82107,11 +82449,18 @@ type MarketplaceResourceApiKeysListParams struct {
 
 // MarketplaceResourceApiKeysCountParams defines parameters for MarketplaceResourceApiKeysCount.
 type MarketplaceResourceApiKeysCountParams struct {
+	// CustomerUuid Consumer organization UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
 	// HasPendingAction Has a pending command
 	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
 
 	// ModifiedBefore Modified before
 	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
 
 	// OfferingUuid Offering UUID
 	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
@@ -82122,9 +82471,18 @@ type MarketplaceResourceApiKeysCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
 	// PendingAction Pending command
 	//
 	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Keys of resources of the offerings of this service provider organization, to callers the provider resource list shows those resources to.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
 
 	// ResourceUuid Resource UUID
 	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
@@ -82139,12 +82497,86 @@ type MarketplaceResourceApiKeysCountParams struct {
 
 // MarketplaceResourceApiKeysUsageTotalsRetrieveParams defines parameters for MarketplaceResourceApiKeysUsageTotalsRetrieve.
 type MarketplaceResourceApiKeysUsageTotalsRetrieveParams struct {
-	ResourceUuid openapi_types.UUID `form:"resource_uuid" json:"resource_uuid"`
+	// CustomerUuid Consumer organization UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// HasPendingAction Has a pending command
+	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
+	// PendingAction Pending command
+	//
+	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ResourceUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State API key state
+	//
+	State *[]ResourceApiKeyState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUuid Assignee UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceResourceApiKeysUsageTotalsCountParams defines parameters for MarketplaceResourceApiKeysUsageTotalsCount.
 type MarketplaceResourceApiKeysUsageTotalsCountParams struct {
-	ResourceUuid openapi_types.UUID `form:"resource_uuid" json:"resource_uuid"`
+	// CustomerUuid Consumer organization UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// HasPendingAction Has a pending command
+	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
+	// PendingAction Pending command
+	//
+	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ResourceUuid One of resource_uuid, offering_uuid and provider_uuid is required.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State API key state
+	//
+	State *[]ResourceApiKeyState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUuid Assignee UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
 // MarketplaceResourceEndDateChangeRequestsListParams defines parameters for MarketplaceResourceEndDateChangeRequestsList.
@@ -122628,6 +123060,68 @@ func (t *VmwareVirtualMachineRequest_GuestOs) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsAutomaticDecisionGuardEnum returns the union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard as a AutomaticDecisionGuardEnum
+func (t WorkflowDescriptionStep_AutomaticDecisionGuard) AsAutomaticDecisionGuardEnum() (AutomaticDecisionGuardEnum, error) {
+	var body AutomaticDecisionGuardEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAutomaticDecisionGuardEnum overwrites any union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard as the provided AutomaticDecisionGuardEnum
+func (t *WorkflowDescriptionStep_AutomaticDecisionGuard) FromAutomaticDecisionGuardEnum(v AutomaticDecisionGuardEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAutomaticDecisionGuardEnum performs a merge with any union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard, using the provided AutomaticDecisionGuardEnum
+func (t *WorkflowDescriptionStep_AutomaticDecisionGuard) MergeAutomaticDecisionGuardEnum(v AutomaticDecisionGuardEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard as a NullEnum
+func (t WorkflowDescriptionStep_AutomaticDecisionGuard) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard as the provided NullEnum
+func (t *WorkflowDescriptionStep_AutomaticDecisionGuard) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the WorkflowDescriptionStep_AutomaticDecisionGuard, using the provided NullEnum
+func (t *WorkflowDescriptionStep_AutomaticDecisionGuard) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t WorkflowDescriptionStep_AutomaticDecisionGuard) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *WorkflowDescriptionStep_AutomaticDecisionGuard) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsCustomersUsersListParamsOrganizationRole0 returns the union data inside the CustomersUsersListParams_OrganizationRole_Item as a CustomersUsersListParamsOrganizationRole0
 func (t CustomersUsersListParams_OrganizationRole_Item) AsCustomersUsersListParamsOrganizationRole0() (CustomersUsersListParamsOrganizationRole0, error) {
 	var body CustomersUsersListParamsOrganizationRole0
@@ -129435,14 +129929,14 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
 	MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceDemoPresetsInfoRetrieve Get demo preset details
+	// MarketplaceDemoPresetsInfoRetrieve Preview a demo preset
 	//
-	// Returns detailed information about a specific demo preset. Staff access only.
+	// Returns what loading the preset would do: its users, organizations, projects, resources and offerings, the settings and features a load with cleanup first would change, and warnings about what would not work afterwards. Secret values and the passwords of staff and support users are never returned. Staff access only.
 	//
 	// Corresponds with GET /api/marketplace-demo-presets/info/{name}/ (the `MarketplaceDemoPresetsInfoRetrieve` operationId).
 	MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceDemoPresetsInfoCount Get demo preset details
+	// MarketplaceDemoPresetsInfoCount Preview a demo preset
 	//
 	// Get number of items in the collection matching the request parameters.
 	//
@@ -133750,14 +134244,14 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-resource-api-keys/report_created/ (the `MarketplaceResourceApiKeysReportCreated` operationId).
 	MarketplaceResourceApiKeysReportCreated(ctx context.Context, body MarketplaceResourceApiKeysReportCreatedJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourceApiKeysUsageTotalsRetrieve Total API key usage of a resource
+	// MarketplaceResourceApiKeysUsageTotalsRetrieve Total API key usage of a resource, offering or provider
 	//
-	// Sums the usage the site agent reported for the resource's keys in the current month, per component type. Deleted keys are included, so deleting a key leaves the total unchanged.
+	// Sums the usage the site agent reported in the current month for the keys of a resource, an offering or a service provider, per component type, and their estimated cost. Deleted keys are included, so deleting a key leaves the totals unchanged. One of resource_uuid, offering_uuid and provider_uuid is required; the other list filters narrow the keys summed. Per-component sums are only comparable within one offering; estimated_cost adds up across offerings.
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/usage_totals/ (the `MarketplaceResourceApiKeysUsageTotalsRetrieve` operationId).
 	MarketplaceResourceApiKeysUsageTotalsRetrieve(ctx context.Context, params *MarketplaceResourceApiKeysUsageTotalsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourceApiKeysUsageTotalsCount Total API key usage of a resource
+	// MarketplaceResourceApiKeysUsageTotalsCount Total API key usage of a resource, offering or provider
 	//
 	// Get number of items in the collection matching the request parameters.
 	//
@@ -166141,9 +166635,9 @@ func (c *Client) MarketplaceCustomerUsageComponentsUsageRetrieve(ctx context.Con
 	return c.Client.Do(req)
 }
 
-// MarketplaceDemoPresetsInfoRetrieve Get demo preset details
+// MarketplaceDemoPresetsInfoRetrieve Preview a demo preset
 //
-// Returns detailed information about a specific demo preset. Staff access only.
+// Returns what loading the preset would do: its users, organizations, projects, resources and offerings, the settings and features a load with cleanup first would change, and warnings about what would not work afterwards. Secret values and the passwords of staff and support users are never returned. Staff access only.
 //
 // Corresponds with GET /api/marketplace-demo-presets/info/{name}/ (the `MarketplaceDemoPresetsInfoRetrieve` operationId).
 func (c *Client) MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -166158,7 +166652,7 @@ func (c *Client) MarketplaceDemoPresetsInfoRetrieve(ctx context.Context, name st
 	return c.Client.Do(req)
 }
 
-// MarketplaceDemoPresetsInfoCount Get demo preset details
+// MarketplaceDemoPresetsInfoCount Preview a demo preset
 //
 // Get number of items in the collection matching the request parameters.
 //
@@ -176740,9 +177234,9 @@ func (c *Client) MarketplaceResourceApiKeysReportCreated(ctx context.Context, bo
 	return c.Client.Do(req)
 }
 
-// MarketplaceResourceApiKeysUsageTotalsRetrieve Total API key usage of a resource
+// MarketplaceResourceApiKeysUsageTotalsRetrieve Total API key usage of a resource, offering or provider
 //
-// Sums the usage the site agent reported for the resource's keys in the current month, per component type. Deleted keys are included, so deleting a key leaves the total unchanged.
+// Sums the usage the site agent reported in the current month for the keys of a resource, an offering or a service provider, per component type, and their estimated cost. Deleted keys are included, so deleting a key leaves the totals unchanged. One of resource_uuid, offering_uuid and provider_uuid is required; the other list filters narrow the keys summed. Per-component sums are only comparable within one offering; estimated_cost adds up across offerings.
 //
 // Corresponds with GET /api/marketplace-resource-api-keys/usage_totals/ (the `MarketplaceResourceApiKeysUsageTotalsRetrieve` operationId).
 func (c *Client) MarketplaceResourceApiKeysUsageTotalsRetrieve(ctx context.Context, params *MarketplaceResourceApiKeysUsageTotalsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -176757,7 +177251,7 @@ func (c *Client) MarketplaceResourceApiKeysUsageTotalsRetrieve(ctx context.Conte
 	return c.Client.Do(req)
 }
 
-// MarketplaceResourceApiKeysUsageTotalsCount Total API key usage of a resource
+// MarketplaceResourceApiKeysUsageTotalsCount Total API key usage of a resource, offering or provider
 //
 // Get number of items in the collection matching the request parameters.
 //
@@ -317386,6 +317880,18 @@ func NewMarketplaceResourceApiKeysListRequest(server string, params *Marketplace
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasPendingAction != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -317401,6 +317907,18 @@ func NewMarketplaceResourceApiKeysListRequest(server string, params *Marketplace
 		if params.ModifiedBefore != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -317446,9 +317964,45 @@ func NewMarketplaceResourceApiKeysListRequest(server string, params *Marketplace
 
 		}
 
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.PendingAction != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -317536,6 +318090,18 @@ func NewMarketplaceResourceApiKeysCountRequest(server string, params *Marketplac
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasPendingAction != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -317551,6 +318117,18 @@ func NewMarketplaceResourceApiKeysCountRequest(server string, params *Marketplac
 		if params.ModifiedBefore != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -317596,9 +318174,45 @@ func NewMarketplaceResourceApiKeysCountRequest(server string, params *Marketplac
 
 		}
 
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.PendingAction != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -317766,12 +318380,148 @@ func NewMarketplaceResourceApiKeysUsageTotalsRetrieveRequest(server string, para
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
 			}
+
+		}
+
+		if params.HasPendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -317816,12 +318566,148 @@ func NewMarketplaceResourceApiKeysUsageTotalsCountRequest(server string, params 
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
-		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
-			return nil, err
-		} else {
-			for _, qp := range strings.Split(queryFrag, "&") {
-				rawQueryFragments = append(rawQueryFragments, qp)
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
 			}
+
+		}
+
+		if params.HasPendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -474463,16 +475349,16 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-customer-usage/{uuid}/components-usage/ (the `MarketplaceCustomerUsageComponentsUsageRetrieve` operationId).
 	MarketplaceCustomerUsageComponentsUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceCustomerUsageComponentsUsageRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceCustomerUsageComponentsUsageRetrieveResponse, error)
 
-	// MarketplaceDemoPresetsInfoRetrieveWithResponse Get demo preset details
+	// MarketplaceDemoPresetsInfoRetrieveWithResponse Preview a demo preset
 	//
-	// Returns detailed information about a specific demo preset. Staff access only.
+	// Returns what loading the preset would do: its users, organizations, projects, resources and offerings, the settings and features a load with cleanup first would change, and warnings about what would not work afterwards. Secret values and the passwords of staff and support users are never returned. Staff access only.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/marketplace-demo-presets/info/{name}/ (the `MarketplaceDemoPresetsInfoRetrieve` operationId).
 	MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx context.Context, name string, reqEditors ...RequestEditorFn) (*MarketplaceDemoPresetsInfoRetrieveResponse, error)
 
-	// MarketplaceDemoPresetsInfoCountWithResponse Get demo preset details
+	// MarketplaceDemoPresetsInfoCountWithResponse Preview a demo preset
 	//
 	// Get number of items in the collection matching the request parameters.
 	//
@@ -479438,16 +480324,16 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-resource-api-keys/report_created/ (the `MarketplaceResourceApiKeysReportCreated` operationId).
 	MarketplaceResourceApiKeysReportCreatedWithResponse(ctx context.Context, body MarketplaceResourceApiKeysReportCreatedJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysReportCreatedResponse, error)
 
-	// MarketplaceResourceApiKeysUsageTotalsRetrieveWithResponse Total API key usage of a resource
+	// MarketplaceResourceApiKeysUsageTotalsRetrieveWithResponse Total API key usage of a resource, offering or provider
 	//
-	// Sums the usage the site agent reported for the resource's keys in the current month, per component type. Deleted keys are included, so deleting a key leaves the total unchanged.
+	// Sums the usage the site agent reported in the current month for the keys of a resource, an offering or a service provider, per component type, and their estimated cost. Deleted keys are included, so deleting a key leaves the totals unchanged. One of resource_uuid, offering_uuid and provider_uuid is required; the other list filters narrow the keys summed. Per-component sums are only comparable within one offering; estimated_cost adds up across offerings.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/usage_totals/ (the `MarketplaceResourceApiKeysUsageTotalsRetrieve` operationId).
 	MarketplaceResourceApiKeysUsageTotalsRetrieveWithResponse(ctx context.Context, params *MarketplaceResourceApiKeysUsageTotalsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysUsageTotalsRetrieveResponse, error)
 
-	// MarketplaceResourceApiKeysUsageTotalsCountWithResponse Total API key usage of a resource
+	// MarketplaceResourceApiKeysUsageTotalsCountWithResponse Total API key usage of a resource, offering or provider
 	//
 	// Get number of items in the collection matching the request parameters.
 	//
@@ -531116,11 +532002,11 @@ type MarketplaceDemoPresetsInfoRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *DemoPreset
+	JSON200 *DemoPresetPreview
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r MarketplaceDemoPresetsInfoRetrieveResponse) GetJSON200() *DemoPreset {
+func (r MarketplaceDemoPresetsInfoRetrieveResponse) GetJSON200() *DemoPresetPreview {
 	return r.JSON200
 }
 
@@ -639278,9 +640164,9 @@ func (c *ClientWithResponses) MarketplaceCustomerUsageComponentsUsageRetrieveWit
 	return ParseMarketplaceCustomerUsageComponentsUsageRetrieveResponse(rsp)
 }
 
-// MarketplaceDemoPresetsInfoRetrieveWithResponse Get demo preset details
+// MarketplaceDemoPresetsInfoRetrieveWithResponse Preview a demo preset
 //
-// Returns detailed information about a specific demo preset. Staff access only.
+// Returns what loading the preset would do: its users, organizations, projects, resources and offerings, the settings and features a load with cleanup first would change, and warnings about what would not work afterwards. Secret values and the passwords of staff and support users are never returned. Staff access only.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -639293,7 +640179,7 @@ func (c *ClientWithResponses) MarketplaceDemoPresetsInfoRetrieveWithResponse(ctx
 	return ParseMarketplaceDemoPresetsInfoRetrieveResponse(rsp)
 }
 
-// MarketplaceDemoPresetsInfoCountWithResponse Get demo preset details
+// MarketplaceDemoPresetsInfoCountWithResponse Preview a demo preset
 //
 // Get number of items in the collection matching the request parameters.
 //
@@ -648015,9 +648901,9 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysReportCreatedWithRespons
 	return ParseMarketplaceResourceApiKeysReportCreatedResponse(rsp)
 }
 
-// MarketplaceResourceApiKeysUsageTotalsRetrieveWithResponse Total API key usage of a resource
+// MarketplaceResourceApiKeysUsageTotalsRetrieveWithResponse Total API key usage of a resource, offering or provider
 //
-// Sums the usage the site agent reported for the resource's keys in the current month, per component type. Deleted keys are included, so deleting a key leaves the total unchanged.
+// Sums the usage the site agent reported in the current month for the keys of a resource, an offering or a service provider, per component type, and their estimated cost. Deleted keys are included, so deleting a key leaves the totals unchanged. One of resource_uuid, offering_uuid and provider_uuid is required; the other list filters narrow the keys summed. Per-component sums are only comparable within one offering; estimated_cost adds up across offerings.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -648030,7 +648916,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysUsageTotalsRetrieveWithR
 	return ParseMarketplaceResourceApiKeysUsageTotalsRetrieveResponse(rsp)
 }
 
-// MarketplaceResourceApiKeysUsageTotalsCountWithResponse Total API key usage of a resource
+// MarketplaceResourceApiKeysUsageTotalsCountWithResponse Total API key usage of a resource, offering or provider
 //
 // Get number of items in the collection matching the request parameters.
 //
@@ -702332,7 +703218,7 @@ func ParseMarketplaceDemoPresetsInfoRetrieveResponse(rsp *http.Response) (*Marke
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest DemoPreset
+		var dest DemoPresetPreview
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
