@@ -67842,7 +67842,7 @@ type TokenQuotaUsageResponse struct {
 	// DailyResetAt Calculate next midnight (00:00:00).
 	DailyResetAt *time.Time `json:"daily_reset_at,omitempty"`
 
-	// DailySystemDefault Get system default daily token limit from constance config.
+	// DailySystemDefault Get system default daily token limit setting.
 	DailySystemDefault *int `json:"daily_system_default,omitempty"`
 	DailyUsage         *int `json:"daily_usage,omitempty"`
 
@@ -67855,7 +67855,7 @@ type TokenQuotaUsageResponse struct {
 	// MonthlyResetAt Calculate first day of next month at midnight.
 	MonthlyResetAt *time.Time `json:"monthly_reset_at,omitempty"`
 
-	// MonthlySystemDefault Get system default monthly token limit from constance config.
+	// MonthlySystemDefault Get system default monthly token limit setting.
 	MonthlySystemDefault *int `json:"monthly_system_default,omitempty"`
 	MonthlyUsage         *int `json:"monthly_usage,omitempty"`
 
@@ -67868,7 +67868,7 @@ type TokenQuotaUsageResponse struct {
 	// WeeklyResetAt Calculate next Monday at midnight.
 	WeeklyResetAt *time.Time `json:"weekly_reset_at,omitempty"`
 
-	// WeeklySystemDefault Get system default weekly token limit from constance config.
+	// WeeklySystemDefault Get system default weekly token limit setting.
 	WeeklySystemDefault *int `json:"weekly_system_default,omitempty"`
 	WeeklyUsage         *int `json:"weekly_usage,omitempty"`
 }
@@ -125961,7 +125961,7 @@ type ClientInterface interface {
 
 	// ChatSystemPromptsDeactivateWithBody Deactivate the active system prompt
 	//
-	// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+	// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -125970,7 +125970,7 @@ type ClientInterface interface {
 
 	// ChatSystemPromptsDeactivate Deactivate the active system prompt
 	//
-	// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+	// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -133519,7 +133519,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImageWithBody Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -133528,7 +133528,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImage Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -133537,7 +133537,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBody Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes a body of the `application/x-www-form-urlencoded` content type.
 	//
@@ -148153,13 +148153,13 @@ type ClientInterface interface {
 	// SupportSettingsAtlassianSaveSettingsWithBody performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Save selected settings to constance.
+	// Save selected settings.
 	SupportSettingsAtlassianSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportSettingsAtlassianSaveSettings performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Save selected settings to constance.
+	// Save selected settings.
 	SupportSettingsAtlassianSaveSettings(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// SupportSettingsAtlassianValidateCredentialsWithBody performs a POST /api/support/settings/atlassian/validate_credentials/ (the `SupportSettingsAtlassianValidateCredentials` operationId) request,
@@ -156042,7 +156042,7 @@ func (c *Client) ChatSystemPromptsActivate(ctx context.Context, uuid openapi_typ
 
 // ChatSystemPromptsDeactivateWithBody Deactivate the active system prompt
 //
-// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 //
 // Takes any type of body and a specified content type.
 //
@@ -156061,7 +156061,7 @@ func (c *Client) ChatSystemPromptsDeactivateWithBody(ctx context.Context, uuid o
 
 // ChatSystemPromptsDeactivate Deactivate the active system prompt
 //
-// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -175293,7 +175293,7 @@ func (c *Client) MarketplaceProviderOfferingsUpdateUser(ctx context.Context, uui
 
 // MarketplaceProviderOfferingsUploadMarkdownImageWithBody Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes any type of body and a specified content type.
 //
@@ -175312,7 +175312,7 @@ func (c *Client) MarketplaceProviderOfferingsUploadMarkdownImageWithBody(ctx con
 
 // MarketplaceProviderOfferingsUploadMarkdownImage Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -175331,7 +175331,7 @@ func (c *Client) MarketplaceProviderOfferingsUploadMarkdownImage(ctx context.Con
 
 // MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBody Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes a body of the `application/x-www-form-urlencoded` content type.
 //
@@ -214224,7 +214224,7 @@ func (c *Client) SupportSettingsAtlassianPreviewSettings(ctx context.Context, bo
 // SupportSettingsAtlassianSaveSettingsWithBody performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request,
 // with any type of body and a specified content type.
 //
-// Save selected settings to constance.
+// Save selected settings.
 func (c *Client) SupportSettingsAtlassianSaveSettingsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportSettingsAtlassianSaveSettingsRequestWithBody(c.Server, contentType, body)
 	if err != nil {
@@ -214240,7 +214240,7 @@ func (c *Client) SupportSettingsAtlassianSaveSettingsWithBody(ctx context.Contex
 // SupportSettingsAtlassianSaveSettings performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Save selected settings to constance.
+// Save selected settings.
 func (c *Client) SupportSettingsAtlassianSaveSettings(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewSupportSettingsAtlassianSaveSettingsRequest(c.Server, body)
 	if err != nil {
@@ -470936,7 +470936,7 @@ type ClientWithResponsesInterface interface {
 
 	// ChatSystemPromptsDeactivateWithBodyWithResponse Deactivate the active system prompt
 	//
-	// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+	// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -470945,7 +470945,7 @@ type ClientWithResponsesInterface interface {
 
 	// ChatSystemPromptsDeactivateWithResponse Deactivate the active system prompt
 	//
-	// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+	// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -479908,7 +479908,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -479917,7 +479917,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImageWithResponse Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -479926,7 +479926,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBodyWithResponse Upload markdown image
 	//
-	// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+	// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 	//
 	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -497596,7 +497596,7 @@ type ClientWithResponsesInterface interface {
 	// SupportSettingsAtlassianSaveSettingsWithBodyWithResponse performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Save selected settings to constance.
+	// Save selected settings.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	SupportSettingsAtlassianSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error)
@@ -497604,7 +497604,7 @@ type ClientWithResponsesInterface interface {
 	// SupportSettingsAtlassianSaveSettingsWithResponse performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Save selected settings to constance.
+	// Save selected settings.
 	SupportSettingsAtlassianSaveSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error)
 
 	// SupportSettingsAtlassianValidateCredentialsWithBodyWithResponse performs a POST /api/support/settings/atlassian/validate_credentials/ (the `SupportSettingsAtlassianValidateCredentials` operationId) request,
@@ -632018,7 +632018,7 @@ func (c *ClientWithResponses) ChatSystemPromptsActivateWithResponse(ctx context.
 
 // ChatSystemPromptsDeactivateWithBodyWithResponse Deactivate the active system prompt
 //
-// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -632033,7 +632033,7 @@ func (c *ClientWithResponses) ChatSystemPromptsDeactivateWithBodyWithResponse(ct
 
 // ChatSystemPromptsDeactivateWithResponse Deactivate the active system prompt
 //
-// Deactivate this prompt. The system will fall back to Constance overrides or built-in defaults.
+// Deactivate this prompt. The system will fall back to the system prompt setting or built-in defaults.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648000,7 +648000,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUpdateUserWithResponse
 
 // MarketplaceProviderOfferingsUploadMarkdownImageWithBodyWithResponse Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648015,7 +648015,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUploadMarkdownImageWit
 
 // MarketplaceProviderOfferingsUploadMarkdownImageWithResponse Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648030,7 +648030,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsUploadMarkdownImageWit
 
 // MarketplaceProviderOfferingsUploadMarkdownImageWithFormdataBodyWithResponse Upload markdown image
 //
-// Uploads an image for embedding in offering markdown descriptions. Requires ENABLE_MARKDOWN_IMAGE_UPLOAD Constance setting.
+// Uploads an image for embedding in offering markdown descriptions. Requires the ENABLE_MARKDOWN_IMAGE_UPLOAD setting.
 //
 // Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -680271,7 +680271,7 @@ func (c *ClientWithResponses) SupportSettingsAtlassianPreviewSettingsWithRespons
 // SupportSettingsAtlassianSaveSettingsWithBodyWithResponse performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request,
 // with any type of body and a specified content type.
 //
-// Save selected settings to constance.
+// Save selected settings.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) SupportSettingsAtlassianSaveSettingsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error) {
@@ -680285,7 +680285,7 @@ func (c *ClientWithResponses) SupportSettingsAtlassianSaveSettingsWithBodyWithRe
 // SupportSettingsAtlassianSaveSettingsWithResponse performs a POST /api/support/settings/atlassian/save_settings/ (the `SupportSettingsAtlassianSaveSettings` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Save selected settings to constance.
+// Save selected settings.
 func (c *ClientWithResponses) SupportSettingsAtlassianSaveSettingsWithResponse(ctx context.Context, body SupportSettingsAtlassianSaveSettingsJSONRequestBody, reqEditors ...RequestEditorFn) (*SupportSettingsAtlassianSaveSettingsResponse, error) {
 	rsp, err := c.SupportSettingsAtlassianSaveSettings(ctx, body, reqEditors...)
 	if err != nil {
