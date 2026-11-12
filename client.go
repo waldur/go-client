@@ -6436,6 +6436,11 @@ const (
 	EventMetadataResponseEventGroupsProposalWorkflowAdvanced                         EventMetadataResponseEventGroups = "proposal_workflow_advanced"
 	EventMetadataResponseEventGroupsProposalWorkflowNotificationSent                 EventMetadataResponseEventGroups = "proposal_workflow_notification_sent"
 	EventMetadataResponseEventGroupsQueryExecuted                                    EventMetadataResponseEventGroups = "query_executed"
+	EventMetadataResponseEventGroupsReauthenticationFailed                           EventMetadataResponseEventGroups = "reauthentication_failed"
+	EventMetadataResponseEventGroupsReauthenticationGrantUsed                        EventMetadataResponseEventGroups = "reauthentication_grant_used"
+	EventMetadataResponseEventGroupsReauthenticationGranted                          EventMetadataResponseEventGroups = "reauthentication_granted"
+	EventMetadataResponseEventGroupsReauthenticationRefused                          EventMetadataResponseEventGroups = "reauthentication_refused"
+	EventMetadataResponseEventGroupsReauthenticationWaived                           EventMetadataResponseEventGroups = "reauthentication_waived"
 	EventMetadataResponseEventGroupsReductionOfCustomerCredit                        EventMetadataResponseEventGroups = "reduction_of_customer_credit"
 	EventMetadataResponseEventGroupsReductionOfCustomerCreditDueToMinimalConsumption EventMetadataResponseEventGroups = "reduction_of_customer_credit_due_to_minimal_consumption"
 	EventMetadataResponseEventGroupsReductionOfCustomerExpectedConsumption           EventMetadataResponseEventGroups = "reduction_of_customer_expected_consumption"
@@ -7197,6 +7202,16 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsQueryExecuted:
 		return true
+	case EventMetadataResponseEventGroupsReauthenticationFailed:
+		return true
+	case EventMetadataResponseEventGroupsReauthenticationGrantUsed:
+		return true
+	case EventMetadataResponseEventGroupsReauthenticationGranted:
+		return true
+	case EventMetadataResponseEventGroupsReauthenticationRefused:
+		return true
+	case EventMetadataResponseEventGroupsReauthenticationWaived:
+		return true
 	case EventMetadataResponseEventGroupsReductionOfCustomerCredit:
 		return true
 	case EventMetadataResponseEventGroupsReductionOfCustomerCreditDueToMinimalConsumption:
@@ -7828,6 +7843,11 @@ const (
 	EventTypesEnumProposalWorkflowAdvanced                         EventTypesEnum = "proposal_workflow_advanced"
 	EventTypesEnumProposalWorkflowNotificationSent                 EventTypesEnum = "proposal_workflow_notification_sent"
 	EventTypesEnumQueryExecuted                                    EventTypesEnum = "query_executed"
+	EventTypesEnumReauthenticationFailed                           EventTypesEnum = "reauthentication_failed"
+	EventTypesEnumReauthenticationGrantUsed                        EventTypesEnum = "reauthentication_grant_used"
+	EventTypesEnumReauthenticationGranted                          EventTypesEnum = "reauthentication_granted"
+	EventTypesEnumReauthenticationRefused                          EventTypesEnum = "reauthentication_refused"
+	EventTypesEnumReauthenticationWaived                           EventTypesEnum = "reauthentication_waived"
 	EventTypesEnumReductionOfCustomerCredit                        EventTypesEnum = "reduction_of_customer_credit"
 	EventTypesEnumReductionOfCustomerCreditDueToMinimalConsumption EventTypesEnum = "reduction_of_customer_credit_due_to_minimal_consumption"
 	EventTypesEnumReductionOfCustomerExpectedConsumption           EventTypesEnum = "reduction_of_customer_expected_consumption"
@@ -8588,6 +8608,16 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumProposalWorkflowNotificationSent:
 		return true
 	case EventTypesEnumQueryExecuted:
+		return true
+	case EventTypesEnumReauthenticationFailed:
+		return true
+	case EventTypesEnumReauthenticationGrantUsed:
+		return true
+	case EventTypesEnumReauthenticationGranted:
+		return true
+	case EventTypesEnumReauthenticationRefused:
+		return true
+	case EventTypesEnumReauthenticationWaived:
 		return true
 	case EventTypesEnumReductionOfCustomerCredit:
 		return true
@@ -17528,6 +17558,7 @@ const (
 	PermissionMetadataResponsePermissionMapRESOURCEREJECTBOOKINGREQUEST                 PermissionMetadataResponsePermissionMap = "RESOURCE.REJECT_BOOKING_REQUEST"
 	PermissionMetadataResponsePermissionMapRESOURCEREQUESTENDDATECHANGE                 PermissionMetadataResponsePermissionMap = "RESOURCE.REQUEST_END_DATE_CHANGE"
 	PermissionMetadataResponsePermissionMapRESOURCEREQUESTLIMITSCHANGE                  PermissionMetadataResponsePermissionMap = "RESOURCE.REQUEST_LIMITS_CHANGE"
+	PermissionMetadataResponsePermissionMapRESOURCEREVEALAPIKEY                         PermissionMetadataResponsePermissionMap = "RESOURCE.REVEAL_API_KEY"
 	PermissionMetadataResponsePermissionMapRESOURCESETBACKENDID                         PermissionMetadataResponsePermissionMap = "RESOURCE.SET_BACKEND_ID"
 	PermissionMetadataResponsePermissionMapRESOURCESETBACKENDMETADATA                   PermissionMetadataResponsePermissionMap = "RESOURCE.SET_BACKEND_METADATA"
 	PermissionMetadataResponsePermissionMapRESOURCESETENDDATE                           PermissionMetadataResponsePermissionMap = "RESOURCE.SET_END_DATE"
@@ -17804,6 +17835,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCEREQUESTLIMITSCHANGE:
 		return true
+	case PermissionMetadataResponsePermissionMapRESOURCEREVEALAPIKEY:
+		return true
 	case PermissionMetadataResponsePermissionMapRESOURCESETBACKENDID:
 		return true
 	case PermissionMetadataResponsePermissionMapRESOURCESETBACKENDMETADATA:
@@ -18002,6 +18035,7 @@ const (
 	PermissionMetadataResponsePermissionsRESOURCEREJECTBOOKINGREQUEST                 PermissionMetadataResponsePermissions = "RESOURCE.REJECT_BOOKING_REQUEST"
 	PermissionMetadataResponsePermissionsRESOURCEREQUESTENDDATECHANGE                 PermissionMetadataResponsePermissions = "RESOURCE.REQUEST_END_DATE_CHANGE"
 	PermissionMetadataResponsePermissionsRESOURCEREQUESTLIMITSCHANGE                  PermissionMetadataResponsePermissions = "RESOURCE.REQUEST_LIMITS_CHANGE"
+	PermissionMetadataResponsePermissionsRESOURCEREVEALAPIKEY                         PermissionMetadataResponsePermissions = "RESOURCE.REVEAL_API_KEY"
 	PermissionMetadataResponsePermissionsRESOURCESETBACKENDID                         PermissionMetadataResponsePermissions = "RESOURCE.SET_BACKEND_ID"
 	PermissionMetadataResponsePermissionsRESOURCESETBACKENDMETADATA                   PermissionMetadataResponsePermissions = "RESOURCE.SET_BACKEND_METADATA"
 	PermissionMetadataResponsePermissionsRESOURCESETENDDATE                           PermissionMetadataResponsePermissions = "RESOURCE.SET_END_DATE"
@@ -18277,6 +18311,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsRESOURCEREQUESTENDDATECHANGE:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCEREQUESTLIMITSCHANGE:
+		return true
+	case PermissionMetadataResponsePermissionsRESOURCEREVEALAPIKEY:
 		return true
 	case PermissionMetadataResponsePermissionsRESOURCESETBACKENDID:
 		return true
@@ -21726,6 +21762,54 @@ func (e RbacPolicyDirectionEnum) Valid() bool {
 	case RbacPolicyDirectionEnumInbound:
 		return true
 	case RbacPolicyDirectionEnumOutbound:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReauthenticationActionEnum.
+const (
+	ReauthenticationActionEnumChangeEmail               ReauthenticationActionEnum = "change_email"
+	ReauthenticationActionEnumChangePassword            ReauthenticationActionEnum = "change_password"
+	ReauthenticationActionEnumCreatePersonalAccessToken ReauthenticationActionEnum = "create_personal_access_token"
+	ReauthenticationActionEnumRegisterPasskey           ReauthenticationActionEnum = "register_passkey"
+	ReauthenticationActionEnumRevokePasskey             ReauthenticationActionEnum = "revoke_passkey"
+	ReauthenticationActionEnumTokenLifetime             ReauthenticationActionEnum = "token_lifetime"
+)
+
+// Valid indicates whether the value is a known member of the ReauthenticationActionEnum enum.
+func (e ReauthenticationActionEnum) Valid() bool {
+	switch e {
+	case ReauthenticationActionEnumChangeEmail:
+		return true
+	case ReauthenticationActionEnumChangePassword:
+		return true
+	case ReauthenticationActionEnumCreatePersonalAccessToken:
+		return true
+	case ReauthenticationActionEnumRegisterPasskey:
+		return true
+	case ReauthenticationActionEnumRevokePasskey:
+		return true
+	case ReauthenticationActionEnumTokenLifetime:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ReauthenticationMethodEnum.
+const (
+	ReauthenticationMethodEnumPasskey  ReauthenticationMethodEnum = "passkey"
+	ReauthenticationMethodEnumPassword ReauthenticationMethodEnum = "password"
+)
+
+// Valid indicates whether the value is a known member of the ReauthenticationMethodEnum enum.
+func (e ReauthenticationMethodEnum) Valid() bool {
+	switch e {
+	case ReauthenticationMethodEnumPasskey:
+		return true
+	case ReauthenticationMethodEnumPassword:
 		return true
 	default:
 		return false
@@ -26639,6 +26723,7 @@ const (
 	ValueEnumRESOURCEREJECTBOOKINGREQUEST                 ValueEnum = "RESOURCE.REJECT_BOOKING_REQUEST"
 	ValueEnumRESOURCEREQUESTENDDATECHANGE                 ValueEnum = "RESOURCE.REQUEST_END_DATE_CHANGE"
 	ValueEnumRESOURCEREQUESTLIMITSCHANGE                  ValueEnum = "RESOURCE.REQUEST_LIMITS_CHANGE"
+	ValueEnumRESOURCEREVEALAPIKEY                         ValueEnum = "RESOURCE.REVEAL_API_KEY"
 	ValueEnumRESOURCESETBACKENDID                         ValueEnum = "RESOURCE.SET_BACKEND_ID"
 	ValueEnumRESOURCESETBACKENDMETADATA                   ValueEnum = "RESOURCE.SET_BACKEND_METADATA"
 	ValueEnumRESOURCESETENDDATE                           ValueEnum = "RESOURCE.SET_END_DATE"
@@ -26914,6 +26999,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumRESOURCEREQUESTENDDATECHANGE:
 		return true
 	case ValueEnumRESOURCEREQUESTLIMITSCHANGE:
+		return true
+	case ValueEnumRESOURCEREVEALAPIKEY:
 		return true
 	case ValueEnumRESOURCESETBACKENDID:
 		return true
@@ -35106,6 +35193,9 @@ type ConstanceSettings struct {
 	ORCIDCLIENTSECRET                                *string                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PASSWORDFAILURESPERADDRESSCOOLOFFMINUTES         *int                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_COOLOFF_MINUTES,omitempty"`
+	PASSWORDFAILURESPERADDRESSLIMIT                  *int                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_LIMIT,omitempty"`
+	PASSWORDFAILURESPERADDRESSWINDOWMINUTES          *int                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_WINDOW_MINUTES,omitempty"`
 	PATENABLED                                       *bool                                                            `json:"PAT_ENABLED,omitempty"`
 	PATMAXACLENTRIES                                 *int                                                             `json:"PAT_MAX_ACL_ENTRIES,omitempty"`
 	PATMAXAUDITEVENTSPERHOUR                         *int                                                             `json:"PAT_MAX_AUDIT_EVENTS_PER_HOUR,omitempty"`
@@ -35119,6 +35209,7 @@ type ConstanceSettings struct {
 	PROPOSALDASHBOARDREVIEWSDUEWITHINDAYS            *int                                                             `json:"PROPOSAL_DASHBOARD_REVIEWS_DUE_WITHIN_DAYS,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                        *string                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REAUTHENTICATIONGRANTLIFETIMESECONDS             *int                                                             `json:"REAUTHENTICATION_GRANT_LIFETIME_SECONDS,omitempty"`
 	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
@@ -35552,6 +35643,9 @@ type ConstanceSettingsRequest struct {
 	ORCIDCLIENTSECRET                                *string                                                                 `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                 `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                   `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PASSWORDFAILURESPERADDRESSCOOLOFFMINUTES         *int                                                                    `json:"PASSWORD_FAILURES_PER_ADDRESS_COOLOFF_MINUTES,omitempty"`
+	PASSWORDFAILURESPERADDRESSLIMIT                  *int                                                                    `json:"PASSWORD_FAILURES_PER_ADDRESS_LIMIT,omitempty"`
+	PASSWORDFAILURESPERADDRESSWINDOWMINUTES          *int                                                                    `json:"PASSWORD_FAILURES_PER_ADDRESS_WINDOW_MINUTES,omitempty"`
 	PATENABLED                                       *bool                                                                   `json:"PAT_ENABLED,omitempty"`
 	PATMAXACLENTRIES                                 *int                                                                    `json:"PAT_MAX_ACL_ENTRIES,omitempty"`
 	PATMAXAUDITEVENTSPERHOUR                         *int                                                                    `json:"PAT_MAX_AUDIT_EVENTS_PER_HOUR,omitempty"`
@@ -35565,6 +35659,7 @@ type ConstanceSettingsRequest struct {
 	PROPOSALDASHBOARDREVIEWSDUEWITHINDAYS            *int                                                                    `json:"PROPOSAL_DASHBOARD_REVIEWS_DUE_WITHIN_DAYS,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                    `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                        *string                                                                 `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REAUTHENTICATIONGRANTLIFETIMESECONDS             *int                                                                    `json:"REAUTHENTICATION_GRANT_LIFETIME_SECONDS,omitempty"`
 	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                 `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                   `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                   `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
@@ -35998,6 +36093,9 @@ type ConstanceSettingsRequestForm struct {
 	ORCIDCLIENTSECRET                                *string                                                                     `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                     `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                       `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PASSWORDFAILURESPERADDRESSCOOLOFFMINUTES         *int                                                                        `json:"PASSWORD_FAILURES_PER_ADDRESS_COOLOFF_MINUTES,omitempty"`
+	PASSWORDFAILURESPERADDRESSLIMIT                  *int                                                                        `json:"PASSWORD_FAILURES_PER_ADDRESS_LIMIT,omitempty"`
+	PASSWORDFAILURESPERADDRESSWINDOWMINUTES          *int                                                                        `json:"PASSWORD_FAILURES_PER_ADDRESS_WINDOW_MINUTES,omitempty"`
 	PATENABLED                                       *bool                                                                       `json:"PAT_ENABLED,omitempty"`
 	PATMAXACLENTRIES                                 *int                                                                        `json:"PAT_MAX_ACL_ENTRIES,omitempty"`
 	PATMAXAUDITEVENTSPERHOUR                         *int                                                                        `json:"PAT_MAX_AUDIT_EVENTS_PER_HOUR,omitempty"`
@@ -36011,6 +36109,7 @@ type ConstanceSettingsRequestForm struct {
 	PROPOSALDASHBOARDREVIEWSDUEWITHINDAYS            *int                                                                        `json:"PROPOSAL_DASHBOARD_REVIEWS_DUE_WITHIN_DAYS,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                        `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                        *string                                                                     `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REAUTHENTICATIONGRANTLIFETIMESECONDS             *int                                                                        `json:"REAUTHENTICATION_GRANT_LIFETIME_SECONDS,omitempty"`
 	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                     `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                       `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                       `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
@@ -36444,6 +36543,9 @@ type ConstanceSettingsRequestMultipart struct {
 	ORCIDCLIENTSECRET                                *string                                                                          `json:"ORCID_CLIENT_SECRET,omitempty"`
 	ORCIDREDIRECTURI                                 *string                                                                          `json:"ORCID_REDIRECT_URI,omitempty"`
 	ORCIDSANDBOXMODE                                 *bool                                                                            `json:"ORCID_SANDBOX_MODE,omitempty"`
+	PASSWORDFAILURESPERADDRESSCOOLOFFMINUTES         *int                                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_COOLOFF_MINUTES,omitempty"`
+	PASSWORDFAILURESPERADDRESSLIMIT                  *int                                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_LIMIT,omitempty"`
+	PASSWORDFAILURESPERADDRESSWINDOWMINUTES          *int                                                                             `json:"PASSWORD_FAILURES_PER_ADDRESS_WINDOW_MINUTES,omitempty"`
 	PATENABLED                                       *bool                                                                            `json:"PAT_ENABLED,omitempty"`
 	PATMAXACLENTRIES                                 *int                                                                             `json:"PAT_MAX_ACL_ENTRIES,omitempty"`
 	PATMAXAUDITEVENTSPERHOUR                         *int                                                                             `json:"PAT_MAX_AUDIT_EVENTS_PER_HOUR,omitempty"`
@@ -36457,6 +36559,7 @@ type ConstanceSettingsRequestMultipart struct {
 	PROPOSALDASHBOARDREVIEWSDUEWITHINDAYS            *int                                                                             `json:"PROPOSAL_DASHBOARD_REVIEWS_DUE_WITHIN_DAYS,omitempty"`
 	PROPOSALREVIEWDURATION                           *int                                                                             `json:"PROPOSAL_REVIEW_DURATION,omitempty"`
 	RANCHERUSERNAMEINPUTLABEL                        *string                                                                          `json:"RANCHER_USERNAME_INPUT_LABEL,omitempty"`
+	REAUTHENTICATIONGRANTLIFETIMESECONDS             *int                                                                             `json:"REAUTHENTICATION_GRANT_LIFETIME_SECONDS,omitempty"`
 	REMOTEEDUTEAMSREFRESHTOKEN                       *string                                                                          `json:"REMOTE_EDUTEAMS_REFRESH_TOKEN,omitempty"`
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
@@ -44264,10 +44367,10 @@ type MergedPluginOptions struct {
 	// EnableResourceAccessSubnets If set to True, an Access subnets tab is shown on resource detail pages, letting consumers curate the IPs allowed to reach the backend entity. The list is advisory data for external firewalls.
 	EnableResourceAccessSubnets *bool `json:"enable_resource_access_subnets,omitempty"`
 
-	// EnableResourceEndDateChangeRequests If set to True, users without RESOURCE.SET_END_DATE can request an end date change, and holders of that permission approve or reject. Approval writes the date directly; no order is created. Requests are published as events so an external approval system can decide instead. Not applicable to prepaid offerings, which extend through renewal instead.
+	// EnableResourceEndDateChangeRequests If set to True, users with RESOURCE.REQUEST_END_DATE_CHANGE and without RESOURCE.SET_END_DATE can request an end date change, and holders of RESOURCE.SET_END_DATE approve or reject. Approval writes the date directly; no order is created. Requests are published as events so an external approval system can decide instead. Not applicable to prepaid offerings, which extend through renewal instead.
 	EnableResourceEndDateChangeRequests *bool `json:"enable_resource_end_date_change_requests,omitempty"`
 
-	// EnableResourceLimitChangeRequests If set to True, users who cannot change resource limits directly (RESOURCE.SET_LIMITS together with ORDER.CREATE) can request a limit change, and holders of RESOURCE.SET_LIMITS approve or reject. Approval submits an update order for the requested limits.
+	// EnableResourceLimitChangeRequests If set to True, users with RESOURCE.REQUEST_LIMITS_CHANGE who cannot change resource limits directly (RESOURCE.SET_LIMITS together with ORDER.CREATE) can request a limit change, and holders of RESOURCE.SET_LIMITS approve or reject. Approval submits an update order for the requested limits.
 	EnableResourceLimitChangeRequests *bool `json:"enable_resource_limit_change_requests,omitempty"`
 
 	// EnableResourceProjects Enable sub-project management within resources.
@@ -44646,10 +44749,10 @@ type MergedPluginOptionsRequest struct {
 	// EnableResourceAccessSubnets If set to True, an Access subnets tab is shown on resource detail pages, letting consumers curate the IPs allowed to reach the backend entity. The list is advisory data for external firewalls.
 	EnableResourceAccessSubnets *bool `json:"enable_resource_access_subnets,omitempty"`
 
-	// EnableResourceEndDateChangeRequests If set to True, users without RESOURCE.SET_END_DATE can request an end date change, and holders of that permission approve or reject. Approval writes the date directly; no order is created. Requests are published as events so an external approval system can decide instead. Not applicable to prepaid offerings, which extend through renewal instead.
+	// EnableResourceEndDateChangeRequests If set to True, users with RESOURCE.REQUEST_END_DATE_CHANGE and without RESOURCE.SET_END_DATE can request an end date change, and holders of RESOURCE.SET_END_DATE approve or reject. Approval writes the date directly; no order is created. Requests are published as events so an external approval system can decide instead. Not applicable to prepaid offerings, which extend through renewal instead.
 	EnableResourceEndDateChangeRequests *bool `json:"enable_resource_end_date_change_requests,omitempty"`
 
-	// EnableResourceLimitChangeRequests If set to True, users who cannot change resource limits directly (RESOURCE.SET_LIMITS together with ORDER.CREATE) can request a limit change, and holders of RESOURCE.SET_LIMITS approve or reject. Approval submits an update order for the requested limits.
+	// EnableResourceLimitChangeRequests If set to True, users with RESOURCE.REQUEST_LIMITS_CHANGE who cannot change resource limits directly (RESOURCE.SET_LIMITS together with ORDER.CREATE) can request a limit change, and holders of RESOURCE.SET_LIMITS approve or reject. Approval submits an update order for the requested limits.
 	EnableResourceLimitChangeRequests *bool `json:"enable_resource_limit_change_requests,omitempty"`
 
 	// EnableResourceProjects Enable sub-project management within resources.
@@ -52299,6 +52402,20 @@ type PasskeyMfaBeginRequest struct {
 	Ceremony openapi_types.UUID `json:"ceremony"`
 }
 
+// PasskeyReauthenticationBeginRequest defines model for PasskeyReauthenticationBeginRequest.
+type PasskeyReauthenticationBeginRequest struct {
+	// Action The change the grant will be for.
+	Action ReauthenticationActionEnum `json:"action"`
+}
+
+// PasskeyReauthenticationFinishRequest defines model for PasskeyReauthenticationFinishRequest.
+type PasskeyReauthenticationFinishRequest struct {
+	// Action The change the grant is for.
+	Action     ReauthenticationActionEnum `json:"action"`
+	Ceremony   openapi_types.UUID         `json:"ceremony"`
+	Credential map[string]interface{}     `json:"credential"`
+}
+
 // PasskeyRegistrationFinishRequest defines model for PasskeyRegistrationFinishRequest.
 type PasskeyRegistrationFinishRequest struct {
 	Ceremony   openapi_types.UUID     `json:"ceremony"`
@@ -56916,6 +57033,12 @@ type ProjectDigestPreviewResponse struct {
 	HtmlBody string `json:"html_body"`
 	Subject  string `json:"subject"`
 	TextBody string `json:"text_body"`
+}
+
+// ProjectDigestSendTestResponse defines model for ProjectDigestSendTestResponse.
+type ProjectDigestSendTestResponse struct {
+	Detail string `json:"detail"`
+	Sent   bool   `json:"sent"`
 }
 
 // ProjectEmailPolicyResponse defines model for ProjectEmailPolicyResponse.
@@ -61624,6 +61747,54 @@ type ReassignItemResponse struct {
 	Detail       string             `json:"detail"`
 	NewBatchUuid openapi_types.UUID `json:"new_batch_uuid"`
 	NewItemUuid  openapi_types.UUID `json:"new_item_uuid"`
+}
+
+// ReauthenticationActionEnum defines model for ReauthenticationActionEnum.
+type ReauthenticationActionEnum string
+
+// ReauthenticationChallenge defines model for ReauthenticationChallenge.
+type ReauthenticationChallenge struct {
+	// Action The change that needs a grant.
+	Action ReauthenticationActionEnum `json:"action"`
+
+	// Code Always reauthentication_required.
+	Code   string `json:"code"`
+	Detail string `json:"detail"`
+
+	// Methods The methods this user can obtain a grant with.
+	Methods []ReauthenticationMethodEnum `json:"methods"`
+}
+
+// ReauthenticationGrant defines model for ReauthenticationGrant.
+type ReauthenticationGrant struct {
+	// Action The change the grant is for.
+	Action ReauthenticationActionEnum `json:"action"`
+
+	// ExpiresAt When the grant stops being usable.
+	ExpiresAt time.Time `json:"expires_at"`
+
+	// Grant Send it in the X-Reauthentication-Grant header of the change it is for. It is single-use and is not shown again.
+	Grant string `json:"grant"`
+}
+
+// ReauthenticationMethodEnum defines model for ReauthenticationMethodEnum.
+type ReauthenticationMethodEnum string
+
+// ReauthenticationPasswordRequest defines model for ReauthenticationPasswordRequest.
+type ReauthenticationPasswordRequest struct {
+	// Action The change the grant is for.
+	Action ReauthenticationActionEnum `json:"action"`
+
+	// Password The current password of the user making the request.
+	Password string `json:"password"`
+}
+
+// ReauthenticationThrottled defines model for ReauthenticationThrottled.
+type ReauthenticationThrottled struct {
+	Detail string `json:"detail"`
+
+	// RetryAfter Seconds to wait before trying again.
+	RetryAfter int `json:"retry_after"`
 }
 
 // RecentTicket defines model for RecentTicket.
@@ -67609,6 +67780,14 @@ type ThreadSessionRequest struct {
 
 // ThreadSessionScopeEnum defines model for ThreadSessionScopeEnum.
 type ThreadSessionScopeEnum string
+
+// Throttled defines model for Throttled.
+type Throttled struct {
+	Detail string `json:"detail"`
+
+	// RetryAfter Seconds to wait before trying again.
+	RetryAfter int `json:"retry_after"`
+}
 
 // TimeSeriesToSData defines model for TimeSeriesToSData.
 type TimeSeriesToSData struct {
@@ -92623,6 +92802,18 @@ type PasskeysCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// PasskeysRegistrationBeginParams defines parameters for PasskeysRegistrationBegin.
+type PasskeysRegistrationBeginParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// PasskeysRevokeParams defines parameters for PasskeysRevoke.
+type PasskeysRevokeParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
 // PaymentProfilesListParams defines parameters for PaymentProfilesList.
 type PaymentProfilesListParams struct {
 	IsActive *bool `form:"is_active,omitempty" json:"is_active,omitempty"`
@@ -92703,6 +92894,12 @@ type PersonalAccessTokensCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// PersonalAccessTokensCreateParams defines parameters for PersonalAccessTokensCreate.
+type PersonalAccessTokensCreateParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
 // PersonalAccessTokensAvailableBindingTargetsListParams defines parameters for PersonalAccessTokensAvailableBindingTargetsList.
 type PersonalAccessTokensAvailableBindingTargetsListParams struct {
 	// Page A page number within the paginated result set.
@@ -92737,6 +92934,12 @@ type PersonalAccessTokensAvailableScopesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensRotateParams defines parameters for PersonalAccessTokensRotate.
+type PersonalAccessTokensRotateParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
 }
 
 // ProjectCreditsListParams defines parameters for ProjectCreditsList.
@@ -97901,6 +98104,12 @@ type StaffPasskeysCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// StaffPasskeysRevokeParams defines parameters for StaffPasskeysRevoke.
+type StaffPasskeysRevokeParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
 // SupportAttachmentsListParams defines parameters for SupportAttachmentsList.
 type SupportAttachmentsListParams struct {
 	Field     *[]AttachmentFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -99653,6 +99862,30 @@ type UsersUserRegistrationTrendCountParams struct {
 // UsersRetrieveParams defines parameters for UsersRetrieve.
 type UsersRetrieveParams struct {
 	Field *[]UserFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// UsersPartialUpdateParams defines parameters for UsersPartialUpdate.
+type UsersPartialUpdateParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// UsersUpdateParams defines parameters for UsersUpdate.
+type UsersUpdateParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// UsersChangeEmailParams defines parameters for UsersChangeEmail.
+type UsersChangeEmailParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// UsersChangePasswordParams defines parameters for UsersChangePassword.
+type UsersChangePasswordParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
 }
 
 // UsersDataAccessHistoryListParams defines parameters for UsersDataAccessHistoryList.
@@ -103488,6 +103721,15 @@ type RancherWorkloadsUpdateJSONRequestBody = RancherWorkloadRequest
 
 // RancherWorkloadsYamlUpdateJSONRequestBody defines body for RancherWorkloadsYamlUpdate for application/json ContentType.
 type RancherWorkloadsYamlUpdateJSONRequestBody = RancherWorkloadRequest
+
+// ReauthenticationPasskeyBeginJSONRequestBody defines body for ReauthenticationPasskeyBegin for application/json ContentType.
+type ReauthenticationPasskeyBeginJSONRequestBody = PasskeyReauthenticationBeginRequest
+
+// ReauthenticationPasskeyFinishJSONRequestBody defines body for ReauthenticationPasskeyFinish for application/json ContentType.
+type ReauthenticationPasskeyFinishJSONRequestBody = PasskeyReauthenticationFinishRequest
+
+// ReauthenticationPasswordJSONRequestBody defines body for ReauthenticationPassword for application/json ContentType.
+type ReauthenticationPasswordJSONRequestBody = ReauthenticationPasswordRequest
 
 // RemoteEduteamsJSONRequestBody defines body for RemoteEduteams for application/json ContentType.
 type RemoteEduteamsJSONRequestBody = RemoteEduteamsRequestRequest
@@ -126640,7 +126882,7 @@ type ClientInterface interface {
 
 	// CustomersProjectDigestConfigSendTest Send a test digest email
 	//
-	// Send a test digest email to the requesting user.
+	// Send a test digest email to the requesting user. When nothing is sent, `sent` is false and `detail` says why.
 	//
 	// Corresponds with POST /api/customers/{uuid}/project-digest-config/send-test/ (the `CustomersProjectDigestConfigSendTest` operationId).
 	CustomersProjectDigestConfigSendTest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -134331,7 +134573,7 @@ type ClientInterface interface {
 
 	// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
 	//
-	// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
 	MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -142062,7 +142304,7 @@ type ClientInterface interface {
 	// PasskeysRegistrationBegin Begin passkey registration
 	//
 	// Corresponds with POST /api/passkeys/registration/begin/ (the `PasskeysRegistrationBegin` operationId).
-	PasskeysRegistrationBegin(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PasskeysRegistrationBegin(ctx context.Context, params *PasskeysRegistrationBeginParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PasskeysRegistrationFinishWithBody Finish passkey registration
 	//
@@ -142121,14 +142363,14 @@ type ClientInterface interface {
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-	PasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PasskeysRevoke Revoke a passkey
 	//
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-	PasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PaymentProfilesList performs a GET /api/payment-profiles/ (the `PaymentProfilesList` operationId) request.
 	PaymentProfilesList(ctx context.Context, params *PaymentProfilesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -142251,14 +142493,14 @@ type ClientInterface interface {
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-	PersonalAccessTokensCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PersonalAccessTokensCreateWithBody(ctx context.Context, params *PersonalAccessTokensCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensCreate Create a personal access token
 	//
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-	PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PersonalAccessTokensCreate(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensAvailableBindingTargetsList List entity types the caller can bind each permission to
 	//
@@ -142312,7 +142554,7 @@ type ClientInterface interface {
 	// Atomically revoke the old token and create a new one with the same scopes and bindings.
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/rotate/ (the `PersonalAccessTokensRotate` operationId).
-	PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensRotateParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensSetNetworkAclWithBody Replace the network ACL of a personal access token
 	//
@@ -146061,6 +146303,56 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	RancherWorkloadsYamlUpdate(ctx context.Context, uuid openapi_types.UUID, body RancherWorkloadsYamlUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ReauthenticationPasskeyBeginWithBody Begin re-authentication with a passkey
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+	ReauthenticationPasskeyBeginWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReauthenticationPasskeyBegin Begin re-authentication with a passkey
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+	ReauthenticationPasskeyBegin(ctx context.Context, body ReauthenticationPasskeyBeginJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReauthenticationPasskeyFinishWithBody Finish re-authentication with a passkey
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+	ReauthenticationPasskeyFinishWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReauthenticationPasskeyFinish Finish re-authentication with a passkey
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+	ReauthenticationPasskeyFinish(ctx context.Context, body ReauthenticationPasskeyFinishJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReauthenticationPasswordWithBody Re-authenticate with a password
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+	ReauthenticationPasswordWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ReauthenticationPassword Re-authenticate with a password
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+	ReauthenticationPassword(ctx context.Context, body ReauthenticationPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// RemoteEduteamsWithBody performs a POST /api/remote-eduteams/ (the `RemoteEduteams` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -147029,14 +147321,14 @@ type ClientInterface interface {
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-	StaffPasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	StaffPasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// StaffPasskeysRevoke Revoke another user's passkey
 	//
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-	StaffPasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	StaffPasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// StatsCeleryRetrieve Get Celery worker statistics
 	//
@@ -148655,27 +148947,27 @@ type ClientInterface interface {
 
 	// UsersPartialUpdateWithBody performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	UsersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersPartialUpdate performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersPartialUpdateWithFormdataBody performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 	// Takes a body of the `application/x-www-form-urlencoded` content type.
-	UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersUpdateWithBody performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersUpdate performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	UsersUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersUpdate(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersUpdateWithFormdataBody performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 	// Takes a body of the `application/x-www-form-urlencoded` content type.
-	UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersCancelChangeEmail Cancel email change request
 	//
@@ -148686,39 +148978,39 @@ type ClientInterface interface {
 
 	// UsersChangeEmailWithBody Request email change
 	//
-	// Allows to change email for user.
+	// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 	//
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-	UsersChangeEmailWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersChangeEmailWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersChangeEmail Request email change
 	//
-	// Allows to change email for user.
+	// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 	//
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-	UsersChangeEmail(ctx context.Context, uuid openapi_types.UUID, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersChangeEmail(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersChangePasswordWithBody Change user password
 	//
-	// Allows staff user to change password for any user.
+	// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 	//
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-	UsersChangePasswordWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersChangePasswordWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersChangePassword Change user password
 	//
-	// Allows staff user to change password for any user.
+	// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 	//
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-	UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersDataAccessRetrieve Get user data access visibility
 	//
@@ -158371,7 +158663,7 @@ func (c *Client) CustomersProjectDigestConfigPreview(ctx context.Context, uuid o
 
 // CustomersProjectDigestConfigSendTest Send a test digest email
 //
-// Send a test digest email to the requesting user.
+// Send a test digest email to the requesting user. When nothing is sent, `sent` is false and `detail` says why.
 //
 // Corresponds with POST /api/customers/{uuid}/project-digest-config/send-test/ (the `CustomersProjectDigestConfigSendTest` operationId).
 func (c *Client) CustomersProjectDigestConfigSendTest(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -177431,7 +177723,7 @@ func (c *Client) MarketplaceResourceApiKeysRetry(ctx context.Context, uuid opena
 
 // MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
 //
-// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
 //
 // Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
 func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -196777,8 +197069,8 @@ func (c *Client) PasskeysMfaFinish(ctx context.Context, body PasskeysMfaFinishJS
 // PasskeysRegistrationBegin Begin passkey registration
 //
 // Corresponds with POST /api/passkeys/registration/begin/ (the `PasskeysRegistrationBegin` operationId).
-func (c *Client) PasskeysRegistrationBegin(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPasskeysRegistrationBeginRequest(c.Server)
+func (c *Client) PasskeysRegistrationBegin(ctx context.Context, params *PasskeysRegistrationBeginParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPasskeysRegistrationBeginRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -196946,8 +197238,8 @@ func (c *Client) PasskeysUpdate(ctx context.Context, uuid openapi_types.UUID, bo
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-func (c *Client) PasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPasskeysRevokeRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) PasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPasskeysRevokeRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -196963,8 +197255,8 @@ func (c *Client) PasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-func (c *Client) PasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPasskeysRevokeRequest(c.Server, uuid, body)
+func (c *Client) PasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPasskeysRevokeRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -197386,8 +197678,8 @@ func (c *Client) PersonalAccessTokensCount(ctx context.Context, params *Personal
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-func (c *Client) PersonalAccessTokensCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPersonalAccessTokensCreateRequestWithBody(c.Server, contentType, body)
+func (c *Client) PersonalAccessTokensCreateWithBody(ctx context.Context, params *PersonalAccessTokensCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensCreateRequestWithBody(c.Server, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -197403,8 +197695,8 @@ func (c *Client) PersonalAccessTokensCreateWithBody(ctx context.Context, content
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-func (c *Client) PersonalAccessTokensCreate(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPersonalAccessTokensCreateRequest(c.Server, body)
+func (c *Client) PersonalAccessTokensCreate(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensCreateRequest(c.Server, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -197527,8 +197819,8 @@ func (c *Client) PersonalAccessTokensRetrieve(ctx context.Context, uuid openapi_
 // Atomically revoke the old token and create a new one with the same scopes and bindings.
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/rotate/ (the `PersonalAccessTokensRotate` operationId).
-func (c *Client) PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPersonalAccessTokensRotateRequest(c.Server, uuid)
+func (c *Client) PersonalAccessTokensRotate(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensRotateParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensRotateRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -208302,6 +208594,116 @@ func (c *Client) RancherWorkloadsYamlUpdate(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
+// ReauthenticationPasskeyBeginWithBody Begin re-authentication with a passkey
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+func (c *Client) ReauthenticationPasskeyBeginWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasskeyBeginRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReauthenticationPasskeyBegin Begin re-authentication with a passkey
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+func (c *Client) ReauthenticationPasskeyBegin(ctx context.Context, body ReauthenticationPasskeyBeginJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasskeyBeginRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReauthenticationPasskeyFinishWithBody Finish re-authentication with a passkey
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+func (c *Client) ReauthenticationPasskeyFinishWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasskeyFinishRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReauthenticationPasskeyFinish Finish re-authentication with a passkey
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+func (c *Client) ReauthenticationPasskeyFinish(ctx context.Context, body ReauthenticationPasskeyFinishJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasskeyFinishRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReauthenticationPasswordWithBody Re-authenticate with a password
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+func (c *Client) ReauthenticationPasswordWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasswordRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ReauthenticationPassword Re-authenticate with a password
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+func (c *Client) ReauthenticationPassword(ctx context.Context, body ReauthenticationPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewReauthenticationPasswordRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // RemoteEduteamsWithBody performs a POST /api/remote-eduteams/ (the `RemoteEduteams` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -211240,8 +211642,8 @@ func (c *Client) StaffPasskeysCount(ctx context.Context, params *StaffPasskeysCo
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-func (c *Client) StaffPasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStaffPasskeysRevokeRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) StaffPasskeysRevokeWithBody(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStaffPasskeysRevokeRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -211257,8 +211659,8 @@ func (c *Client) StaffPasskeysRevokeWithBody(ctx context.Context, uuid openapi_t
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-func (c *Client) StaffPasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewStaffPasskeysRevokeRequest(c.Server, uuid, body)
+func (c *Client) StaffPasskeysRevoke(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewStaffPasskeysRevokeRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215788,8 +216190,8 @@ func (c *Client) UsersRetrieve(ctx context.Context, uuid openapi_types.UUID, par
 
 // UsersPartialUpdateWithBody performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) UsersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) UsersPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersPartialUpdateRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215802,8 +216204,8 @@ func (c *Client) UsersPartialUpdateWithBody(ctx context.Context, uuid openapi_ty
 
 // UsersPartialUpdate performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersPartialUpdateRequest(c.Server, uuid, body)
+func (c *Client) UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersPartialUpdateRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215816,8 +216218,8 @@ func (c *Client) UsersPartialUpdate(ctx context.Context, uuid openapi_types.UUID
 
 // UsersPartialUpdateWithFormdataBody performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 // Takes a body of the `application/x-www-form-urlencoded` content type.
-func (c *Client) UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersPartialUpdateRequestWithFormdataBody(c.Server, uuid, body)
+func (c *Client) UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersPartialUpdateRequestWithFormdataBody(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215830,8 +216232,8 @@ func (c *Client) UsersPartialUpdateWithFormdataBody(ctx context.Context, uuid op
 
 // UsersUpdateWithBody performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersUpdateRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215844,8 +216246,8 @@ func (c *Client) UsersUpdateWithBody(ctx context.Context, uuid openapi_types.UUI
 
 // UsersUpdate performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) UsersUpdate(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersUpdateRequest(c.Server, uuid, body)
+func (c *Client) UsersUpdate(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215858,8 +216260,8 @@ func (c *Client) UsersUpdate(ctx context.Context, uuid openapi_types.UUID, body 
 
 // UsersUpdateWithFormdataBody performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 // Takes a body of the `application/x-www-form-urlencoded` content type.
-func (c *Client) UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersUpdateRequestWithFormdataBody(c.Server, uuid, body)
+func (c *Client) UsersUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersUpdateRequestWithFormdataBody(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215889,13 +216291,13 @@ func (c *Client) UsersCancelChangeEmail(ctx context.Context, uuid openapi_types.
 
 // UsersChangeEmailWithBody Request email change
 //
-// Allows to change email for user.
+// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 //
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-func (c *Client) UsersChangeEmailWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersChangeEmailRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) UsersChangeEmailWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersChangeEmailRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215908,13 +216310,13 @@ func (c *Client) UsersChangeEmailWithBody(ctx context.Context, uuid openapi_type
 
 // UsersChangeEmail Request email change
 //
-// Allows to change email for user.
+// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 //
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-func (c *Client) UsersChangeEmail(ctx context.Context, uuid openapi_types.UUID, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersChangeEmailRequest(c.Server, uuid, body)
+func (c *Client) UsersChangeEmail(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersChangeEmailRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215927,13 +216329,13 @@ func (c *Client) UsersChangeEmail(ctx context.Context, uuid openapi_types.UUID, 
 
 // UsersChangePasswordWithBody Change user password
 //
-// Allows staff user to change password for any user.
+// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 //
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-func (c *Client) UsersChangePasswordWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersChangePasswordRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) UsersChangePasswordWithBody(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersChangePasswordRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -215946,13 +216348,13 @@ func (c *Client) UsersChangePasswordWithBody(ctx context.Context, uuid openapi_t
 
 // UsersChangePassword Change user password
 //
-// Allows staff user to change password for any user.
+// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 //
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-func (c *Client) UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewUsersChangePasswordRequest(c.Server, uuid, body)
+func (c *Client) UsersChangePassword(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersChangePasswordRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -393712,7 +394114,7 @@ func NewPasskeysMfaFinishRequestWithBody(server string, contentType string, body
 }
 
 // NewPasskeysRegistrationBeginRequest constructs an http.Request for the PasskeysRegistrationBegin method
-func NewPasskeysRegistrationBeginRequest(server string) (*http.Request, error) {
+func NewPasskeysRegistrationBeginRequest(server string, params *PasskeysRegistrationBeginParams) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -393733,6 +394135,21 @@ func NewPasskeysRegistrationBeginRequest(server string) (*http.Request, error) {
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
 	}
 
 	return req, nil
@@ -393974,18 +394391,18 @@ func NewPasskeysUpdateRequestWithBody(server string, uuid openapi_types.UUID, co
 }
 
 // NewPasskeysRevokeRequest calls the generic PasskeysRevoke builder with application/json body
-func NewPasskeysRevokeRequest(server string, uuid openapi_types.UUID, body PasskeysRevokeJSONRequestBody) (*http.Request, error) {
+func NewPasskeysRevokeRequest(server string, uuid openapi_types.UUID, params *PasskeysRevokeParams, body PasskeysRevokeJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPasskeysRevokeRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewPasskeysRevokeRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewPasskeysRevokeRequestWithBody constructs an http.Request for the PasskeysRevoke method, with any body, and a specified content type
-func NewPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUID, params *PasskeysRevokeParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -394016,6 +394433,21 @@ func NewPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUID, co
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -395161,18 +395593,18 @@ func NewPersonalAccessTokensCountRequest(server string, params *PersonalAccessTo
 }
 
 // NewPersonalAccessTokensCreateRequest calls the generic PersonalAccessTokensCreate builder with application/json body
-func NewPersonalAccessTokensCreateRequest(server string, body PersonalAccessTokensCreateJSONRequestBody) (*http.Request, error) {
+func NewPersonalAccessTokensCreateRequest(server string, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPersonalAccessTokensCreateRequestWithBody(server, "application/json", bodyReader)
+	return NewPersonalAccessTokensCreateRequestWithBody(server, params, "application/json", bodyReader)
 }
 
 // NewPersonalAccessTokensCreateRequestWithBody constructs an http.Request for the PersonalAccessTokensCreate method, with any body, and a specified content type
-func NewPersonalAccessTokensCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPersonalAccessTokensCreateRequestWithBody(server string, params *PersonalAccessTokensCreateParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -395196,6 +395628,21 @@ func NewPersonalAccessTokensCreateRequestWithBody(server string, contentType str
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -395533,7 +395980,7 @@ func NewPersonalAccessTokensRetrieveRequest(server string, uuid openapi_types.UU
 }
 
 // NewPersonalAccessTokensRotateRequest constructs an http.Request for the PersonalAccessTokensRotate method
-func NewPersonalAccessTokensRotateRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+func NewPersonalAccessTokensRotateRequest(server string, uuid openapi_types.UUID, params *PersonalAccessTokensRotateParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -395561,6 +396008,21 @@ func NewPersonalAccessTokensRotateRequest(server string, uuid openapi_types.UUID
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
 	}
 
 	return req, nil
@@ -436208,6 +436670,126 @@ func NewRancherWorkloadsYamlUpdateRequestWithBody(server string, uuid openapi_ty
 	return req, nil
 }
 
+// NewReauthenticationPasskeyBeginRequest calls the generic ReauthenticationPasskeyBegin builder with application/json body
+func NewReauthenticationPasskeyBeginRequest(server string, body ReauthenticationPasskeyBeginJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReauthenticationPasskeyBeginRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewReauthenticationPasskeyBeginRequestWithBody constructs an http.Request for the ReauthenticationPasskeyBegin method, with any body, and a specified content type
+func NewReauthenticationPasskeyBeginRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reauthentication/passkey/begin/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReauthenticationPasskeyFinishRequest calls the generic ReauthenticationPasskeyFinish builder with application/json body
+func NewReauthenticationPasskeyFinishRequest(server string, body ReauthenticationPasskeyFinishJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReauthenticationPasskeyFinishRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewReauthenticationPasskeyFinishRequestWithBody constructs an http.Request for the ReauthenticationPasskeyFinish method, with any body, and a specified content type
+func NewReauthenticationPasskeyFinishRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reauthentication/passkey/finish/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewReauthenticationPasswordRequest calls the generic ReauthenticationPassword builder with application/json body
+func NewReauthenticationPasswordRequest(server string, body ReauthenticationPasswordJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewReauthenticationPasswordRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewReauthenticationPasswordRequestWithBody constructs an http.Request for the ReauthenticationPassword method, with any body, and a specified content type
+func NewReauthenticationPasswordRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/reauthentication/password/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewRemoteEduteamsRequest calls the generic RemoteEduteams builder with application/json body
 func NewRemoteEduteamsRequest(server string, body RemoteEduteamsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -444887,18 +445469,18 @@ func NewStaffPasskeysCountRequest(server string, params *StaffPasskeysCountParam
 }
 
 // NewStaffPasskeysRevokeRequest calls the generic StaffPasskeysRevoke builder with application/json body
-func NewStaffPasskeysRevokeRequest(server string, uuid openapi_types.UUID, body StaffPasskeysRevokeJSONRequestBody) (*http.Request, error) {
+func NewStaffPasskeysRevokeRequest(server string, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, body StaffPasskeysRevokeJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewStaffPasskeysRevokeRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewStaffPasskeysRevokeRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewStaffPasskeysRevokeRequestWithBody constructs an http.Request for the StaffPasskeysRevoke method, with any body, and a specified content type
-func NewStaffPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewStaffPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -444929,6 +445511,21 @@ func NewStaffPasskeysRevokeRequestWithBody(server string, uuid openapi_types.UUI
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -461326,29 +461923,29 @@ func NewUsersRetrieveRequest(server string, uuid openapi_types.UUID, params *Use
 }
 
 // NewUsersPartialUpdateRequest calls the generic UsersPartialUpdate builder with application/json body
-func NewUsersPartialUpdateRequest(server string, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody) (*http.Request, error) {
+func NewUsersPartialUpdateRequest(server string, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUsersPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUsersPartialUpdateRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewUsersPartialUpdateRequestWithFormdataBody calls the generic UsersPartialUpdate builder with application/x-www-form-urlencoded body
-func NewUsersPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody) (*http.Request, error) {
+func NewUsersPartialUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateFormdataRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	bodyStr, err := runtime.MarshalForm(body, nil)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewUsersPartialUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+	return NewUsersPartialUpdateRequestWithBody(server, uuid, params, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewUsersPartialUpdateRequestWithBody constructs an http.Request for the UsersPartialUpdate method, with any body, and a specified content type
-func NewUsersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewUsersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, params *UsersPartialUpdateParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -461380,33 +461977,48 @@ func NewUsersPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID
 
 	req.Header.Add("Content-Type", contentType)
 
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
+
 	return req, nil
 }
 
 // NewUsersUpdateRequest calls the generic UsersUpdate builder with application/json body
-func NewUsersUpdateRequest(server string, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody) (*http.Request, error) {
+func NewUsersUpdateRequest(server string, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUsersUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUsersUpdateRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewUsersUpdateRequestWithFormdataBody calls the generic UsersUpdate builder with application/x-www-form-urlencoded body
-func NewUsersUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody) (*http.Request, error) {
+func NewUsersUpdateRequestWithFormdataBody(server string, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateFormdataRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	bodyStr, err := runtime.MarshalForm(body, nil)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewUsersUpdateRequestWithBody(server, uuid, "application/x-www-form-urlencoded", bodyReader)
+	return NewUsersUpdateRequestWithBody(server, uuid, params, "application/x-www-form-urlencoded", bodyReader)
 }
 
 // NewUsersUpdateRequestWithBody constructs an http.Request for the UsersUpdate method, with any body, and a specified content type
-func NewUsersUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewUsersUpdateRequestWithBody(server string, uuid openapi_types.UUID, params *UsersUpdateParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -461437,6 +462049,21 @@ func NewUsersUpdateRequestWithBody(server string, uuid openapi_types.UUID, conte
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -461476,18 +462103,18 @@ func NewUsersCancelChangeEmailRequest(server string, uuid openapi_types.UUID) (*
 }
 
 // NewUsersChangeEmailRequest calls the generic UsersChangeEmail builder with application/json body
-func NewUsersChangeEmailRequest(server string, uuid openapi_types.UUID, body UsersChangeEmailJSONRequestBody) (*http.Request, error) {
+func NewUsersChangeEmailRequest(server string, uuid openapi_types.UUID, params *UsersChangeEmailParams, body UsersChangeEmailJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUsersChangeEmailRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUsersChangeEmailRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewUsersChangeEmailRequestWithBody constructs an http.Request for the UsersChangeEmail method, with any body, and a specified content type
-func NewUsersChangeEmailRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewUsersChangeEmailRequestWithBody(server string, uuid openapi_types.UUID, params *UsersChangeEmailParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -461519,22 +462146,37 @@ func NewUsersChangeEmailRequestWithBody(server string, uuid openapi_types.UUID, 
 
 	req.Header.Add("Content-Type", contentType)
 
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
+
 	return req, nil
 }
 
 // NewUsersChangePasswordRequest calls the generic UsersChangePassword builder with application/json body
-func NewUsersChangePasswordRequest(server string, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody) (*http.Request, error) {
+func NewUsersChangePasswordRequest(server string, uuid openapi_types.UUID, params *UsersChangePasswordParams, body UsersChangePasswordJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewUsersChangePasswordRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewUsersChangePasswordRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewUsersChangePasswordRequestWithBody constructs an http.Request for the UsersChangePassword method, with any body, and a specified content type
-func NewUsersChangePasswordRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewUsersChangePasswordRequestWithBody(server string, uuid openapi_types.UUID, params *UsersChangePasswordParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -461565,6 +462207,21 @@ func NewUsersChangePasswordRequestWithBody(server string, uuid openapi_types.UUI
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -471426,7 +472083,7 @@ type ClientWithResponsesInterface interface {
 
 	// CustomersProjectDigestConfigSendTestWithResponse Send a test digest email
 	//
-	// Send a test digest email to the requesting user.
+	// Send a test digest email to the requesting user. When nothing is sent, `sent` is false and `detail` says why.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -480425,7 +481082,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
 	//
-	// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -489580,7 +490237,7 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/passkeys/registration/begin/ (the `PasskeysRegistrationBegin` operationId).
-	PasskeysRegistrationBeginWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PasskeysRegistrationBeginResponse, error)
+	PasskeysRegistrationBeginWithResponse(ctx context.Context, params *PasskeysRegistrationBeginParams, reqEditors ...RequestEditorFn) (*PasskeysRegistrationBeginResponse, error)
 
 	// PasskeysRegistrationFinishWithBodyWithResponse Finish passkey registration
 	//
@@ -489647,14 +490304,14 @@ type ClientWithResponsesInterface interface {
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-	PasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error)
+	PasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error)
 
 	// PasskeysRevokeWithResponse Revoke a passkey
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-	PasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error)
+	PasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error)
 
 	// PaymentProfilesListWithResponse performs a GET /api/payment-profiles/ (the `PaymentProfilesList` operationId) request.
 	//
@@ -489815,14 +490472,14 @@ type ClientWithResponsesInterface interface {
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-	PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
+	PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, params *PersonalAccessTokensCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
 
 	// PersonalAccessTokensCreateWithResponse Create a personal access token
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-	PersonalAccessTokensCreateWithResponse(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
+	PersonalAccessTokensCreateWithResponse(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
 
 	// PersonalAccessTokensAvailableBindingTargetsListWithResponse List entity types the caller can bind each permission to
 	//
@@ -489890,7 +490547,7 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/rotate/ (the `PersonalAccessTokensRotate` operationId).
-	PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error)
+	PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensRotateParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error)
 
 	// PersonalAccessTokensSetNetworkAclWithBodyWithResponse Replace the network ACL of a personal access token
 	//
@@ -494587,6 +495244,56 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	RancherWorkloadsYamlUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body RancherWorkloadsYamlUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*RancherWorkloadsYamlUpdateResponse, error)
 
+	// ReauthenticationPasskeyBeginWithBodyWithResponse Begin re-authentication with a passkey
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+	ReauthenticationPasskeyBeginWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyBeginResponse, error)
+
+	// ReauthenticationPasskeyBeginWithResponse Begin re-authentication with a passkey
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+	ReauthenticationPasskeyBeginWithResponse(ctx context.Context, body ReauthenticationPasskeyBeginJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyBeginResponse, error)
+
+	// ReauthenticationPasskeyFinishWithBodyWithResponse Finish re-authentication with a passkey
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+	ReauthenticationPasskeyFinishWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyFinishResponse, error)
+
+	// ReauthenticationPasskeyFinishWithResponse Finish re-authentication with a passkey
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+	ReauthenticationPasskeyFinishWithResponse(ctx context.Context, body ReauthenticationPasskeyFinishJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyFinishResponse, error)
+
+	// ReauthenticationPasswordWithBodyWithResponse Re-authenticate with a password
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+	ReauthenticationPasswordWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasswordResponse, error)
+
+	// ReauthenticationPasswordWithResponse Re-authenticate with a password
+	//
+	// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+	ReauthenticationPasswordWithResponse(ctx context.Context, body ReauthenticationPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasswordResponse, error)
+
 	// RemoteEduteamsWithBodyWithResponse performs a POST /api/remote-eduteams/ (the `RemoteEduteams` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -495835,14 +496542,14 @@ type ClientWithResponsesInterface interface {
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-	StaffPasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error)
+	StaffPasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error)
 
 	// StaffPasskeysRevokeWithResponse Revoke another user's passkey
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-	StaffPasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error)
+	StaffPasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error)
 
 	// StatsCeleryRetrieveWithResponse Get Celery worker statistics
 	//
@@ -497835,29 +498542,29 @@ type ClientWithResponsesInterface interface {
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	UsersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
+	UsersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
 
 	// UsersPartialUpdateWithResponse performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	UsersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
+	UsersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
 
 	// UsersPartialUpdateWithFormdataBodyWithResponse performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-	UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
+	UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error)
 
 	// UsersUpdateWithBodyWithResponse performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
+	UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
 
 	// UsersUpdateWithResponse performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
+	UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
 
 	// UsersUpdateWithFormdataBodyWithResponse performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 	// Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-	UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
+	UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error)
 
 	// UsersCancelChangeEmailWithResponse Cancel email change request
 	//
@@ -497870,39 +498577,39 @@ type ClientWithResponsesInterface interface {
 
 	// UsersChangeEmailWithBodyWithResponse Request email change
 	//
-	// Allows to change email for user.
+	// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-	UsersChangeEmailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error)
+	UsersChangeEmailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error)
 
 	// UsersChangeEmailWithResponse Request email change
 	//
-	// Allows to change email for user.
+	// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-	UsersChangeEmailWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error)
+	UsersChangeEmailWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error)
 
 	// UsersChangePasswordWithBodyWithResponse Change user password
 	//
-	// Allows staff user to change password for any user.
+	// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-	UsersChangePasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
+	UsersChangePasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
 
 	// UsersChangePasswordWithResponse Change user password
 	//
-	// Allows staff user to change password for any user.
+	// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-	UsersChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
+	UsersChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error)
 
 	// UsersDataAccessRetrieveWithResponse Get user data access visibility
 	//
@@ -498725,6 +499432,8 @@ type ApiAuthPasswordResponse struct {
 	JSON200 *CoreAuthToken
 	// JSON401 the response for an HTTP 401 `application/json` response
 	JSON401 *AuthTokenChallenge
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *Throttled
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
@@ -498735,6 +499444,11 @@ func (r ApiAuthPasswordResponse) GetJSON200() *CoreAuthToken {
 // GetJSON401 returns the response for an HTTP 401 `application/json` response
 func (r ApiAuthPasswordResponse) GetJSON401() *AuthTokenChallenge {
 	return r.JSON401
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r ApiAuthPasswordResponse) GetJSON429() *Throttled {
+	return r.JSON429
 }
 
 // GetBody returns the raw response body bytes
@@ -516714,6 +517428,13 @@ func (r CustomersProjectDigestConfigPreviewResponse) ContentType() string {
 type CustomersProjectDigestConfigSendTestResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ProjectDigestSendTestResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r CustomersProjectDigestConfigSendTestResponse) GetJSON200() *ProjectDigestSendTestResponse {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -586074,11 +586795,18 @@ type PasskeysRegistrationBeginResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *PasskeyCeremonyOptions
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r PasskeysRegistrationBeginResponse) GetJSON200() *PasskeyCeremonyOptions {
 	return r.JSON200
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PasskeysRegistrationBeginResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -586359,6 +587087,13 @@ func (r PasskeysUpdateResponse) ContentType() string {
 type PasskeysRevokeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PasskeysRevokeResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -587160,11 +587895,18 @@ type PersonalAccessTokensCreateResponse struct {
 	HTTPResponse *http.Response
 	// JSON201 the response for an HTTP 201 `application/json` response
 	JSON201 *PersonalAccessTokenCreated
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON201 returns the response for an HTTP 201 `application/json` response
 func (r PersonalAccessTokensCreateResponse) GetJSON201() *PersonalAccessTokenCreated {
 	return r.JSON201
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PersonalAccessTokensCreateResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -587440,11 +588182,18 @@ type PersonalAccessTokensRotateResponse struct {
 	HTTPResponse *http.Response
 	// JSON201 the response for an HTTP 201 `application/json` response
 	JSON201 *PersonalAccessTokenCreated
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON201 returns the response for an HTTP 201 `application/json` response
 func (r PersonalAccessTokensRotateResponse) GetJSON201() *PersonalAccessTokenCreated {
 	return r.JSON201
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PersonalAccessTokensRotateResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -608424,6 +609173,150 @@ func (r RancherWorkloadsYamlUpdateResponse) ContentType() string {
 	return ""
 }
 
+type ReauthenticationPasskeyBeginResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *PasskeyCeremonyOptions
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *ReauthenticationThrottled
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ReauthenticationPasskeyBeginResponse) GetJSON200() *PasskeyCeremonyOptions {
+	return r.JSON200
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r ReauthenticationPasskeyBeginResponse) GetJSON429() *ReauthenticationThrottled {
+	return r.JSON429
+}
+
+// GetBody returns the raw response body bytes
+func (r ReauthenticationPasskeyBeginResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ReauthenticationPasskeyBeginResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReauthenticationPasskeyBeginResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReauthenticationPasskeyBeginResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReauthenticationPasskeyFinishResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *ReauthenticationGrant
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *ReauthenticationThrottled
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r ReauthenticationPasskeyFinishResponse) GetJSON201() *ReauthenticationGrant {
+	return r.JSON201
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r ReauthenticationPasskeyFinishResponse) GetJSON429() *ReauthenticationThrottled {
+	return r.JSON429
+}
+
+// GetBody returns the raw response body bytes
+func (r ReauthenticationPasskeyFinishResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ReauthenticationPasskeyFinishResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReauthenticationPasskeyFinishResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReauthenticationPasskeyFinishResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ReauthenticationPasswordResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *ReauthenticationGrant
+	// JSON429 the response for an HTTP 429 `application/json` response
+	JSON429 *ReauthenticationThrottled
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r ReauthenticationPasswordResponse) GetJSON201() *ReauthenticationGrant {
+	return r.JSON201
+}
+
+// GetJSON429 returns the response for an HTTP 429 `application/json` response
+func (r ReauthenticationPasswordResponse) GetJSON429() *ReauthenticationThrottled {
+	return r.JSON429
+}
+
+// GetBody returns the raw response body bytes
+func (r ReauthenticationPasswordResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ReauthenticationPasswordResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ReauthenticationPasswordResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ReauthenticationPasswordResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type RemoteEduteamsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -614269,6 +615162,13 @@ func (r StaffPasskeysCountResponse) ContentType() string {
 type StaffPasskeysRevokeResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r StaffPasskeysRevokeResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -622635,11 +623535,18 @@ type UsersPartialUpdateResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *User
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r UsersPartialUpdateResponse) GetJSON200() *User {
 	return r.JSON200
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r UsersPartialUpdateResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -622676,11 +623583,18 @@ type UsersUpdateResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *User
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r UsersUpdateResponse) GetJSON200() *User {
 	return r.JSON200
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r UsersUpdateResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -622749,6 +623663,13 @@ func (r UsersCancelChangeEmailResponse) ContentType() string {
 type UsersChangeEmailResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r UsersChangeEmailResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -622783,6 +623704,13 @@ func (r UsersChangeEmailResponse) ContentType() string {
 type UsersChangePasswordResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r UsersChangePasswordResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -633257,7 +634185,7 @@ func (c *ClientWithResponses) CustomersProjectDigestConfigPreviewWithResponse(ct
 
 // CustomersProjectDigestConfigSendTestWithResponse Send a test digest email
 //
-// Send a test digest email to the requesting user.
+// Send a test digest email to the requesting user. When nothing is sent, `sent` is false and `detail` says why.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -649068,7 +649996,7 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetryWithResponse(ctx co
 
 // MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
 //
-// Returns the decrypted key value. Available to members of the resource's project or organization (except minimal-visibility viewers); a key with an assignee only to the assignee. Staff and support are no exception: staff reveal a key by impersonating a user who may. Audit-logged; under impersonation the event names the impersonator.
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -665198,8 +666126,8 @@ func (c *ClientWithResponses) PasskeysMfaFinishWithResponse(ctx context.Context,
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/passkeys/registration/begin/ (the `PasskeysRegistrationBegin` operationId).
-func (c *ClientWithResponses) PasskeysRegistrationBeginWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PasskeysRegistrationBeginResponse, error) {
-	rsp, err := c.PasskeysRegistrationBegin(ctx, reqEditors...)
+func (c *ClientWithResponses) PasskeysRegistrationBeginWithResponse(ctx context.Context, params *PasskeysRegistrationBeginParams, reqEditors ...RequestEditorFn) (*PasskeysRegistrationBeginResponse, error) {
+	rsp, err := c.PasskeysRegistrationBegin(ctx, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -665331,8 +666259,8 @@ func (c *ClientWithResponses) PasskeysUpdateWithResponse(ctx context.Context, uu
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-func (c *ClientWithResponses) PasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error) {
-	rsp, err := c.PasskeysRevokeWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error) {
+	rsp, err := c.PasskeysRevokeWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -665344,8 +666272,8 @@ func (c *ClientWithResponses) PasskeysRevokeWithBodyWithResponse(ctx context.Con
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/passkeys/{uuid}/revoke/ (the `PasskeysRevoke` operationId).
-func (c *ClientWithResponses) PasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error) {
-	rsp, err := c.PasskeysRevoke(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) PasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PasskeysRevokeParams, body PasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*PasskeysRevokeResponse, error) {
+	rsp, err := c.PasskeysRevoke(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -665685,8 +666613,8 @@ func (c *ClientWithResponses) PersonalAccessTokensCountWithResponse(ctx context.
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-func (c *ClientWithResponses) PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
-	rsp, err := c.PersonalAccessTokensCreateWithBody(ctx, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PersonalAccessTokensCreateWithBodyWithResponse(ctx context.Context, params *PersonalAccessTokensCreateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
+	rsp, err := c.PersonalAccessTokensCreateWithBody(ctx, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -665698,8 +666626,8 @@ func (c *ClientWithResponses) PersonalAccessTokensCreateWithBodyWithResponse(ctx
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
-func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context.Context, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
-	rsp, err := c.PersonalAccessTokensCreate(ctx, body, reqEditors...)
+func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error) {
+	rsp, err := c.PersonalAccessTokensCreate(ctx, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -665808,8 +666736,8 @@ func (c *ClientWithResponses) PersonalAccessTokensRetrieveWithResponse(ctx conte
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/rotate/ (the `PersonalAccessTokensRotate` operationId).
-func (c *ClientWithResponses) PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error) {
-	rsp, err := c.PersonalAccessTokensRotate(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) PersonalAccessTokensRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensRotateParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensRotateResponse, error) {
+	rsp, err := c.PersonalAccessTokensRotate(ctx, uuid, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -674723,6 +675651,92 @@ func (c *ClientWithResponses) RancherWorkloadsYamlUpdateWithResponse(ctx context
 	return ParseRancherWorkloadsYamlUpdateResponse(rsp)
 }
 
+// ReauthenticationPasskeyBeginWithBodyWithResponse Begin re-authentication with a passkey
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+func (c *ClientWithResponses) ReauthenticationPasskeyBeginWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyBeginResponse, error) {
+	rsp, err := c.ReauthenticationPasskeyBeginWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasskeyBeginResponse(rsp)
+}
+
+// ReauthenticationPasskeyBeginWithResponse Begin re-authentication with a passkey
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/passkey/begin/ (the `ReauthenticationPasskeyBegin` operationId).
+func (c *ClientWithResponses) ReauthenticationPasskeyBeginWithResponse(ctx context.Context, body ReauthenticationPasskeyBeginJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyBeginResponse, error) {
+	rsp, err := c.ReauthenticationPasskeyBegin(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasskeyBeginResponse(rsp)
+}
+
+// ReauthenticationPasskeyFinishWithBodyWithResponse Finish re-authentication with a passkey
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+func (c *ClientWithResponses) ReauthenticationPasskeyFinishWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyFinishResponse, error) {
+	rsp, err := c.ReauthenticationPasskeyFinishWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasskeyFinishResponse(rsp)
+}
+
+// ReauthenticationPasskeyFinishWithResponse Finish re-authentication with a passkey
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/passkey/finish/ (the `ReauthenticationPasskeyFinish` operationId).
+func (c *ClientWithResponses) ReauthenticationPasskeyFinishWithResponse(ctx context.Context, body ReauthenticationPasskeyFinishJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasskeyFinishResponse, error) {
+	rsp, err := c.ReauthenticationPasskeyFinish(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasskeyFinishResponse(rsp)
+}
+
+// ReauthenticationPasswordWithBodyWithResponse Re-authenticate with a password
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+func (c *ClientWithResponses) ReauthenticationPasswordWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ReauthenticationPasswordResponse, error) {
+	rsp, err := c.ReauthenticationPasswordWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasswordResponse(rsp)
+}
+
+// ReauthenticationPasswordWithResponse Re-authenticate with a password
+//
+// Returns a single-use grant for one change that requires re-authentication, to send in the X-Reauthentication-Grant header. Wrong passwords count toward the sign-in lockout.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/reauthentication/password/ (the `ReauthenticationPassword` operationId).
+func (c *ClientWithResponses) ReauthenticationPasswordWithResponse(ctx context.Context, body ReauthenticationPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*ReauthenticationPasswordResponse, error) {
+	rsp, err := c.ReauthenticationPassword(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseReauthenticationPasswordResponse(rsp)
+}
+
 // RemoteEduteamsWithBodyWithResponse performs a POST /api/remote-eduteams/ (the `RemoteEduteams` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -677153,8 +678167,8 @@ func (c *ClientWithResponses) StaffPasskeysCountWithResponse(ctx context.Context
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-func (c *ClientWithResponses) StaffPasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error) {
-	rsp, err := c.StaffPasskeysRevokeWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) StaffPasskeysRevokeWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error) {
+	rsp, err := c.StaffPasskeysRevokeWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -677166,8 +678180,8 @@ func (c *ClientWithResponses) StaffPasskeysRevokeWithBodyWithResponse(ctx contex
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/staff-passkeys/{uuid}/revoke/ (the `StaffPasskeysRevoke` operationId).
-func (c *ClientWithResponses) StaffPasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error) {
-	rsp, err := c.StaffPasskeysRevoke(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) StaffPasskeysRevokeWithResponse(ctx context.Context, uuid openapi_types.UUID, params *StaffPasskeysRevokeParams, body StaffPasskeysRevokeJSONRequestBody, reqEditors ...RequestEditorFn) (*StaffPasskeysRevokeResponse, error) {
+	rsp, err := c.StaffPasskeysRevoke(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680903,8 +681917,8 @@ func (c *ClientWithResponses) UsersRetrieveWithResponse(ctx context.Context, uui
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
-	rsp, err := c.UsersPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UsersPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
+	rsp, err := c.UsersPartialUpdateWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680913,8 +681927,8 @@ func (c *ClientWithResponses) UsersPartialUpdateWithBodyWithResponse(ctx context
 
 // UsersPartialUpdateWithResponse performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
-	rsp, err := c.UsersPartialUpdate(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
+	rsp, err := c.UsersPartialUpdate(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680923,8 +681937,8 @@ func (c *ClientWithResponses) UsersPartialUpdateWithResponse(ctx context.Context
 
 // UsersPartialUpdateWithFormdataBodyWithResponse performs a PATCH /api/users/{uuid}/ (the `UsersPartialUpdate` operationId) request.
 // Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
-	rsp, err := c.UsersPartialUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersPartialUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersPartialUpdateParams, body UsersPartialUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersPartialUpdateResponse, error) {
+	rsp, err := c.UsersPartialUpdateWithFormdataBody(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680935,8 +681949,8 @@ func (c *ClientWithResponses) UsersPartialUpdateWithFormdataBodyWithResponse(ctx
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
-	rsp, err := c.UsersUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UsersUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
+	rsp, err := c.UsersUpdateWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680945,8 +681959,8 @@ func (c *ClientWithResponses) UsersUpdateWithBodyWithResponse(ctx context.Contex
 
 // UsersUpdateWithResponse performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
-	rsp, err := c.UsersUpdate(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
+	rsp, err := c.UsersUpdate(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680955,8 +681969,8 @@ func (c *ClientWithResponses) UsersUpdateWithResponse(ctx context.Context, uuid 
 
 // UsersUpdateWithFormdataBodyWithResponse performs a PUT /api/users/{uuid}/ (the `UsersUpdate` operationId) request.
 // Takes a body of the `application/x-www-form-urlencoded` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
-	rsp, err := c.UsersUpdateWithFormdataBody(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersUpdateParams, body UsersUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*UsersUpdateResponse, error) {
+	rsp, err := c.UsersUpdateWithFormdataBody(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680980,13 +681994,13 @@ func (c *ClientWithResponses) UsersCancelChangeEmailWithResponse(ctx context.Con
 
 // UsersChangeEmailWithBodyWithResponse Request email change
 //
-// Allows to change email for user.
+// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-func (c *ClientWithResponses) UsersChangeEmailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error) {
-	rsp, err := c.UsersChangeEmailWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UsersChangeEmailWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error) {
+	rsp, err := c.UsersChangeEmailWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -680995,13 +682009,13 @@ func (c *ClientWithResponses) UsersChangeEmailWithBodyWithResponse(ctx context.C
 
 // UsersChangeEmailWithResponse Request email change
 //
-// Allows to change email for user.
+// Allows to change email for user. Requires a re-authentication grant for change_email, except for a user changing their own email who has no method to re-authenticate with. Refused when the user's identity provider supplies the email.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/users/{uuid}/change_email/ (the `UsersChangeEmail` operationId).
-func (c *ClientWithResponses) UsersChangeEmailWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error) {
-	rsp, err := c.UsersChangeEmail(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersChangeEmailWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangeEmailParams, body UsersChangeEmailJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangeEmailResponse, error) {
+	rsp, err := c.UsersChangeEmail(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -681010,13 +682024,13 @@ func (c *ClientWithResponses) UsersChangeEmailWithResponse(ctx context.Context, 
 
 // UsersChangePasswordWithBodyWithResponse Change user password
 //
-// Allows staff user to change password for any user.
+// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-func (c *ClientWithResponses) UsersChangePasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error) {
-	rsp, err := c.UsersChangePasswordWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) UsersChangePasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error) {
+	rsp, err := c.UsersChangePasswordWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -681025,13 +682039,13 @@ func (c *ClientWithResponses) UsersChangePasswordWithBodyWithResponse(ctx contex
 
 // UsersChangePasswordWithResponse Change user password
 //
-// Allows staff user to change password for any user.
+// Allows staff user to change password for any user. Requires the staff user's own re-authentication grant for change_password.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/users/{uuid}/change_password/ (the `UsersChangePassword` operationId).
-func (c *ClientWithResponses) UsersChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error) {
-	rsp, err := c.UsersChangePassword(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) UsersChangePasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersChangePasswordParams, body UsersChangePasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*UsersChangePasswordResponse, error) {
+	rsp, err := c.UsersChangePassword(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -682211,6 +683225,13 @@ func ParseApiAuthPasswordResponse(rsp *http.Response) (*ApiAuthPasswordResponse,
 			return nil, err
 		}
 		response.JSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest Throttled
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
 
 	}
 
@@ -693618,6 +694639,16 @@ func ParseCustomersProjectDigestConfigSendTestResponse(rsp *http.Response) (*Cus
 	response := &CustomersProjectDigestConfigSendTestResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ProjectDigestSendTestResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -737585,6 +738616,13 @@ func ParsePasskeysRegistrationBeginResponse(rsp *http.Response) (*PasskeysRegist
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
@@ -737757,6 +738795,19 @@ func ParsePasskeysRevokeResponse(rsp *http.Response) (*PasskeysRevokeResponse, e
 	response := &PasskeysRevokeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
@@ -738266,6 +739317,13 @@ func ParsePersonalAccessTokensCreateResponse(rsp *http.Response) (*PersonalAcces
 		}
 		response.JSON201 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
@@ -738443,6 +739501,13 @@ func ParsePersonalAccessTokensRotateResponse(rsp *http.Response) (*PersonalAcces
 			return nil, err
 		}
 		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	}
 
@@ -752044,6 +753109,105 @@ func ParseRancherWorkloadsYamlUpdateResponse(rsp *http.Response) (*RancherWorklo
 	return response, nil
 }
 
+// ParseReauthenticationPasskeyBeginResponse parses an HTTP response from a ReauthenticationPasskeyBeginWithResponse call
+func ParseReauthenticationPasskeyBeginResponse(rsp *http.Response) (*ReauthenticationPasskeyBeginResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReauthenticationPasskeyBeginResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest PasskeyCeremonyOptions
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ReauthenticationThrottled
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReauthenticationPasskeyFinishResponse parses an HTTP response from a ReauthenticationPasskeyFinishWithResponse call
+func ParseReauthenticationPasskeyFinishResponse(rsp *http.Response) (*ReauthenticationPasskeyFinishResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReauthenticationPasskeyFinishResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ReauthenticationGrant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ReauthenticationThrottled
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseReauthenticationPasswordResponse parses an HTTP response from a ReauthenticationPasswordWithResponse call
+func ParseReauthenticationPasswordResponse(rsp *http.Response) (*ReauthenticationPasswordResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ReauthenticationPasswordResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest ReauthenticationGrant
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest ReauthenticationThrottled
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON429 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseRemoteEduteamsResponse parses an HTTP response from a RemoteEduteamsWithResponse call
 func ParseRemoteEduteamsResponse(rsp *http.Response) (*RemoteEduteamsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -755689,6 +756853,19 @@ func ParseStaffPasskeysRevokeResponse(rsp *http.Response) (*StaffPasskeysRevokeR
 	response := &StaffPasskeysRevokeResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 204:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
@@ -760865,6 +762042,13 @@ func ParseUsersPartialUpdateResponse(rsp *http.Response) (*UsersPartialUpdateRes
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
@@ -760890,6 +762074,13 @@ func ParseUsersUpdateResponse(rsp *http.Response) (*UsersUpdateResponse, error) 
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	}
 
@@ -760925,6 +762116,19 @@ func ParseUsersChangeEmailResponse(rsp *http.Response) (*UsersChangeEmailRespons
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case rsp.StatusCode == 200:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -760939,6 +762143,19 @@ func ParseUsersChangePasswordResponse(rsp *http.Response) (*UsersChangePasswordR
 	response := &UsersChangePasswordResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		break // No content-type
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
 	}
 
 	return response, nil
