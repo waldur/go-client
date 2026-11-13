@@ -4575,6 +4575,27 @@ func (e CourseAccountOEnum) Valid() bool {
 	}
 }
 
+// Defines values for CreditTransactionChannelEnum.
+const (
+	CreditTransactionChannelEnumApi     CreditTransactionChannelEnum = "api"
+	CreditTransactionChannelEnumGateway CreditTransactionChannelEnum = "gateway"
+	CreditTransactionChannelEnumManual  CreditTransactionChannelEnum = "manual"
+)
+
+// Valid indicates whether the value is a known member of the CreditTransactionChannelEnum enum.
+func (e CreditTransactionChannelEnum) Valid() bool {
+	switch e {
+	case CreditTransactionChannelEnumApi:
+		return true
+	case CreditTransactionChannelEnumGateway:
+		return true
+	case CreditTransactionChannelEnumManual:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for CreditTransactionOEnum.
 const (
 	CreditTransactionOEnumBillingPeriod      CreditTransactionOEnum = "billing_period"
@@ -21770,12 +21791,13 @@ func (e RbacPolicyDirectionEnum) Valid() bool {
 
 // Defines values for ReauthenticationActionEnum.
 const (
-	ReauthenticationActionEnumChangeEmail               ReauthenticationActionEnum = "change_email"
-	ReauthenticationActionEnumChangePassword            ReauthenticationActionEnum = "change_password"
-	ReauthenticationActionEnumCreatePersonalAccessToken ReauthenticationActionEnum = "create_personal_access_token"
-	ReauthenticationActionEnumRegisterPasskey           ReauthenticationActionEnum = "register_passkey"
-	ReauthenticationActionEnumRevokePasskey             ReauthenticationActionEnum = "revoke_passkey"
-	ReauthenticationActionEnumTokenLifetime             ReauthenticationActionEnum = "token_lifetime"
+	ReauthenticationActionEnumChangeEmail                      ReauthenticationActionEnum = "change_email"
+	ReauthenticationActionEnumChangePassword                   ReauthenticationActionEnum = "change_password"
+	ReauthenticationActionEnumCreatePersonalAccessToken        ReauthenticationActionEnum = "create_personal_access_token"
+	ReauthenticationActionEnumRegisterPasskey                  ReauthenticationActionEnum = "register_passkey"
+	ReauthenticationActionEnumRevokePasskey                    ReauthenticationActionEnum = "revoke_passkey"
+	ReauthenticationActionEnumTokenLifetime                    ReauthenticationActionEnum = "token_lifetime"
+	ReauthenticationActionEnumWidenPersonalAccessTokenNetworks ReauthenticationActionEnum = "widen_personal_access_token_networks"
 )
 
 // Valid indicates whether the value is a known member of the ReauthenticationActionEnum enum.
@@ -21792,6 +21814,8 @@ func (e ReauthenticationActionEnum) Valid() bool {
 	case ReauthenticationActionEnumRevokePasskey:
 		return true
 	case ReauthenticationActionEnumTokenLifetime:
+		return true
+	case ReauthenticationActionEnumWidenPersonalAccessTokenNetworks:
 		return true
 	default:
 		return false
@@ -37325,27 +37349,36 @@ type CreditTopUpRequest struct {
 	Amount  string `json:"amount"`
 	Comment string `json:"comment"`
 
-	// PaymentReference Bank transfer or payment identifier, kept in the ledger comment.
+	// ExternalReference The sender's unique identifier for this top-up, e.g. an ERP payment ID. A repeat with the same amount returns the credit unchanged; with another amount it is refused. A reversal needs a reference of its own.
+	ExternalReference *string `json:"external_reference,omitempty"`
+
+	// PaymentReference Bank transfer or payment identifier, kept in the ledger comment. Not checked for repeats; send external_reference for that.
 	PaymentReference *string `json:"payment_reference,omitempty"`
 }
 
 // CreditTransaction defines model for CreditTransaction.
 type CreditTransaction struct {
-	Amount                 string              `json:"amount"`
-	BillingPeriod          *openapi_types.Date `json:"billing_period,omitempty"`
-	Comment                *string             `json:"comment,omitempty"`
-	Created                *time.Time          `json:"created,omitempty"`
-	CustomerName           *string             `json:"customer_name,omitempty"`
-	CustomerUuid           *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	EarnedChange           *string             `json:"earned_change,omitempty"`
-	GrantedChange          *string             `json:"granted_change,omitempty"`
-	PaidChange             *string             `json:"paid_change,omitempty"`
-	ProjectName            *string             `json:"project_name,omitempty"`
-	ProjectUuid            *string             `json:"project_uuid,omitempty"`
-	TransactionType        TransactionTypeEnum `json:"transaction_type"`
-	TransactionTypeDisplay *string             `json:"transaction_type_display,omitempty"`
-	Uuid                   *openapi_types.UUID `json:"uuid,omitempty"`
+	Amount                 string                        `json:"amount"`
+	BillingPeriod          *openapi_types.Date           `json:"billing_period,omitempty"`
+	Channel                *CreditTransactionChannelEnum `json:"channel,omitempty"`
+	ChannelDisplay         *string                       `json:"channel_display,omitempty"`
+	Comment                *string                       `json:"comment,omitempty"`
+	Created                *time.Time                    `json:"created,omitempty"`
+	CustomerName           *string                       `json:"customer_name,omitempty"`
+	CustomerUuid           *openapi_types.UUID           `json:"customer_uuid,omitempty"`
+	EarnedChange           *string                       `json:"earned_change,omitempty"`
+	ExternalReference      *string                       `json:"external_reference,omitempty"`
+	GrantedChange          *string                       `json:"granted_change,omitempty"`
+	PaidChange             *string                       `json:"paid_change,omitempty"`
+	ProjectName            *string                       `json:"project_name,omitempty"`
+	ProjectUuid            *string                       `json:"project_uuid,omitempty"`
+	TransactionType        TransactionTypeEnum           `json:"transaction_type"`
+	TransactionTypeDisplay *string                       `json:"transaction_type_display,omitempty"`
+	Uuid                   *openapi_types.UUID           `json:"uuid,omitempty"`
 }
+
+// CreditTransactionChannelEnum defines model for CreditTransactionChannelEnum.
+type CreditTransactionChannelEnum string
 
 // CreditTransactionOEnum defines model for CreditTransactionOEnum.
 type CreditTransactionOEnum string
@@ -44526,6 +44559,9 @@ type MergedPluginOptions struct {
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
 
+	// ResourceExpirationReminders Days before a resource's end date on which its users are reminded, by email and on the dashboard. When empty or unset, the email goes out 7 days and 1 day before the end, and the dashboard follows USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS. Only staff can change it.
+	ResourceExpirationReminders *[]int `json:"resource_expiration_reminders,omitempty"`
+
 	// ResourceExpirationThreshold Resource expiration threshold in days.
 	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
 
@@ -44907,6 +44943,9 @@ type MergedPluginOptionsRequest struct {
 
 	// RequiredTeamRoleForProvisioning Required user role in a project for provisioning of resources
 	RequiredTeamRoleForProvisioning *string `json:"required_team_role_for_provisioning,omitempty"`
+
+	// ResourceExpirationReminders Days before a resource's end date on which its users are reminded, by email and on the dashboard. When empty or unset, the email goes out 7 days and 1 day before the end, and the dashboard follows USER_ACTIONS_DEFAULT_EXPIRATION_REMINDERS. Only staff can change it.
+	ResourceExpirationReminders *[]int `json:"resource_expiration_reminders,omitempty"`
 
 	// ResourceExpirationThreshold Resource expiration threshold in days.
 	ResourceExpirationThreshold *int `json:"resource_expiration_threshold,omitempty"`
@@ -73272,11 +73311,13 @@ type ConflictsOfInterestCountParams struct {
 
 // CreditTransactionsListParams defines parameters for CreditTransactionsList.
 type CreditTransactionsListParams struct {
-	BillingPeriod       *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	BillingPeriodAfter  *openapi_types.Date `form:"billing_period_after,omitempty" json:"billing_period_after,omitempty"`
-	BillingPeriodBefore *openapi_types.Date `form:"billing_period_before,omitempty" json:"billing_period_before,omitempty"`
-	CreditUuid          *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
-	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	BillingPeriod       *openapi_types.Date             `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodAfter  *openapi_types.Date             `form:"billing_period_after,omitempty" json:"billing_period_after,omitempty"`
+	BillingPeriodBefore *openapi_types.Date             `form:"billing_period_before,omitempty" json:"billing_period_before,omitempty"`
+	Channel             *[]CreditTransactionChannelEnum `form:"channel,omitempty" json:"channel,omitempty"`
+	CreditUuid          *openapi_types.UUID             `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
+	CustomerUuid        *openapi_types.UUID             `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	ExternalReference   *string                         `form:"external_reference,omitempty" json:"external_reference,omitempty"`
 
 	// O Ordering
 	//
@@ -73294,11 +73335,13 @@ type CreditTransactionsListParams struct {
 
 // CreditTransactionsCountParams defines parameters for CreditTransactionsCount.
 type CreditTransactionsCountParams struct {
-	BillingPeriod       *openapi_types.Date `form:"billing_period,omitempty" json:"billing_period,omitempty"`
-	BillingPeriodAfter  *openapi_types.Date `form:"billing_period_after,omitempty" json:"billing_period_after,omitempty"`
-	BillingPeriodBefore *openapi_types.Date `form:"billing_period_before,omitempty" json:"billing_period_before,omitempty"`
-	CreditUuid          *openapi_types.UUID `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
-	CustomerUuid        *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	BillingPeriod       *openapi_types.Date             `form:"billing_period,omitempty" json:"billing_period,omitempty"`
+	BillingPeriodAfter  *openapi_types.Date             `form:"billing_period_after,omitempty" json:"billing_period_after,omitempty"`
+	BillingPeriodBefore *openapi_types.Date             `form:"billing_period_before,omitempty" json:"billing_period_before,omitempty"`
+	Channel             *[]CreditTransactionChannelEnum `form:"channel,omitempty" json:"channel,omitempty"`
+	CreditUuid          *openapi_types.UUID             `form:"credit_uuid,omitempty" json:"credit_uuid,omitempty"`
+	CustomerUuid        *openapi_types.UUID             `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	ExternalReference   *string                         `form:"external_reference,omitempty" json:"external_reference,omitempty"`
 
 	// O Ordering
 	//
@@ -92938,6 +92981,12 @@ type PersonalAccessTokensAvailableScopesCountParams struct {
 
 // PersonalAccessTokensRotateParams defines parameters for PersonalAccessTokensRotate.
 type PersonalAccessTokensRotateParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// PersonalAccessTokensSetNetworkAclParams defines parameters for PersonalAccessTokensSetNetworkAcl.
+type PersonalAccessTokensSetNetworkAclParams struct {
 	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
 	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
 }
@@ -126523,13 +126572,13 @@ type ClientInterface interface {
 	// CustomerCreditsTopUpWithBody performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 	CustomerCreditsTopUpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomerCreditsTopUp performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 	CustomerCreditsTopUp(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// CustomerPermissionsReviewsList performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
@@ -142560,17 +142609,31 @@ type ClientInterface interface {
 	//
 	// Replace the token's source-network allowlist.
 	//
+	// Narrowing the list needs nothing more: every new network lies inside
+	// a current one of the same address family, or the token was
+	// unrestricted, or the list is unchanged. Anything else lets the token
+	// work from an address it could not before, and needs a
+	// re-authentication grant, as creating a token does. That includes an
+	// empty list, which means from anywhere.
+	//
 	// A dedicated action rather than PATCH: update/partial_update stay
 	// disabled on this viewset, and the change gets its own audit event.
 	//
 	// Takes any type of body and a specified content type.
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-	PersonalAccessTokensSetNetworkAclWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PersonalAccessTokensSetNetworkAclWithBody(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensSetNetworkAcl Replace the network ACL of a personal access token
 	//
 	// Replace the token's source-network allowlist.
+	//
+	// Narrowing the list needs nothing more: every new network lies inside
+	// a current one of the same address family, or the token was
+	// unrestricted, or the list is unchanged. Anything else lets the token
+	// work from an address it could not before, and needs a
+	// re-authentication grant, as creating a token does. That includes an
+	// empty list, which means from anywhere.
 	//
 	// A dedicated action rather than PATCH: update/partial_update stay
 	// disabled on this viewset, and the change gets its own audit event.
@@ -142578,7 +142641,7 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-	PersonalAccessTokensSetNetworkAcl(ctx context.Context, uuid openapi_types.UUID, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PersonalAccessTokensSetNetworkAcl(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProjectCreditsList performs a GET /api/project-credits/ (the `ProjectCreditsList` operationId) request.
 	ProjectCreditsList(ctx context.Context, params *ProjectCreditsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -157784,7 +157847,7 @@ func (c *Client) CustomerCreditsReclassify(ctx context.Context, uuid openapi_typ
 // CustomerCreditsTopUpWithBody performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
 // with any type of body and a specified content type.
 //
-// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 func (c *Client) CustomerCreditsTopUpWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerCreditsTopUpRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -157800,7 +157863,7 @@ func (c *Client) CustomerCreditsTopUpWithBody(ctx context.Context, uuid openapi_
 // CustomerCreditsTopUp performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 func (c *Client) CustomerCreditsTopUp(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewCustomerCreditsTopUpRequest(c.Server, uuid, body)
 	if err != nil {
@@ -197835,14 +197898,21 @@ func (c *Client) PersonalAccessTokensRotate(ctx context.Context, uuid openapi_ty
 //
 // Replace the token's source-network allowlist.
 //
+// Narrowing the list needs nothing more: every new network lies inside
+// a current one of the same address family, or the token was
+// unrestricted, or the list is unchanged. Anything else lets the token
+// work from an address it could not before, and needs a
+// re-authentication grant, as creating a token does. That includes an
+// empty list, which means from anywhere.
+//
 // A dedicated action rather than PATCH: update/partial_update stay
 // disabled on this viewset, and the change gets its own audit event.
 //
 // Takes any type of body and a specified content type.
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-func (c *Client) PersonalAccessTokensSetNetworkAclWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPersonalAccessTokensSetNetworkAclRequestWithBody(c.Server, uuid, contentType, body)
+func (c *Client) PersonalAccessTokensSetNetworkAclWithBody(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensSetNetworkAclRequestWithBody(c.Server, uuid, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -197857,14 +197927,21 @@ func (c *Client) PersonalAccessTokensSetNetworkAclWithBody(ctx context.Context, 
 //
 // Replace the token's source-network allowlist.
 //
+// Narrowing the list needs nothing more: every new network lies inside
+// a current one of the same address family, or the token was
+// unrestricted, or the list is unchanged. Anything else lets the token
+// work from an address it could not before, and needs a
+// re-authentication grant, as creating a token does. That includes an
+// empty list, which means from anywhere.
+//
 // A dedicated action rather than PATCH: update/partial_update stay
 // disabled on this viewset, and the change gets its own audit event.
 //
 // Takes a body of the `application/json` content type.
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-func (c *Client) PersonalAccessTokensSetNetworkAcl(ctx context.Context, uuid openapi_types.UUID, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPersonalAccessTokensSetNetworkAclRequest(c.Server, uuid, body)
+func (c *Client) PersonalAccessTokensSetNetworkAcl(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensSetNetworkAclRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -244579,6 +244656,18 @@ func NewCreditTransactionsListRequest(server string, params *CreditTransactionsL
 
 		}
 
+		if params.Channel != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "channel", *params.Channel, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CreditUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -244594,6 +244683,18 @@ func NewCreditTransactionsListRequest(server string, params *CreditTransactionsL
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ExternalReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "external_reference", *params.ExternalReference, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -244753,6 +244854,18 @@ func NewCreditTransactionsCountRequest(server string, params *CreditTransactions
 
 		}
 
+		if params.Channel != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "channel", *params.Channel, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CreditUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "credit_uuid", *params.CreditUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -244768,6 +244881,18 @@ func NewCreditTransactionsCountRequest(server string, params *CreditTransactions
 		if params.CustomerUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ExternalReference != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "external_reference", *params.ExternalReference, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -396029,18 +396154,18 @@ func NewPersonalAccessTokensRotateRequest(server string, uuid openapi_types.UUID
 }
 
 // NewPersonalAccessTokensSetNetworkAclRequest calls the generic PersonalAccessTokensSetNetworkAcl builder with application/json body
-func NewPersonalAccessTokensSetNetworkAclRequest(server string, uuid openapi_types.UUID, body PersonalAccessTokensSetNetworkAclJSONRequestBody) (*http.Request, error) {
+func NewPersonalAccessTokensSetNetworkAclRequest(server string, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, body PersonalAccessTokensSetNetworkAclJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPersonalAccessTokensSetNetworkAclRequestWithBody(server, uuid, "application/json", bodyReader)
+	return NewPersonalAccessTokensSetNetworkAclRequestWithBody(server, uuid, params, "application/json", bodyReader)
 }
 
 // NewPersonalAccessTokensSetNetworkAclRequestWithBody constructs an http.Request for the PersonalAccessTokensSetNetworkAcl method, with any body, and a specified content type
-func NewPersonalAccessTokensSetNetworkAclRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+func NewPersonalAccessTokensSetNetworkAclRequestWithBody(server string, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -396071,6 +396196,21 @@ func NewPersonalAccessTokensSetNetworkAclRequestWithBody(server string, uuid ope
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -471658,7 +471798,7 @@ type ClientWithResponsesInterface interface {
 	// CustomerCreditsTopUpWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	CustomerCreditsTopUpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error)
@@ -471666,7 +471806,7 @@ type ClientWithResponsesInterface interface {
 	// CustomerCreditsTopUpWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+	// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 	CustomerCreditsTopUpWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error)
 
 	// CustomerPermissionsReviewsListWithResponse performs a GET /api/customer-permissions-reviews/ (the `CustomerPermissionsReviewsList` operationId) request.
@@ -490553,17 +490693,31 @@ type ClientWithResponsesInterface interface {
 	//
 	// Replace the token's source-network allowlist.
 	//
+	// Narrowing the list needs nothing more: every new network lies inside
+	// a current one of the same address family, or the token was
+	// unrestricted, or the list is unchanged. Anything else lets the token
+	// work from an address it could not before, and needs a
+	// re-authentication grant, as creating a token does. That includes an
+	// empty list, which means from anywhere.
+	//
 	// A dedicated action rather than PATCH: update/partial_update stay
 	// disabled on this viewset, and the change gets its own audit event.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-	PersonalAccessTokensSetNetworkAclWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error)
+	PersonalAccessTokensSetNetworkAclWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error)
 
 	// PersonalAccessTokensSetNetworkAclWithResponse Replace the network ACL of a personal access token
 	//
 	// Replace the token's source-network allowlist.
+	//
+	// Narrowing the list needs nothing more: every new network lies inside
+	// a current one of the same address family, or the token was
+	// unrestricted, or the list is unchanged. Anything else lets the token
+	// work from an address it could not before, and needs a
+	// re-authentication grant, as creating a token does. That includes an
+	// empty list, which means from anywhere.
 	//
 	// A dedicated action rather than PATCH: update/partial_update stay
 	// disabled on this viewset, and the change gets its own audit event.
@@ -490571,7 +490725,7 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-	PersonalAccessTokensSetNetworkAclWithResponse(ctx context.Context, uuid openapi_types.UUID, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error)
+	PersonalAccessTokensSetNetworkAclWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error)
 
 	// ProjectCreditsListWithResponse performs a GET /api/project-credits/ (the `ProjectCreditsList` operationId) request.
 	//
@@ -588230,11 +588384,18 @@ type PersonalAccessTokensSetNetworkAclResponse struct {
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
 	JSON200 *PersonalAccessToken
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
 func (r PersonalAccessTokensSetNetworkAclResponse) GetJSON200() *PersonalAccessToken {
 	return r.JSON200
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PersonalAccessTokensSetNetworkAclResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
 }
 
 // GetBody returns the raw response body bytes
@@ -633448,7 +633609,7 @@ func (c *ClientWithResponses) CustomerCreditsReclassifyWithResponse(ctx context.
 // CustomerCreditsTopUpWithBodyWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request,
 // with any type of body and a specified content type.
 //
-// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) CustomerCreditsTopUpWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error) {
@@ -633462,7 +633623,7 @@ func (c *ClientWithResponses) CustomerCreditsTopUpWithBodyWithResponse(ctx conte
 // CustomerCreditsTopUpWithResponse performs a POST /api/customer-credits/{uuid}/top_up/ (the `CustomerCreditsTopUp` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only.
+// Record a customer prepayment as paid credit. Raises the credit value and writes a top-up ledger entry with the comment. Unlike granted credit, invoices paid from it count towards the affiliate fee, and it does not expire. A negative amount reverses a top-up, e.g. a bounced payment, and draws on paid credit only. With an external_reference the call is safe to retry: a repeat with the same reference and amount returns the credit unchanged, and one with another amount is refused. A reversal needs a reference of its own.
 func (c *ClientWithResponses) CustomerCreditsTopUpWithResponse(ctx context.Context, uuid openapi_types.UUID, body CustomerCreditsTopUpJSONRequestBody, reqEditors ...RequestEditorFn) (*CustomerCreditsTopUpResponse, error) {
 	rsp, err := c.CustomerCreditsTopUp(ctx, uuid, body, reqEditors...)
 	if err != nil {
@@ -666748,14 +666909,21 @@ func (c *ClientWithResponses) PersonalAccessTokensRotateWithResponse(ctx context
 //
 // Replace the token's source-network allowlist.
 //
+// Narrowing the list needs nothing more: every new network lies inside
+// a current one of the same address family, or the token was
+// unrestricted, or the list is unchanged. Anything else lets the token
+// work from an address it could not before, and needs a
+// re-authentication grant, as creating a token does. That includes an
+// empty list, which means from anywhere.
+//
 // A dedicated action rather than PATCH: update/partial_update stay
 // disabled on this viewset, and the change gets its own audit event.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-func (c *ClientWithResponses) PersonalAccessTokensSetNetworkAclWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error) {
-	rsp, err := c.PersonalAccessTokensSetNetworkAclWithBody(ctx, uuid, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PersonalAccessTokensSetNetworkAclWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error) {
+	rsp, err := c.PersonalAccessTokensSetNetworkAclWithBody(ctx, uuid, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -666766,14 +666934,21 @@ func (c *ClientWithResponses) PersonalAccessTokensSetNetworkAclWithBodyWithRespo
 //
 // Replace the token's source-network allowlist.
 //
+// Narrowing the list needs nothing more: every new network lies inside
+// a current one of the same address family, or the token was
+// unrestricted, or the list is unchanged. Anything else lets the token
+// work from an address it could not before, and needs a
+// re-authentication grant, as creating a token does. That includes an
+// empty list, which means from anywhere.
+//
 // A dedicated action rather than PATCH: update/partial_update stay
 // disabled on this viewset, and the change gets its own audit event.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Corresponds with POST /api/personal-access-tokens/{uuid}/set_network_acl/ (the `PersonalAccessTokensSetNetworkAcl` operationId).
-func (c *ClientWithResponses) PersonalAccessTokensSetNetworkAclWithResponse(ctx context.Context, uuid openapi_types.UUID, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error) {
-	rsp, err := c.PersonalAccessTokensSetNetworkAcl(ctx, uuid, body, reqEditors...)
+func (c *ClientWithResponses) PersonalAccessTokensSetNetworkAclWithResponse(ctx context.Context, uuid openapi_types.UUID, params *PersonalAccessTokensSetNetworkAclParams, body PersonalAccessTokensSetNetworkAclJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensSetNetworkAclResponse, error) {
+	rsp, err := c.PersonalAccessTokensSetNetworkAcl(ctx, uuid, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -739534,6 +739709,13 @@ func ParsePersonalAccessTokensSetNetworkAclResponse(rsp *http.Response) (*Person
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
 
 	}
 
