@@ -6312,6 +6312,7 @@ const (
 	EventMetadataResponseEventGroupsNotifyExternalUser                               EventMetadataResponseEventGroups = "notify_external_user"
 	EventMetadataResponseEventGroupsNotifyOrganizationOwners                         EventMetadataResponseEventGroups = "notify_organization_owners"
 	EventMetadataResponseEventGroupsNotifyProjectTeam                                EventMetadataResponseEventGroups = "notify_project_team"
+	EventMetadataResponseEventGroupsOauthConnectedAppRevoked                         EventMetadataResponseEventGroups = "oauth_connected_app_revoked"
 	EventMetadataResponseEventGroupsOauthConsentDenied                               EventMetadataResponseEventGroups = "oauth_consent_denied"
 	EventMetadataResponseEventGroupsOauthConsentGranted                              EventMetadataResponseEventGroups = "oauth_consent_granted"
 	EventMetadataResponseEventGroupsOfferingAccessSubnetCreationSucceeded            EventMetadataResponseEventGroups = "offering_access_subnet_creation_succeeded"
@@ -6932,6 +6933,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsNotifyOrganizationOwners:
 		return true
 	case EventMetadataResponseEventGroupsNotifyProjectTeam:
+		return true
+	case EventMetadataResponseEventGroupsOauthConnectedAppRevoked:
 		return true
 	case EventMetadataResponseEventGroupsOauthConsentDenied:
 		return true
@@ -7719,6 +7722,7 @@ const (
 	EventTypesEnumNotifyExternalUser                               EventTypesEnum = "notify_external_user"
 	EventTypesEnumNotifyOrganizationOwners                         EventTypesEnum = "notify_organization_owners"
 	EventTypesEnumNotifyProjectTeam                                EventTypesEnum = "notify_project_team"
+	EventTypesEnumOauthConnectedAppRevoked                         EventTypesEnum = "oauth_connected_app_revoked"
 	EventTypesEnumOauthConsentDenied                               EventTypesEnum = "oauth_consent_denied"
 	EventTypesEnumOauthConsentGranted                              EventTypesEnum = "oauth_consent_granted"
 	EventTypesEnumOfferingAccessSubnetCreationSucceeded            EventTypesEnum = "offering_access_subnet_creation_succeeded"
@@ -8339,6 +8343,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumNotifyOrganizationOwners:
 		return true
 	case EventTypesEnumNotifyProjectTeam:
+		return true
+	case EventTypesEnumOauthConnectedAppRevoked:
 		return true
 	case EventTypesEnumOauthConsentDenied:
 		return true
@@ -34904,6 +34910,18 @@ type ConflictSummaryResponse struct {
 	Total      int            `json:"total"`
 }
 
+// ConnectedApp defines model for ConnectedApp.
+type ConnectedApp struct {
+	AuthorizedAt       *time.Time              `json:"authorized_at,omitempty"`
+	ClientHost         *string                 `json:"client_host,omitempty"`
+	ClientName         *string                 `json:"client_name,omitempty"`
+	LastUsedAt         *time.Time              `json:"last_used_at,omitempty"`
+	RedirectHosts      *[]string               `json:"redirect_hosts,omitempty"`
+	RegistrationSource *RegistrationSourceEnum `json:"registration_source,omitempty"`
+	Scopes             *[]ConsentScope         `json:"scopes,omitempty"`
+	Uuid               *openapi_types.UUID     `json:"uuid,omitempty"`
+}
+
 // ConnectionStats defines model for ConnectionStats.
 type ConnectionStats struct {
 	// Active Number of active connections
@@ -57622,12 +57640,12 @@ type ProjectTemplate struct {
 	Name           string  `json:"name"`
 
 	// Offering The offering for which this template applies.
-	Offering      *string             `json:"offering,omitempty"`
-	Offerings     []string            `json:"offerings"`
-	OfferingsData *[]ResourceOffering `json:"offerings_data,omitempty"`
-	Portal        string              `json:"portal"`
-	Provider      string              `json:"provider"`
-	ProviderData  *BasicCustomer      `json:"provider_data,omitempty"`
+	Offering      *string                    `json:"offering,omitempty"`
+	Offerings     []string                   `json:"offerings"`
+	OfferingsData *[]ProjectTemplateOffering `json:"offerings_data,omitempty"`
+	Portal        string                     `json:"portal"`
+	Provider      string                     `json:"provider"`
+	ProviderData  *BasicCustomer             `json:"provider_data,omitempty"`
 
 	// RoleMapping The mapping of role names from the remote portal to role information in this portal for users in projects created in this class.
 	RoleMapping *map[string]interface{} `json:"role_mapping,omitempty"`
@@ -57636,6 +57654,13 @@ type ProjectTemplate struct {
 	RoleMappingData *map[string]map[string]string `json:"role_mapping_data,omitempty"`
 	Shortname       *string                       `json:"shortname,omitempty"`
 	Uuid            *openapi_types.UUID           `json:"uuid,omitempty"`
+}
+
+// ProjectTemplateOffering defines model for ProjectTemplateOffering.
+type ProjectTemplateOffering struct {
+	Name string              `json:"name"`
+	Url  *string             `json:"url,omitempty"`
+	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // ProjectTemplateRequest defines model for ProjectTemplateRequest.
@@ -66021,6 +66046,12 @@ type SetTokenQuotaRequest struct {
 
 	// WeeklyLimit Weekly token limit. Omit or null = system default, -1 = unlimited.
 	WeeklyLimit *int `json:"weekly_limit,omitempty"`
+}
+
+// SetUserShortnameRequest defines model for SetUserShortnameRequest.
+type SetUserShortnameRequest struct {
+	// Shortname A short, unique name for you. It will be used to form your local username on any systems. Should only contain lower-case letters and digits and must start with a letter.
+	Shortname string `json:"shortname"`
 }
 
 // SettingSource defines model for SettingSource.
@@ -88405,6 +88436,24 @@ type NotificationMessagesCountParams struct {
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
 }
 
+// OauthConnectedAppsListParams defines parameters for OauthConnectedAppsList.
+type OauthConnectedAppsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// OauthConnectedAppsCountParams defines parameters for OauthConnectedAppsCount.
+type OauthConnectedAppsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // OauthConsentRetrieveParams defines parameters for OauthConsentRetrieve.
 type OauthConsentRetrieveParams struct {
 	ClientId            string    `form:"client_id" json:"client_id"`
@@ -102777,7 +102826,7 @@ type OpenportalUserinfoPartialUpdateJSONRequestBody = PatchedUserInfoRequest
 type OpenportalUserinfoUpdateJSONRequestBody = UserInfoRequest
 
 // OpenportalUserinfoSetShortnameUpdateJSONRequestBody defines body for OpenportalUserinfoSetShortnameUpdate for application/json ContentType.
-type OpenportalUserinfoSetShortnameUpdateJSONRequestBody = UserInfoRequest
+type OpenportalUserinfoSetShortnameUpdateJSONRequestBody = SetUserShortnameRequest
 
 // OpenstackBackupsPartialUpdateJSONRequestBody defines body for OpenstackBackupsPartialUpdate for application/json ContentType.
 type OpenstackBackupsPartialUpdateJSONRequestBody = PatchedOpenStackBackupRequest
@@ -138071,6 +138120,24 @@ type ClientInterface interface {
 	// Corresponds with POST /api/notification-messages/{uuid}/enable/ (the `NotificationMessagesEnable` operationId).
 	NotificationMessagesEnable(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OauthConnectedAppsList performs a GET /api/oauth-connected-apps/ (the `OauthConnectedAppsList` operationId) request.
+	OauthConnectedAppsList(ctx context.Context, params *OauthConnectedAppsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConnectedAppsCount performs a HEAD /api/oauth-connected-apps/ (the `OauthConnectedAppsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	OauthConnectedAppsCount(ctx context.Context, params *OauthConnectedAppsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConnectedAppsDestroy Revoke a connected app
+	//
+	// Revoke the client's access and refresh tokens and pending codes.
+	//
+	// Corresponds with DELETE /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsDestroy` operationId).
+	OauthConnectedAppsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OauthConnectedAppsRetrieve performs a GET /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsRetrieve` operationId) request.
+	OauthConnectedAppsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OauthConsentRetrieve performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
 	//
 	// Describe the client asking for access, for the consent page.
@@ -138618,50 +138685,50 @@ type ClientInterface interface {
 	OpenportalProjectinfoCreate(ctx context.Context, body OpenportalProjectinfoCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoDestroy performs a DELETE /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoDestroy` operationId) request.
-	OpenportalProjectinfoDestroy(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoDestroy(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoRetrieve performs a GET /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoRetrieve` operationId) request.
-	OpenportalProjectinfoRetrieve(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoRetrieve(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoPartialUpdateWithBody performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	OpenportalProjectinfoPartialUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoPartialUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoPartialUpdate performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	OpenportalProjectinfoPartialUpdate(ctx context.Context, project int, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoPartialUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoUpdateWithBody performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	OpenportalProjectinfoUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoUpdate performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	OpenportalProjectinfoUpdate(ctx context.Context, project int, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody performs a PUT /api/openportal-projectinfo/{project}/set_allowed_destinations/ (the `OpenportalProjectinfoSetAllowedDestinationsUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Set allowed destinations for project.
-	OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoSetAllowedDestinationsUpdate performs a PUT /api/openportal-projectinfo/{project}/set_allowed_destinations/ (the `OpenportalProjectinfoSetAllowedDestinationsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
 	// Set allowed destinations for project.
-	OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx context.Context, project int, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoSetShortnameUpdateWithBody performs a PUT /api/openportal-projectinfo/{project}/set_shortname/ (the `OpenportalProjectinfoSetShortnameUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Set shortname for project.
-	OpenportalProjectinfoSetShortnameUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoSetShortnameUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectinfoSetShortnameUpdate performs a PUT /api/openportal-projectinfo/{project}/set_shortname/ (the `OpenportalProjectinfoSetShortnameUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
 	// Set shortname for project.
-	OpenportalProjectinfoSetShortnameUpdate(ctx context.Context, project int, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalProjectinfoSetShortnameUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalRemoteAllocationsList performs a GET /api/openportal-remote-allocations/ (the `OpenportalRemoteAllocationsList` operationId) request.
 	OpenportalRemoteAllocationsList(ctx context.Context, params *OpenportalRemoteAllocationsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -139212,38 +139279,38 @@ type ClientInterface interface {
 	OpenportalUserinfoMeCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoDestroy performs a DELETE /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoDestroy` operationId) request.
-	OpenportalUserinfoDestroy(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoDestroy(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoRetrieve performs a GET /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoRetrieve` operationId) request.
-	OpenportalUserinfoRetrieve(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoRetrieve(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoPartialUpdateWithBody performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	OpenportalUserinfoPartialUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoPartialUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoPartialUpdate performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	OpenportalUserinfoPartialUpdate(ctx context.Context, user int, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoPartialUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoUpdateWithBody performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request,
 	// with any type of body and a specified content type.
-	OpenportalUserinfoUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoUpdate performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
-	OpenportalUserinfoUpdate(ctx context.Context, user int, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoSetShortnameUpdateWithBody performs a PUT /api/openportal-userinfo/{user}/set_shortname/ (the `OpenportalUserinfoSetShortnameUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Set shortname for user.
-	OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUserinfoSetShortnameUpdate performs a PUT /api/openportal-userinfo/{user}/set_shortname/ (the `OpenportalUserinfoSetShortnameUpdate` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
 	// Set shortname for user.
-	OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalAccessForEmailList performs a GET /api/openportal/access_for_email/ (the `OpenportalAccessForEmailList` operationId) request.
 	OpenportalAccessForEmailList(ctx context.Context, params *OpenportalAccessForEmailListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -186616,6 +186683,64 @@ func (c *Client) NotificationMessagesEnable(ctx context.Context, uuid openapi_ty
 	return c.Client.Do(req)
 }
 
+// OauthConnectedAppsList performs a GET /api/oauth-connected-apps/ (the `OauthConnectedAppsList` operationId) request.
+func (c *Client) OauthConnectedAppsList(ctx context.Context, params *OauthConnectedAppsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConnectedAppsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConnectedAppsCount performs a HEAD /api/oauth-connected-apps/ (the `OauthConnectedAppsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) OauthConnectedAppsCount(ctx context.Context, params *OauthConnectedAppsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConnectedAppsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConnectedAppsDestroy Revoke a connected app
+//
+// Revoke the client's access and refresh tokens and pending codes.
+//
+// Corresponds with DELETE /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsDestroy` operationId).
+func (c *Client) OauthConnectedAppsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConnectedAppsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OauthConnectedAppsRetrieve performs a GET /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsRetrieve` operationId) request.
+func (c *Client) OauthConnectedAppsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOauthConnectedAppsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // OauthConsentRetrieve performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
 //
 // Describe the client asking for access, for the consent page.
@@ -188314,7 +188439,7 @@ func (c *Client) OpenportalProjectinfoCreate(ctx context.Context, body Openporta
 }
 
 // OpenportalProjectinfoDestroy performs a DELETE /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoDestroy` operationId) request.
-func (c *Client) OpenportalProjectinfoDestroy(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoDestroy(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoDestroyRequest(c.Server, project)
 	if err != nil {
 		return nil, err
@@ -188327,7 +188452,7 @@ func (c *Client) OpenportalProjectinfoDestroy(ctx context.Context, project int, 
 }
 
 // OpenportalProjectinfoRetrieve performs a GET /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoRetrieve` operationId) request.
-func (c *Client) OpenportalProjectinfoRetrieve(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoRetrieve(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoRetrieveRequest(c.Server, project)
 	if err != nil {
 		return nil, err
@@ -188341,7 +188466,7 @@ func (c *Client) OpenportalProjectinfoRetrieve(ctx context.Context, project int,
 
 // OpenportalProjectinfoPartialUpdateWithBody performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) OpenportalProjectinfoPartialUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoPartialUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoPartialUpdateRequestWithBody(c.Server, project, contentType, body)
 	if err != nil {
 		return nil, err
@@ -188355,7 +188480,7 @@ func (c *Client) OpenportalProjectinfoPartialUpdateWithBody(ctx context.Context,
 
 // OpenportalProjectinfoPartialUpdate performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) OpenportalProjectinfoPartialUpdate(ctx context.Context, project int, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoPartialUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoPartialUpdateRequest(c.Server, project, body)
 	if err != nil {
 		return nil, err
@@ -188369,7 +188494,7 @@ func (c *Client) OpenportalProjectinfoPartialUpdate(ctx context.Context, project
 
 // OpenportalProjectinfoUpdateWithBody performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) OpenportalProjectinfoUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoUpdateRequestWithBody(c.Server, project, contentType, body)
 	if err != nil {
 		return nil, err
@@ -188383,7 +188508,7 @@ func (c *Client) OpenportalProjectinfoUpdateWithBody(ctx context.Context, projec
 
 // OpenportalProjectinfoUpdate performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) OpenportalProjectinfoUpdate(ctx context.Context, project int, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoUpdateRequest(c.Server, project, body)
 	if err != nil {
 		return nil, err
@@ -188399,7 +188524,7 @@ func (c *Client) OpenportalProjectinfoUpdate(ctx context.Context, project int, b
 // with any type of body and a specified content type.
 //
 // Set allowed destinations for project.
-func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequestWithBody(c.Server, project, contentType, body)
 	if err != nil {
 		return nil, err
@@ -188415,7 +188540,7 @@ func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx c
 // Takes a body of the `application/json` content type.
 //
 // Set allowed destinations for project.
-func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx context.Context, project int, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequest(c.Server, project, body)
 	if err != nil {
 		return nil, err
@@ -188431,7 +188556,7 @@ func (c *Client) OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx context.C
 // with any type of body and a specified content type.
 //
 // Set shortname for project.
-func (c *Client) OpenportalProjectinfoSetShortnameUpdateWithBody(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoSetShortnameUpdateWithBody(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoSetShortnameUpdateRequestWithBody(c.Server, project, contentType, body)
 	if err != nil {
 		return nil, err
@@ -188447,7 +188572,7 @@ func (c *Client) OpenportalProjectinfoSetShortnameUpdateWithBody(ctx context.Con
 // Takes a body of the `application/json` content type.
 //
 // Set shortname for project.
-func (c *Client) OpenportalProjectinfoSetShortnameUpdate(ctx context.Context, project int, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalProjectinfoSetShortnameUpdate(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalProjectinfoSetShortnameUpdateRequest(c.Server, project, body)
 	if err != nil {
 		return nil, err
@@ -189889,7 +190014,7 @@ func (c *Client) OpenportalUserinfoMeCount(ctx context.Context, reqEditors ...Re
 }
 
 // OpenportalUserinfoDestroy performs a DELETE /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoDestroy` operationId) request.
-func (c *Client) OpenportalUserinfoDestroy(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoDestroy(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoDestroyRequest(c.Server, user)
 	if err != nil {
 		return nil, err
@@ -189902,7 +190027,7 @@ func (c *Client) OpenportalUserinfoDestroy(ctx context.Context, user int, reqEdi
 }
 
 // OpenportalUserinfoRetrieve performs a GET /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoRetrieve` operationId) request.
-func (c *Client) OpenportalUserinfoRetrieve(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoRetrieve(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoRetrieveRequest(c.Server, user)
 	if err != nil {
 		return nil, err
@@ -189916,7 +190041,7 @@ func (c *Client) OpenportalUserinfoRetrieve(ctx context.Context, user int, reqEd
 
 // OpenportalUserinfoPartialUpdateWithBody performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) OpenportalUserinfoPartialUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoPartialUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoPartialUpdateRequestWithBody(c.Server, user, contentType, body)
 	if err != nil {
 		return nil, err
@@ -189930,7 +190055,7 @@ func (c *Client) OpenportalUserinfoPartialUpdateWithBody(ctx context.Context, us
 
 // OpenportalUserinfoPartialUpdate performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) OpenportalUserinfoPartialUpdate(ctx context.Context, user int, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoPartialUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoPartialUpdateRequest(c.Server, user, body)
 	if err != nil {
 		return nil, err
@@ -189944,7 +190069,7 @@ func (c *Client) OpenportalUserinfoPartialUpdate(ctx context.Context, user int, 
 
 // OpenportalUserinfoUpdateWithBody performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request,
 // with any type of body and a specified content type.
-func (c *Client) OpenportalUserinfoUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoUpdateRequestWithBody(c.Server, user, contentType, body)
 	if err != nil {
 		return nil, err
@@ -189958,7 +190083,7 @@ func (c *Client) OpenportalUserinfoUpdateWithBody(ctx context.Context, user int,
 
 // OpenportalUserinfoUpdate performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request.
 // Takes a body of the `application/json` content type.
-func (c *Client) OpenportalUserinfoUpdate(ctx context.Context, user int, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoUpdateRequest(c.Server, user, body)
 	if err != nil {
 		return nil, err
@@ -189974,7 +190099,7 @@ func (c *Client) OpenportalUserinfoUpdate(ctx context.Context, user int, body Op
 // with any type of body and a specified content type.
 //
 // Set shortname for user.
-func (c *Client) OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoSetShortnameUpdateRequestWithBody(c.Server, user, contentType, body)
 	if err != nil {
 		return nil, err
@@ -189990,7 +190115,7 @@ func (c *Client) OpenportalUserinfoSetShortnameUpdateWithBody(ctx context.Contex
 // Takes a body of the `application/json` content type.
 //
 // Set shortname for user.
-func (c *Client) OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+func (c *Client) OpenportalUserinfoSetShortnameUpdate(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalUserinfoSetShortnameUpdateRequest(c.Server, user, body)
 	if err != nil {
 		return nil, err
@@ -358036,6 +358161,206 @@ func NewNotificationMessagesEnableRequest(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
+// NewOauthConnectedAppsListRequest constructs an http.Request for the OauthConnectedAppsList method
+func NewOauthConnectedAppsListRequest(server string, params *OauthConnectedAppsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth-connected-apps/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOauthConnectedAppsCountRequest constructs an http.Request for the OauthConnectedAppsCount method
+func NewOauthConnectedAppsCountRequest(server string, params *OauthConnectedAppsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth-connected-apps/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOauthConnectedAppsDestroyRequest constructs an http.Request for the OauthConnectedAppsDestroy method
+func NewOauthConnectedAppsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth-connected-apps/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOauthConnectedAppsRetrieveRequest constructs an http.Request for the OauthConnectedAppsRetrieve method
+func NewOauthConnectedAppsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/oauth-connected-apps/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOauthConsentRetrieveRequest constructs an http.Request for the OauthConsentRetrieve method
 func NewOauthConsentRetrieveRequest(server string, params *OauthConsentRetrieveParams) (*http.Request, error) {
 	var err error
@@ -364337,12 +364662,12 @@ func NewOpenportalProjectinfoCreateRequestWithBody(server string, contentType st
 }
 
 // NewOpenportalProjectinfoDestroyRequest constructs an http.Request for the OpenportalProjectinfoDestroy method
-func NewOpenportalProjectinfoDestroyRequest(server string, project int) (*http.Request, error) {
+func NewOpenportalProjectinfoDestroyRequest(server string, project openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -364371,12 +364696,12 @@ func NewOpenportalProjectinfoDestroyRequest(server string, project int) (*http.R
 }
 
 // NewOpenportalProjectinfoRetrieveRequest constructs an http.Request for the OpenportalProjectinfoRetrieve method
-func NewOpenportalProjectinfoRetrieveRequest(server string, project int) (*http.Request, error) {
+func NewOpenportalProjectinfoRetrieveRequest(server string, project openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -364405,7 +364730,7 @@ func NewOpenportalProjectinfoRetrieveRequest(server string, project int) (*http.
 }
 
 // NewOpenportalProjectinfoPartialUpdateRequest calls the generic OpenportalProjectinfoPartialUpdate builder with application/json body
-func NewOpenportalProjectinfoPartialUpdateRequest(server string, project int, body OpenportalProjectinfoPartialUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalProjectinfoPartialUpdateRequest(server string, project openapi_types.UUID, body OpenportalProjectinfoPartialUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -364416,12 +364741,12 @@ func NewOpenportalProjectinfoPartialUpdateRequest(server string, project int, bo
 }
 
 // NewOpenportalProjectinfoPartialUpdateRequestWithBody constructs an http.Request for the OpenportalProjectinfoPartialUpdate method, with any body, and a specified content type
-func NewOpenportalProjectinfoPartialUpdateRequestWithBody(server string, project int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalProjectinfoPartialUpdateRequestWithBody(server string, project openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -364452,7 +364777,7 @@ func NewOpenportalProjectinfoPartialUpdateRequestWithBody(server string, project
 }
 
 // NewOpenportalProjectinfoUpdateRequest calls the generic OpenportalProjectinfoUpdate builder with application/json body
-func NewOpenportalProjectinfoUpdateRequest(server string, project int, body OpenportalProjectinfoUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalProjectinfoUpdateRequest(server string, project openapi_types.UUID, body OpenportalProjectinfoUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -364463,12 +364788,12 @@ func NewOpenportalProjectinfoUpdateRequest(server string, project int, body Open
 }
 
 // NewOpenportalProjectinfoUpdateRequestWithBody constructs an http.Request for the OpenportalProjectinfoUpdate method, with any body, and a specified content type
-func NewOpenportalProjectinfoUpdateRequestWithBody(server string, project int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalProjectinfoUpdateRequestWithBody(server string, project openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -364499,7 +364824,7 @@ func NewOpenportalProjectinfoUpdateRequestWithBody(server string, project int, c
 }
 
 // NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequest calls the generic OpenportalProjectinfoSetAllowedDestinationsUpdate builder with application/json body
-func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequest(server string, project int, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequest(server string, project openapi_types.UUID, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -364510,12 +364835,12 @@ func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequest(server string, 
 }
 
 // NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequestWithBody constructs an http.Request for the OpenportalProjectinfoSetAllowedDestinationsUpdate method, with any body, and a specified content type
-func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequestWithBody(server string, project int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequestWithBody(server string, project openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -364546,7 +364871,7 @@ func NewOpenportalProjectinfoSetAllowedDestinationsUpdateRequestWithBody(server 
 }
 
 // NewOpenportalProjectinfoSetShortnameUpdateRequest calls the generic OpenportalProjectinfoSetShortnameUpdate builder with application/json body
-func NewOpenportalProjectinfoSetShortnameUpdateRequest(server string, project int, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalProjectinfoSetShortnameUpdateRequest(server string, project openapi_types.UUID, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -364557,12 +364882,12 @@ func NewOpenportalProjectinfoSetShortnameUpdateRequest(server string, project in
 }
 
 // NewOpenportalProjectinfoSetShortnameUpdateRequestWithBody constructs an http.Request for the OpenportalProjectinfoSetShortnameUpdate method, with any body, and a specified content type
-func NewOpenportalProjectinfoSetShortnameUpdateRequestWithBody(server string, project int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalProjectinfoSetShortnameUpdateRequestWithBody(server string, project openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "project", project, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -370111,12 +370436,12 @@ func NewOpenportalUserinfoMeCountRequest(server string) (*http.Request, error) {
 }
 
 // NewOpenportalUserinfoDestroyRequest constructs an http.Request for the OpenportalUserinfoDestroy method
-func NewOpenportalUserinfoDestroyRequest(server string, user int) (*http.Request, error) {
+func NewOpenportalUserinfoDestroyRequest(server string, user openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -370145,12 +370470,12 @@ func NewOpenportalUserinfoDestroyRequest(server string, user int) (*http.Request
 }
 
 // NewOpenportalUserinfoRetrieveRequest constructs an http.Request for the OpenportalUserinfoRetrieve method
-func NewOpenportalUserinfoRetrieveRequest(server string, user int) (*http.Request, error) {
+func NewOpenportalUserinfoRetrieveRequest(server string, user openapi_types.UUID) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -370179,7 +370504,7 @@ func NewOpenportalUserinfoRetrieveRequest(server string, user int) (*http.Reques
 }
 
 // NewOpenportalUserinfoPartialUpdateRequest calls the generic OpenportalUserinfoPartialUpdate builder with application/json body
-func NewOpenportalUserinfoPartialUpdateRequest(server string, user int, body OpenportalUserinfoPartialUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalUserinfoPartialUpdateRequest(server string, user openapi_types.UUID, body OpenportalUserinfoPartialUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -370190,12 +370515,12 @@ func NewOpenportalUserinfoPartialUpdateRequest(server string, user int, body Ope
 }
 
 // NewOpenportalUserinfoPartialUpdateRequestWithBody constructs an http.Request for the OpenportalUserinfoPartialUpdate method, with any body, and a specified content type
-func NewOpenportalUserinfoPartialUpdateRequestWithBody(server string, user int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalUserinfoPartialUpdateRequestWithBody(server string, user openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -370226,7 +370551,7 @@ func NewOpenportalUserinfoPartialUpdateRequestWithBody(server string, user int, 
 }
 
 // NewOpenportalUserinfoUpdateRequest calls the generic OpenportalUserinfoUpdate builder with application/json body
-func NewOpenportalUserinfoUpdateRequest(server string, user int, body OpenportalUserinfoUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalUserinfoUpdateRequest(server string, user openapi_types.UUID, body OpenportalUserinfoUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -370237,12 +370562,12 @@ func NewOpenportalUserinfoUpdateRequest(server string, user int, body Openportal
 }
 
 // NewOpenportalUserinfoUpdateRequestWithBody constructs an http.Request for the OpenportalUserinfoUpdate method, with any body, and a specified content type
-func NewOpenportalUserinfoUpdateRequestWithBody(server string, user int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalUserinfoUpdateRequestWithBody(server string, user openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -370273,7 +370598,7 @@ func NewOpenportalUserinfoUpdateRequestWithBody(server string, user int, content
 }
 
 // NewOpenportalUserinfoSetShortnameUpdateRequest calls the generic OpenportalUserinfoSetShortnameUpdate builder with application/json body
-func NewOpenportalUserinfoSetShortnameUpdateRequest(server string, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody) (*http.Request, error) {
+func NewOpenportalUserinfoSetShortnameUpdateRequest(server string, user openapi_types.UUID, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
@@ -370284,12 +370609,12 @@ func NewOpenportalUserinfoSetShortnameUpdateRequest(server string, user int, bod
 }
 
 // NewOpenportalUserinfoSetShortnameUpdateRequestWithBody constructs an http.Request for the OpenportalUserinfoSetShortnameUpdate method, with any body, and a specified content type
-func NewOpenportalUserinfoSetShortnameUpdateRequestWithBody(server string, user int, contentType string, body io.Reader) (*http.Request, error) {
+func NewOpenportalUserinfoSetShortnameUpdateRequestWithBody(server string, user openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
 
-	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: "uri"})
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "user", user, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
 	if err != nil {
 		return nil, err
 	}
@@ -485381,6 +485706,32 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/notification-messages/{uuid}/enable/ (the `NotificationMessagesEnable` operationId).
 	NotificationMessagesEnableWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*NotificationMessagesEnableResponse, error)
 
+	// OauthConnectedAppsListWithResponse performs a GET /api/oauth-connected-apps/ (the `OauthConnectedAppsList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OauthConnectedAppsListWithResponse(ctx context.Context, params *OauthConnectedAppsListParams, reqEditors ...RequestEditorFn) (*OauthConnectedAppsListResponse, error)
+
+	// OauthConnectedAppsCountWithResponse performs a HEAD /api/oauth-connected-apps/ (the `OauthConnectedAppsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OauthConnectedAppsCountWithResponse(ctx context.Context, params *OauthConnectedAppsCountParams, reqEditors ...RequestEditorFn) (*OauthConnectedAppsCountResponse, error)
+
+	// OauthConnectedAppsDestroyWithResponse Revoke a connected app
+	//
+	// Revoke the client's access and refresh tokens and pending codes.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with DELETE /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsDestroy` operationId).
+	OauthConnectedAppsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OauthConnectedAppsDestroyResponse, error)
+
+	// OauthConnectedAppsRetrieveWithResponse performs a GET /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OauthConnectedAppsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OauthConnectedAppsRetrieveResponse, error)
+
 	// OauthConsentRetrieveWithResponse performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
 	//
 	// Describe the client asking for access, for the consent page.
@@ -486100,32 +486451,32 @@ type ClientWithResponsesInterface interface {
 	// OpenportalProjectinfoDestroyWithResponse performs a DELETE /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoDestroy` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoDestroyWithResponse(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoDestroyResponse, error)
+	OpenportalProjectinfoDestroyWithResponse(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoDestroyResponse, error)
 
 	// OpenportalProjectinfoRetrieveWithResponse performs a GET /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoRetrieve` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoRetrieveWithResponse(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoRetrieveResponse, error)
+	OpenportalProjectinfoRetrieveWithResponse(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoRetrieveResponse, error)
 
 	// OpenportalProjectinfoPartialUpdateWithBodyWithResponse performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoPartialUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error)
+	OpenportalProjectinfoPartialUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error)
 
 	// OpenportalProjectinfoPartialUpdateWithResponse performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoPartialUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error)
+	OpenportalProjectinfoPartialUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error)
 
 	// OpenportalProjectinfoUpdateWithBodyWithResponse performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error)
+	OpenportalProjectinfoUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error)
 
 	// OpenportalProjectinfoUpdateWithResponse performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error)
+	OpenportalProjectinfoUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error)
 
 	// OpenportalProjectinfoSetAllowedDestinationsUpdateWithBodyWithResponse performs a PUT /api/openportal-projectinfo/{project}/set_allowed_destinations/ (the `OpenportalProjectinfoSetAllowedDestinationsUpdate` operationId) request,
 	// with any type of body and a specified content type.
@@ -486133,13 +486484,13 @@ type ClientWithResponsesInterface interface {
 	// Set allowed destinations for project.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoSetAllowedDestinationsUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error)
+	OpenportalProjectinfoSetAllowedDestinationsUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error)
 
 	// OpenportalProjectinfoSetAllowedDestinationsUpdateWithResponse performs a PUT /api/openportal-projectinfo/{project}/set_allowed_destinations/ (the `OpenportalProjectinfoSetAllowedDestinationsUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Set allowed destinations for project.
-	OpenportalProjectinfoSetAllowedDestinationsUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error)
+	OpenportalProjectinfoSetAllowedDestinationsUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error)
 
 	// OpenportalProjectinfoSetShortnameUpdateWithBodyWithResponse performs a PUT /api/openportal-projectinfo/{project}/set_shortname/ (the `OpenportalProjectinfoSetShortnameUpdate` operationId) request,
 	// with any type of body and a specified content type.
@@ -486147,13 +486498,13 @@ type ClientWithResponsesInterface interface {
 	// Set shortname for project.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalProjectinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error)
+	OpenportalProjectinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error)
 
 	// OpenportalProjectinfoSetShortnameUpdateWithResponse performs a PUT /api/openportal-projectinfo/{project}/set_shortname/ (the `OpenportalProjectinfoSetShortnameUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Set shortname for project.
-	OpenportalProjectinfoSetShortnameUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error)
+	OpenportalProjectinfoSetShortnameUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error)
 
 	// OpenportalRemoteAllocationsListWithResponse performs a GET /api/openportal-remote-allocations/ (the `OpenportalRemoteAllocationsList` operationId) request.
 	//
@@ -486810,32 +487161,32 @@ type ClientWithResponsesInterface interface {
 	// OpenportalUserinfoDestroyWithResponse performs a DELETE /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoDestroy` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoDestroyWithResponse(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*OpenportalUserinfoDestroyResponse, error)
+	OpenportalUserinfoDestroyWithResponse(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUserinfoDestroyResponse, error)
 
 	// OpenportalUserinfoRetrieveWithResponse performs a GET /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoRetrieve` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoRetrieveWithResponse(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*OpenportalUserinfoRetrieveResponse, error)
+	OpenportalUserinfoRetrieveWithResponse(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUserinfoRetrieveResponse, error)
 
 	// OpenportalUserinfoPartialUpdateWithBodyWithResponse performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoPartialUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error)
+	OpenportalUserinfoPartialUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error)
 
 	// OpenportalUserinfoPartialUpdateWithResponse performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoPartialUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error)
+	OpenportalUserinfoPartialUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error)
 
 	// OpenportalUserinfoUpdateWithBodyWithResponse performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request,
 	// with any type of body and a specified content type.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error)
+	OpenportalUserinfoUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error)
 
 	// OpenportalUserinfoUpdateWithResponse performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error)
+	OpenportalUserinfoUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error)
 
 	// OpenportalUserinfoSetShortnameUpdateWithBodyWithResponse performs a PUT /api/openportal-userinfo/{user}/set_shortname/ (the `OpenportalUserinfoSetShortnameUpdate` operationId) request,
 	// with any type of body and a specified content type.
@@ -486843,13 +487194,13 @@ type ClientWithResponsesInterface interface {
 	// Set shortname for user.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	OpenportalUserinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error)
+	OpenportalUserinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error)
 
 	// OpenportalUserinfoSetShortnameUpdateWithResponse performs a PUT /api/openportal-userinfo/{user}/set_shortname/ (the `OpenportalUserinfoSetShortnameUpdate` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
 	// Set shortname for user.
-	OpenportalUserinfoSetShortnameUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error)
+	OpenportalUserinfoSetShortnameUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error)
 
 	// OpenportalAccessForEmailListWithResponse performs a GET /api/openportal/access_for_email/ (the `OpenportalAccessForEmailList` operationId) request.
 	//
@@ -568467,6 +568818,163 @@ func (r NotificationMessagesEnableResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r NotificationMessagesEnableResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// OauthConnectedAppsListResponse200Headers the declared response headers of an HTTP 200 response for OauthConnectedAppsList
+type OauthConnectedAppsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type OauthConnectedAppsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]ConnectedApp
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *OauthConnectedAppsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OauthConnectedAppsListResponse) GetJSON200() *[]ConnectedApp {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConnectedAppsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConnectedAppsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConnectedAppsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConnectedAppsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OauthConnectedAppsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConnectedAppsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConnectedAppsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConnectedAppsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConnectedAppsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OauthConnectedAppsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConnectedAppsDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConnectedAppsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConnectedAppsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConnectedAppsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OauthConnectedAppsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ConnectedApp
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OauthConnectedAppsRetrieveResponse) GetJSON200() *ConnectedApp {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OauthConnectedAppsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OauthConnectedAppsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OauthConnectedAppsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OauthConnectedAppsRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -657543,6 +658051,56 @@ func (c *ClientWithResponses) NotificationMessagesEnableWithResponse(ctx context
 	return ParseNotificationMessagesEnableResponse(rsp)
 }
 
+// OauthConnectedAppsListWithResponse performs a GET /api/oauth-connected-apps/ (the `OauthConnectedAppsList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OauthConnectedAppsListWithResponse(ctx context.Context, params *OauthConnectedAppsListParams, reqEditors ...RequestEditorFn) (*OauthConnectedAppsListResponse, error) {
+	rsp, err := c.OauthConnectedAppsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConnectedAppsListResponse(rsp)
+}
+
+// OauthConnectedAppsCountWithResponse performs a HEAD /api/oauth-connected-apps/ (the `OauthConnectedAppsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OauthConnectedAppsCountWithResponse(ctx context.Context, params *OauthConnectedAppsCountParams, reqEditors ...RequestEditorFn) (*OauthConnectedAppsCountResponse, error) {
+	rsp, err := c.OauthConnectedAppsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConnectedAppsCountResponse(rsp)
+}
+
+// OauthConnectedAppsDestroyWithResponse Revoke a connected app
+//
+// Revoke the client's access and refresh tokens and pending codes.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with DELETE /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsDestroy` operationId).
+func (c *ClientWithResponses) OauthConnectedAppsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OauthConnectedAppsDestroyResponse, error) {
+	rsp, err := c.OauthConnectedAppsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConnectedAppsDestroyResponse(rsp)
+}
+
+// OauthConnectedAppsRetrieveWithResponse performs a GET /api/oauth-connected-apps/{uuid}/ (the `OauthConnectedAppsRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OauthConnectedAppsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OauthConnectedAppsRetrieveResponse, error) {
+	rsp, err := c.OauthConnectedAppsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOauthConnectedAppsRetrieveResponse(rsp)
+}
+
 // OauthConsentRetrieveWithResponse performs a GET /api/oauth/consent/ (the `OauthConsentRetrieve` operationId) request.
 //
 // Describe the client asking for access, for the consent page.
@@ -658953,7 +659511,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoCreateWithResponse(ctx contex
 // OpenportalProjectinfoDestroyWithResponse performs a DELETE /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoDestroy` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoDestroyWithResponse(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoDestroyResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoDestroyWithResponse(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoDestroyResponse, error) {
 	rsp, err := c.OpenportalProjectinfoDestroy(ctx, project, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -658964,7 +659522,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoDestroyWithResponse(ctx conte
 // OpenportalProjectinfoRetrieveWithResponse performs a GET /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoRetrieve` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoRetrieveWithResponse(ctx context.Context, project int, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoRetrieveResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoRetrieveWithResponse(ctx context.Context, project openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoRetrieveResponse, error) {
 	rsp, err := c.OpenportalProjectinfoRetrieve(ctx, project, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -658976,7 +659534,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoRetrieveWithResponse(ctx cont
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoPartialUpdateWithBody(ctx, project, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -658986,7 +659544,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithBodyWithResp
 
 // OpenportalProjectinfoPartialUpdateWithResponse performs a PATCH /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoPartialUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoPartialUpdate(ctx, project, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -658998,7 +659556,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoPartialUpdateWithResponse(ctx
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoUpdateWithBody(ctx, project, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -659008,7 +659566,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithBodyWithResponse(ct
 
 // OpenportalProjectinfoUpdateWithResponse performs a PUT /api/openportal-projectinfo/{project}/ (the `OpenportalProjectinfoUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoUpdate(ctx, project, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -659022,7 +659580,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoUpdateWithResponse(ctx contex
 // Set allowed destinations for project.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoSetAllowedDestinationsUpdateWithBody(ctx, project, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -659034,7 +659592,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateW
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Set allowed destinations for project.
-func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetAllowedDestinationsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetAllowedDestinationsUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoSetAllowedDestinationsUpdate(ctx, project, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -659048,7 +659606,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoSetAllowedDestinationsUpdateW
 // Set shortname for project.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalProjectinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, project int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, project openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoSetShortnameUpdateWithBody(ctx, project, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -659060,7 +659618,7 @@ func (c *ClientWithResponses) OpenportalProjectinfoSetShortnameUpdateWithBodyWit
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Set shortname for project.
-func (c *ClientWithResponses) OpenportalProjectinfoSetShortnameUpdateWithResponse(ctx context.Context, project int, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalProjectinfoSetShortnameUpdateWithResponse(ctx context.Context, project openapi_types.UUID, body OpenportalProjectinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalProjectinfoSetShortnameUpdateResponse, error) {
 	rsp, err := c.OpenportalProjectinfoSetShortnameUpdate(ctx, project, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660252,7 +660810,7 @@ func (c *ClientWithResponses) OpenportalUserinfoMeCountWithResponse(ctx context.
 // OpenportalUserinfoDestroyWithResponse performs a DELETE /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoDestroy` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoDestroyWithResponse(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*OpenportalUserinfoDestroyResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoDestroyWithResponse(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUserinfoDestroyResponse, error) {
 	rsp, err := c.OpenportalUserinfoDestroy(ctx, user, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660263,7 +660821,7 @@ func (c *ClientWithResponses) OpenportalUserinfoDestroyWithResponse(ctx context.
 // OpenportalUserinfoRetrieveWithResponse performs a GET /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoRetrieve` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoRetrieveWithResponse(ctx context.Context, user int, reqEditors ...RequestEditorFn) (*OpenportalUserinfoRetrieveResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoRetrieveWithResponse(ctx context.Context, user openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalUserinfoRetrieveResponse, error) {
 	rsp, err := c.OpenportalUserinfoRetrieve(ctx, user, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660275,7 +660833,7 @@ func (c *ClientWithResponses) OpenportalUserinfoRetrieveWithResponse(ctx context
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoPartialUpdateWithBody(ctx, user, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660285,7 +660843,7 @@ func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithBodyWithRespons
 
 // OpenportalUserinfoPartialUpdateWithResponse performs a PATCH /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoPartialUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoPartialUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoPartialUpdate(ctx, user, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660297,7 +660855,7 @@ func (c *ClientWithResponses) OpenportalUserinfoPartialUpdateWithResponse(ctx co
 // with any type of body and a specified content type.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoUpdateWithBody(ctx, user, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660307,7 +660865,7 @@ func (c *ClientWithResponses) OpenportalUserinfoUpdateWithBodyWithResponse(ctx c
 
 // OpenportalUserinfoUpdateWithResponse performs a PUT /api/openportal-userinfo/{user}/ (the `OpenportalUserinfoUpdate` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoUpdate(ctx, user, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660321,7 +660879,7 @@ func (c *ClientWithResponses) OpenportalUserinfoUpdateWithResponse(ctx context.C
 // Set shortname for user.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, user int, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithBodyWithResponse(ctx context.Context, user openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoSetShortnameUpdateWithBody(ctx, user, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -660333,7 +660891,7 @@ func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithBodyWithRe
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
 // Set shortname for user.
-func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithResponse(ctx context.Context, user int, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error) {
+func (c *ClientWithResponses) OpenportalUserinfoSetShortnameUpdateWithResponse(ctx context.Context, user openapi_types.UUID, body OpenportalUserinfoSetShortnameUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalUserinfoSetShortnameUpdateResponse, error) {
 	rsp, err := c.OpenportalUserinfoSetShortnameUpdate(ctx, user, body, reqEditors...)
 	if err != nil {
 		return nil, err
@@ -727152,6 +727710,103 @@ func ParseNotificationMessagesEnableResponse(rsp *http.Response) (*NotificationM
 	response := &NotificationMessagesEnableResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOauthConnectedAppsListResponse parses an HTTP response from a OauthConnectedAppsListWithResponse call
+func ParseOauthConnectedAppsListResponse(rsp *http.Response) (*OauthConnectedAppsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConnectedAppsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ConnectedApp
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers OauthConnectedAppsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseOauthConnectedAppsCountResponse parses an HTTP response from a OauthConnectedAppsCountWithResponse call
+func ParseOauthConnectedAppsCountResponse(rsp *http.Response) (*OauthConnectedAppsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConnectedAppsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOauthConnectedAppsDestroyResponse parses an HTTP response from a OauthConnectedAppsDestroyWithResponse call
+func ParseOauthConnectedAppsDestroyResponse(rsp *http.Response) (*OauthConnectedAppsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConnectedAppsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseOauthConnectedAppsRetrieveResponse parses an HTTP response from a OauthConnectedAppsRetrieveWithResponse call
+func ParseOauthConnectedAppsRetrieveResponse(rsp *http.Response) (*OauthConnectedAppsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OauthConnectedAppsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ConnectedApp
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
