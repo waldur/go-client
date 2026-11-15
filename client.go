@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -6561,6 +6562,7 @@ const (
 	EventMetadataResponseEventGroupsReviewAccepted                                   EventMetadataResponseEventGroups = "review_accepted"
 	EventMetadataResponseEventGroupsReviewAssigned                                   EventMetadataResponseEventGroups = "review_assigned"
 	EventMetadataResponseEventGroupsReviewAssignmentForceUnblocked                   EventMetadataResponseEventGroups = "review_assignment_force_unblocked"
+	EventMetadataResponseEventGroupsReviewAssignmentsClosedOnRoleRevoke              EventMetadataResponseEventGroups = "review_assignments_closed_on_role_revoke"
 	EventMetadataResponseEventGroupsReviewCanceled                                   EventMetadataResponseEventGroups = "review_canceled"
 	EventMetadataResponseEventGroupsReviewDeclined                                   EventMetadataResponseEventGroups = "review_declined"
 	EventMetadataResponseEventGroupsReviewRejected                                   EventMetadataResponseEventGroups = "review_rejected"
@@ -7432,6 +7434,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsReviewAssignmentForceUnblocked:
 		return true
+	case EventMetadataResponseEventGroupsReviewAssignmentsClosedOnRoleRevoke:
+		return true
 	case EventMetadataResponseEventGroupsReviewCanceled:
 		return true
 	case EventMetadataResponseEventGroupsReviewDeclined:
@@ -7971,6 +7975,7 @@ const (
 	EventTypesEnumReviewAccepted                                   EventTypesEnum = "review_accepted"
 	EventTypesEnumReviewAssigned                                   EventTypesEnum = "review_assigned"
 	EventTypesEnumReviewAssignmentForceUnblocked                   EventTypesEnum = "review_assignment_force_unblocked"
+	EventTypesEnumReviewAssignmentsClosedOnRoleRevoke              EventTypesEnum = "review_assignments_closed_on_role_revoke"
 	EventTypesEnumReviewCanceled                                   EventTypesEnum = "review_canceled"
 	EventTypesEnumReviewDeclined                                   EventTypesEnum = "review_declined"
 	EventTypesEnumReviewRejected                                   EventTypesEnum = "review_rejected"
@@ -8841,6 +8846,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumReviewAssigned:
 		return true
 	case EventTypesEnumReviewAssignmentForceUnblocked:
+		return true
+	case EventTypesEnumReviewAssignmentsClosedOnRoleRevoke:
 		return true
 	case EventTypesEnumReviewCanceled:
 		return true
@@ -11970,6 +11977,8 @@ const (
 	MessageBlocksKeyHpcJob       MessageBlocksKey = "hpc_job"
 	MessageBlocksKeyMarkdown     MessageBlocksKey = "markdown"
 	MessageBlocksKeyMermaid      MessageBlocksKey = "mermaid"
+	MessageBlocksKeyNarration    MessageBlocksKey = "narration"
+	MessageBlocksKeyReasoning    MessageBlocksKey = "reasoning"
 	MessageBlocksKeyResourceList MessageBlocksKey = "resource_list"
 	MessageBlocksKeyTool         MessageBlocksKey = "tool"
 	MessageBlocksKeyVmOrder      MessageBlocksKey = "vm_order"
@@ -11991,6 +12000,10 @@ func (e MessageBlocksKey) Valid() bool {
 	case MessageBlocksKeyMarkdown:
 		return true
 	case MessageBlocksKeyMermaid:
+		return true
+	case MessageBlocksKeyNarration:
+		return true
+	case MessageBlocksKeyReasoning:
 		return true
 	case MessageBlocksKeyResourceList:
 		return true
@@ -30350,6 +30363,39 @@ type AtlassianCredentialsRequest struct {
 	VerifySsl           *bool                `json:"verify_ssl,omitempty"`
 }
 
+// AtlassianCurrentSettings defines model for AtlassianCurrentSettings.
+type AtlassianCurrentSettings struct {
+	ATLASSIANAFFECTEDRESOURCEFIELD          string                               `json:"ATLASSIAN_AFFECTED_RESOURCE_FIELD"`
+	ATLASSIANAPIURL                         string                               `json:"ATLASSIAN_API_URL"`
+	ATLASSIANCALLERFIELD                    string                               `json:"ATLASSIAN_CALLER_FIELD"`
+	ATLASSIANCUSTOMISSUEFIELDMAPPINGENABLED bool                                 `json:"ATLASSIAN_CUSTOM_ISSUE_FIELD_MAPPING_ENABLED"`
+	ATLASSIANDEFAULTOFFERINGISSUETYPE       string                               `json:"ATLASSIAN_DEFAULT_OFFERING_ISSUE_TYPE"`
+	ATLASSIANEMAIL                          string                               `json:"ATLASSIAN_EMAIL"`
+	ATLASSIANIMPACTFIELD                    string                               `json:"ATLASSIAN_IMPACT_FIELD"`
+	ATLASSIANISSUETYPES                     []string                             `json:"ATLASSIAN_ISSUE_TYPES"`
+	ATLASSIANOAUTH2CLIENTID                 string                               `json:"ATLASSIAN_OAUTH2_CLIENT_ID"`
+	ATLASSIANORGANISATIONFIELD              string                               `json:"ATLASSIAN_ORGANISATION_FIELD"`
+	ATLASSIANPROJECTFIELD                   string                               `json:"ATLASSIAN_PROJECT_FIELD"`
+	ATLASSIANPROJECTID                      string                               `json:"ATLASSIAN_PROJECT_ID"`
+	ATLASSIANREPORTERFIELD                  string                               `json:"ATLASSIAN_REPORTER_FIELD"`
+	ATLASSIANREQUESTFEEDBACKFIELD           string                               `json:"ATLASSIAN_REQUEST_FEEDBACK_FIELD"`
+	ATLASSIANRESOLUTIONSLAFIELD             string                               `json:"ATLASSIAN_RESOLUTION_SLA_FIELD"`
+	ATLASSIANSATISFACTIONFIELD              string                               `json:"ATLASSIAN_SATISFACTION_FIELD"`
+	ATLASSIANSLAFIELD                       string                               `json:"ATLASSIAN_SLA_FIELD"`
+	ATLASSIANTEMPLATEFIELD                  string                               `json:"ATLASSIAN_TEMPLATE_FIELD"`
+	ATLASSIANUSERNAME                       string                               `json:"ATLASSIAN_USERNAME"`
+	ATLASSIANUSEOLDAPI                      bool                                 `json:"ATLASSIAN_USE_OLD_API"`
+	ATLASSIANVERIFYSSL                      bool                                 `json:"ATLASSIAN_VERIFY_SSL"`
+	ATLASSIANWALDURBACKENDIDFIELD           string                               `json:"ATLASSIAN_WALDUR_BACKEND_ID_FIELD"`
+	AuthConfigured                          bool                                 `json:"auth_configured"`
+	AuthMethod                              *AtlassianCurrentSettings_AuthMethod `json:"auth_method"`
+}
+
+// AtlassianCurrentSettings_AuthMethod defines model for AtlassianCurrentSettings.AuthMethod.
+type AtlassianCurrentSettings_AuthMethod struct {
+	union json.RawMessage
+}
+
 // AtlassianCustomFieldResponse defines model for AtlassianCustomFieldResponse.
 type AtlassianCustomFieldResponse struct {
 	ClauseNames *[]string `json:"clause_names,omitempty"`
@@ -33911,6 +33957,9 @@ type ChatResponse struct {
 	// CustomerUuid Customer/organization UUID filter hint. Present when k='resource_list'.
 	CustomerUuid *string `json:"customer_uuid,omitempty"`
 
+	// D reasoning: thinking time in milliseconds, sent when the thinking ends.
+	D *int `json:"d,omitempty"`
+
 	// E Error message.
 	E *string `json:"e,omitempty"`
 
@@ -35012,6 +35061,7 @@ type ConstanceSettings struct {
 	AIASSISTANTMODEL                                 *string                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSHOWREASONING                         *bool                                                            `json:"AI_ASSISTANT_SHOW_REASONING,omitempty"`
 	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                             `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
@@ -35462,6 +35512,7 @@ type ConstanceSettingsRequest struct {
 	AIASSISTANTMODEL                                 *string                                                                 `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                 `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                    `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSHOWREASONING                         *bool                                                                   `json:"AI_ASSISTANT_SHOW_REASONING,omitempty"`
 	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                    `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                 `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                    `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
@@ -35912,6 +35963,7 @@ type ConstanceSettingsRequestForm struct {
 	AIASSISTANTMODEL                                 *string                                                                     `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                     `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                        `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSHOWREASONING                         *bool                                                                       `json:"AI_ASSISTANT_SHOW_REASONING,omitempty"`
 	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                        `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                     `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                        `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
@@ -36362,6 +36414,7 @@ type ConstanceSettingsRequestMultipart struct {
 	AIASSISTANTMODEL                                 *string                                                                          `json:"AI_ASSISTANT_MODEL,omitempty"`
 	AIASSISTANTNAME                                  *string                                                                          `json:"AI_ASSISTANT_NAME,omitempty"`
 	AIASSISTANTSESSIONRETENTIONDAYS                  *int                                                                             `json:"AI_ASSISTANT_SESSION_RETENTION_DAYS,omitempty"`
+	AIASSISTANTSHOWREASONING                         *bool                                                                            `json:"AI_ASSISTANT_SHOW_REASONING,omitempty"`
 	AIASSISTANTSTREAMTIMEOUTSECONDS                  *int                                                                             `json:"AI_ASSISTANT_STREAM_TIMEOUT_SECONDS,omitempty"`
 	AIASSISTANTSYSTEMPROMPTCUSTOMINSTRUCTIONS        *string                                                                          `json:"AI_ASSISTANT_SYSTEM_PROMPT_CUSTOM_INSTRUCTIONS,omitempty"`
 	AIASSISTANTTOKENLIMITDAILY                       *int                                                                             `json:"AI_ASSISTANT_TOKEN_LIMIT_DAILY,omitempty"`
@@ -41237,6 +41290,11 @@ type HelpdeskStats struct {
 	TotalRouted           int                    `json:"total_routed"`
 }
 
+// Hook defines model for Hook.
+type Hook struct {
+	union json.RawMessage
+}
+
 // HpcAllocationUsage defines model for HpcAllocationUsage.
 type HpcAllocationUsage struct {
 	AsOf       openapi_types.Date  `json:"as_of"`
@@ -43156,7 +43214,7 @@ type LexisLink struct {
 	ProjectName          *string             `json:"project_name,omitempty"`
 	ProjectUuid          *openapi_types.UUID `json:"project_uuid,omitempty"`
 	ResourceBackendId    *string             `json:"resource_backend_id,omitempty"`
-	ResourceEndDate      *time.Time          `json:"resource_end_date,omitempty"`
+	ResourceEndDate      *openapi_types.Date `json:"resource_end_date,omitempty"`
 	ResourceName         *string             `json:"resource_name,omitempty"`
 	ResourceType         *string             `json:"resource_type,omitempty"`
 	ResourceUuid         *openapi_types.UUID `json:"resource_uuid,omitempty"`
@@ -57346,7 +57404,7 @@ type ProjectPermissionLog struct {
 	ExpirationTime    *time.Time           `json:"expiration_time,omitempty"`
 	Project           *string              `json:"project,omitempty"`
 	ProjectCreated    *time.Time           `json:"project_created,omitempty"`
-	ProjectEndDate    *time.Time           `json:"project_end_date,omitempty"`
+	ProjectEndDate    *openapi_types.Date  `json:"project_end_date,omitempty"`
 	ProjectName       *string              `json:"project_name,omitempty"`
 	ProjectUuid       *openapi_types.UUID  `json:"project_uuid,omitempty"`
 	Role              *string              `json:"role,omitempty"`
@@ -58544,7 +58602,7 @@ type ProposalWorkflowStepInstance struct {
 	PerRequestedOffering *bool              `json:"per_requested_offering,omitempty"`
 	Phase                *WorkflowPhaseEnum `json:"phase,omitempty"`
 
-	// ReadyToComplete For whoever may complete the active step: every contribution is in and its completion gates are met, so it waits only for them. False for everyone else.
+	// ReadyToComplete For whoever may complete the active step: every contribution is in and its completion gates are met, so it waits only for them. The minimum score threshold counts only for those who read score_gate. False for everyone else.
 	ReadyToComplete *bool   `json:"ready_to_complete,omitempty"`
 	RejectionReason *string `json:"rejection_reason,omitempty"`
 
@@ -58564,7 +58622,7 @@ type ProposalWorkflowStepInstance struct {
 	// RunUuid The extension request or final report the step belongs to; null for a step of the evaluation.
 	RunUuid *openapi_types.UUID `json:"run_uuid,omitempty"`
 
-	// ScoreGate The active step's score against its minimum score threshold, before anyone decides: below it, only declining is possible. Null without a threshold, once the step is no longer active, and for readers outside the call team.
+	// ScoreGate The active step's score against its minimum score threshold, before anyone decides: below it, only declining is possible. Null without a threshold, once the step is no longer active, and for readers outside the call team, the step's own evaluators included.
 	ScoreGate *StepScoreGate `json:"score_gate,omitempty"`
 
 	// SkippedReason Why a skipped step did not run: 'condition_not_met' when its run condition did not hold. Null otherwise.
@@ -59062,7 +59120,9 @@ type ProtectedProposalList struct {
 	Name           string     `json:"name"`
 
 	// Reviews Return serialized reviews based on user permissions and visibility settings.
-	// - Staff, call managers, and reviewers see all reviews.
+	// - Staff and call managers see all reviews.
+	// - Reviewers see their own reviews only, as on /api/proposal-reviews/
+	//   (filter_reviews_for_user): reviewers judge independently.
 	// - Submitters see submitted reviews if visibility is enabled.
 	Reviews *[]interface{}      `json:"reviews,omitempty"`
 	Slug    string              `json:"slug"`
@@ -105158,6 +105218,68 @@ func (t *AnonymousChatInteraction_IpAddress) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsAuthMethodEnum returns the union data inside the AtlassianCurrentSettings_AuthMethod as a AuthMethodEnum
+func (t AtlassianCurrentSettings_AuthMethod) AsAuthMethodEnum() (AuthMethodEnum, error) {
+	var body AuthMethodEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromAuthMethodEnum overwrites any union data inside the AtlassianCurrentSettings_AuthMethod as the provided AuthMethodEnum
+func (t *AtlassianCurrentSettings_AuthMethod) FromAuthMethodEnum(v AuthMethodEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeAuthMethodEnum performs a merge with any union data inside the AtlassianCurrentSettings_AuthMethod, using the provided AuthMethodEnum
+func (t *AtlassianCurrentSettings_AuthMethod) MergeAuthMethodEnum(v AuthMethodEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the AtlassianCurrentSettings_AuthMethod as a NullEnum
+func (t AtlassianCurrentSettings_AuthMethod) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the AtlassianCurrentSettings_AuthMethod as the provided NullEnum
+func (t *AtlassianCurrentSettings_AuthMethod) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the AtlassianCurrentSettings_AuthMethod, using the provided NullEnum
+func (t *AtlassianCurrentSettings_AuthMethod) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t AtlassianCurrentSettings_AuthMethod) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *AtlassianCurrentSettings_AuthMethod) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsOrderState returns the union data inside the AwardedResource_OrderState as a OrderState
 func (t AwardedResource_OrderState) AsOrderState() (OrderState, error) {
 	var body OrderState
@@ -111500,6 +111622,107 @@ func (t GlobalUserDataAccessLog_IpAddress) MarshalJSON() ([]byte, error) {
 }
 
 func (t *GlobalUserDataAccessLog_IpAddress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsWebHook returns the union data inside the Hook as a WebHook
+func (t Hook) AsWebHook() (WebHook, error) {
+	var body WebHook
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromWebHook overwrites any union data inside the Hook as the provided WebHook
+func (t *Hook) FromWebHook(v WebHook) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"hook_type":"webhook"}`))
+	t.union = b
+	return err
+}
+
+// MergeWebHook performs a merge with any union data inside the Hook, using the provided WebHook
+func (t *Hook) MergeWebHook(v WebHook) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"hook_type":"webhook"}`))
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsEmailHook returns the union data inside the Hook as a EmailHook
+func (t Hook) AsEmailHook() (EmailHook, error) {
+	var body EmailHook
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromEmailHook overwrites any union data inside the Hook as the provided EmailHook
+func (t *Hook) FromEmailHook(v EmailHook) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"hook_type":"email"}`))
+	t.union = b
+	return err
+}
+
+// MergeEmailHook performs a merge with any union data inside the Hook, using the provided EmailHook
+func (t *Hook) MergeEmailHook(v EmailHook) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+	b, err = runtime.JSONMerge(b, []byte(`{"hook_type":"email"}`))
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Hook) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"hook_type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t Hook) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "email":
+		return t.AsEmailHook()
+	case "webhook":
+		return t.AsWebHook()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t Hook) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Hook) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -523886,9 +524109,23 @@ func (r HooksWebUpdateResponse) ContentType() string {
 	return ""
 }
 
+// HooksListResponse200Headers the declared response headers of an HTTP 200 response for HooksList
+type HooksListResponse200Headers struct {
+	XResultCount *int
+}
+
 type HooksListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]Hook
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *HooksListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r HooksListResponse) GetJSON200() *[]Hook {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -538710,6 +538947,19 @@ func (r MarketplaceOfferingUsersPosixIdentitiesCountResponse) ContentType() stri
 type MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *map[string][]struct {
+		OfferingName string             `json:"offering_name"`
+		OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+	}
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse) GetJSON200() *map[string][]struct {
+	OfferingName string             `json:"offering_name"`
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+} {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -616835,6 +617085,13 @@ func (r SupportCommentsUpdateResponse) ContentType() string {
 type SupportFeedbackAverageReportRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *float64
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r SupportFeedbackAverageReportRetrieveResponse) GetJSON200() *float64 {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -616869,6 +617126,13 @@ func (r SupportFeedbackAverageReportRetrieveResponse) ContentType() string {
 type SupportFeedbackReportRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *map[string]int
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r SupportFeedbackReportRetrieveResponse) GetJSON200() *map[string]int {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -620379,6 +620643,13 @@ func (r SupportZammadWebhookResponse) ContentType() string {
 type SupportSettingsAtlassianCurrentSettingsRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *AtlassianCurrentSettings
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r SupportSettingsAtlassianCurrentSettingsRetrieveResponse) GetJSON200() *AtlassianCurrentSettings {
+	return r.JSON200
 }
 
 // GetBody returns the raw response body bytes
@@ -699110,6 +699381,29 @@ func ParseHooksListResponse(rsp *http.Response) (*HooksListResponse, error) {
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []Hook
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers HooksListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
 	return response, nil
 }
 
@@ -708496,6 +708790,19 @@ func ParseMarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse(rsp *http
 	response := &MarketplaceOfferingUsersProfileFieldWarningsRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string][]struct {
+			OfferingName string             `json:"offering_name"`
+			OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+		}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -758327,6 +758634,16 @@ func ParseSupportFeedbackAverageReportRetrieveResponse(rsp *http.Response) (*Sup
 		HTTPResponse: rsp,
 	}
 
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest float64
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
 	return response, nil
 }
 
@@ -758341,6 +758658,16 @@ func ParseSupportFeedbackReportRetrieveResponse(rsp *http.Response) (*SupportFee
 	response := &SupportFeedbackReportRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest map[string]int
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
@@ -760525,6 +760852,16 @@ func ParseSupportSettingsAtlassianCurrentSettingsRetrieveResponse(rsp *http.Resp
 	response := &SupportSettingsAtlassianCurrentSettingsRetrieveResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AtlassianCurrentSettings
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
