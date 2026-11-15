@@ -6562,7 +6562,7 @@ const (
 	EventMetadataResponseEventGroupsReviewAccepted                                   EventMetadataResponseEventGroups = "review_accepted"
 	EventMetadataResponseEventGroupsReviewAssigned                                   EventMetadataResponseEventGroups = "review_assigned"
 	EventMetadataResponseEventGroupsReviewAssignmentForceUnblocked                   EventMetadataResponseEventGroups = "review_assignment_force_unblocked"
-	EventMetadataResponseEventGroupsReviewAssignmentsClosedOnRoleRevoke              EventMetadataResponseEventGroups = "review_assignments_closed_on_role_revoke"
+	EventMetadataResponseEventGroupsReviewAssignmentsClosedOnLeavingPool             EventMetadataResponseEventGroups = "review_assignments_closed_on_leaving_pool"
 	EventMetadataResponseEventGroupsReviewCanceled                                   EventMetadataResponseEventGroups = "review_canceled"
 	EventMetadataResponseEventGroupsReviewDeclined                                   EventMetadataResponseEventGroups = "review_declined"
 	EventMetadataResponseEventGroupsReviewRejected                                   EventMetadataResponseEventGroups = "review_rejected"
@@ -7434,7 +7434,7 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsReviewAssignmentForceUnblocked:
 		return true
-	case EventMetadataResponseEventGroupsReviewAssignmentsClosedOnRoleRevoke:
+	case EventMetadataResponseEventGroupsReviewAssignmentsClosedOnLeavingPool:
 		return true
 	case EventMetadataResponseEventGroupsReviewCanceled:
 		return true
@@ -7975,7 +7975,7 @@ const (
 	EventTypesEnumReviewAccepted                                   EventTypesEnum = "review_accepted"
 	EventTypesEnumReviewAssigned                                   EventTypesEnum = "review_assigned"
 	EventTypesEnumReviewAssignmentForceUnblocked                   EventTypesEnum = "review_assignment_force_unblocked"
-	EventTypesEnumReviewAssignmentsClosedOnRoleRevoke              EventTypesEnum = "review_assignments_closed_on_role_revoke"
+	EventTypesEnumReviewAssignmentsClosedOnLeavingPool             EventTypesEnum = "review_assignments_closed_on_leaving_pool"
 	EventTypesEnumReviewCanceled                                   EventTypesEnum = "review_canceled"
 	EventTypesEnumReviewDeclined                                   EventTypesEnum = "review_declined"
 	EventTypesEnumReviewRejected                                   EventTypesEnum = "review_rejected"
@@ -8847,7 +8847,7 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumReviewAssignmentForceUnblocked:
 		return true
-	case EventTypesEnumReviewAssignmentsClosedOnRoleRevoke:
+	case EventTypesEnumReviewAssignmentsClosedOnLeavingPool:
 		return true
 	case EventTypesEnumReviewCanceled:
 		return true
