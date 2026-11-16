@@ -3022,6 +3022,72 @@ func (e ChatSessionFieldEnum) Valid() bool {
 	}
 }
 
+// Defines values for ChatSuggestionIdEnum.
+const (
+	ChatSuggestionIdEnumAnalyzeUsage      ChatSuggestionIdEnum = "analyze_usage"
+	ChatSuggestionIdEnumCallInsights      ChatSuggestionIdEnum = "call_insights"
+	ChatSuggestionIdEnumCheckCredit       ChatSuggestionIdEnum = "check_credit"
+	ChatSuggestionIdEnumCreateVm          ChatSuggestionIdEnum = "create_vm"
+	ChatSuggestionIdEnumFindCall          ChatSuggestionIdEnum = "find_call"
+	ChatSuggestionIdEnumFindService       ChatSuggestionIdEnum = "find_service"
+	ChatSuggestionIdEnumHpcJobs           ChatSuggestionIdEnum = "hpc_jobs"
+	ChatSuggestionIdEnumHpcSoftware       ChatSuggestionIdEnum = "hpc_software"
+	ChatSuggestionIdEnumListInvoices      ChatSuggestionIdEnum = "list_invoices"
+	ChatSuggestionIdEnumLookUpUser        ChatSuggestionIdEnum = "look_up_user"
+	ChatSuggestionIdEnumMyResources       ChatSuggestionIdEnum = "my_resources"
+	ChatSuggestionIdEnumOverdrawnProjects ChatSuggestionIdEnum = "overdrawn_projects"
+	ChatSuggestionIdEnumPendingOrders     ChatSuggestionIdEnum = "pending_orders"
+	ChatSuggestionIdEnumProposalHelp      ChatSuggestionIdEnum = "proposal_help"
+	ChatSuggestionIdEnumResourcePaused    ChatSuggestionIdEnum = "resource_paused"
+	ChatSuggestionIdEnumReviewWorkload    ChatSuggestionIdEnum = "review_workload"
+	ChatSuggestionIdEnumSearchDocs        ChatSuggestionIdEnum = "search_docs"
+	ChatSuggestionIdEnumVisualizeCosts    ChatSuggestionIdEnum = "visualize_costs"
+)
+
+// Valid indicates whether the value is a known member of the ChatSuggestionIdEnum enum.
+func (e ChatSuggestionIdEnum) Valid() bool {
+	switch e {
+	case ChatSuggestionIdEnumAnalyzeUsage:
+		return true
+	case ChatSuggestionIdEnumCallInsights:
+		return true
+	case ChatSuggestionIdEnumCheckCredit:
+		return true
+	case ChatSuggestionIdEnumCreateVm:
+		return true
+	case ChatSuggestionIdEnumFindCall:
+		return true
+	case ChatSuggestionIdEnumFindService:
+		return true
+	case ChatSuggestionIdEnumHpcJobs:
+		return true
+	case ChatSuggestionIdEnumHpcSoftware:
+		return true
+	case ChatSuggestionIdEnumListInvoices:
+		return true
+	case ChatSuggestionIdEnumLookUpUser:
+		return true
+	case ChatSuggestionIdEnumMyResources:
+		return true
+	case ChatSuggestionIdEnumOverdrawnProjects:
+		return true
+	case ChatSuggestionIdEnumPendingOrders:
+		return true
+	case ChatSuggestionIdEnumProposalHelp:
+		return true
+	case ChatSuggestionIdEnumResourcePaused:
+		return true
+	case ChatSuggestionIdEnumReviewWorkload:
+		return true
+	case ChatSuggestionIdEnumSearchDocs:
+		return true
+	case ChatSuggestionIdEnumVisualizeCosts:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for CheckRunStatusEnum.
 const (
 	CheckRunStatusEnumIdle    CheckRunStatusEnum = "idle"
@@ -34043,6 +34109,20 @@ type ChatSession struct {
 // ChatSessionFieldEnum defines model for ChatSessionFieldEnum.
 type ChatSessionFieldEnum string
 
+// ChatSuggestion defines model for ChatSuggestion.
+type ChatSuggestion struct {
+	// Id A quick prompt the caller may be offered. The client holds the wording for each id and skips ids it does not know.
+	Id ChatSuggestionIdEnum `json:"id"`
+}
+
+// ChatSuggestionIdEnum defines model for ChatSuggestionIdEnum.
+type ChatSuggestionIdEnum string
+
+// ChatSuggestionsResponse defines model for ChatSuggestionsResponse.
+type ChatSuggestionsResponse struct {
+	Suggestions []ChatSuggestion `json:"suggestions"`
+}
+
 // ChatThreadStatsResponse defines model for ChatThreadStatsResponse.
 type ChatThreadStatsResponse struct {
 	// CacheRatio cache_read_tokens_total over the input of turns whose provider reported a cache figure; null when none did.
@@ -35147,6 +35227,7 @@ type ConstanceSettings struct {
 	DOCKERRUNOPTIONS                                 *string                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
 	DOCKERSCRIPTDIR                                  *string                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                                 *string                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSSEARCHENABLED                                *bool                                                            `json:"DOCS_SEARCH_ENABLED,omitempty"`
 	DOCSURL                                          *string                                                          `json:"DOCS_URL,omitempty"`
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettings_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettings_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
@@ -35598,6 +35679,7 @@ type ConstanceSettingsRequest struct {
 	DOCKERRUNOPTIONS                                 *string                                                                 `json:"DOCKER_RUN_OPTIONS,omitempty"`
 	DOCKERSCRIPTDIR                                  *string                                                                 `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                                 *string                                                                 `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSSEARCHENABLED                                *bool                                                                   `json:"DOCS_SEARCH_ENABLED,omitempty"`
 	DOCSURL                                          *string                                                                 `json:"DOCS_URL,omitempty"`
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequest_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequest_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
@@ -36049,6 +36131,7 @@ type ConstanceSettingsRequestForm struct {
 	DOCKERRUNOPTIONS                                 *string                                                                     `json:"DOCKER_RUN_OPTIONS,omitempty"`
 	DOCKERSCRIPTDIR                                  *string                                                                     `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                                 *string                                                                     `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSSEARCHENABLED                                *bool                                                                       `json:"DOCS_SEARCH_ENABLED,omitempty"`
 	DOCSURL                                          *string                                                                     `json:"DOCS_URL,omitempty"`
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestForm_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestForm_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
@@ -36500,6 +36583,7 @@ type ConstanceSettingsRequestMultipart struct {
 	DOCKERRUNOPTIONS                                 *string                                                                          `json:"DOCKER_RUN_OPTIONS,omitempty"`
 	DOCKERSCRIPTDIR                                  *string                                                                          `json:"DOCKER_SCRIPT_DIR,omitempty"`
 	DOCKERVOLUMENAME                                 *string                                                                          `json:"DOCKER_VOLUME_NAME,omitempty"`
+	DOCSSEARCHENABLED                                *bool                                                                            `json:"DOCS_SEARCH_ENABLED,omitempty"`
 	DOCSURL                                          *string                                                                          `json:"DOCS_URL,omitempty"`
 	ENABLEDREPORTINGSCREENS                          *[]ConstanceSettingsRequestMultipart_ENABLEDREPORTINGSCREENS_Item                `json:"ENABLED_REPORTING_SCREENS,omitempty"`
 	ENABLEDUSERPROFILEATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_ENABLEDUSERPROFILEATTRIBUTES_Item           `json:"ENABLED_USER_PROFILE_ATTRIBUTES,omitempty"`
@@ -39291,6 +39375,45 @@ type DisplayLimitConfig struct {
 type DisplayLimitConfigRequest struct {
 	// ComponentType Usage-based component whose limit the option's value is shown as.
 	ComponentType string `json:"component_type"`
+}
+
+// DocsSearchDisabled defines model for DocsSearchDisabled.
+type DocsSearchDisabled struct {
+	Detail string `json:"detail"`
+}
+
+// DocsSearchHit defines model for DocsSearchHit.
+type DocsSearchHit struct {
+	Breadcrumb string `json:"breadcrumb"`
+
+	// EnabledHere False when the section describes a feature that is switched off on this portal, or that it cannot confirm is switched on. Only staff and support get such sections.
+	EnabledHere bool   `json:"enabled_here"`
+	Excerpt     string `json:"excerpt"`
+	Title       string `json:"title"`
+	Url         string `json:"url"`
+}
+
+// DocsSearchResponse defines model for DocsSearchResponse.
+type DocsSearchResponse struct {
+	Query    string          `json:"query"`
+	Sections []DocsSearchHit `json:"sections"`
+
+	// SwitchedOffHere Features the query is about that are switched off on this portal. Their sections are not returned to users without staff or support rights; only the feature is named.
+	SwitchedOffHere []DocsSearchSwitchedOff `json:"switched_off_here"`
+}
+
+// DocsSearchSwitchedOff defines model for DocsSearchSwitchedOff.
+type DocsSearchSwitchedOff struct {
+	// Name What a user would call the feature.
+	Name string `json:"name"`
+
+	// Term The setting, feature flag or offering type that switches it, e.g. setting:PAT_ENABLED.
+	Term string `json:"term"`
+}
+
+// DocsSearchUnavailable defines model for DocsSearchUnavailable.
+type DocsSearchUnavailable struct {
+	Detail string `json:"detail"`
 }
 
 // DryRun defines model for DryRun.
@@ -56955,7 +57078,7 @@ type ProjectAnswer struct {
 	// RequiresReview Get review requirement status.
 	RequiresReview *bool `json:"requires_review,omitempty"`
 
-	// UnansweredRequiredCount Get count of unanswered required questions.
+	// UnansweredRequiredCount Get count of unanswered required questions shown to the user.
 	UnansweredRequiredCount *int `json:"unanswered_required_count,omitempty"`
 }
 
@@ -74719,6 +74842,12 @@ type DigitaloceanSizesCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	Ram      *int      `form:"ram,omitempty" json:"ram,omitempty"`
+}
+
+// DocsSearchRetrieveParams defines parameters for DocsSearchRetrieve.
+type DocsSearchRetrieveParams struct {
+	Limit *int   `form:"limit,omitempty" json:"limit,omitempty"`
+	Query string `form:"query" json:"query"`
 }
 
 // EmailLogsListParams defines parameters for EmailLogsList.
@@ -126370,6 +126499,13 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ChatStream(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ChatSuggestionsRetrieve Quick prompts for the caller
+	//
+	// The ids of the quick prompts to offer on an empty AI assistant thread, most relevant first. A prompt is offered only when the caller has every tool it needs (as the stream would for this request), the portal has the features it needs switched on, and, for some, the caller has the data it is about, such as a paused resource or a draft proposal.
+	//
+	// Corresponds with GET /api/chat/suggestions/ (the `ChatSuggestionsRetrieve` operationId).
+	ChatSuggestionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ChecklistsAdminQuestionDependenciesList performs a GET /api/checklists-admin-question-dependencies/ (the `ChecklistsAdminQuestionDependenciesList` operationId) request.
 	ChecklistsAdminQuestionDependenciesList(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -127713,6 +127849,17 @@ type ClientInterface interface {
 
 	// DigitaloceanSizesRetrieve performs a GET /api/digitalocean-sizes/{uuid}/ (the `DigitaloceanSizesRetrieve` operationId) request.
 	DigitaloceanSizesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DocsSearchRetrieve performs a GET /api/docs-search/ (the `DocsSearchRetrieve` operationId) request.
+	//
+	// Search the documentation of this release.
+	//
+	// End users get only the sections for their role whose features are
+	// switched on here. Staff and support also get sections for switched-off
+	// features, marked ``enabled_here: false``. Answers 424 while
+	// DOCS_SEARCH_ENABLED is off and 503 when no documentation corpus
+	// is loaded.
+	DocsSearchRetrieve(ctx context.Context, params *DocsSearchRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// EmailLogsList performs a GET /api/email-logs/ (the `EmailLogsList` operationId) request.
 	EmailLogsList(ctx context.Context, params *EmailLogsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -156613,6 +156760,23 @@ func (c *Client) ChatStream(ctx context.Context, body ChatStreamJSONRequestBody,
 	return c.Client.Do(req)
 }
 
+// ChatSuggestionsRetrieve Quick prompts for the caller
+//
+// The ids of the quick prompts to offer on an empty AI assistant thread, most relevant first. A prompt is offered only when the caller has every tool it needs (as the stream would for this request), the portal has the features it needs switched on, and, for some, the caller has the data it is about, such as a paused resource or a draft proposal.
+//
+// Corresponds with GET /api/chat/suggestions/ (the `ChatSuggestionsRetrieve` operationId).
+func (c *Client) ChatSuggestionsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewChatSuggestionsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ChecklistsAdminQuestionDependenciesList performs a GET /api/checklists-admin-question-dependencies/ (the `ChecklistsAdminQuestionDependenciesList` operationId) request.
 func (c *Client) ChecklistsAdminQuestionDependenciesList(ctx context.Context, params *ChecklistsAdminQuestionDependenciesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewChecklistsAdminQuestionDependenciesListRequest(c.Server, params)
@@ -160198,6 +160362,27 @@ func (c *Client) DigitaloceanSizesCount(ctx context.Context, params *Digitalocea
 // DigitaloceanSizesRetrieve performs a GET /api/digitalocean-sizes/{uuid}/ (the `DigitaloceanSizesRetrieve` operationId) request.
 func (c *Client) DigitaloceanSizesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewDigitaloceanSizesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// DocsSearchRetrieve performs a GET /api/docs-search/ (the `DocsSearchRetrieve` operationId) request.
+//
+// Search the documentation of this release.
+//
+// End users get only the sections for their role whose features are
+// switched on here. Staff and support also get sections for switched-off
+// features, marked “enabled_here: false“. Answers 424 while
+// DOCS_SEARCH_ENABLED is off and 503 when no documentation corpus
+// is loaded.
+func (c *Client) DocsSearchRetrieve(ctx context.Context, params *DocsSearchRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDocsSearchRetrieveRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -241533,6 +241718,33 @@ func NewChatStreamRequestWithBody(server string, contentType string, body io.Rea
 	return req, nil
 }
 
+// NewChatSuggestionsRetrieveRequest constructs an http.Request for the ChatSuggestionsRetrieve method
+func NewChatSuggestionsRetrieveRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/chat/suggestions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewChecklistsAdminQuestionDependenciesListRequest constructs an http.Request for the ChecklistsAdminQuestionDependenciesList method
 func NewChecklistsAdminQuestionDependenciesListRequest(server string, params *ChecklistsAdminQuestionDependenciesListParams) (*http.Request, error) {
 	var err error
@@ -255054,6 +255266,68 @@ func NewDigitaloceanSizesRetrieveRequest(server string, uuid openapi_types.UUID)
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDocsSearchRetrieveRequest constructs an http.Request for the DocsSearchRetrieve method
+func NewDocsSearchRetrieveRequest(server string, params *DocsSearchRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/docs-search/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -471726,6 +472000,15 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ChatStreamWithResponse(ctx context.Context, body ChatStreamJSONRequestBody, reqEditors ...RequestEditorFn) (*ChatStreamResponse, error)
 
+	// ChatSuggestionsRetrieveWithResponse Quick prompts for the caller
+	//
+	// The ids of the quick prompts to offer on an empty AI assistant thread, most relevant first. A prompt is offered only when the caller has every tool it needs (as the stream would for this request), the portal has the features it needs switched on, and, for some, the caller has the data it is about, such as a paused resource or a draft proposal.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/chat/suggestions/ (the `ChatSuggestionsRetrieve` operationId).
+	ChatSuggestionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSuggestionsRetrieveResponse, error)
+
 	// ChecklistsAdminQuestionDependenciesListWithResponse performs a GET /api/checklists-admin-question-dependencies/ (the `ChecklistsAdminQuestionDependenciesList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -473381,6 +473664,19 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	DigitaloceanSizesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*DigitaloceanSizesRetrieveResponse, error)
+
+	// DocsSearchRetrieveWithResponse performs a GET /api/docs-search/ (the `DocsSearchRetrieve` operationId) request.
+	//
+	// Search the documentation of this release.
+	//
+	// End users get only the sections for their role whose features are
+	// switched on here. Staff and support also get sections for switched-off
+	// features, marked ``enabled_here: false``. Answers 424 while
+	// DOCS_SEARCH_ENABLED is off and 503 when no documentation corpus
+	// is loaded.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	DocsSearchRetrieveWithResponse(ctx context.Context, params *DocsSearchRetrieveParams, reqEditors ...RequestEditorFn) (*DocsSearchRetrieveResponse, error)
 
 	// EmailLogsListWithResponse performs a GET /api/email-logs/ (the `EmailLogsList` operationId) request.
 	//
@@ -513453,6 +513749,47 @@ func (r ChatStreamResponse) ContentType() string {
 	return ""
 }
 
+type ChatSuggestionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ChatSuggestionsResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ChatSuggestionsRetrieveResponse) GetJSON200() *ChatSuggestionsResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ChatSuggestionsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ChatSuggestionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ChatSuggestionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ChatSuggestionsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ChecklistsAdminQuestionDependenciesListResponse200Headers the declared response headers of an HTTP 200 response for ChecklistsAdminQuestionDependenciesList
 type ChecklistsAdminQuestionDependenciesListResponse200Headers struct {
 	XResultCount *int
@@ -520428,6 +520765,61 @@ func (r DigitaloceanSizesRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r DigitaloceanSizesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DocsSearchRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *DocsSearchResponse
+	// JSON424 the response for an HTTP 424 `application/json` response
+	JSON424 *DocsSearchDisabled
+	// JSON503 the response for an HTTP 503 `application/json` response
+	JSON503 *DocsSearchUnavailable
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r DocsSearchRetrieveResponse) GetJSON200() *DocsSearchResponse {
+	return r.JSON200
+}
+
+// GetJSON424 returns the response for an HTTP 424 `application/json` response
+func (r DocsSearchRetrieveResponse) GetJSON424() *DocsSearchDisabled {
+	return r.JSON424
+}
+
+// GetJSON503 returns the response for an HTTP 503 `application/json` response
+func (r DocsSearchRetrieveResponse) GetJSON503() *DocsSearchUnavailable {
+	return r.JSON503
+}
+
+// GetBody returns the raw response body bytes
+func (r DocsSearchRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r DocsSearchRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DocsSearchRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DocsSearchRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -633138,6 +633530,21 @@ func (c *ClientWithResponses) ChatStreamWithResponse(ctx context.Context, body C
 	return ParseChatStreamResponse(rsp)
 }
 
+// ChatSuggestionsRetrieveWithResponse Quick prompts for the caller
+//
+// The ids of the quick prompts to offer on an empty AI assistant thread, most relevant first. A prompt is offered only when the caller has every tool it needs (as the stream would for this request), the portal has the features it needs switched on, and, for some, the caller has the data it is about, such as a paused resource or a draft proposal.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/chat/suggestions/ (the `ChatSuggestionsRetrieve` operationId).
+func (c *ClientWithResponses) ChatSuggestionsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ChatSuggestionsRetrieveResponse, error) {
+	rsp, err := c.ChatSuggestionsRetrieve(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseChatSuggestionsRetrieveResponse(rsp)
+}
+
 // ChecklistsAdminQuestionDependenciesListWithResponse performs a GET /api/checklists-admin-question-dependencies/ (the `ChecklistsAdminQuestionDependenciesList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -636143,6 +636550,25 @@ func (c *ClientWithResponses) DigitaloceanSizesRetrieveWithResponse(ctx context.
 		return nil, err
 	}
 	return ParseDigitaloceanSizesRetrieveResponse(rsp)
+}
+
+// DocsSearchRetrieveWithResponse performs a GET /api/docs-search/ (the `DocsSearchRetrieve` operationId) request.
+//
+// Search the documentation of this release.
+//
+// End users get only the sections for their role whose features are
+// switched on here. Staff and support also get sections for switched-off
+// features, marked “enabled_here: false“. Answers 424 while
+// DOCS_SEARCH_ENABLED is off and 503 when no documentation corpus
+// is loaded.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) DocsSearchRetrieveWithResponse(ctx context.Context, params *DocsSearchRetrieveParams, reqEditors ...RequestEditorFn) (*DocsSearchRetrieveResponse, error) {
+	rsp, err := c.DocsSearchRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDocsSearchRetrieveResponse(rsp)
 }
 
 // EmailLogsListWithResponse performs a GET /api/email-logs/ (the `EmailLogsList` operationId) request.
@@ -692624,6 +693050,32 @@ func ParseChatStreamResponse(rsp *http.Response) (*ChatStreamResponse, error) {
 	return response, nil
 }
 
+// ParseChatSuggestionsRetrieveResponse parses an HTTP response from a ChatSuggestionsRetrieveWithResponse call
+func ParseChatSuggestionsRetrieveResponse(rsp *http.Response) (*ChatSuggestionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ChatSuggestionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ChatSuggestionsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseChecklistsAdminQuestionDependenciesListResponse parses an HTTP response from a ChecklistsAdminQuestionDependenciesListWithResponse call
 func ParseChecklistsAdminQuestionDependenciesListResponse(rsp *http.Response) (*ChecklistsAdminQuestionDependenciesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -697043,6 +697495,46 @@ func ParseDigitaloceanSizesRetrieveResponse(rsp *http.Response) (*DigitaloceanSi
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseDocsSearchRetrieveResponse parses an HTTP response from a DocsSearchRetrieveWithResponse call
+func ParseDocsSearchRetrieveResponse(rsp *http.Response) (*DocsSearchRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DocsSearchRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest DocsSearchResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 424:
+		var dest DocsSearchDisabled
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON424 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest DocsSearchUnavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON503 = &dest
 
 	}
 
