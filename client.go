@@ -24703,6 +24703,45 @@ func (e StepContributionStatus) Valid() bool {
 	}
 }
 
+// Defines values for StepDiscussionStateEnum.
+const (
+	StepDiscussionStateEnumClosed    StepDiscussionStateEnum = "closed"
+	StepDiscussionStateEnumNotOpened StepDiscussionStateEnum = "not_opened"
+	StepDiscussionStateEnumOpen      StepDiscussionStateEnum = "open"
+)
+
+// Valid indicates whether the value is a known member of the StepDiscussionStateEnum enum.
+func (e StepDiscussionStateEnum) Valid() bool {
+	switch e {
+	case StepDiscussionStateEnumClosed:
+		return true
+	case StepDiscussionStateEnumNotOpened:
+		return true
+	case StepDiscussionStateEnumOpen:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for StepDiscussionStateEnum1.
+const (
+	StepDiscussionStateEnum1Closed StepDiscussionStateEnum1 = "closed"
+	StepDiscussionStateEnum1Open   StepDiscussionStateEnum1 = "open"
+)
+
+// Valid indicates whether the value is a known member of the StepDiscussionStateEnum1 enum.
+func (e StepDiscussionStateEnum1) Valid() bool {
+	switch e {
+	case StepDiscussionStateEnum1Closed:
+		return true
+	case StepDiscussionStateEnum1Open:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for StorageModeEnum.
 const (
 	StorageModeEnumDynamic StorageModeEnum = "dynamic"
@@ -32977,11 +33016,20 @@ type CallWorkflowStep struct {
 	DelegableTo *string `json:"delegable_to,omitempty"`
 	Description *string `json:"description,omitempty"`
 
+	// DiscussionCallManagers The call's managers join the step's discussion as observers.
+	DiscussionCallManagers *bool `json:"discussion_call_managers,omitempty"`
+
+	// DiscussionPanelMembers The members of the proposal's panel join the step's discussion; for a step run once per round, the members of the discussion's panel. On a call without panels, its panel members.
+	DiscussionPanelMembers *bool `json:"discussion_panel_members,omitempty"`
+
 	// DisplayOrder Deprecated: steps are ordered by order.
 	DisplayOrder *int `json:"display_order,omitempty"`
 
 	// DurationInDays Duration in days. Used to calculate deadlines.
 	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// HasDiscussion The step's contributors and completer may open a tracked discussion: an encrypted Matrix room, one per proposal, or for a step run once per round one per round and panel. Its history is exported to the step's record when the step ends. Only while Matrix chat is enabled; never on a blind or an applicant step.
+	HasDiscussion *bool `json:"has_discussion,omitempty"`
 
 	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
 	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
@@ -33188,11 +33236,20 @@ type CallWorkflowStepRequest struct {
 	DelegableTo *string `json:"delegable_to,omitempty"`
 	Description *string `json:"description,omitempty"`
 
+	// DiscussionCallManagers The call's managers join the step's discussion as observers.
+	DiscussionCallManagers *bool `json:"discussion_call_managers,omitempty"`
+
+	// DiscussionPanelMembers The members of the proposal's panel join the step's discussion; for a step run once per round, the members of the discussion's panel. On a call without panels, its panel members.
+	DiscussionPanelMembers *bool `json:"discussion_panel_members,omitempty"`
+
 	// DisplayOrder Deprecated: steps are ordered by order.
 	DisplayOrder *int `json:"display_order,omitempty"`
 
 	// DurationInDays Duration in days. Used to calculate deadlines.
 	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// HasDiscussion The step's contributors and completer may open a tracked discussion: an encrypted Matrix room, one per proposal, or for a step run once per round one per round and panel. Its history is exported to the step's record when the step ends. Only while Matrix chat is enabled; never on a blind or an applicant step.
+	HasDiscussion *bool `json:"has_discussion,omitempty"`
 
 	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
 	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
@@ -44339,10 +44396,16 @@ type MatrixRoom struct {
 	RoomAlias *string `json:"room_alias,omitempty"`
 
 	// RoomId Matrix room ID, e.g. !abc:domain
-	RoomId    *string              `json:"room_id,omitempty"`
-	RoomName  *string              `json:"room_name,omitempty"`
-	Scope     *string              `json:"scope,omitempty"`
-	ScopeName *string              `json:"scope_name,omitempty"`
+	RoomId    *string `json:"room_id,omitempty"`
+	RoomName  *string `json:"room_name,omitempty"`
+	Scope     *string `json:"scope,omitempty"`
+	ScopeName *string `json:"scope_name,omitempty"`
+
+	// ScopeSubtitle A short line saying what the room is for: the organization of a project room, the step and proposal or round of a discussion.
+	ScopeSubtitle *string `json:"scope_subtitle,omitempty"`
+
+	// ScopeType The kind of room: 'project' for a project's team room, 'step_discussion' for a proposal workflow step's discussion. Null for a room of a kind of object no app registered.
+	ScopeType *string              `json:"scope_type,omitempty"`
 	ScopeUuid *string              `json:"scope_uuid,omitempty"`
 	State     *MatrixRoomStateEnum `json:"state,omitempty"`
 	Url       *string              `json:"url,omitempty"`
@@ -44366,10 +44429,13 @@ type MatrixRoomMember struct {
 	MembershipState *MembershipStateEnum `json:"membership_state,omitempty"`
 	Modified        *time.Time           `json:"modified,omitempty"`
 	PowerLevel      *int                 `json:"power_level,omitempty"`
-	UserFullName    *string              `json:"user_full_name,omitempty"`
-	UserImage       *string              `json:"user_image,omitempty"`
-	UserUuid        *openapi_types.UUID  `json:"user_uuid,omitempty"`
-	Uuid            *openapi_types.UUID  `json:"uuid,omitempty"`
+
+	// RoleLabel What the member takes part as, by the room's kind: in a step discussion, say, Panel chair, Call manager or Reviewer. Null where the kind of room names none.
+	RoleLabel    *string             `json:"role_label,omitempty"`
+	UserFullName *string             `json:"user_full_name,omitempty"`
+	UserImage    *string             `json:"user_image,omitempty"`
+	UserUuid     *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // MatrixRoomMemberSummary defines model for MatrixRoomMemberSummary.
@@ -51938,6 +52004,18 @@ type OpenStackVolumeType struct {
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// OpenStepDiscussionRequest defines model for OpenStepDiscussionRequest.
+type OpenStepDiscussionRequest struct {
+	// PanelUuid With round_step_uuid on a call with panels: whose discussion.
+	PanelUuid *openapi_types.UUID `json:"panel_uuid,omitempty"`
+
+	// ProposalStepUuid The proposal's step, as workflow_states lists it. On a step run once per round, the round's discussion of the proposal's panel.
+	ProposalStepUuid *openapi_types.UUID `json:"proposal_step_uuid,omitempty"`
+
+	// RoundStepUuid The round step (round_steps of a round).
+	RoundStepUuid *openapi_types.UUID `json:"round_step_uuid,omitempty"`
+}
+
 // OptionField defines model for OptionField.
 type OptionField struct {
 	CascadeConfig             *CascadeConfig             `json:"cascade_config,omitempty"`
@@ -53091,11 +53169,20 @@ type PatchedCallWorkflowStepRequest struct {
 	DelegableTo *string `json:"delegable_to,omitempty"`
 	Description *string `json:"description,omitempty"`
 
+	// DiscussionCallManagers The call's managers join the step's discussion as observers.
+	DiscussionCallManagers *bool `json:"discussion_call_managers,omitempty"`
+
+	// DiscussionPanelMembers The members of the proposal's panel join the step's discussion; for a step run once per round, the members of the discussion's panel. On a call without panels, its panel members.
+	DiscussionPanelMembers *bool `json:"discussion_panel_members,omitempty"`
+
 	// DisplayOrder Deprecated: steps are ordered by order.
 	DisplayOrder *int `json:"display_order,omitempty"`
 
 	// DurationInDays Duration in days. Used to calculate deadlines.
 	DurationInDays *int `json:"duration_in_days,omitempty"`
+
+	// HasDiscussion The step's contributors and completer may open a tracked discussion: an encrypted Matrix room, one per proposal, or for a step run once per round one per round and panel. Its history is exported to the step's record when the step ends. Only while Matrix chat is enabled; never on a blind or an applicant step.
+	HasDiscussion *bool `json:"has_discussion,omitempty"`
 
 	// IncludeAwardResponse Allocation decision: require applicant award response after decision.
 	IncludeAwardResponse *bool `json:"include_award_response,omitempty"`
@@ -58697,7 +58784,10 @@ type ProposalWorkflowStepInstance struct {
 	DecidedAutomatically *bool `json:"decided_automatically,omitempty"`
 
 	// DelegableTo Who a contribution slot of the step can be handed to.
-	DelegableTo    *string               `json:"delegable_to,omitempty"`
+	DelegableTo *string `json:"delegable_to,omitempty"`
+
+	// Discussion The step's discussion, for a step that has one, as the viewer sees it: on a step run once per round the round's discussion of the proposal's panel. Null when the step has none, or the viewer neither takes part in it nor oversees the call.
+	Discussion     *StepDiscussionViewer `json:"discussion,omitempty"`
 	DurationInDays *int                  `json:"duration_in_days,omitempty"`
 	InputStepUuids *[]openapi_types.UUID `json:"input_step_uuids,omitempty"`
 	InternalNotes  *string               `json:"internal_notes,omitempty"`
@@ -65217,10 +65307,13 @@ type RoundStatusEnum string
 
 // RoundStep defines model for RoundStep.
 type RoundStep struct {
-	DueAt      *time.Time `json:"due_at"`
-	HasReports bool       `json:"has_reports"`
-	OpenedAt   *time.Time `json:"opened_at"`
-	Order      int        `json:"order"`
+	// Discussions For a round step with a discussion, its discussion per panel (one on a call without panels) that the viewer takes part in or oversees; empty otherwise.
+	Discussions   *[]RoundStepDiscussion `json:"discussions,omitempty"`
+	DueAt         *time.Time             `json:"due_at"`
+	HasDiscussion bool                   `json:"has_discussion"`
+	HasReports    bool                   `json:"has_reports"`
+	OpenedAt      *time.Time             `json:"opened_at"`
+	Order         int                    `json:"order"`
 
 	// ProposalsAtStep Proposals of the round standing at the step now.
 	ProposalsAtStep int `json:"proposals_at_step"`
@@ -65229,14 +65322,33 @@ type RoundStep struct {
 	ProposalsAwaitingAdvance int `json:"proposals_awaiting_advance"`
 
 	// ProposalsBeforeStep Proposals of the round still to reach the step.
-	ProposalsBeforeStep int                `json:"proposals_before_step"`
-	ReportsSubmitted    int                `json:"reports_submitted"`
-	ReportsTotal        int                `json:"reports_total"`
-	RoundScoped         bool               `json:"round_scoped"`
-	StepKey             string             `json:"step_key"`
-	StepKind            string             `json:"step_kind"`
-	StepName            string             `json:"step_name"`
-	StepUuid            openapi_types.UUID `json:"step_uuid"`
+	ProposalsBeforeStep int  `json:"proposals_before_step"`
+	ReportsSubmitted    int  `json:"reports_submitted"`
+	ReportsTotal        int  `json:"reports_total"`
+	RoundScoped         bool `json:"round_scoped"`
+
+	// RoundStepUuid The step's record in the round, once it has a due date or was opened there; null before.
+	RoundStepUuid *openapi_types.UUID `json:"round_step_uuid"`
+	StepKey       string              `json:"step_key"`
+	StepKind      string              `json:"step_kind"`
+	StepName      string              `json:"step_name"`
+	StepUuid      openapi_types.UUID  `json:"step_uuid"`
+}
+
+// RoundStepDiscussion defines model for RoundStepDiscussion.
+type RoundStepDiscussion struct {
+	// CanOpen Whether the viewer may open it now -- or join it, once open: they take part in it, the step is active and Matrix chat is enabled. With state closed, the step runs again: opening starts a new discussion, and the closed one stays on record.
+	CanOpen   bool    `json:"can_open"`
+	PanelName *string `json:"panel_name"`
+
+	// PanelUuid The panel whose discussion it is; null on a call without panels.
+	PanelUuid *openapi_types.UUID `json:"panel_uuid"`
+
+	// State not_opened, open, or closed with its step.
+	State StepDiscussionStateEnum `json:"state"`
+
+	// Uuid The step's latest discussion, once opened (proposal-step-discussions): the open one, else the last closed.
+	Uuid *openapi_types.UUID `json:"uuid"`
 }
 
 // RoundStepProposalResult defines model for RoundStepProposalResult.
@@ -67070,6 +67182,27 @@ type SshKeyRequest struct {
 // StageEnum defines model for StageEnum.
 type StageEnum string
 
+// StartableStepDiscussion defines model for StartableStepDiscussion.
+type StartableStepDiscussion struct {
+	CallName     string             `json:"call_name"`
+	CallStepUuid openapi_types.UUID `json:"call_step_uuid"`
+	CallUuid     openapi_types.UUID `json:"call_uuid"`
+
+	// DueAt When the step is due: the proposal's step deadline, or the round step's due date.
+	DueAt            *time.Time          `json:"due_at"`
+	PanelName        *string             `json:"panel_name"`
+	PanelUuid        *openapi_types.UUID `json:"panel_uuid"`
+	ProposalName     *string             `json:"proposal_name"`
+	ProposalSlug     *string             `json:"proposal_slug"`
+	ProposalStepUuid *openapi_types.UUID `json:"proposal_step_uuid"`
+	ProposalUuid     *openapi_types.UUID `json:"proposal_uuid"`
+	RoundName        string              `json:"round_name"`
+	RoundScoped      bool                `json:"round_scoped"`
+	RoundStepUuid    *openapi_types.UUID `json:"round_step_uuid"`
+	RoundUuid        openapi_types.UUID  `json:"round_uuid"`
+	StepName         string              `json:"step_name"`
+}
+
 // StateGroupEnum defines model for StateGroupEnum.
 type StateGroupEnum string
 
@@ -67214,6 +67347,83 @@ type StepContributionWithAnswers struct {
 	UserImage               *string                            `json:"user_image,omitempty"`
 	UserUuid                *openapi_types.UUID                `json:"user_uuid,omitempty"`
 	Uuid                    openapi_types.UUID                 `json:"uuid"`
+}
+
+// StepDiscussion defines model for StepDiscussion.
+type StepDiscussion struct {
+	CallName     *string             `json:"call_name,omitempty"`
+	CallStepUuid *openapi_types.UUID `json:"call_step_uuid,omitempty"`
+	CallUuid     *openapi_types.UUID `json:"call_uuid,omitempty"`
+	ClosedAt     *time.Time          `json:"closed_at,omitempty"`
+
+	// ExportUuid The export of the room's history made when the discussion closed (matrix/exports), for those who may download it: the call's managers, staff and support. Null otherwise, and until it is made.
+	ExportUuid   *openapi_types.UUID `json:"export_uuid,omitempty"`
+	OpenedAt     *time.Time          `json:"opened_at,omitempty"`
+	OpenedByName *string             `json:"opened_by_name,omitempty"`
+	OpenedByUuid *openapi_types.UUID `json:"opened_by_uuid,omitempty"`
+	PanelName    *string             `json:"panel_name,omitempty"`
+
+	// PanelUuid The panel of a round step's discussion on a call with panels.
+	PanelUuid *openapi_types.UUID `json:"panel_uuid,omitempty"`
+
+	// Participants Once closed, who took part; while open, who is in the room now.
+	Participants *[]StepDiscussionParticipant `json:"participants,omitempty"`
+	ProposalName *string                      `json:"proposal_name,omitempty"`
+	ProposalSlug *string                      `json:"proposal_slug,omitempty"`
+
+	// ProposalStepUuid The proposal's step discussed; null for a round step.
+	ProposalStepUuid *openapi_types.UUID `json:"proposal_step_uuid,omitempty"`
+	ProposalUuid     *openapi_types.UUID `json:"proposal_uuid,omitempty"`
+
+	// RoomId The Matrix room ID, e.g. !abc:domain, once created.
+	RoomId *string `json:"room_id,omitempty"`
+
+	// RoomState The room's state in Waldur: creating, active, archived...
+	RoomState *string `json:"room_state,omitempty"`
+
+	// RoomUuid The discussion's Matrix room (matrix/rooms), once created.
+	RoomUuid  *openapi_types.UUID `json:"room_uuid,omitempty"`
+	RoundName *string             `json:"round_name,omitempty"`
+
+	// RoundScoped Whether it is a round step's discussion.
+	RoundScoped *bool `json:"round_scoped,omitempty"`
+
+	// RoundStepUuid The round step discussed; null for a proposal's step.
+	RoundStepUuid *openapi_types.UUID `json:"round_step_uuid,omitempty"`
+
+	// RoundUuid The round of the round step, or of the proposal.
+	RoundUuid *openapi_types.UUID `json:"round_uuid,omitempty"`
+
+	// State open, or closed with its step.
+	State    *string             `json:"state,omitempty"`
+	StepKey  *string             `json:"step_key,omitempty"`
+	StepName *string             `json:"step_name,omitempty"`
+	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// StepDiscussionParticipant defines model for StepDiscussionParticipant.
+type StepDiscussionParticipant struct {
+	FullName string             `json:"full_name"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
+// StepDiscussionStateEnum defines model for StepDiscussionStateEnum.
+type StepDiscussionStateEnum string
+
+// StepDiscussionStateEnum1 defines model for StepDiscussionStateEnum1.
+type StepDiscussionStateEnum1 string
+
+// StepDiscussionViewer defines model for StepDiscussionViewer.
+type StepDiscussionViewer struct {
+	// CanOpen Whether the viewer may open it now -- or join it, once open: they take part in it, the step is active and Matrix chat is enabled. With state closed, the step runs again: opening starts a new discussion, and the closed one stays on record.
+	CanOpen bool `json:"can_open"`
+
+	// State not_opened, open, or closed with its step.
+	State StepDiscussionStateEnum `json:"state"`
+
+	// Uuid The step's latest discussion, once opened (proposal-step-discussions): the open one, else the last closed.
+	Uuid *openapi_types.UUID `json:"uuid"`
 }
 
 // StepInput defines model for StepInput.
@@ -88433,8 +88643,11 @@ type MatrixRoomsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MatrixRoomsCountParams defines parameters for MatrixRoomsCount.
@@ -88449,8 +88662,11 @@ type MatrixRoomsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MatrixRoomsEligibleProjectsListParams defines parameters for MatrixRoomsEligibleProjectsList.
@@ -88468,8 +88684,11 @@ type MatrixRoomsEligibleProjectsListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MatrixRoomsEligibleProjectsCountParams defines parameters for MatrixRoomsEligibleProjectsCount.
@@ -88487,8 +88706,11 @@ type MatrixRoomsEligibleProjectsCountParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MatrixRoomsCommandsListParams defines parameters for MatrixRoomsCommandsList.
@@ -88497,8 +88719,11 @@ type MatrixRoomsCommandsListParams struct {
 	Member *bool `form:"member,omitempty" json:"member,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MatrixRoomsMembersListParams defines parameters for MatrixRoomsMembersList.
@@ -88513,8 +88738,11 @@ type MatrixRoomsMembersListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid *openapi_types.UUID  `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	State       *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ScopeType Kind of room, such as project or step_discussion
+	ScopeType *string              `form:"scope_type,omitempty" json:"scope_type,omitempty"`
+	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
 // MyAssignmentBatchesListParams defines parameters for MyAssignmentBatchesList.
@@ -96367,6 +96595,42 @@ type ProposalRoleAssignmentsCountParams struct {
 	UserUuid     *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
+// ProposalStepDiscussionsListParams defines parameters for ProposalStepDiscussionsList.
+type ProposalStepDiscussionsListParams struct {
+	CallStepUuid *openapi_types.UUID `form:"call_step_uuid,omitempty" json:"call_step_uuid,omitempty"`
+	CallUuid     *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// Mine Only the discussions the caller takes part in
+	Mine *bool `form:"mine,omitempty" json:"mine,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize                 `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProposalUuid *openapi_types.UUID       `form:"proposal_uuid,omitempty" json:"proposal_uuid,omitempty"`
+	RoundUuid    *openapi_types.UUID       `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+	State        *StepDiscussionStateEnum1 `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalStepDiscussionsCountParams defines parameters for ProposalStepDiscussionsCount.
+type ProposalStepDiscussionsCountParams struct {
+	CallStepUuid *openapi_types.UUID `form:"call_step_uuid,omitempty" json:"call_step_uuid,omitempty"`
+	CallUuid     *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+
+	// Mine Only the discussions the caller takes part in
+	Mine *bool `form:"mine,omitempty" json:"mine,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize     *PageSize                 `form:"page_size,omitempty" json:"page_size,omitempty"`
+	ProposalUuid *openapi_types.UUID       `form:"proposal_uuid,omitempty" json:"proposal_uuid,omitempty"`
+	RoundUuid    *openapi_types.UUID       `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+	State        *StepDiscussionStateEnum1 `form:"state,omitempty" json:"state,omitempty"`
+}
+
 // ProviderCannedResponsesListParams defines parameters for ProviderCannedResponsesList.
 type ProviderCannedResponsesListParams struct {
 	Category *string `form:"category,omitempty" json:"category,omitempty"`
@@ -103858,6 +104122,9 @@ type ProposalReviewsUpdateJSONRequestBody = ProposalReviewRequest
 
 // ProposalReviewsSubmitJSONRequestBody defines body for ProposalReviewsSubmit for application/json ContentType.
 type ProposalReviewsSubmitJSONRequestBody = ReviewSubmitRequest
+
+// ProposalStepDiscussionsOpenJSONRequestBody defines body for ProposalStepDiscussionsOpen for application/json ContentType.
+type ProposalStepDiscussionsOpenJSONRequestBody = OpenStepDiscussionRequest
 
 // ProviderCannedResponsesCreateJSONRequestBody defines body for ProviderCannedResponsesCreate for application/json ContentType.
 type ProviderCannedResponsesCreateJSONRequestBody = ProviderCannedResponseRequest
@@ -145734,6 +146001,49 @@ type ClientInterface interface {
 	//
 	// Confirm having no conflict of interest with the proposal, as the holder of the role. Required by some calls before the proposal opens to its evaluators; refused while a conflict is on record.
 	ProposalRoleAssignmentsConfirmNoConflict(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsList performs a GET /api/proposal-step-discussions/ (the `ProposalStepDiscussionsList` operationId) request.
+	ProposalStepDiscussionsList(ctx context.Context, params *ProposalStepDiscussionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsCount performs a HEAD /api/proposal-step-discussions/ (the `ProposalStepDiscussionsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	ProposalStepDiscussionsCount(ctx context.Context, params *ProposalStepDiscussionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsOpenWithBody Open a step's discussion
+	//
+	// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+	ProposalStepDiscussionsOpenWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsOpen Open a step's discussion
+	//
+	// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+	ProposalStepDiscussionsOpen(ctx context.Context, body ProposalStepDiscussionsOpenJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsStartableList List the discussions the current user could start
+	//
+	// The discussions nobody has started yet that the current user could start now: of the active steps with a discussion they take part in, and of the opened round steps of their panels, one per panel. Each names what the open action takes. Empty while Matrix chat is disabled. Not paginated.
+	//
+	// Corresponds with GET /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableList` operationId).
+	ProposalStepDiscussionsStartableList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsStartableCount List the discussions the current user could start
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableCount` operationId).
+	ProposalStepDiscussionsStartableCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalStepDiscussionsRetrieve performs a GET /api/proposal-step-discussions/{uuid}/ (the `ProposalStepDiscussionsRetrieve` operationId) request.
+	ProposalStepDiscussionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProviderCannedResponsesList performs a GET /api/provider-canned-responses/ (the `ProviderCannedResponsesList` operationId) request.
 	ProviderCannedResponsesList(ctx context.Context, params *ProviderCannedResponsesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -205950,6 +206260,119 @@ func (c *Client) ProposalRoleAssignmentsRetrieve(ctx context.Context, uuid opena
 // Confirm having no conflict of interest with the proposal, as the holder of the role. Required by some calls before the proposal opens to its evaluators; refused while a conflict is on record.
 func (c *Client) ProposalRoleAssignmentsConfirmNoConflict(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalRoleAssignmentsConfirmNoConflictRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsList performs a GET /api/proposal-step-discussions/ (the `ProposalStepDiscussionsList` operationId) request.
+func (c *Client) ProposalStepDiscussionsList(ctx context.Context, params *ProposalStepDiscussionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsCount performs a HEAD /api/proposal-step-discussions/ (the `ProposalStepDiscussionsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) ProposalStepDiscussionsCount(ctx context.Context, params *ProposalStepDiscussionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsOpenWithBody Open a step's discussion
+//
+// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+func (c *Client) ProposalStepDiscussionsOpenWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsOpenRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsOpen Open a step's discussion
+//
+// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+func (c *Client) ProposalStepDiscussionsOpen(ctx context.Context, body ProposalStepDiscussionsOpenJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsOpenRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsStartableList List the discussions the current user could start
+//
+// The discussions nobody has started yet that the current user could start now: of the active steps with a discussion they take part in, and of the opened round steps of their panels, one per panel. Each names what the open action takes. Empty while Matrix chat is disabled. Not paginated.
+//
+// Corresponds with GET /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableList` operationId).
+func (c *Client) ProposalStepDiscussionsStartableList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsStartableListRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsStartableCount List the discussions the current user could start
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableCount` operationId).
+func (c *Client) ProposalStepDiscussionsStartableCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsStartableCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalStepDiscussionsRetrieve performs a GET /api/proposal-step-discussions/{uuid}/ (the `ProposalStepDiscussionsRetrieve` operationId) request.
+func (c *Client) ProposalStepDiscussionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalStepDiscussionsRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -356242,6 +356665,18 @@ func NewMatrixRoomsListRequest(server string, params *MatrixRoomsListParams) (*h
 
 		}
 
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -356335,6 +356770,18 @@ func NewMatrixRoomsCountRequest(server string, params *MatrixRoomsCountParams) (
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -356498,6 +356945,18 @@ func NewMatrixRoomsEligibleProjectsListRequest(server string, params *MatrixRoom
 
 		}
 
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.State != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -356603,6 +357062,18 @@ func NewMatrixRoomsEligibleProjectsCountRequest(server string, params *MatrixRoo
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -356756,6 +357227,18 @@ func NewMatrixRoomsCommandsListRequest(server string, uuid openapi_types.UUID, p
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -357014,6 +357497,18 @@ func NewMatrixRoomsMembersListRequest(server string, uuid openapi_types.UUID, pa
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ScopeType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "scope_type", *params.ScopeType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -425593,6 +426088,410 @@ func NewProposalRoleAssignmentsConfirmNoConflictRequest(server string, uuid open
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsListRequest constructs an http.Request for the ProposalStepDiscussionsList method
+func NewProposalStepDiscussionsListRequest(server string, params *ProposalStepDiscussionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallStepUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_step_uuid", *params.CallStepUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Mine != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "mine", *params.Mine, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_uuid", *params.ProposalUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsCountRequest constructs an http.Request for the ProposalStepDiscussionsCount method
+func NewProposalStepDiscussionsCountRequest(server string, params *ProposalStepDiscussionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallStepUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_step_uuid", *params.CallStepUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Mine != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "mine", *params.Mine, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_uuid", *params.ProposalUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsOpenRequest calls the generic ProposalStepDiscussionsOpen builder with application/json body
+func NewProposalStepDiscussionsOpenRequest(server string, body ProposalStepDiscussionsOpenJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalStepDiscussionsOpenRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewProposalStepDiscussionsOpenRequestWithBody constructs an http.Request for the ProposalStepDiscussionsOpen method, with any body, and a specified content type
+func NewProposalStepDiscussionsOpenRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/open/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsStartableListRequest constructs an http.Request for the ProposalStepDiscussionsStartableList method
+func NewProposalStepDiscussionsStartableListRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/startable/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsStartableCountRequest constructs an http.Request for the ProposalStepDiscussionsStartableCount method
+func NewProposalStepDiscussionsStartableCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/startable/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalStepDiscussionsRetrieveRequest constructs an http.Request for the ProposalStepDiscussionsRetrieve method
+func NewProposalStepDiscussionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-step-discussions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -494883,6 +495782,59 @@ type ClientWithResponsesInterface interface {
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalRoleAssignmentsConfirmNoConflictWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalRoleAssignmentsConfirmNoConflictResponse, error)
+
+	// ProposalStepDiscussionsListWithResponse performs a GET /api/proposal-step-discussions/ (the `ProposalStepDiscussionsList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalStepDiscussionsListWithResponse(ctx context.Context, params *ProposalStepDiscussionsListParams, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsListResponse, error)
+
+	// ProposalStepDiscussionsCountWithResponse performs a HEAD /api/proposal-step-discussions/ (the `ProposalStepDiscussionsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalStepDiscussionsCountWithResponse(ctx context.Context, params *ProposalStepDiscussionsCountParams, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsCountResponse, error)
+
+	// ProposalStepDiscussionsOpenWithBodyWithResponse Open a step's discussion
+	//
+	// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+	ProposalStepDiscussionsOpenWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsOpenResponse, error)
+
+	// ProposalStepDiscussionsOpenWithResponse Open a step's discussion
+	//
+	// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+	ProposalStepDiscussionsOpenWithResponse(ctx context.Context, body ProposalStepDiscussionsOpenJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsOpenResponse, error)
+
+	// ProposalStepDiscussionsStartableListWithResponse List the discussions the current user could start
+	//
+	// The discussions nobody has started yet that the current user could start now: of the active steps with a discussion they take part in, and of the opened round steps of their panels, one per panel. Each names what the open action takes. Empty while Matrix chat is disabled. Not paginated.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableList` operationId).
+	ProposalStepDiscussionsStartableListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsStartableListResponse, error)
+
+	// ProposalStepDiscussionsStartableCountWithResponse List the discussions the current user could start
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableCount` operationId).
+	ProposalStepDiscussionsStartableCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsStartableCountResponse, error)
+
+	// ProposalStepDiscussionsRetrieveWithResponse performs a GET /api/proposal-step-discussions/{uuid}/ (the `ProposalStepDiscussionsRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalStepDiscussionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsRetrieveResponse, error)
 
 	// ProviderCannedResponsesListWithResponse performs a GET /api/provider-canned-responses/ (the `ProviderCannedResponsesList` operationId) request.
 	//
@@ -603700,6 +604652,259 @@ func (r ProposalRoleAssignmentsConfirmNoConflictResponse) ContentType() string {
 	return ""
 }
 
+// ProposalStepDiscussionsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalStepDiscussionsList
+type ProposalStepDiscussionsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalStepDiscussionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]StepDiscussion
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalStepDiscussionsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalStepDiscussionsListResponse) GetJSON200() *[]StepDiscussion {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalStepDiscussionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalStepDiscussionsOpenResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *StepDiscussion
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *StepDiscussion
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalStepDiscussionsOpenResponse) GetJSON200() *StepDiscussion {
+	return r.JSON200
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r ProposalStepDiscussionsOpenResponse) GetJSON201() *StepDiscussion {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsOpenResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsOpenResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsOpenResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsOpenResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// ProposalStepDiscussionsStartableListResponse200Headers the declared response headers of an HTTP 200 response for ProposalStepDiscussionsStartableList
+type ProposalStepDiscussionsStartableListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalStepDiscussionsStartableListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]StartableStepDiscussion
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalStepDiscussionsStartableListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalStepDiscussionsStartableListResponse) GetJSON200() *[]StartableStepDiscussion {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsStartableListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsStartableListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsStartableListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsStartableListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalStepDiscussionsStartableCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsStartableCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsStartableCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsStartableCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsStartableCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalStepDiscussionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *StepDiscussion
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalStepDiscussionsRetrieveResponse) GetJSON200() *StepDiscussion {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalStepDiscussionsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalStepDiscussionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalStepDiscussionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalStepDiscussionsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ProviderCannedResponsesListResponse200Headers the declared response headers of an HTTP 200 response for ProviderCannedResponsesList
 type ProviderCannedResponsesListResponse200Headers struct {
 	XResultCount *int
@@ -674387,6 +675592,101 @@ func (c *ClientWithResponses) ProposalRoleAssignmentsConfirmNoConflictWithRespon
 		return nil, err
 	}
 	return ParseProposalRoleAssignmentsConfirmNoConflictResponse(rsp)
+}
+
+// ProposalStepDiscussionsListWithResponse performs a GET /api/proposal-step-discussions/ (the `ProposalStepDiscussionsList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalStepDiscussionsListWithResponse(ctx context.Context, params *ProposalStepDiscussionsListParams, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsListResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsListResponse(rsp)
+}
+
+// ProposalStepDiscussionsCountWithResponse performs a HEAD /api/proposal-step-discussions/ (the `ProposalStepDiscussionsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalStepDiscussionsCountWithResponse(ctx context.Context, params *ProposalStepDiscussionsCountParams, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsCountResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsCountResponse(rsp)
+}
+
+// ProposalStepDiscussionsOpenWithBodyWithResponse Open a step's discussion
+//
+// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+func (c *ClientWithResponses) ProposalStepDiscussionsOpenWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsOpenResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsOpenWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsOpenResponse(rsp)
+}
+
+// ProposalStepDiscussionsOpenWithResponse Open a step's discussion
+//
+// Open the discussion of a proposal's step, or of a round step for one of the call's panels, as one of the people working on it: 201 with the discussion the first time, which creates its Matrix room, 200 with the same one afterwards. 403 for anyone who does not take part in it, before anything is said about the step's state. Then 400 when the step has no discussion or Matrix chat is disabled, 409 when the step is not active or its discussion has closed.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/proposal-step-discussions/open/ (the `ProposalStepDiscussionsOpen` operationId).
+func (c *ClientWithResponses) ProposalStepDiscussionsOpenWithResponse(ctx context.Context, body ProposalStepDiscussionsOpenJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsOpenResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsOpen(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsOpenResponse(rsp)
+}
+
+// ProposalStepDiscussionsStartableListWithResponse List the discussions the current user could start
+//
+// The discussions nobody has started yet that the current user could start now: of the active steps with a discussion they take part in, and of the opened round steps of their panels, one per panel. Each names what the open action takes. Empty while Matrix chat is disabled. Not paginated.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableList` operationId).
+func (c *ClientWithResponses) ProposalStepDiscussionsStartableListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsStartableListResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsStartableList(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsStartableListResponse(rsp)
+}
+
+// ProposalStepDiscussionsStartableCountWithResponse List the discussions the current user could start
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/proposal-step-discussions/startable/ (the `ProposalStepDiscussionsStartableCount` operationId).
+func (c *ClientWithResponses) ProposalStepDiscussionsStartableCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsStartableCountResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsStartableCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsStartableCountResponse(rsp)
+}
+
+// ProposalStepDiscussionsRetrieveWithResponse performs a GET /api/proposal-step-discussions/{uuid}/ (the `ProposalStepDiscussionsRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalStepDiscussionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalStepDiscussionsRetrieveResponse, error) {
+	rsp, err := c.ProposalStepDiscussionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalStepDiscussionsRetrieveResponse(rsp)
 }
 
 // ProviderCannedResponsesListWithResponse performs a GET /api/provider-canned-responses/ (the `ProviderCannedResponsesList` operationId) request.
@@ -750432,6 +751732,175 @@ func ParseProposalRoleAssignmentsConfirmNoConflictResponse(rsp *http.Response) (
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ProposalRoleAssignment
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsListResponse parses an HTTP response from a ProposalStepDiscussionsListWithResponse call
+func ParseProposalStepDiscussionsListResponse(rsp *http.Response) (*ProposalStepDiscussionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []StepDiscussion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalStepDiscussionsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsCountResponse parses an HTTP response from a ProposalStepDiscussionsCountWithResponse call
+func ParseProposalStepDiscussionsCountResponse(rsp *http.Response) (*ProposalStepDiscussionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsOpenResponse parses an HTTP response from a ProposalStepDiscussionsOpenWithResponse call
+func ParseProposalStepDiscussionsOpenResponse(rsp *http.Response) (*ProposalStepDiscussionsOpenResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsOpenResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest StepDiscussion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest StepDiscussion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsStartableListResponse parses an HTTP response from a ProposalStepDiscussionsStartableListWithResponse call
+func ParseProposalStepDiscussionsStartableListResponse(rsp *http.Response) (*ProposalStepDiscussionsStartableListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsStartableListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []StartableStepDiscussion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalStepDiscussionsStartableListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsStartableCountResponse parses an HTTP response from a ProposalStepDiscussionsStartableCountWithResponse call
+func ParseProposalStepDiscussionsStartableCountResponse(rsp *http.Response) (*ProposalStepDiscussionsStartableCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsStartableCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalStepDiscussionsRetrieveResponse parses an HTTP response from a ProposalStepDiscussionsRetrieveWithResponse call
+func ParseProposalStepDiscussionsRetrieveResponse(rsp *http.Response) (*ProposalStepDiscussionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalStepDiscussionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest StepDiscussion
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
