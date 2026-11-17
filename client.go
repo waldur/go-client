@@ -43886,7 +43886,9 @@ type MaintenanceTypeEnum int
 
 // ManagedProject defines model for ManagedProject.
 type ManagedProject struct {
-	Created *time.Time `json:"created,omitempty"`
+	// ApprovedCredits Credits last approved, by a local reviewer or within the project template's approval limit. Allocation increases are measured against this.
+	ApprovedCredits *string    `json:"approved_credits,omitempty"`
+	Created         *time.Time `json:"created,omitempty"`
 
 	// Destination The destination used to send instructions from the remote portal.
 	Destination string `json:"destination"`
@@ -43896,7 +43898,10 @@ type ManagedProject struct {
 	Identifier string        `json:"identifier"`
 
 	// LocalIdentifier The local project identifier in this portal.
-	LocalIdentifier     *string          `json:"local_identifier,omitempty"`
+	LocalIdentifier *string `json:"local_identifier,omitempty"`
+
+	// PendingAllocation Credits of an allocation increase waiting for review. Every other change to the award has been applied.
+	PendingAllocation   *string          `json:"pending_allocation,omitempty"`
 	Project             string           `json:"project"`
 	ProjectData         *BasicProject    `json:"project_data,omitempty"`
 	ProjectTemplate     string           `json:"project_template"`
@@ -43910,6 +43915,15 @@ type ManagedProject struct {
 	ReviewedByFullName *string             `json:"reviewed_by_full_name,omitempty"`
 	ReviewedByUuid     *openapi_types.UUID `json:"reviewed_by_uuid,omitempty"`
 	State              *string             `json:"state,omitempty"`
+}
+
+// ManagedProjectApproveRequest defines model for ManagedProjectApproveRequest.
+type ManagedProjectApproveRequest struct {
+	// Comment Optional comment for review
+	Comment *string `json:"comment,omitempty"`
+
+	// ExpectedAllocation The allocation, in credits, the reviewer is approving: the managed project's pending_allocation when an allocation increase is waiting, otherwise the credits of the requested allocation. The approval is refused with 409 if the figure has changed since. Whether or not it is sent, no more than the figure waiting at the time of approval is applied: a later increase waits for review again. Omitting it approves whatever figure is waiting when the request arrives, which may be higher than the one the reviewer saw.
+	ExpectedAllocation *string `json:"expected_allocation,omitempty"`
 }
 
 // ManagedProjectAuditEntry defines model for ManagedProjectAuditEntry.
@@ -103156,7 +103170,7 @@ type OpenportalAllocationsSetLimitsJSONRequestBody = AllocationSetLimitsRequest
 type OpenportalManagedProjectsAddNoteJSONRequestBody = AddManagedProjectNoteRequest
 
 // OpenportalManagedProjectsApproveJSONRequestBody defines body for OpenportalManagedProjectsApprove for application/json ContentType.
-type OpenportalManagedProjectsApproveJSONRequestBody = ReviewCommentRequest
+type OpenportalManagedProjectsApproveJSONRequestBody = ManagedProjectApproveRequest
 
 // OpenportalManagedProjectsAttachJSONRequestBody defines body for OpenportalManagedProjectsAttach for application/json ContentType.
 type OpenportalManagedProjectsAttachJSONRequestBody = ProjectAttachRequest
@@ -139185,13 +139199,13 @@ type ClientInterface interface {
 	// OpenportalManagedProjectsApproveWithBody performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Approve managed project request.
+	// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 	OpenportalManagedProjectsApproveWithBody(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalManagedProjectsApprove performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Approve managed project request.
+	// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 	OpenportalManagedProjectsApprove(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalManagedProjectsAttachWithBody performs a POST /api/openportal-managed-projects/{identifier}/{destination}/attach/ (the `OpenportalManagedProjectsAttach` operationId) request,
@@ -139219,13 +139233,13 @@ type ClientInterface interface {
 	// OpenportalManagedProjectsRejectWithBody performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Reject managed project request.
+	// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 	OpenportalManagedProjectsRejectWithBody(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalManagedProjectsReject performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Reject managed project request.
+	// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 	OpenportalManagedProjectsReject(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalProjectStorageReportsList performs a GET /api/openportal-project-storage-reports/ (the `OpenportalProjectStorageReportsList` operationId) request.
@@ -188730,7 +188744,7 @@ func (c *Client) OpenportalManagedProjectsAddNote(ctx context.Context, identifie
 // OpenportalManagedProjectsApproveWithBody performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request,
 // with any type of body and a specified content type.
 //
-// Approve managed project request.
+// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 func (c *Client) OpenportalManagedProjectsApproveWithBody(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalManagedProjectsApproveRequestWithBody(c.Server, identifier, destination, contentType, body)
 	if err != nil {
@@ -188746,7 +188760,7 @@ func (c *Client) OpenportalManagedProjectsApproveWithBody(ctx context.Context, i
 // OpenportalManagedProjectsApprove performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Approve managed project request.
+// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 func (c *Client) OpenportalManagedProjectsApprove(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalManagedProjectsApproveRequest(c.Server, identifier, destination, body)
 	if err != nil {
@@ -188824,7 +188838,7 @@ func (c *Client) OpenportalManagedProjectsDetach(ctx context.Context, identifier
 // OpenportalManagedProjectsRejectWithBody performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request,
 // with any type of body and a specified content type.
 //
-// Reject managed project request.
+// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 func (c *Client) OpenportalManagedProjectsRejectWithBody(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalManagedProjectsRejectRequestWithBody(c.Server, identifier, destination, contentType, body)
 	if err != nil {
@@ -188840,7 +188854,7 @@ func (c *Client) OpenportalManagedProjectsRejectWithBody(ctx context.Context, id
 // OpenportalManagedProjectsReject performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Reject managed project request.
+// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 func (c *Client) OpenportalManagedProjectsReject(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalManagedProjectsRejectRequest(c.Server, identifier, destination, body)
 	if err != nil {
@@ -487686,7 +487700,7 @@ type ClientWithResponsesInterface interface {
 	// OpenportalManagedProjectsApproveWithBodyWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Approve managed project request.
+	// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	OpenportalManagedProjectsApproveWithBodyWithResponse(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsApproveResponse, error)
@@ -487694,7 +487708,7 @@ type ClientWithResponsesInterface interface {
 	// OpenportalManagedProjectsApproveWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Approve managed project request.
+	// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 	OpenportalManagedProjectsApproveWithResponse(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsApproveResponse, error)
 
 	// OpenportalManagedProjectsAttachWithBodyWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/attach/ (the `OpenportalManagedProjectsAttach` operationId) request,
@@ -487728,7 +487742,7 @@ type ClientWithResponsesInterface interface {
 	// OpenportalManagedProjectsRejectWithBodyWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Reject managed project request.
+	// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	OpenportalManagedProjectsRejectWithBodyWithResponse(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsRejectResponse, error)
@@ -487736,7 +487750,7 @@ type ClientWithResponsesInterface interface {
 	// OpenportalManagedProjectsRejectWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Reject managed project request.
+	// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 	OpenportalManagedProjectsRejectWithResponse(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsRejectResponse, error)
 
 	// OpenportalProjectStorageReportsListWithResponse performs a GET /api/openportal-project-storage-reports/ (the `OpenportalProjectStorageReportsList` operationId) request.
@@ -661056,7 +661070,7 @@ func (c *ClientWithResponses) OpenportalManagedProjectsAddNoteWithResponse(ctx c
 // OpenportalManagedProjectsApproveWithBodyWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request,
 // with any type of body and a specified content type.
 //
-// Approve managed project request.
+// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) OpenportalManagedProjectsApproveWithBodyWithResponse(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsApproveResponse, error) {
@@ -661070,7 +661084,7 @@ func (c *ClientWithResponses) OpenportalManagedProjectsApproveWithBodyWithRespon
 // OpenportalManagedProjectsApproveWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/approve/ (the `OpenportalManagedProjectsApprove` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Approve managed project request.
+// Approve managed project request. Applies no more than the allocation waiting at the time of approval; send expected_allocation to refuse the approval (409) if that figure is no longer the one the reviewer saw.
 func (c *ClientWithResponses) OpenportalManagedProjectsApproveWithResponse(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsApproveResponse, error) {
 	rsp, err := c.OpenportalManagedProjectsApprove(ctx, identifier, destination, body, reqEditors...)
 	if err != nil {
@@ -661134,7 +661148,7 @@ func (c *ClientWithResponses) OpenportalManagedProjectsDetachWithResponse(ctx co
 // OpenportalManagedProjectsRejectWithBodyWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request,
 // with any type of body and a specified content type.
 //
-// Reject managed project request.
+// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) OpenportalManagedProjectsRejectWithBodyWithResponse(ctx context.Context, identifier string, destination string, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsRejectResponse, error) {
@@ -661148,7 +661162,7 @@ func (c *ClientWithResponses) OpenportalManagedProjectsRejectWithBodyWithRespons
 // OpenportalManagedProjectsRejectWithResponse performs a POST /api/openportal-managed-projects/{identifier}/{destination}/reject/ (the `OpenportalManagedProjectsReject` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Reject managed project request.
+// Reject managed project request. For a live award pending only for an allocation increase, only the increase is declined: the award goes back to approved with the credits it has.
 func (c *ClientWithResponses) OpenportalManagedProjectsRejectWithResponse(ctx context.Context, identifier string, destination string, body OpenportalManagedProjectsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalManagedProjectsRejectResponse, error) {
 	rsp, err := c.OpenportalManagedProjectsReject(ctx, identifier, destination, body, reqEditors...)
 	if err != nil {
