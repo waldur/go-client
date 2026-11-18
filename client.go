@@ -6672,6 +6672,7 @@ const (
 	EventMetadataResponseEventGroupsTerminateResources                               EventMetadataResponseEventGroups = "terminate_resources"
 	EventMetadataResponseEventGroupsTermsOfServiceConsentGranted                     EventMetadataResponseEventGroups = "terms_of_service_consent_granted"
 	EventMetadataResponseEventGroupsTermsOfServiceConsentRevoked                     EventMetadataResponseEventGroups = "terms_of_service_consent_revoked"
+	EventMetadataResponseEventGroupsTermsOfServiceReplaced                           EventMetadataResponseEventGroups = "terms_of_service_replaced"
 	EventMetadataResponseEventGroupsTokenCreated                                     EventMetadataResponseEventGroups = "token_created"
 	EventMetadataResponseEventGroupsTokenLifetimeUpdated                             EventMetadataResponseEventGroups = "token_lifetime_updated"
 	EventMetadataResponseEventGroupsTokenViewed                                      EventMetadataResponseEventGroups = "token_viewed"
@@ -7588,6 +7589,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsTermsOfServiceConsentRevoked:
 		return true
+	case EventMetadataResponseEventGroupsTermsOfServiceReplaced:
+		return true
 	case EventMetadataResponseEventGroupsTokenCreated:
 		return true
 	case EventMetadataResponseEventGroupsTokenLifetimeUpdated:
@@ -8085,6 +8088,7 @@ const (
 	EventTypesEnumTerminateResources                               EventTypesEnum = "terminate_resources"
 	EventTypesEnumTermsOfServiceConsentGranted                     EventTypesEnum = "terms_of_service_consent_granted"
 	EventTypesEnumTermsOfServiceConsentRevoked                     EventTypesEnum = "terms_of_service_consent_revoked"
+	EventTypesEnumTermsOfServiceReplaced                           EventTypesEnum = "terms_of_service_replaced"
 	EventTypesEnumTokenCreated                                     EventTypesEnum = "token_created"
 	EventTypesEnumTokenLifetimeUpdated                             EventTypesEnum = "token_lifetime_updated"
 	EventTypesEnumTokenViewed                                      EventTypesEnum = "token_viewed"
@@ -9000,6 +9004,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumTermsOfServiceConsentGranted:
 		return true
 	case EventTypesEnumTermsOfServiceConsentRevoked:
+		return true
+	case EventTypesEnumTermsOfServiceReplaced:
 		return true
 	case EventTypesEnumTokenCreated:
 		return true
@@ -35331,6 +35337,7 @@ type ConstanceSettings struct {
 	KEYCLOAKICON                                     *string                                                          `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                  *string                                                          `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                        *string                                                          `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGODARK                                    *string                                                          `json:"LOGIN_LOGO_DARK,omitempty"`
 	LOGINLOGOMULTILINGUAL                            *map[string]*string                                              `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
 	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
@@ -35783,6 +35790,7 @@ type ConstanceSettingsRequest struct {
 	KEYCLOAKICON                                     *openapi_types.File                                                     `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                  *string                                                                 `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                        *openapi_types.File                                                     `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGODARK                                    *openapi_types.File                                                     `json:"LOGIN_LOGO_DARK,omitempty"`
 	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                         `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                          `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
 	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                    `json:"LOGIN_PAGE_LAYOUT,omitempty"`
@@ -36235,6 +36243,7 @@ type ConstanceSettingsRequestForm struct {
 	KEYCLOAKICON                                     *openapi_types.File                                                         `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                  *string                                                                     `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                        *openapi_types.File                                                         `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGODARK                                    *openapi_types.File                                                         `json:"LOGIN_LOGO_DARK,omitempty"`
 	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                             `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                              `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
 	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                        `json:"LOGIN_PAGE_LAYOUT,omitempty"`
@@ -36687,6 +36696,7 @@ type ConstanceSettingsRequestMultipart struct {
 	KEYCLOAKICON                                     *openapi_types.File                                                              `json:"KEYCLOAK_ICON,omitempty"`
 	LANGUAGECHOICES                                  *string                                                                          `json:"LANGUAGE_CHOICES,omitempty"`
 	LOGINLOGO                                        *openapi_types.File                                                              `json:"LOGIN_LOGO,omitempty"`
+	LOGINLOGODARK                                    *openapi_types.File                                                              `json:"LOGIN_LOGO_DARK,omitempty"`
 	LOGINLOGOMULTILINGUAL                            *map[string]*openapi_types.File                                                  `json:"LOGIN_LOGO_MULTILINGUAL,omitempty"`
 	LOGINPAGECAROUSELSLIDES                          *[]interface{}                                                                   `json:"LOGIN_PAGE_CAROUSEL_SLIDES,omitempty"`
 	LOGINPAGELAYOUT                                  *LOGINPAGELAYOUTEnum                                                             `json:"LOGIN_PAGE_LAYOUT,omitempty"`
@@ -131640,7 +131650,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceCreateWithBody Create a Terms of Service configuration
 	//
-	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -131649,7 +131659,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceCreate Create a Terms of Service configuration
 	//
-	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -131672,7 +131682,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServicePartialUpdateWithBody Partially update a Terms of Service configuration
 	//
-	// Partially updates an existing Terms of Service configuration.
+	// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -131681,7 +131691,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServicePartialUpdate Partially update a Terms of Service configuration
 	//
-	// Partially updates an existing Terms of Service configuration.
+	// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -131690,7 +131700,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceUpdateWithBody Update a Terms of Service configuration
 	//
-	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -131699,7 +131709,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceUpdate Update a Terms of Service configuration
 	//
-	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -170017,7 +170027,7 @@ func (c *Client) MarketplaceOfferingTermsOfServiceCount(ctx context.Context, par
 
 // MarketplaceOfferingTermsOfServiceCreateWithBody Create a Terms of Service configuration
 //
-// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170036,7 +170046,7 @@ func (c *Client) MarketplaceOfferingTermsOfServiceCreateWithBody(ctx context.Con
 
 // MarketplaceOfferingTermsOfServiceCreate Create a Terms of Service configuration
 //
-// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -170089,7 +170099,7 @@ func (c *Client) MarketplaceOfferingTermsOfServiceRetrieve(ctx context.Context, 
 
 // MarketplaceOfferingTermsOfServicePartialUpdateWithBody Partially update a Terms of Service configuration
 //
-// Partially updates an existing Terms of Service configuration.
+// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170108,7 +170118,7 @@ func (c *Client) MarketplaceOfferingTermsOfServicePartialUpdateWithBody(ctx cont
 
 // MarketplaceOfferingTermsOfServicePartialUpdate Partially update a Terms of Service configuration
 //
-// Partially updates an existing Terms of Service configuration.
+// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -170127,7 +170137,7 @@ func (c *Client) MarketplaceOfferingTermsOfServicePartialUpdate(ctx context.Cont
 
 // MarketplaceOfferingTermsOfServiceUpdateWithBody Update a Terms of Service configuration
 //
-// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes any type of body and a specified content type.
 //
@@ -170146,7 +170156,7 @@ func (c *Client) MarketplaceOfferingTermsOfServiceUpdateWithBody(ctx context.Con
 
 // MarketplaceOfferingTermsOfServiceUpdate Update a Terms of Service configuration
 //
-// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -478839,7 +478849,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse Create a Terms of Service configuration
 	//
-	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478848,7 +478858,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceCreateWithResponse Create a Terms of Service configuration
 	//
-	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+	// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478875,7 +478885,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse Partially update a Terms of Service configuration
 	//
-	// Partially updates an existing Terms of Service configuration.
+	// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478884,7 +478894,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServicePartialUpdateWithResponse Partially update a Terms of Service configuration
 	//
-	// Partially updates an existing Terms of Service configuration.
+	// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478893,7 +478903,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse Update a Terms of Service configuration
 	//
-	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -478902,7 +478912,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTermsOfServiceUpdateWithResponse Update a Terms of Service configuration
 	//
-	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+	// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -645517,7 +645527,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceCountWithResponse
 
 // MarketplaceOfferingTermsOfServiceCreateWithBodyWithResponse Create a Terms of Service configuration
 //
-// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645532,7 +645542,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceCreateWithBodyWit
 
 // MarketplaceOfferingTermsOfServiceCreateWithResponse Create a Terms of Service configuration
 //
-// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering.
+// Creates a new Terms of Service configuration for an offering. Only one active ToS configuration is allowed per offering: creating an active one deactivates the currently active one.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645577,7 +645587,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceRetrieveWithRespo
 
 // MarketplaceOfferingTermsOfServicePartialUpdateWithBodyWithResponse Partially update a Terms of Service configuration
 //
-// Partially updates an existing Terms of Service configuration.
+// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645592,7 +645602,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServicePartialUpdateWith
 
 // MarketplaceOfferingTermsOfServicePartialUpdateWithResponse Partially update a Terms of Service configuration
 //
-// Partially updates an existing Terms of Service configuration.
+// Partially updates an existing Terms of Service configuration. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645607,7 +645617,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServicePartialUpdateWith
 
 // MarketplaceOfferingTermsOfServiceUpdateWithBodyWithResponse Update a Terms of Service configuration
 //
-// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -645622,7 +645632,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTermsOfServiceUpdateWithBodyWit
 
 // MarketplaceOfferingTermsOfServiceUpdateWithResponse Update a Terms of Service configuration
 //
-// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation.
+// Updates an existing Terms of Service configuration. Note that some fields like `version` and `requires_reconsent` are protected and cannot be changed after creation. Activating a configuration deactivates the offering's currently active one.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
