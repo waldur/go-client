@@ -2532,16 +2532,16 @@ func (e CallTemplateOEnum) Valid() bool {
 
 // Defines values for CallTemplatePresetInfoCategoryEnum.
 const (
-	Generic   CallTemplatePresetInfoCategoryEnum = "generic"
-	Programme CallTemplatePresetInfoCategoryEnum = "programme"
+	CallTemplatePresetInfoCategoryEnumGeneric   CallTemplatePresetInfoCategoryEnum = "generic"
+	CallTemplatePresetInfoCategoryEnumProgramme CallTemplatePresetInfoCategoryEnum = "programme"
 )
 
 // Valid indicates whether the value is a known member of the CallTemplatePresetInfoCategoryEnum enum.
 func (e CallTemplatePresetInfoCategoryEnum) Valid() bool {
 	switch e {
-	case Generic:
+	case CallTemplatePresetInfoCategoryEnumGeneric:
 		return true
-	case Programme:
+	case CallTemplatePresetInfoCategoryEnumProgramme:
 		return true
 	default:
 		return false
@@ -6358,6 +6358,8 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectCreated                EventMetadataResponseEventGroups = "marketplace_resource_project_created"
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectRecovered              EventMetadataResponseEventGroups = "marketplace_resource_project_recovered"
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectRemoved                EventMetadataResponseEventGroups = "marketplace_resource_project_removed"
+	EventMetadataResponseEventGroupsMarketplaceResourceS3ObjectDownloaded            EventMetadataResponseEventGroups = "marketplace_resource_s3_object_downloaded"
+	EventMetadataResponseEventGroupsMarketplaceResourceS3StorageChanged              EventMetadataResponseEventGroups = "marketplace_resource_s3_storage_changed"
 	EventMetadataResponseEventGroupsMarketplaceResourceSpendingLimitsUpdated         EventMetadataResponseEventGroups = "marketplace_resource_spending_limits_updated"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateCanceled             EventMetadataResponseEventGroups = "marketplace_resource_terminate_canceled"
 	EventMetadataResponseEventGroupsMarketplaceResourceTerminateFailed               EventMetadataResponseEventGroups = "marketplace_resource_terminate_failed"
@@ -6960,6 +6962,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceResourceProjectRecovered:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceProjectRemoved:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceS3ObjectDownloaded:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceS3StorageChanged:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceSpendingLimitsUpdated:
 		return true
@@ -7774,6 +7780,8 @@ const (
 	EventTypesEnumMarketplaceResourceProjectCreated                EventTypesEnum = "marketplace_resource_project_created"
 	EventTypesEnumMarketplaceResourceProjectRecovered              EventTypesEnum = "marketplace_resource_project_recovered"
 	EventTypesEnumMarketplaceResourceProjectRemoved                EventTypesEnum = "marketplace_resource_project_removed"
+	EventTypesEnumMarketplaceResourceS3ObjectDownloaded            EventTypesEnum = "marketplace_resource_s3_object_downloaded"
+	EventTypesEnumMarketplaceResourceS3StorageChanged              EventTypesEnum = "marketplace_resource_s3_storage_changed"
 	EventTypesEnumMarketplaceResourceSpendingLimitsUpdated         EventTypesEnum = "marketplace_resource_spending_limits_updated"
 	EventTypesEnumMarketplaceResourceTerminateCanceled             EventTypesEnum = "marketplace_resource_terminate_canceled"
 	EventTypesEnumMarketplaceResourceTerminateFailed               EventTypesEnum = "marketplace_resource_terminate_failed"
@@ -8376,6 +8384,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceResourceProjectRecovered:
 		return true
 	case EventTypesEnumMarketplaceResourceProjectRemoved:
+		return true
+	case EventTypesEnumMarketplaceResourceS3ObjectDownloaded:
+		return true
+	case EventTypesEnumMarketplaceResourceS3StorageChanged:
 		return true
 	case EventTypesEnumMarketplaceResourceSpendingLimitsUpdated:
 		return true
@@ -9514,6 +9526,24 @@ func (e GoodDirectionEnum) Valid() bool {
 	case GoodDirectionEnumNeutral:
 		return true
 	case GoodDirectionEnumUp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GroupEnum.
+const (
+	AllUsers           GroupEnum = "all_users"
+	AuthenticatedUsers GroupEnum = "authenticated_users"
+)
+
+// Valid indicates whether the value is a known member of the GroupEnum enum.
+func (e GroupEnum) Valid() bool {
+	switch e {
+	case AllUsers:
+		return true
+	case AuthenticatedUsers:
 		return true
 	default:
 		return false
@@ -23665,6 +23695,51 @@ func (e RuntimeStateEnum) Valid() bool {
 	}
 }
 
+// Defines values for S3BrowserFlavorEnum.
+const (
+	S3BrowserFlavorEnumCeph    S3BrowserFlavorEnum = "ceph"
+	S3BrowserFlavorEnumGarage  S3BrowserFlavorEnum = "garage"
+	S3BrowserFlavorEnumGeneric S3BrowserFlavorEnum = "generic"
+	S3BrowserFlavorEnumMinio   S3BrowserFlavorEnum = "minio"
+)
+
+// Valid indicates whether the value is a known member of the S3BrowserFlavorEnum enum.
+func (e S3BrowserFlavorEnum) Valid() bool {
+	switch e {
+	case S3BrowserFlavorEnumCeph:
+		return true
+	case S3BrowserFlavorEnumGarage:
+		return true
+	case S3BrowserFlavorEnumGeneric:
+		return true
+	case S3BrowserFlavorEnumMinio:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for S3VersioningStatusEnum.
+const (
+	S3VersioningStatusEnumDisabled  S3VersioningStatusEnum = "Disabled"
+	S3VersioningStatusEnumEnabled   S3VersioningStatusEnum = "Enabled"
+	S3VersioningStatusEnumSuspended S3VersioningStatusEnum = "Suspended"
+)
+
+// Valid indicates whether the value is a known member of the S3VersioningStatusEnum enum.
+func (e S3VersioningStatusEnum) Valid() bool {
+	switch e {
+	case S3VersioningStatusEnumDisabled:
+		return true
+	case S3VersioningStatusEnumEnabled:
+		return true
+	case S3VersioningStatusEnumSuspended:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for SCIMUSERMATCHWALDURATTRIBUTEEnum.
 const (
 	SCIMUSERMATCHWALDURATTRIBUTEEnumCivilNumber SCIMUSERMATCHWALDURATTRIBUTEEnum = "civil_number"
@@ -23842,6 +23917,24 @@ func (e ScienceSubDomainOEnum) Valid() bool {
 	case ScienceSubDomainOEnumName:
 		return true
 	case ScienceSubDomainOEnumProjectsCount:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ScopeEnum.
+const (
+	ScopeEnumAccount ScopeEnum = "account"
+	ScopeEnumUser    ScopeEnum = "user"
+)
+
+// Valid indicates whether the value is a known member of the ScopeEnum enum.
+func (e ScopeEnum) Valid() bool {
+	switch e {
+	case ScopeEnumAccount:
+		return true
+	case ScopeEnumUser:
 		return true
 	default:
 		return false
@@ -35451,6 +35544,9 @@ type ConstanceSettings struct {
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	REVIEWERPUBLICATIONREQUIRESAPPROVAL              *bool                                                            `json:"REVIEWER_PUBLICATION_REQUIRES_APPROVAL,omitempty"`
+	S3BROWSERALLOWEDENDPOINTS                        *string                                                          `json:"S3_BROWSER_ALLOWED_ENDPOINTS,omitempty"`
+	S3BROWSERMAXUPLOADSIZEMB                         *int                                                             `json:"S3_BROWSER_MAX_UPLOAD_SIZE_MB,omitempty"`
+	S3BROWSERVERIFYTLS                               *bool                                                            `json:"S3_BROWSER_VERIFY_TLS,omitempty"`
 	SCIMAPIKEY                                       *string                                                          `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                          `json:"SCIM_API_URL,omitempty"`
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettings_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
@@ -35904,6 +36000,9 @@ type ConstanceSettingsRequest struct {
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                   `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                   `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	REVIEWERPUBLICATIONREQUIRESAPPROVAL              *bool                                                                   `json:"REVIEWER_PUBLICATION_REQUIRES_APPROVAL,omitempty"`
+	S3BROWSERALLOWEDENDPOINTS                        *string                                                                 `json:"S3_BROWSER_ALLOWED_ENDPOINTS,omitempty"`
+	S3BROWSERMAXUPLOADSIZEMB                         *int                                                                    `json:"S3_BROWSER_MAX_UPLOAD_SIZE_MB,omitempty"`
+	S3BROWSERVERIFYTLS                               *bool                                                                   `json:"S3_BROWSER_VERIFY_TLS,omitempty"`
 	SCIMAPIKEY                                       *string                                                                 `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                 `json:"SCIM_API_URL,omitempty"`
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequest_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
@@ -36357,6 +36456,9 @@ type ConstanceSettingsRequestForm struct {
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                       `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                       `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	REVIEWERPUBLICATIONREQUIRESAPPROVAL              *bool                                                                       `json:"REVIEWER_PUBLICATION_REQUIRES_APPROVAL,omitempty"`
+	S3BROWSERALLOWEDENDPOINTS                        *string                                                                     `json:"S3_BROWSER_ALLOWED_ENDPOINTS,omitempty"`
+	S3BROWSERMAXUPLOADSIZEMB                         *int                                                                        `json:"S3_BROWSER_MAX_UPLOAD_SIZE_MB,omitempty"`
+	S3BROWSERVERIFYTLS                               *bool                                                                       `json:"S3_BROWSER_VERIFY_TLS,omitempty"`
 	SCIMAPIKEY                                       *string                                                                     `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                     `json:"SCIM_API_URL,omitempty"`
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestForm_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
@@ -36810,6 +36912,9 @@ type ConstanceSettingsRequestMultipart struct {
 	RESTRICTEDOFFERINGVISIBILITYMODE                 *RESTRICTEDOFFERINGVISIBILITYMODEEnum                                            `json:"RESTRICTED_OFFERING_VISIBILITY_MODE,omitempty"`
 	REVIEWERPROFILESENABLED                          *bool                                                                            `json:"REVIEWER_PROFILES_ENABLED,omitempty"`
 	REVIEWERPUBLICATIONREQUIRESAPPROVAL              *bool                                                                            `json:"REVIEWER_PUBLICATION_REQUIRES_APPROVAL,omitempty"`
+	S3BROWSERALLOWEDENDPOINTS                        *string                                                                          `json:"S3_BROWSER_ALLOWED_ENDPOINTS,omitempty"`
+	S3BROWSERMAXUPLOADSIZEMB                         *int                                                                             `json:"S3_BROWSER_MAX_UPLOAD_SIZE_MB,omitempty"`
+	S3BROWSERVERIFYTLS                               *bool                                                                            `json:"S3_BROWSER_VERIFY_TLS,omitempty"`
 	SCIMAPIKEY                                       *string                                                                          `json:"SCIM_API_KEY,omitempty"`
 	SCIMAPIURL                                       *string                                                                          `json:"SCIM_API_URL,omitempty"`
 	SCIMINBOUNDALLOWEDATTRIBUTES                     *[]ConstanceSettingsRequestMultipart_SCIMINBOUNDALLOWEDATTRIBUTES_Item           `json:"SCIM_INBOUND_ALLOWED_ATTRIBUTES,omitempty"`
@@ -41267,6 +41372,9 @@ type GlobalUserRoleCreateRequest struct {
 // GoodDirectionEnum defines model for GoodDirectionEnum.
 type GoodDirectionEnum string
 
+// GroupEnum defines model for GroupEnum.
+type GroupEnum string
+
 // GroupInvitation defines model for GroupInvitation.
 type GroupInvitation struct {
 	// AllowCustomProjectDetails Allow users to provide custom project name and description when accepting the invitation. If disabled, the project name is auto-generated from the template.
@@ -44698,6 +44806,9 @@ type MergedPluginOptions struct {
 	// EnableResourceProjects Enable sub-project management within resources.
 	EnableResourceProjects *bool `json:"enable_resource_projects,omitempty"`
 
+	// EnableS3Browser Lets consumers browse, download from and manage the buckets of an S3 resource in HomePort, through one of its API keys. Mastermind signs the S3 calls itself, so it must reach the resource's s3_endpoint, and staff must list that host in S3_BROWSER_ALLOWED_ENDPOINTS.
+	EnableS3Browser *bool `json:"enable_s3_browser,omitempty"`
+
 	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. Login hosts are read from scim_login_nodes. When unset or false, this offering is not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
 	EnableScimEntitlements *bool `json:"enable_scim_entitlements,omitempty"`
 
@@ -44886,6 +44997,9 @@ type MergedPluginOptions struct {
 
 	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
 	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
+
+	// S3BrowserFlavor The kind of S3 gateway behind the resources, which decides what the bucket browser reads and shows: bucket sizes only on Ceph, and on Garage none of the versioning, ACL, policy, lock, encryption or tag details it does not implement. 'generic' (the default) asks for every detail and hides those the gateway refuses.
+	S3BrowserFlavor *S3BrowserFlavorEnum `json:"s3_browser_flavor,omitempty"`
 
 	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
 	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
@@ -45083,6 +45197,9 @@ type MergedPluginOptionsRequest struct {
 	// EnableResourceProjects Enable sub-project management within resources.
 	EnableResourceProjects *bool `json:"enable_resource_projects,omitempty"`
 
+	// EnableS3Browser Lets consumers browse, download from and manage the buckets of an S3 resource in HomePort, through one of its API keys. Mastermind signs the S3 calls itself, so it must reach the resource's s3_endpoint, and staff must list that host in S3_BROWSER_ALLOWED_ENDPOINTS.
+	EnableS3Browser *bool `json:"enable_s3_browser,omitempty"`
+
 	// EnableScimEntitlements Include this offering in outbound SCIM user entitlement sync. Login hosts are read from scim_login_nodes. When unset or false, this offering is not pushed to the remote SCIM service even if SCIM_MEMBERSHIP_SYNC_ENABLED is on.
 	EnableScimEntitlements *bool `json:"enable_scim_entitlements,omitempty"`
 
@@ -45271,6 +45388,9 @@ type MergedPluginOptionsRequest struct {
 
 	// RestrictedToRoles List of project or organization role names (e.g. 'PROJECT.MANAGER') allowed to view and order this offering. When set, the offering is hidden from the catalog for other users and they cannot create orders for it. Whether their orders skip consumer review still depends on the role having the order-approval permission.
 	RestrictedToRoles *[]string `json:"restricted_to_roles,omitempty"`
+
+	// S3BrowserFlavor The kind of S3 gateway behind the resources, which decides what the bucket browser reads and shows: bucket sizes only on Ceph, and on Garage none of the versioning, ACL, policy, lock, encryption or tag details it does not implement. 'generic' (the default) asks for every detail and hides those the gateway refuses.
+	S3BrowserFlavor *S3BrowserFlavorEnum `json:"s3_browser_flavor,omitempty"`
 
 	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
 	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
@@ -65526,6 +65646,293 @@ type RuntimeStates struct {
 	Value *string `json:"value,omitempty"`
 }
 
+// S3Acl defines model for S3Acl.
+type S3Acl struct {
+	Grants []S3Grant `json:"grants"`
+	Owner  string    `json:"owner"`
+}
+
+// S3BrowserCapabilities defines model for S3BrowserCapabilities.
+type S3BrowserCapabilities struct {
+	// BucketParts Bucket details the gateway implements; others are always null.
+	BucketParts []string `json:"bucket_parts"`
+
+	// BucketStats Buckets carry an object count and bytes used.
+	BucketStats bool                `json:"bucket_stats"`
+	Flavor      S3BrowserFlavorEnum `json:"flavor"`
+
+	// ObjectParts Object details (acl, tags, versions) the gateway implements.
+	ObjectParts []string `json:"object_parts"`
+}
+
+// S3BrowserFlavorEnum defines model for S3BrowserFlavorEnum.
+type S3BrowserFlavorEnum string
+
+// S3BrowserInfo defines model for S3BrowserInfo.
+type S3BrowserInfo struct {
+	// AccessKey The key's access key id, for client instructions; never the secret.
+	AccessKey string `json:"access_key"`
+
+	// Capabilities What the offering's S3 flavor lets the browser show.
+	Capabilities S3BrowserCapabilities `json:"capabilities"`
+	Endpoint     string                `json:"endpoint"`
+
+	// MaxUploadSize Largest file, in bytes, that upload accepts; larger ones need an S3 client.
+	MaxUploadSize int `json:"max_upload_size"`
+
+	// Quotas Quotas as the provider's site agent last published them.
+	Quotas S3Quotas `json:"quotas"`
+	Region string   `json:"region"`
+}
+
+// S3Bucket defines model for S3Bucket.
+type S3Bucket struct {
+	Created *time.Time `json:"created"`
+
+	// IsPublic Readable by anyone through an ACL grant or a public policy; null when the gateway would not say.
+	IsPublic *bool  `json:"is_public"`
+	Name     string `json:"name"`
+
+	// Objects Null when the gateway reports no statistics.
+	Objects *int `json:"objects"`
+
+	// SizeBytes Null when the gateway reports no statistics.
+	SizeBytes  *int                 `json:"size_bytes"`
+	Versioning *S3Bucket_Versioning `json:"versioning"`
+}
+
+// S3Bucket_Versioning defines model for S3Bucket.Versioning.
+type S3Bucket_Versioning struct {
+	union json.RawMessage
+}
+
+// S3BucketDetails defines model for S3BucketDetails.
+type S3BucketDetails struct {
+	Acl       *S3Acl        `json:"acl"`
+	Bucket    string        `json:"bucket"`
+	CorsRules *[]S3CorsRule `json:"cors_rules"`
+
+	// Encryption Default server-side encryption algorithm.
+	Encryption *string `json:"encryption"`
+
+	// IsPublic Readable by anyone: through an ACL grant to a public group, or a policy the gateway reports as public.
+	IsPublic       bool               `json:"is_public"`
+	LifecycleRules *[]S3LifecycleRule `json:"lifecycle_rules"`
+	Location       *string            `json:"location"`
+	ObjectLock     *S3ObjectLock      `json:"object_lock"`
+	Objects        *int               `json:"objects"`
+
+	// Policy The bucket policy as JSON.
+	Policy            *string              `json:"policy"`
+	PolicyPublic      *bool                `json:"policy_public"`
+	PublicAccessBlock *S3PublicAccessBlock `json:"public_access_block"`
+	PublicAclGroups   []string             `json:"public_acl_groups"`
+	SizeBytes         *int                 `json:"size_bytes"`
+	Tags              *[]S3Tag             `json:"tags"`
+
+	// Unavailable Parts the gateway refused or does not implement.
+	Unavailable []string      `json:"unavailable"`
+	Versioning  *S3Versioning `json:"versioning"`
+}
+
+// S3BucketRequestRequest defines model for S3BucketRequestRequest.
+type S3BucketRequestRequest struct {
+	Bucket string `json:"bucket"`
+}
+
+// S3CorsRule defines model for S3CorsRule.
+type S3CorsRule struct {
+	AllowedMethods []string `json:"allowed_methods"`
+	AllowedOrigins []string `json:"allowed_origins"`
+}
+
+// S3DeleteError defines model for S3DeleteError.
+type S3DeleteError struct {
+	Code   *string `json:"code"`
+	Detail *string `json:"detail"`
+	Key    *string `json:"key"`
+}
+
+// S3DeleteObjectsRequestRequest defines model for S3DeleteObjectsRequestRequest.
+type S3DeleteObjectsRequestRequest struct {
+	Bucket string `json:"bucket"`
+
+	// Keys Objects to delete. Give either keys or prefix.
+	Keys *[]string `json:"keys,omitempty"`
+
+	// Prefix Delete everything under this prefix, up to 10000 objects per call.
+	Prefix *string `json:"prefix,omitempty"`
+}
+
+// S3DeleteObjectsResult defines model for S3DeleteObjectsResult.
+type S3DeleteObjectsResult struct {
+	Deleted int             `json:"deleted"`
+	Errors  []S3DeleteError `json:"errors"`
+
+	// Remaining More objects remain under the prefix; repeat the request.
+	Remaining bool `json:"remaining"`
+}
+
+// S3DownloadUrl defines model for S3DownloadUrl.
+type S3DownloadUrl struct {
+	ExpiresIn int    `json:"expires_in"`
+	Size      int    `json:"size"`
+	Url       string `json:"url"`
+}
+
+// S3Grant defines model for S3Grant.
+type S3Grant struct {
+	DisplayName string `json:"display_name"`
+	Grantee     string `json:"grantee"`
+
+	// Group Set when the grant is to a public group.
+	Group      *S3Grant_Group `json:"group"`
+	Permission string         `json:"permission"`
+	Type       string         `json:"type"`
+}
+
+// S3Grant_Group Set when the grant is to a public group.
+type S3Grant_Group struct {
+	union json.RawMessage
+}
+
+// S3LifecycleRule defines model for S3LifecycleRule.
+type S3LifecycleRule struct {
+	AbortMultipartDays       *int   `json:"abort_multipart_days"`
+	Enabled                  bool   `json:"enabled"`
+	ExpirationDays           *int   `json:"expiration_days"`
+	Id                       string `json:"id"`
+	NoncurrentExpirationDays *int   `json:"noncurrent_expiration_days"`
+	Prefix                   string `json:"prefix"`
+	Transitions              int    `json:"transitions"`
+}
+
+// S3MetadataEntry defines model for S3MetadataEntry.
+type S3MetadataEntry struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+
+// S3Object defines model for S3Object.
+type S3Object struct {
+	Etag         string     `json:"etag"`
+	Key          string     `json:"key"`
+	Modified     *time.Time `json:"modified"`
+	Size         int        `json:"size"`
+	StorageClass string     `json:"storage_class"`
+}
+
+// S3ObjectDetails defines model for S3ObjectDetails.
+type S3ObjectDetails struct {
+	Acl                *S3Acl `json:"acl"`
+	Bucket             string `json:"bucket"`
+	CacheControl       string `json:"cache_control"`
+	ContentDisposition string `json:"content_disposition"`
+	ContentEncoding    string `json:"content_encoding"`
+	ContentType        string `json:"content_type"`
+	DeleteMarkers      *int   `json:"delete_markers"`
+
+	// Encryption Server-side encryption algorithm.
+	Encryption string `json:"encryption"`
+	Etag       string `json:"etag"`
+	IsPublic   *bool  `json:"is_public"`
+	Key        string `json:"key"`
+	LegalHold  bool   `json:"legal_hold"`
+	LockMode   string `json:"lock_mode"`
+
+	// Metadata User metadata (x-amz-meta-*).
+	Metadata []S3MetadataEntry `json:"metadata"`
+	Modified *time.Time        `json:"modified"`
+
+	// MultipartParts Part count when uploaded in parts.
+	MultipartParts *int       `json:"multipart_parts"`
+	RetainUntil    *time.Time `json:"retain_until"`
+	Size           int        `json:"size"`
+	StorageClass   string     `json:"storage_class"`
+	Tags           *[]S3Tag   `json:"tags"`
+	Unavailable    []string   `json:"unavailable"`
+	VersionId      string     `json:"version_id"`
+	Versions       *int       `json:"versions"`
+
+	// VersionsTruncated More versions exist than were counted.
+	VersionsTruncated bool `json:"versions_truncated"`
+}
+
+// S3ObjectList defines model for S3ObjectList.
+type S3ObjectList struct {
+	Bucket                string     `json:"bucket"`
+	Folders               []string   `json:"folders"`
+	IsTruncated           bool       `json:"is_truncated"`
+	NextContinuationToken string     `json:"next_continuation_token"`
+	Objects               []S3Object `json:"objects"`
+	Prefix                string     `json:"prefix"`
+}
+
+// S3ObjectLock defines model for S3ObjectLock.
+type S3ObjectLock struct {
+	Days    *int   `json:"days"`
+	Enabled bool   `json:"enabled"`
+	Mode    string `json:"mode"`
+	Years   *int   `json:"years"`
+}
+
+// S3ObjectRequestRequest defines model for S3ObjectRequestRequest.
+type S3ObjectRequestRequest struct {
+	Bucket string `json:"bucket"`
+	Key    string `json:"key"`
+}
+
+// S3PublicAccessBlock defines model for S3PublicAccessBlock.
+type S3PublicAccessBlock struct {
+	BlockPublicAcls       bool `json:"block_public_acls"`
+	BlockPublicPolicy     bool `json:"block_public_policy"`
+	IgnorePublicAcls      bool `json:"ignore_public_acls"`
+	RestrictPublicBuckets bool `json:"restrict_public_buckets"`
+}
+
+// S3QuotaLimit defines model for S3QuotaLimit.
+type S3QuotaLimit struct {
+	MaxObjects   *int `json:"max_objects"`
+	MaxSizeBytes *int `json:"max_size_bytes"`
+}
+
+// S3Quotas defines model for S3Quotas.
+type S3Quotas struct {
+	// PerBucket Limit on each bucket; null when unlimited.
+	PerBucket *S3QuotaLimit `json:"per_bucket"`
+
+	// Scope What the total limit applies to: the RGW account (account mode) or the S3 user.
+	Scope ScopeEnum `json:"scope"`
+
+	// Total Limit across all buckets; null when unlimited.
+	Total *S3QuotaLimit `json:"total"`
+}
+
+// S3Tag defines model for S3Tag.
+type S3Tag struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+
+// S3UploadRequestRequest defines model for S3UploadRequestRequest.
+type S3UploadRequestRequest struct {
+	Bucket string             `json:"bucket"`
+	File   openapi_types.File `json:"file"`
+	Key    string             `json:"key"`
+
+	// Overwrite Replace a file of the same name. Without it, an existing file is refused with 409 ObjectExists.
+	Overwrite *bool `json:"overwrite,omitempty"`
+}
+
+// S3Versioning defines model for S3Versioning.
+type S3Versioning struct {
+	MfaDelete bool                   `json:"mfa_delete"`
+	Status    S3VersioningStatusEnum `json:"status"`
+}
+
+// S3VersioningStatusEnum defines model for S3VersioningStatusEnum.
+type S3VersioningStatusEnum string
+
 // SCIMUSERMATCHWALDURATTRIBUTEEnum defines model for SCIMUSERMATCHWALDURATTRIBUTEEnum.
 type SCIMUSERMATCHWALDURATTRIBUTEEnum string
 
@@ -65751,6 +66158,9 @@ type ScimPullAttributesResponse struct {
 type ScimSyncAllResponse struct {
 	Detail string `json:"detail"`
 }
+
+// ScopeEnum defines model for ScopeEnum.
+type ScopeEnum string
 
 // ScopedOffering defines model for ScopedOffering.
 type ScopedOffering struct {
@@ -83257,6 +83667,75 @@ type MarketplaceResourceApiKeysUsageTotalsCountParams struct {
 
 	// UserUuid Assignee UUID
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams defines parameters for MarketplaceResourceApiKeysS3BucketDetailsRetrieve.
+type MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams struct {
+	Bucket string `form:"bucket" json:"bucket"`
+}
+
+// MarketplaceResourceApiKeysS3BucketsListParams defines parameters for MarketplaceResourceApiKeysS3BucketsList.
+type MarketplaceResourceApiKeysS3BucketsListParams struct {
+	// CustomerUuid Consumer organization UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// HasPendingAction Has a pending command
+	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid Offering UUID
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
+	// PendingAction Pending command
+	//
+	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid Project UUID
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid Keys of resources of the offerings of this service provider organization, to callers the provider resource list shows those resources to.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ResourceUuid Resource UUID
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State API key state
+	//
+	State *[]ResourceApiKeyState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUuid Assignee UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams defines parameters for MarketplaceResourceApiKeysS3ObjectDetailsRetrieve.
+type MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams struct {
+	Bucket string `form:"bucket" json:"bucket"`
+	Key    string `form:"key" json:"key"`
+}
+
+// MarketplaceResourceApiKeysS3ObjectsRetrieveParams defines parameters for MarketplaceResourceApiKeysS3ObjectsRetrieve.
+type MarketplaceResourceApiKeysS3ObjectsRetrieveParams struct {
+	Bucket            string  `form:"bucket" json:"bucket"`
+	ContinuationToken *string `form:"continuation_token,omitempty" json:"continuation_token,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+	Prefix   *string   `form:"prefix,omitempty" json:"prefix,omitempty"`
 }
 
 // MarketplaceResourceEndDateChangeRequestsListParams defines parameters for MarketplaceResourceEndDateChangeRequestsList.
@@ -102736,6 +103215,21 @@ type MarketplaceResourceApiKeysPartialUpdateJSONRequestBody = PatchedResourceApi
 
 // MarketplaceResourceApiKeysReportUsageJSONRequestBody defines body for MarketplaceResourceApiKeysReportUsage for application/json ContentType.
 type MarketplaceResourceApiKeysReportUsageJSONRequestBody = ResourceApiKeyUsageRequest
+
+// MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody defines body for MarketplaceResourceApiKeysS3CreateBucket for application/json ContentType.
+type MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody = S3BucketRequestRequest
+
+// MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody defines body for MarketplaceResourceApiKeysS3DeleteBucket for application/json ContentType.
+type MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody = S3BucketRequestRequest
+
+// MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody defines body for MarketplaceResourceApiKeysS3DeleteObjects for application/json ContentType.
+type MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody = S3DeleteObjectsRequestRequest
+
+// MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody defines body for MarketplaceResourceApiKeysS3DownloadUrl for application/json ContentType.
+type MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody = S3ObjectRequestRequest
+
+// MarketplaceResourceApiKeysS3UploadMultipartRequestBody defines body for MarketplaceResourceApiKeysS3Upload for multipart/form-data ContentType.
+type MarketplaceResourceApiKeysS3UploadMultipartRequestBody = S3UploadRequestRequest
 
 // MarketplaceResourceApiKeysSetErredJSONRequestBody defines body for MarketplaceResourceApiKeysSetErred for application/json ContentType.
 type MarketplaceResourceApiKeysSetErredJSONRequestBody = ResourceApiKeySetErredRequest
@@ -122987,6 +123481,130 @@ func (t *RuleTestMatchResponse_ProjectAction) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsS3VersioningStatusEnum returns the union data inside the S3Bucket_Versioning as a S3VersioningStatusEnum
+func (t S3Bucket_Versioning) AsS3VersioningStatusEnum() (S3VersioningStatusEnum, error) {
+	var body S3VersioningStatusEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromS3VersioningStatusEnum overwrites any union data inside the S3Bucket_Versioning as the provided S3VersioningStatusEnum
+func (t *S3Bucket_Versioning) FromS3VersioningStatusEnum(v S3VersioningStatusEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeS3VersioningStatusEnum performs a merge with any union data inside the S3Bucket_Versioning, using the provided S3VersioningStatusEnum
+func (t *S3Bucket_Versioning) MergeS3VersioningStatusEnum(v S3VersioningStatusEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the S3Bucket_Versioning as a NullEnum
+func (t S3Bucket_Versioning) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the S3Bucket_Versioning as the provided NullEnum
+func (t *S3Bucket_Versioning) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the S3Bucket_Versioning, using the provided NullEnum
+func (t *S3Bucket_Versioning) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t S3Bucket_Versioning) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *S3Bucket_Versioning) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsGroupEnum returns the union data inside the S3Grant_Group as a GroupEnum
+func (t S3Grant_Group) AsGroupEnum() (GroupEnum, error) {
+	var body GroupEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromGroupEnum overwrites any union data inside the S3Grant_Group as the provided GroupEnum
+func (t *S3Grant_Group) FromGroupEnum(v GroupEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeGroupEnum performs a merge with any union data inside the S3Grant_Group, using the provided GroupEnum
+func (t *S3Grant_Group) MergeGroupEnum(v GroupEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the S3Grant_Group as a NullEnum
+func (t S3Grant_Group) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the S3Grant_Group as the provided NullEnum
+func (t *S3Grant_Group) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the S3Grant_Group, using the provided NullEnum
+func (t *S3Grant_Group) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t S3Grant_Group) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *S3Grant_Group) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsMembershipControlEnum returns the union data inside the SetMembershipControlRequest_MembershipControl as a MembershipControlEnum
 func (t SetMembershipControlRequest_MembershipControl) AsMembershipControlEnum() (MembershipControlEnum, error) {
 	var body MembershipControlEnum
@@ -135343,6 +135961,118 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 	MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3BucketDetailsRetrieve S3 browser: bucket details
+	//
+	// The bucket's size, ACL, policy, public access block, versioning, object lock, lifecycle rules, default encryption, CORS rules and tags, as the key reads them. Read-only.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/bucket-details/ (the `MarketplaceResourceApiKeysS3BucketDetailsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3BucketDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3BucketsList S3 browser: list buckets
+	//
+	// Buckets the key can list, with object count and bytes used where the gateway reports them. Mastermind signs the S3 call itself with the key's stored secret. Open to whoever may reveal the key, on offerings with enable_s3_browser.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/buckets/ (the `MarketplaceResourceApiKeysS3BucketsList` operationId).
+	MarketplaceResourceApiKeysS3BucketsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3CreateBucketWithBody S3 browser: create a bucket
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+	MarketplaceResourceApiKeysS3CreateBucketWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3CreateBucket S3 browser: create a bucket
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+	MarketplaceResourceApiKeysS3CreateBucket(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DeleteBucketWithBody S3 browser: delete an empty bucket
+	//
+	// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+	MarketplaceResourceApiKeysS3DeleteBucketWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DeleteBucket S3 browser: delete an empty bucket
+	//
+	// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+	MarketplaceResourceApiKeysS3DeleteBucket(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DeleteObjectsWithBody S3 browser: delete objects
+	//
+	// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+	MarketplaceResourceApiKeysS3DeleteObjectsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DeleteObjects S3 browser: delete objects
+	//
+	// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+	MarketplaceResourceApiKeysS3DeleteObjects(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DownloadUrlWithBody S3 browser: download link
+	//
+	// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+	MarketplaceResourceApiKeysS3DownloadUrlWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3DownloadUrl S3 browser: download link
+	//
+	// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+	MarketplaceResourceApiKeysS3DownloadUrl(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3InfoRetrieve S3 browser: connection details
+	//
+	// The endpoint, region and access key id an S3 client needs for this key, the largest file the browser uploads, and the resource's quotas. The secret is never returned here; reveal it separately.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/info/ (the `MarketplaceResourceApiKeysS3InfoRetrieve` operationId).
+	MarketplaceResourceApiKeysS3InfoRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3ObjectDetailsRetrieve S3 browser: object details
+	//
+	// One object's content type, storage class, user metadata, encryption, object lock, ACL, tags and version count, as the key reads them. Read-only.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/object-details/ (the `MarketplaceResourceApiKeysS3ObjectDetailsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3ObjectDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3ObjectsRetrieve S3 browser: list objects
+	//
+	// One page of a bucket listing under a prefix, with common prefixes as folders. Follow next_continuation_token for the next page.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/objects/ (the `MarketplaceResourceApiKeysS3ObjectsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3ObjectsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysS3UploadWithBody S3 browser: upload a small file
+	//
+	// Uploads one file through Waldur, up to S3_BROWSER_MAX_UPLOAD_SIZE_MB (see s3/info). A larger file is refused with 413: use an S3 client. An existing file of the same name is refused with 409 unless overwrite is set.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/upload/ (the `MarketplaceResourceApiKeysS3Upload` operationId).
+	MarketplaceResourceApiKeysS3UploadWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceApiKeysSetDeleted Report an API key deleted
 	//
@@ -178617,6 +179347,258 @@ func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, u
 // Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 func (c *Client) MarketplaceResourceApiKeysRotate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourceApiKeysRotateRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3BucketDetailsRetrieve S3 browser: bucket details
+//
+// The bucket's size, ACL, policy, public access block, versioning, object lock, lifecycle rules, default encryption, CORS rules and tags, as the key reads them. Read-only.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/bucket-details/ (the `MarketplaceResourceApiKeysS3BucketDetailsRetrieve` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3BucketDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3BucketDetailsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3BucketsList S3 browser: list buckets
+//
+// Buckets the key can list, with object count and bytes used where the gateway reports them. Mastermind signs the S3 call itself with the key's stored secret. Open to whoever may reveal the key, on offerings with enable_s3_browser.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/buckets/ (the `MarketplaceResourceApiKeysS3BucketsList` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3BucketsList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3BucketsListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3CreateBucketWithBody S3 browser: create a bucket
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3CreateBucketWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3CreateBucketRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3CreateBucket S3 browser: create a bucket
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3CreateBucket(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3CreateBucketRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DeleteBucketWithBody S3 browser: delete an empty bucket
+//
+// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DeleteBucketWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DeleteBucketRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DeleteBucket S3 browser: delete an empty bucket
+//
+// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DeleteBucket(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DeleteBucketRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DeleteObjectsWithBody S3 browser: delete objects
+//
+// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DeleteObjectsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DeleteObjectsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DeleteObjects S3 browser: delete objects
+//
+// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DeleteObjects(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DeleteObjectsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DownloadUrlWithBody S3 browser: download link
+//
+// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DownloadUrlWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DownloadUrlRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3DownloadUrl S3 browser: download link
+//
+// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3DownloadUrl(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3DownloadUrlRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3InfoRetrieve S3 browser: connection details
+//
+// The endpoint, region and access key id an S3 client needs for this key, the largest file the browser uploads, and the resource's quotas. The secret is never returned here; reveal it separately.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/info/ (the `MarketplaceResourceApiKeysS3InfoRetrieve` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3InfoRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3InfoRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3ObjectDetailsRetrieve S3 browser: object details
+//
+// One object's content type, storage class, user metadata, encryption, object lock, ACL, tags and version count, as the key reads them. Read-only.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/object-details/ (the `MarketplaceResourceApiKeysS3ObjectDetailsRetrieve` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3ObjectDetailsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3ObjectDetailsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3ObjectsRetrieve S3 browser: list objects
+//
+// One page of a bucket listing under a prefix, with common prefixes as folders. Follow next_continuation_token for the next page.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/objects/ (the `MarketplaceResourceApiKeysS3ObjectsRetrieve` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3ObjectsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3ObjectsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysS3UploadWithBody S3 browser: upload a small file
+//
+// Uploads one file through Waldur, up to S3_BROWSER_MAX_UPLOAD_SIZE_MB (see s3/info). A larger file is refused with 413: use an S3 client. An existing file of the same name is refused with 409 unless overwrite is set.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/upload/ (the `MarketplaceResourceApiKeysS3Upload` operationId).
+func (c *Client) MarketplaceResourceApiKeysS3UploadWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysS3UploadRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -320652,6 +321634,696 @@ func NewMarketplaceResourceApiKeysRotateRequest(server string, uuid openapi_type
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3BucketDetailsRetrieveRequest constructs an http.Request for the MarketplaceResourceApiKeysS3BucketDetailsRetrieve method
+func NewMarketplaceResourceApiKeysS3BucketDetailsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/bucket-details/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "bucket", params.Bucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3BucketsListRequest constructs an http.Request for the MarketplaceResourceApiKeysS3BucketsList method
+func NewMarketplaceResourceApiKeysS3BucketsListRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketsListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/buckets/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasPendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3CreateBucketRequest calls the generic MarketplaceResourceApiKeysS3CreateBucket builder with application/json body
+func NewMarketplaceResourceApiKeysS3CreateBucketRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceApiKeysS3CreateBucketRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceApiKeysS3CreateBucketRequestWithBody constructs an http.Request for the MarketplaceResourceApiKeysS3CreateBucket method, with any body, and a specified content type
+func NewMarketplaceResourceApiKeysS3CreateBucketRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/create-bucket/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3DeleteBucketRequest calls the generic MarketplaceResourceApiKeysS3DeleteBucket builder with application/json body
+func NewMarketplaceResourceApiKeysS3DeleteBucketRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceApiKeysS3DeleteBucketRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceApiKeysS3DeleteBucketRequestWithBody constructs an http.Request for the MarketplaceResourceApiKeysS3DeleteBucket method, with any body, and a specified content type
+func NewMarketplaceResourceApiKeysS3DeleteBucketRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/delete-bucket/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3DeleteObjectsRequest calls the generic MarketplaceResourceApiKeysS3DeleteObjects builder with application/json body
+func NewMarketplaceResourceApiKeysS3DeleteObjectsRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceApiKeysS3DeleteObjectsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceApiKeysS3DeleteObjectsRequestWithBody constructs an http.Request for the MarketplaceResourceApiKeysS3DeleteObjects method, with any body, and a specified content type
+func NewMarketplaceResourceApiKeysS3DeleteObjectsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/delete-objects/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3DownloadUrlRequest calls the generic MarketplaceResourceApiKeysS3DownloadUrl builder with application/json body
+func NewMarketplaceResourceApiKeysS3DownloadUrlRequest(server string, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourceApiKeysS3DownloadUrlRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourceApiKeysS3DownloadUrlRequestWithBody constructs an http.Request for the MarketplaceResourceApiKeysS3DownloadUrl method, with any body, and a specified content type
+func NewMarketplaceResourceApiKeysS3DownloadUrlRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/download-url/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3InfoRetrieveRequest constructs an http.Request for the MarketplaceResourceApiKeysS3InfoRetrieve method
+func NewMarketplaceResourceApiKeysS3InfoRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/info/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3ObjectDetailsRetrieveRequest constructs an http.Request for the MarketplaceResourceApiKeysS3ObjectDetailsRetrieve method
+func NewMarketplaceResourceApiKeysS3ObjectDetailsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/object-details/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "bucket", params.Bucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "key", params.Key, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3ObjectsRetrieveRequest constructs an http.Request for the MarketplaceResourceApiKeysS3ObjectsRetrieve method
+func NewMarketplaceResourceApiKeysS3ObjectsRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/objects/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "bucket", params.Bucket, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.ContinuationToken != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "continuation_token", *params.ContinuationToken, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Prefix != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "prefix", *params.Prefix, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysS3UploadRequestWithBody constructs an http.Request for the MarketplaceResourceApiKeysS3Upload method, with any body, and a specified content type
+func NewMarketplaceResourceApiKeysS3UploadRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/s3/upload/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -483005,6 +484677,128 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/rotate/ (the `MarketplaceResourceApiKeysRotate` operationId).
 	MarketplaceResourceApiKeysRotateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRotateResponse, error)
 
+	// MarketplaceResourceApiKeysS3BucketDetailsRetrieveWithResponse S3 browser: bucket details
+	//
+	// The bucket's size, ACL, policy, public access block, versioning, object lock, lifecycle rules, default encryption, CORS rules and tags, as the key reads them. Read-only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/bucket-details/ (the `MarketplaceResourceApiKeysS3BucketDetailsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3BucketDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysS3BucketsListWithResponse S3 browser: list buckets
+	//
+	// Buckets the key can list, with object count and bytes used where the gateway reports them. Mastermind signs the S3 call itself with the key's stored secret. Open to whoever may reveal the key, on offerings with enable_s3_browser.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/buckets/ (the `MarketplaceResourceApiKeysS3BucketsList` operationId).
+	MarketplaceResourceApiKeysS3BucketsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3BucketsListResponse, error)
+
+	// MarketplaceResourceApiKeysS3CreateBucketWithBodyWithResponse S3 browser: create a bucket
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+	MarketplaceResourceApiKeysS3CreateBucketWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3CreateBucketResponse, error)
+
+	// MarketplaceResourceApiKeysS3CreateBucketWithResponse S3 browser: create a bucket
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+	MarketplaceResourceApiKeysS3CreateBucketWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3CreateBucketResponse, error)
+
+	// MarketplaceResourceApiKeysS3DeleteBucketWithBodyWithResponse S3 browser: delete an empty bucket
+	//
+	// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+	MarketplaceResourceApiKeysS3DeleteBucketWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteBucketResponse, error)
+
+	// MarketplaceResourceApiKeysS3DeleteBucketWithResponse S3 browser: delete an empty bucket
+	//
+	// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+	MarketplaceResourceApiKeysS3DeleteBucketWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteBucketResponse, error)
+
+	// MarketplaceResourceApiKeysS3DeleteObjectsWithBodyWithResponse S3 browser: delete objects
+	//
+	// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+	MarketplaceResourceApiKeysS3DeleteObjectsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteObjectsResponse, error)
+
+	// MarketplaceResourceApiKeysS3DeleteObjectsWithResponse S3 browser: delete objects
+	//
+	// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+	MarketplaceResourceApiKeysS3DeleteObjectsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteObjectsResponse, error)
+
+	// MarketplaceResourceApiKeysS3DownloadUrlWithBodyWithResponse S3 browser: download link
+	//
+	// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+	MarketplaceResourceApiKeysS3DownloadUrlWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DownloadUrlResponse, error)
+
+	// MarketplaceResourceApiKeysS3DownloadUrlWithResponse S3 browser: download link
+	//
+	// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+	MarketplaceResourceApiKeysS3DownloadUrlWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DownloadUrlResponse, error)
+
+	// MarketplaceResourceApiKeysS3InfoRetrieveWithResponse S3 browser: connection details
+	//
+	// The endpoint, region and access key id an S3 client needs for this key, the largest file the browser uploads, and the resource's quotas. The secret is never returned here; reveal it separately.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/info/ (the `MarketplaceResourceApiKeysS3InfoRetrieve` operationId).
+	MarketplaceResourceApiKeysS3InfoRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3InfoRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysS3ObjectDetailsRetrieveWithResponse S3 browser: object details
+	//
+	// One object's content type, storage class, user metadata, encryption, object lock, ACL, tags and version count, as the key reads them. Read-only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/object-details/ (the `MarketplaceResourceApiKeysS3ObjectDetailsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3ObjectDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysS3ObjectsRetrieveWithResponse S3 browser: list objects
+	//
+	// One page of a bucket listing under a prefix, with common prefixes as folders. Follow next_continuation_token for the next page.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/objects/ (the `MarketplaceResourceApiKeysS3ObjectsRetrieve` operationId).
+	MarketplaceResourceApiKeysS3ObjectsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3ObjectsRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysS3UploadWithBodyWithResponse S3 browser: upload a small file
+	//
+	// Uploads one file through Waldur, up to S3_BROWSER_MAX_UPLOAD_SIZE_MB (see s3/info). A larger file is refused with 413: use an S3 client. An existing file of the same name is refused with 409 unless overwrite is set.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/upload/ (the `MarketplaceResourceApiKeysS3Upload` operationId).
+	MarketplaceResourceApiKeysS3UploadWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3UploadResponse, error)
+
 	// MarketplaceResourceApiKeysSetDeletedWithResponse Report an API key deleted
 	//
 	// Used by the site agent once the backend has revoked the key. The stored value is dropped; the row and its usage are kept.
@@ -553286,6 +555080,402 @@ func (r MarketplaceResourceApiKeysRotateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourceApiKeysRotateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3BucketDetails
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse) GetJSON200() *S3BucketDetails {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceResourceApiKeysS3BucketsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceResourceApiKeysS3BucketsList
+type MarketplaceResourceApiKeysS3BucketsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceResourceApiKeysS3BucketsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]S3Bucket
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceResourceApiKeysS3BucketsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3BucketsListResponse) GetJSON200() *[]S3Bucket {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3BucketsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3BucketsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3BucketsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3BucketsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3CreateBucketResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3CreateBucketResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3CreateBucketResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3CreateBucketResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3CreateBucketResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3DeleteBucketResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3DeleteBucketResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3DeleteBucketResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3DeleteBucketResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3DeleteBucketResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3DeleteObjectsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3DeleteObjectsResult
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3DeleteObjectsResponse) GetJSON200() *S3DeleteObjectsResult {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3DeleteObjectsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3DeleteObjectsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3DeleteObjectsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3DeleteObjectsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3DownloadUrlResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3DownloadUrl
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3DownloadUrlResponse) GetJSON200() *S3DownloadUrl {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3DownloadUrlResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3DownloadUrlResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3DownloadUrlResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3DownloadUrlResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3InfoRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3BrowserInfo
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3InfoRetrieveResponse) GetJSON200() *S3BrowserInfo {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3InfoRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3InfoRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3InfoRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3InfoRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3ObjectDetails
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse) GetJSON200() *S3ObjectDetails {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3ObjectsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *S3ObjectList
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysS3ObjectsRetrieveResponse) GetJSON200() *S3ObjectList {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3ObjectsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3ObjectsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3ObjectsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3ObjectsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysS3UploadResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysS3UploadResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysS3UploadResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysS3UploadResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysS3UploadResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -652619,6 +654809,212 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRotateWithResponse(ctx c
 	return ParseMarketplaceResourceApiKeysRotateResponse(rsp)
 }
 
+// MarketplaceResourceApiKeysS3BucketDetailsRetrieveWithResponse S3 browser: bucket details
+//
+// The bucket's size, ACL, policy, public access block, versioning, object lock, lifecycle rules, default encryption, CORS rules and tags, as the key reads them. Read-only.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/bucket-details/ (the `MarketplaceResourceApiKeysS3BucketDetailsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3BucketDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3BucketDetailsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3BucketsListWithResponse S3 browser: list buckets
+//
+// Buckets the key can list, with object count and bytes used where the gateway reports them. Mastermind signs the S3 call itself with the key's stored secret. Open to whoever may reveal the key, on offerings with enable_s3_browser.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/buckets/ (the `MarketplaceResourceApiKeysS3BucketsList` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3BucketsListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3BucketsListParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3BucketsListResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3BucketsList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3BucketsListResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3CreateBucketWithBodyWithResponse S3 browser: create a bucket
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3CreateBucketWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3CreateBucketResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3CreateBucketWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3CreateBucketResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3CreateBucketWithResponse S3 browser: create a bucket
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/create-bucket/ (the `MarketplaceResourceApiKeysS3CreateBucket` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3CreateBucketWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3CreateBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3CreateBucketResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3CreateBucket(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3CreateBucketResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DeleteBucketWithBodyWithResponse S3 browser: delete an empty bucket
+//
+// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DeleteBucketWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteBucketResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DeleteBucketWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DeleteBucketResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DeleteBucketWithResponse S3 browser: delete an empty bucket
+//
+// The gateway refuses a bucket that still holds objects (409 BucketNotEmpty).
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-bucket/ (the `MarketplaceResourceApiKeysS3DeleteBucket` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DeleteBucketWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteBucketJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteBucketResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DeleteBucket(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DeleteBucketResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DeleteObjectsWithBodyWithResponse S3 browser: delete objects
+//
+// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DeleteObjectsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteObjectsResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DeleteObjectsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DeleteObjectsResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DeleteObjectsWithResponse S3 browser: delete objects
+//
+// Deletes the named objects, or up to 10000 objects under a prefix per call; remaining says whether to call again. Current versions only: a versioned bucket keeps its history.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/delete-objects/ (the `MarketplaceResourceApiKeysS3DeleteObjects` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DeleteObjectsWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DeleteObjectsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DeleteObjectsResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DeleteObjects(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DeleteObjectsResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DownloadUrlWithBodyWithResponse S3 browser: download link
+//
+// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DownloadUrlWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DownloadUrlResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DownloadUrlWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DownloadUrlResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3DownloadUrlWithResponse S3 browser: download link
+//
+// A presigned URL, valid for five minutes, that downloads the object straight from the gateway as an attachment. Audit-logged.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/download-url/ (the `MarketplaceResourceApiKeysS3DownloadUrl` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3DownloadUrlWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourceApiKeysS3DownloadUrlJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3DownloadUrlResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3DownloadUrl(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3DownloadUrlResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3InfoRetrieveWithResponse S3 browser: connection details
+//
+// The endpoint, region and access key id an S3 client needs for this key, the largest file the browser uploads, and the resource's quotas. The secret is never returned here; reveal it separately.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/info/ (the `MarketplaceResourceApiKeysS3InfoRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3InfoRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3InfoRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3InfoRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3InfoRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3ObjectDetailsRetrieveWithResponse S3 browser: object details
+//
+// One object's content type, storage class, user metadata, encryption, object lock, ACL, tags and version count, as the key reads them. Read-only.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/object-details/ (the `MarketplaceResourceApiKeysS3ObjectDetailsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3ObjectDetailsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectDetailsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3ObjectDetailsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3ObjectsRetrieveWithResponse S3 browser: list objects
+//
+// One page of a bucket listing under a prefix, with common prefixes as folders. Follow next_continuation_token for the next page.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/s3/objects/ (the `MarketplaceResourceApiKeysS3ObjectsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3ObjectsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceResourceApiKeysS3ObjectsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3ObjectsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3ObjectsRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3ObjectsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysS3UploadWithBodyWithResponse S3 browser: upload a small file
+//
+// Uploads one file through Waldur, up to S3_BROWSER_MAX_UPLOAD_SIZE_MB (see s3/info). A larger file is refused with 413: use an S3 client. An existing file of the same name is refused with 409 unless overwrite is set.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/s3/upload/ (the `MarketplaceResourceApiKeysS3Upload` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysS3UploadWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysS3UploadResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysS3UploadWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysS3UploadResponse(rsp)
+}
+
 // MarketplaceResourceApiKeysSetDeletedWithResponse Report an API key deleted
 //
 // Used by the site agent once the backend has revoked the key. The stored value is dropped; the row and its usage are kept.
@@ -718738,6 +721134,249 @@ func ParseMarketplaceResourceApiKeysRotateResponse(rsp *http.Response) (*Marketp
 		}
 		response.JSON202 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse parses an HTTP response from a MarketplaceResourceApiKeysS3BucketDetailsRetrieveWithResponse call
+func ParseMarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3BucketDetailsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3BucketDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3BucketsListResponse parses an HTTP response from a MarketplaceResourceApiKeysS3BucketsListWithResponse call
+func ParseMarketplaceResourceApiKeysS3BucketsListResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3BucketsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3BucketsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []S3Bucket
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceResourceApiKeysS3BucketsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3CreateBucketResponse parses an HTTP response from a MarketplaceResourceApiKeysS3CreateBucketWithResponse call
+func ParseMarketplaceResourceApiKeysS3CreateBucketResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3CreateBucketResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3CreateBucketResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3DeleteBucketResponse parses an HTTP response from a MarketplaceResourceApiKeysS3DeleteBucketWithResponse call
+func ParseMarketplaceResourceApiKeysS3DeleteBucketResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3DeleteBucketResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3DeleteBucketResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3DeleteObjectsResponse parses an HTTP response from a MarketplaceResourceApiKeysS3DeleteObjectsWithResponse call
+func ParseMarketplaceResourceApiKeysS3DeleteObjectsResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3DeleteObjectsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3DeleteObjectsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3DeleteObjectsResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3DownloadUrlResponse parses an HTTP response from a MarketplaceResourceApiKeysS3DownloadUrlWithResponse call
+func ParseMarketplaceResourceApiKeysS3DownloadUrlResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3DownloadUrlResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3DownloadUrlResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3DownloadUrl
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3InfoRetrieveResponse parses an HTTP response from a MarketplaceResourceApiKeysS3InfoRetrieveWithResponse call
+func ParseMarketplaceResourceApiKeysS3InfoRetrieveResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3InfoRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3InfoRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3BrowserInfo
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse parses an HTTP response from a MarketplaceResourceApiKeysS3ObjectDetailsRetrieveWithResponse call
+func ParseMarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3ObjectDetailsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3ObjectDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3ObjectsRetrieveResponse parses an HTTP response from a MarketplaceResourceApiKeysS3ObjectsRetrieveWithResponse call
+func ParseMarketplaceResourceApiKeysS3ObjectsRetrieveResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3ObjectsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3ObjectsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest S3ObjectList
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysS3UploadResponse parses an HTTP response from a MarketplaceResourceApiKeysS3UploadWithResponse call
+func ParseMarketplaceResourceApiKeysS3UploadResponse(rsp *http.Response) (*MarketplaceResourceApiKeysS3UploadResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysS3UploadResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
