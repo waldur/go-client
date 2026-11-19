@@ -45952,7 +45952,7 @@ type MetricBreakdownItem struct {
 	ResourceName *string             `json:"resource_name"`
 	ResourceUuid *openapi_types.UUID `json:"resource_uuid"`
 
-	// Value The attribute's value, or the resource's name when broken down by resource.
+	// Value The attribute's value; a map of each attribute to its value when broken down by several; or the resource's name when broken down by resource.
 	Value *map[string]interface{} `json:"value"`
 }
 
@@ -78147,7 +78147,7 @@ type MarketplaceIntegrationStatusesCountParams struct {
 type MarketplaceMetricBreakdownListParams struct {
 	End *time.Time `form:"end,omitempty" json:"end,omitempty"`
 
-	// GroupBy An attribute the metric declares, or 'resource' to break a project's figure down by its resources.
+	// GroupBy An attribute the metric declares, several of them comma-separated to break the figure down by their combinations, or 'resource' to break a project's figure down by its resources.
 	GroupBy            string             `form:"group_by" json:"group_by"`
 	OfferingMetricUuid openapi_types.UUID `form:"offering_metric_uuid" json:"offering_metric_uuid"`
 
@@ -132146,7 +132146,7 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-integration-statuses/{uuid}/ (the `MarketplaceIntegrationStatusesRetrieve` operationId).
 	MarketplaceIntegrationStatusesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceMetricBreakdownList Break a metric figure down by an attribute or by resource
+	// MarketplaceMetricBreakdownList Break a metric figure down by attributes or by resource
 	//
 	// Corresponds with GET /api/marketplace-metric-breakdown/ (the `MarketplaceMetricBreakdownList` operationId).
 	MarketplaceMetricBreakdownList(ctx context.Context, params *MarketplaceMetricBreakdownListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -136462,12 +136462,21 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/retry/ (the `MarketplaceResourceApiKeysRetry` operationId).
 	MarketplaceResourceApiKeysRetry(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
+	// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key (deprecated: use POST)
 	//
-	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator. Deprecated: reveal with POST; GET will be removed.
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
+	//
+	// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysReveal Reveal an API key
+	//
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator.
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysReveal` operationId).
+	MarketplaceResourceApiKeysReveal(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceApiKeysRotate Rotate an API key
 	//
@@ -169241,7 +169250,7 @@ func (c *Client) MarketplaceIntegrationStatusesRetrieve(ctx context.Context, uui
 	return c.Client.Do(req)
 }
 
-// MarketplaceMetricBreakdownList Break a metric figure down by an attribute or by resource
+// MarketplaceMetricBreakdownList Break a metric figure down by attributes or by resource
 //
 // Corresponds with GET /api/marketplace-metric-breakdown/ (the `MarketplaceMetricBreakdownList` operationId).
 func (c *Client) MarketplaceMetricBreakdownList(ctx context.Context, params *MarketplaceMetricBreakdownListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -179853,13 +179862,31 @@ func (c *Client) MarketplaceResourceApiKeysRetry(ctx context.Context, uuid opena
 	return c.Client.Do(req)
 }
 
-// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key
+// MarketplaceResourceApiKeysRevealRetrieve Reveal an API key (deprecated: use POST)
 //
-// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator. Deprecated: reveal with POST; GET will be removed.
 //
 // Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
+// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 func (c *Client) MarketplaceResourceApiKeysRevealRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourceApiKeysRevealRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysReveal Reveal an API key
+//
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator.
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysReveal` operationId).
+func (c *Client) MarketplaceResourceApiKeysReveal(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysRevealRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -322173,6 +322200,40 @@ func NewMarketplaceResourceApiKeysRevealRetrieveRequest(server string, uuid open
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysRevealRequest constructs an http.Request for the MarketplaceResourceApiKeysReveal method
+func NewMarketplaceResourceApiKeysRevealRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/%s/reveal/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -481403,7 +481464,7 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-integration-statuses/{uuid}/ (the `MarketplaceIntegrationStatusesRetrieve` operationId).
 	MarketplaceIntegrationStatusesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceIntegrationStatusesRetrieveResponse, error)
 
-	// MarketplaceMetricBreakdownListWithResponse Break a metric figure down by an attribute or by resource
+	// MarketplaceMetricBreakdownListWithResponse Break a metric figure down by attributes or by resource
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -486377,14 +486438,25 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/retry/ (the `MarketplaceResourceApiKeysRetry` operationId).
 	MarketplaceResourceApiKeysRetryWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRetryResponse, error)
 
-	// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
+	// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key (deprecated: use POST)
 	//
-	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator. Deprecated: reveal with POST; GET will be removed.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
 	// Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
+	//
+	// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	MarketplaceResourceApiKeysRevealRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRevealRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysRevealWithResponse Reveal an API key
+	//
+	// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysReveal` operationId).
+	MarketplaceResourceApiKeysRevealWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRevealResponse, error)
 
 	// MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
 	//
@@ -556779,6 +556851,47 @@ func (r MarketplaceResourceApiKeysRevealRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourceApiKeysRevealRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysRevealResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceApiKey
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysRevealResponse) GetJSON200() *ResourceApiKey {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysRevealResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysRevealResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysRevealResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysRevealResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -647898,7 +648011,7 @@ func (c *ClientWithResponses) MarketplaceIntegrationStatusesRetrieveWithResponse
 	return ParseMarketplaceIntegrationStatusesRetrieveResponse(rsp)
 }
 
-// MarketplaceMetricBreakdownListWithResponse Break a metric figure down by an attribute or by resource
+// MarketplaceMetricBreakdownListWithResponse Break a metric figure down by attributes or by resource
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -656642,19 +656755,36 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysRetryWithResponse(ctx co
 	return ParseMarketplaceResourceApiKeysRetryResponse(rsp)
 }
 
-// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key
+// MarketplaceResourceApiKeysRevealRetrieveWithResponse Reveal an API key (deprecated: use POST)
 //
-// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. Refused with 403 to a personal access token, whatever its scopes. Audit-logged; under impersonation the event names the impersonator.
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator. Deprecated: reveal with POST; GET will be removed.
 //
 // Returns a wrapper object for the known response body format(s).
 //
 // Corresponds with GET /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysRevealRetrieve` operationId).
+//
+// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 func (c *ClientWithResponses) MarketplaceResourceApiKeysRevealRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRevealRetrieveResponse, error) {
 	rsp, err := c.MarketplaceResourceApiKeysRevealRetrieve(ctx, uuid, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseMarketplaceResourceApiKeysRevealRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysRevealWithResponse Reveal an API key
+//
+// Returns the decrypted key value. A key with an assignee is revealed only to the assignee. Any other key is revealed to whoever holds RESOURCE.REVEAL_API_KEY on the resource's project or organization. Staff and support are no exception: staff reveal a key by impersonating a user who may. A personal access token reveals a key only when it carries RESOURCE.REVEAL_API_KEY and is unbound or bound to the key's resource, project or organization; otherwise it is refused with 403. Audit-logged; under impersonation the event names the impersonator.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resource-api-keys/{uuid}/reveal/ (the `MarketplaceResourceApiKeysReveal` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysRevealWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysRevealResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysReveal(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysRevealResponse(rsp)
 }
 
 // MarketplaceResourceApiKeysRotateWithResponse Rotate an API key
@@ -722999,6 +723129,32 @@ func ParseMarketplaceResourceApiKeysRevealRetrieveResponse(rsp *http.Response) (
 	}
 
 	response := &MarketplaceResourceApiKeysRevealRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceApiKey
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysRevealResponse parses an HTTP response from a MarketplaceResourceApiKeysRevealWithResponse call
+func ParseMarketplaceResourceApiKeysRevealResponse(rsp *http.Response) (*MarketplaceResourceApiKeysRevealResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysRevealResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
