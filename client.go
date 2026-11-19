@@ -886,6 +886,33 @@ func (e AssignmentBatchStatus) Valid() bool {
 	}
 }
 
+// Defines values for AssignmentImportRowStatusEnum.
+const (
+	AssignmentImportRowStatusEnumCoiBlocked AssignmentImportRowStatusEnum = "coi_blocked"
+	AssignmentImportRowStatusEnumCreated    AssignmentImportRowStatusEnum = "created"
+	AssignmentImportRowStatusEnumError      AssignmentImportRowStatusEnum = "error"
+	AssignmentImportRowStatusEnumReady      AssignmentImportRowStatusEnum = "ready"
+	AssignmentImportRowStatusEnumSkipped    AssignmentImportRowStatusEnum = "skipped"
+)
+
+// Valid indicates whether the value is a known member of the AssignmentImportRowStatusEnum enum.
+func (e AssignmentImportRowStatusEnum) Valid() bool {
+	switch e {
+	case AssignmentImportRowStatusEnumCoiBlocked:
+		return true
+	case AssignmentImportRowStatusEnumCreated:
+		return true
+	case AssignmentImportRowStatusEnumError:
+		return true
+	case AssignmentImportRowStatusEnumReady:
+		return true
+	case AssignmentImportRowStatusEnumSkipped:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AssignmentItemOEnum.
 const (
 	AssignmentItemOEnumAffinityScore      AssignmentItemOEnum = "affinity_score"
@@ -19833,6 +19860,7 @@ const (
 	ProtectedCallFieldEnumPanelViceChair                      ProtectedCallFieldEnum = "panel_vice_chair"
 	ProtectedCallFieldEnumPanelViceChairName                  ProtectedCallFieldEnum = "panel_vice_chair_name"
 	ProtectedCallFieldEnumPanelViceChairUuid                  ProtectedCallFieldEnum = "panel_vice_chair_uuid"
+	ProtectedCallFieldEnumProjectDescriptionTemplate          ProtectedCallFieldEnum = "project_description_template"
 	ProtectedCallFieldEnumProjectNameTemplate                 ProtectedCallFieldEnum = "project_name_template"
 	ProtectedCallFieldEnumProposalFieldConfig                 ProtectedCallFieldEnum = "proposal_field_config"
 	ProtectedCallFieldEnumProposalFieldMetadata               ProtectedCallFieldEnum = "proposal_field_metadata"
@@ -19944,6 +19972,8 @@ func (e ProtectedCallFieldEnum) Valid() bool {
 	case ProtectedCallFieldEnumPanelViceChairName:
 		return true
 	case ProtectedCallFieldEnumPanelViceChairUuid:
+		return true
+	case ProtectedCallFieldEnumProjectDescriptionTemplate:
 		return true
 	case ProtectedCallFieldEnumProjectNameTemplate:
 		return true
@@ -22033,6 +22063,30 @@ func (e RegistrationSourceEnum) Valid() bool {
 	case RegistrationSourceEnumDcr:
 		return true
 	case RegistrationSourceEnumManual:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RejectionCauseEnum.
+const (
+	RejectionCauseEnumDeclined        RejectionCauseEnum = "declined"
+	RejectionCauseEnumExpired         RejectionCauseEnum = "expired"
+	RejectionCauseEnumProposalDecided RejectionCauseEnum = "proposal_decided"
+	RejectionCauseEnumWithdrawn       RejectionCauseEnum = "withdrawn"
+)
+
+// Valid indicates whether the value is a known member of the RejectionCauseEnum enum.
+func (e RejectionCauseEnum) Valid() bool {
+	switch e {
+	case RejectionCauseEnumDeclined:
+		return true
+	case RejectionCauseEnumExpired:
+		return true
+	case RejectionCauseEnumProposalDecided:
+		return true
+	case RejectionCauseEnumWithdrawn:
 		return true
 	default:
 		return false
@@ -30468,6 +30522,60 @@ type AssignmentBatchRequest struct {
 // AssignmentBatchStatus defines model for AssignmentBatchStatus.
 type AssignmentBatchStatus string
 
+// AssignmentImportRequest defines model for AssignmentImportRequest.
+type AssignmentImportRequest struct {
+	// DryRun Report what each row would do and change nothing
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// File CSV with a header row: reviewer_email, and proposal_slug or proposal_uuid. UTF-8, at most 1 MB.
+	File openapi_types.File `json:"file"`
+
+	// ManagerNotes Optional notes stored on the draft batches
+	ManagerNotes *string `json:"manager_notes,omitempty"`
+
+	// OverrideWorkloadLimit Assign even if this takes reviewers above their maximum number of open assignments. The override is logged.
+	OverrideWorkloadLimit *bool `json:"override_workload_limit,omitempty"`
+
+	// Round Round of this call whose proposals the file assigns
+	Round openapi_types.UUID `json:"round"`
+}
+
+// AssignmentImportResponse defines model for AssignmentImportResponse.
+type AssignmentImportResponse struct {
+	// BatchUuids Draft batches created or extended; empty for a dry run
+	BatchUuids []openapi_types.UUID   `json:"batch_uuids"`
+	DryRun     bool                   `json:"dry_run"`
+	Rows       []AssignmentImportRow  `json:"rows"`
+	Totals     AssignmentImportTotals `json:"totals"`
+}
+
+// AssignmentImportRow defines model for AssignmentImportRow.
+type AssignmentImportRow struct {
+	ProposalName string `json:"proposal_name"`
+	ProposalSlug string `json:"proposal_slug"`
+
+	// ProposalUuid The proposal the row names, when found
+	ProposalUuid  *openapi_types.UUID `json:"proposal_uuid"`
+	Reason        string              `json:"reason"`
+	ReviewerEmail string              `json:"reviewer_email"`
+
+	// Row Line of the file, the header is 1
+	Row    int                           `json:"row"`
+	Status AssignmentImportRowStatusEnum `json:"status"`
+}
+
+// AssignmentImportRowStatusEnum defines model for AssignmentImportRowStatusEnum.
+type AssignmentImportRowStatusEnum string
+
+// AssignmentImportTotals defines model for AssignmentImportTotals.
+type AssignmentImportTotals struct {
+	CoiBlocked int `json:"coi_blocked"`
+	Created    int `json:"created"`
+	Error      int `json:"error"`
+	Ready      int `json:"ready"`
+	Skipped    int `json:"skipped"`
+}
+
 // AssignmentItem defines model for AssignmentItem.
 type AssignmentItem struct {
 	// AffinityScore Affinity score used for assignment (0-1).
@@ -32552,6 +32660,9 @@ type CallProposalFieldConfig struct {
 	FieldProjectSummary          *ProposalFieldStateEnum `json:"field_project_summary,omitempty"`
 	FieldScienceSubDomain        *ProposalFieldStateEnum `json:"field_science_sub_domain,omitempty"`
 	FieldSupportingDocumentation *ProposalFieldStateEnum `json:"field_supporting_documentation,omitempty"`
+
+	// MinimumSupportingDocuments How many supporting documents a proposal needs before it can be submitted, while supporting documentation is required. Ignored when it is optional or hidden.
+	MinimumSupportingDocuments *int `json:"minimum_supporting_documents,omitempty"`
 }
 
 // CallProposalFieldConfigRequest defines model for CallProposalFieldConfigRequest.
@@ -32560,6 +32671,9 @@ type CallProposalFieldConfigRequest struct {
 	FieldProjectSummary          *ProposalFieldStateEnum `json:"field_project_summary,omitempty"`
 	FieldScienceSubDomain        *ProposalFieldStateEnum `json:"field_science_sub_domain,omitempty"`
 	FieldSupportingDocumentation *ProposalFieldStateEnum `json:"field_supporting_documentation,omitempty"`
+
+	// MinimumSupportingDocuments How many supporting documents a proposal needs before it can be submitted, while supporting documentation is required. Ignored when it is optional or hidden.
+	MinimumSupportingDocuments *int `json:"minimum_supporting_documents,omitempty"`
 }
 
 // CallProposalRole defines model for CallProposalRole.
@@ -55057,6 +55171,9 @@ type PatchedProtectedCallRequest struct {
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
 
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
+
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -55152,6 +55269,9 @@ type PatchedProtectedCallRequestForm struct {
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
 
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
+
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -55246,6 +55366,9 @@ type PatchedProtectedCallRequestMultipart struct {
 	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
 
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
@@ -58618,6 +58741,9 @@ type ProposalReview struct {
 	ProposalSlug   *string             `json:"proposal_slug,omitempty"`
 	ProposalUuid   *openapi_types.UUID `json:"proposal_uuid,omitempty"`
 
+	// RejectionCause Why a rejected review was closed: declined by the reviewer, expired at its deadline, withdrawn when the reviewer joined the proposal team, or closed when the proposal was decided. Empty on reviews not rejected, and on those rejected before this was recorded.
+	RejectionCause *ProposalReview_RejectionCause `json:"rejection_cause,omitempty"`
+
 	// ReviewEndDate When the review is due, or None when nothing sets a deadline.
 	//
 	// The deadline of the step the review contributes to. A review whose
@@ -58651,6 +58777,11 @@ type ProposalReview struct {
 	SummaryScore *int                `json:"summary_score,omitempty"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ProposalReview_RejectionCause Why a rejected review was closed: declined by the reviewer, expired at its deadline, withdrawn when the reviewer joined the proposal team, or closed when the proposal was decided. Empty on reviews not rejected, and on those rejected before this was recorded.
+type ProposalReview_RejectionCause struct {
+	union json.RawMessage
 }
 
 // ProposalReviewOEnum defines model for ProposalReviewOEnum.
@@ -59107,6 +59238,9 @@ type ProtectedCall struct {
 	PanelViceChairName  *string             `json:"panel_vice_chair_name,omitempty"`
 	PanelViceChairUuid  *openapi_types.UUID `json:"panel_vice_chair_uuid,omitempty"`
 
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
+
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                  `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfig `json:"proposal_field_config,omitempty"`
@@ -59226,6 +59360,9 @@ type ProtectedCallRequest struct {
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
 
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
+
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -59322,6 +59459,9 @@ type ProtectedCallRequestForm struct {
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
 
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
+
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
 	ProposalFieldConfig *CallProposalFieldConfigRequest `json:"proposal_field_config,omitempty"`
@@ -59417,6 +59557,9 @@ type ProtectedCallRequestMultipart struct {
 	OrderAuthorUser *openapi_types.UUID `json:"order_author_user,omitempty"`
 	PanelChair      *openapi_types.UUID `json:"panel_chair,omitempty"`
 	PanelViceChair  *openapi_types.UUID `json:"panel_vice_chair,omitempty"`
+
+	// ProjectDescriptionTemplate Description given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}, {proposal_summary}, {proposal_description}. Empty means no description. The project description is not as private as the proposal: project members, organization owners and the service providers of the project's resources see it, and it is shared with external portals the project is connected to. {proposal_description} copies the full proposal text there; use {proposal_summary} unless that is intended.
+	ProjectDescriptionTemplate *string `json:"project_description_template,omitempty"`
 
 	// ProjectNameTemplate Name given to the project an accepted proposal creates. Placeholders: {proposal_name}, {proposal_slug}, {call_prefix}, {call_slug}, {call_name}, {round_start}, {round_slug}, {org_slug}, {year}. Empty means {call_prefix} - {round_start} - {proposal_name}.
 	ProjectNameTemplate *string                         `json:"project_name_template,omitempty"`
@@ -62356,6 +62499,9 @@ type RejectedPoint struct {
 	Reason string `json:"reason"`
 }
 
+// RejectionCauseEnum defines model for RejectionCauseEnum.
+type RejectionCauseEnum string
+
 // RelationshipTypeEnum defines model for RelationshipTypeEnum.
 type RelationshipTypeEnum string
 
@@ -62617,8 +62763,36 @@ type RemoteProjectAuditEntry struct {
 // RemoteProjectAuditEntryEventTypeEnum defines model for RemoteProjectAuditEntryEventTypeEnum.
 type RemoteProjectAuditEntryEventTypeEnum string
 
+// RemoteProjectReportWindow defines model for RemoteProjectReportWindow.
+type RemoteProjectReportWindow struct {
+	// End Inclusive. Null while still attached.
+	End *openapi_types.Date `json:"end"`
+
+	// ProjectName Null if the project was deleted or the caller cannot see it.
+	ProjectName *string `json:"project_name"`
+
+	// ProjectUuid Null if the project was deleted or the caller cannot see it.
+	ProjectUuid *openapi_types.UUID `json:"project_uuid"`
+
+	// Start Null if when the award arrived was not recorded.
+	Start *openapi_types.Date `json:"start"`
+}
+
 // RemoteProjectStateEnum defines model for RemoteProjectStateEnum.
 type RemoteProjectStateEnum string
+
+// RemoteProjectStorageReport defines model for RemoteProjectStorageReport.
+type RemoteProjectStorageReport struct {
+	End openapi_types.Date `json:"end"`
+
+	// Latest When the latest snapshot in range was taken. Null if none was.
+	Latest *time.Time `json:"latest"`
+
+	// Report The combined OpenPortal ProjectStorageReport. Its top level is the latest snapshot in range; daily_reports holds the others. Null if the award has no identifier and no attachment to report under.
+	Report  *ProjectStorageReport       `json:"report"`
+	Start   *openapi_types.Date         `json:"start"`
+	Windows []RemoteProjectReportWindow `json:"windows"`
+}
 
 // RemoteProjectUpdateRequest defines model for RemoteProjectUpdateRequest.
 type RemoteProjectUpdateRequest struct {
@@ -62654,6 +62828,17 @@ type RemoteProjectUpdateRequest struct {
 
 // RemoteProjectUpdateRequestStateEnum defines model for RemoteProjectUpdateRequestStateEnum.
 type RemoteProjectUpdateRequestStateEnum string
+
+// RemoteProjectUsageReport defines model for RemoteProjectUsageReport.
+type RemoteProjectUsageReport struct {
+	End openapi_types.Date `json:"end"`
+
+	// Report The combined OpenPortal ProjectUsageReport. Null if the award has no identifier and no attachment to report under.
+	Report     *ProjectUsageReport         `json:"report"`
+	Start      *openapi_types.Date         `json:"start"`
+	TotalHours float64                     `json:"total_hours"`
+	Windows    []RemoteProjectReportWindow `json:"windows"`
+}
 
 // RemoteResourceOrder defines model for RemoteResourceOrder.
 type RemoteResourceOrder struct {
@@ -64481,7 +64666,10 @@ type ReviewerReportRow struct {
 	// ReviewerUuid Empty for a reviewer invited by email who has no account yet: the row is their address's invitations.
 	ReviewerUuid    *openapi_types.UUID `json:"reviewer_uuid"`
 	ReviewsAssigned int                 `json:"reviews_assigned"`
-	ReviewsDeclined int                 `json:"reviews_declined"`
+
+	// ReviewsClosedOnDecision Closed unsubmitted when the proposal was accepted, rejected or canceled.
+	ReviewsClosedOnDecision int `json:"reviews_closed_on_decision"`
+	ReviewsDeclined         int `json:"reviews_declined"`
 
 	// ReviewsExpired Closed at their deadline without being submitted.
 	ReviewsExpired int `json:"reviews_expired"`
@@ -64523,7 +64711,10 @@ type ReviewerReportTotals struct {
 	InvitationsWithdrawn int `json:"invitations_withdrawn"`
 	Reviewers            int `json:"reviewers"`
 	ReviewsAssigned      int `json:"reviews_assigned"`
-	ReviewsDeclined      int `json:"reviews_declined"`
+
+	// ReviewsClosedOnDecision Closed unsubmitted when the proposal was accepted, rejected or canceled.
+	ReviewsClosedOnDecision int `json:"reviews_closed_on_decision"`
+	ReviewsDeclined         int `json:"reviews_declined"`
 
 	// ReviewsExpired Closed at their deadline without being submitted.
 	ReviewsExpired int `json:"reviews_expired"`
@@ -85479,99 +85670,9 @@ type MarketplaceServiceProvidersCourseAccountsCountParams struct {
 
 // MarketplaceServiceProvidersCustomerProjectsListParams defines parameters for MarketplaceServiceProvidersCustomerProjectsList.
 type MarketplaceServiceProvidersCustomerProjectsListParams struct {
-	// AffiliationName Affiliation name
-	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
 
-	// AffiliationUuid Affiliation UUID
-	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
-	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-
-	// CanAdmin Return a list of projects where current user is admin.
-	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
-
-	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-
-	// ConcealFinishedProjects Conceal finished projects
-	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
-
-	// Created Created after
-	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
-
-	// CreatedBefore Created before
-	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
-
-	// CurrentUserHasRole Multiple values may be separated by commas.
-	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
-
-	// Customer Multiple values may be separated by commas.
-	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-
-	// CustomerAbbreviation Customer abbreviation
-	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-
-	// CustomerName Customer name
-	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-
-	// CustomerNativeName Customer native name
-	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-
-	// Description Description
-	Description *string                                        `form:"description,omitempty" json:"description,omitempty"`
-	Field       *[]MarketplaceProviderCustomerProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// HasAffiliation Filter projects that have an affiliation.
-	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
-
-	// IsRemoved Is removed
-	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
-
-	// Modified Modified after
-	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-
-	// ModifiedBefore Modified before
-	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
-
-	// Name Name
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
-
-	// NameExact Name (exact)
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-
-	// O Ordering
-	//
-	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-
-	// ProjectCustomerUuid UUID of the customer to filter projects by.
-	ProjectCustomerUuid openapi_types.UUID `form:"project_customer_uuid" json:"project_customer_uuid"`
-
-	// Query Filter by name, slug, UUID, backend ID or resource effective ID
-	Query *string `form:"query,omitempty" json:"query,omitempty"`
-
-	// ScienceDomainUuid Science domain UUID
-	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
-
-	// ScienceSubDomainUuid Science sub-domain UUID
-	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
-
-	// Slug Slug
-	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
-
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
-	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
-
-	// UserUuidWithActiveRole Filter projects where the given user has a role.
-	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
-}
-
-// MarketplaceServiceProvidersCustomerProjectsCountParams defines parameters for MarketplaceServiceProvidersCustomerProjectsCount.
-type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
@@ -85612,8 +85713,21 @@ type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool                                          `form:"ended,omitempty" json:"ended,omitempty"`
+	Field *[]MarketplaceProviderCustomerProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -85654,6 +85768,131 @@ type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// MarketplaceServiceProvidersCustomerProjectsCountParams defines parameters for MarketplaceServiceProvidersCustomerProjectsCount.
+type MarketplaceServiceProvidersCustomerProjectsCountParams struct {
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// ProjectCustomerUuid UUID of the customer to filter projects by.
+	ProjectCustomerUuid openapi_types.UUID `form:"project_customer_uuid" json:"project_customer_uuid"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
 
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
@@ -86695,96 +86934,9 @@ type MarketplaceServiceProvidersProjectServiceAccountsCountParams struct {
 
 // MarketplaceServiceProvidersProjectsListParams defines parameters for MarketplaceServiceProvidersProjectsList.
 type MarketplaceServiceProvidersProjectsListParams struct {
-	// AffiliationName Affiliation name
-	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
 
-	// AffiliationUuid Affiliation UUID
-	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
-	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-
-	// CanAdmin Return a list of projects where current user is admin.
-	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
-
-	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-
-	// ConcealFinishedProjects Conceal finished projects
-	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
-
-	// Created Created after
-	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
-
-	// CreatedBefore Created before
-	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
-
-	// CurrentUserHasRole Multiple values may be separated by commas.
-	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
-
-	// Customer Multiple values may be separated by commas.
-	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-
-	// CustomerAbbreviation Customer abbreviation
-	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-
-	// CustomerName Customer name
-	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-
-	// CustomerNativeName Customer native name
-	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-
-	// Description Description
-	Description *string             `form:"description,omitempty" json:"description,omitempty"`
-	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// HasAffiliation Filter projects that have an affiliation.
-	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
-
-	// IsRemoved Is removed
-	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
-
-	// Modified Modified after
-	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-
-	// ModifiedBefore Modified before
-	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
-
-	// Name Name
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
-
-	// NameExact Name (exact)
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-
-	// O Ordering
-	//
-	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-
-	// Query Filter by name, slug, UUID, backend ID or resource effective ID
-	Query *string `form:"query,omitempty" json:"query,omitempty"`
-
-	// ScienceDomainUuid Science domain UUID
-	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
-
-	// ScienceSubDomainUuid Science sub-domain UUID
-	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
-
-	// Slug Slug
-	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
-
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
-	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
-
-	// UserUuidWithActiveRole Filter projects where the given user has a role.
-	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
-}
-
-// MarketplaceServiceProvidersProjectsCountParams defines parameters for MarketplaceServiceProvidersProjectsCount.
-type MarketplaceServiceProvidersProjectsCountParams struct {
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
@@ -86825,8 +86977,21 @@ type MarketplaceServiceProvidersProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool               `form:"ended,omitempty" json:"ended,omitempty"`
+	Field *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -86864,6 +87029,128 @@ type MarketplaceServiceProvidersProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// MarketplaceServiceProvidersProjectsCountParams defines parameters for MarketplaceServiceProvidersProjectsCount.
+type MarketplaceServiceProvidersProjectsCountParams struct {
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
 
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
@@ -90242,109 +90529,31 @@ type OpenportalRemoteProjectsCountParams struct {
 	State       *[]RemoteProjectStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// OpenportalRemoteProjectsStorageReportRetrieveParams defines parameters for OpenportalRemoteProjectsStorageReportRetrieve.
+type OpenportalRemoteProjectsStorageReportRetrieveParams struct {
+	// End Last day to include. Defaults to today. A start after the end gives an empty report.
+	End *openapi_types.Date `form:"end,omitempty" json:"end,omitempty"`
+
+	// Start First day to include. Defaults to when the award was first attached.
+	Start *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
+}
+
+// OpenportalRemoteProjectsUsageReportRetrieveParams defines parameters for OpenportalRemoteProjectsUsageReportRetrieve.
+type OpenportalRemoteProjectsUsageReportRetrieveParams struct {
+	// End Last day to include. Defaults to today. A start after the end gives an empty report.
+	End *openapi_types.Date `form:"end,omitempty" json:"end,omitempty"`
+
+	// Start First day to include. Defaults to when the award was first attached.
+	Start *openapi_types.Date `form:"start,omitempty" json:"start,omitempty"`
+}
+
 // OpenportalUnmanagedProjectsListParams defines parameters for OpenportalUnmanagedProjectsList.
 type OpenportalUnmanagedProjectsListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliationName Affiliation name
-	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
-
-	// AffiliationUuid Affiliation UUID
-	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
-	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-
-	// CanAdmin Return a list of projects where current user is admin.
-	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
-
-	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-
-	// ConcealFinishedProjects Conceal finished projects
-	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
-
-	// Created Created after
-	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
-
-	// CreatedBefore Created before
-	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
-
-	// CurrentUserHasRole Multiple values may be separated by commas.
-	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
-
-	// Customer Multiple values may be separated by commas.
-	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-
-	// CustomerAbbreviation Customer abbreviation
-	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-
-	// CustomerName Customer name
-	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-
-	// CustomerNativeName Customer native name
-	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-
-	// Description Description
-	Description *string             `form:"description,omitempty" json:"description,omitempty"`
-	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// HasAffiliation Filter projects that have an affiliation.
-	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
-
-	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
-	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-
-	// IsRemoved Is removed
-	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
-
-	// Modified Modified after
-	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-
-	// ModifiedBefore Modified before
-	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
-
-	// Name Name
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
-
-	// NameExact Name (exact)
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-
-	// O Ordering
-	//
-	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-
-	// Query Filter by name, slug, UUID, backend ID or resource effective ID
-	Query *string `form:"query,omitempty" json:"query,omitempty"`
-
-	// ScienceDomainUuid Science domain UUID
-	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
-
-	// ScienceSubDomainUuid Science sub-domain UUID
-	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
-
-	// Slug Slug
-	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
-
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
-	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
-
-	// UserUuid Filter by user UUID.
-	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// UserUuidWithActiveRole Filter projects where the given user has a role.
-	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
-}
-
-// OpenportalUnmanagedProjectsCountParams defines parameters for OpenportalUnmanagedProjectsCount.
-type OpenportalUnmanagedProjectsCountParams struct {
-	// AccountingIsRunning Filter by whether accounting is running.
-	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
 
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
@@ -90386,8 +90595,21 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool               `form:"ended,omitempty" json:"ended,omitempty"`
+	Field *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -90429,6 +90651,137 @@ type OpenportalUnmanagedProjectsCountParams struct {
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
 
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// OpenportalUnmanagedProjectsCountParams defines parameters for OpenportalUnmanagedProjectsCount.
+type OpenportalUnmanagedProjectsCountParams struct {
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
+
+	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
+
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
 
@@ -90466,6 +90819,9 @@ type OpenportalUnmanagedProjectsChecklistRetrieveParams struct {
 type OpenportalUnmanagedProjectsHistoryListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
 
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
@@ -90510,8 +90866,20 @@ type OpenportalUnmanagedProjectsHistoryListParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -90549,6 +90917,15 @@ type OpenportalUnmanagedProjectsHistoryListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
 
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
@@ -94160,104 +94537,8 @@ type ProjectsListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
-	// AffiliationName Affiliation name
-	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
-
-	// AffiliationUuid Affiliation UUID
-	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
-	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
-
-	// CanAdmin Return a list of projects where current user is admin.
-	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
-
-	// CanManage Return a list of projects where current user is manager or a customer owner.
-	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
-
-	// ConcealFinishedProjects Conceal finished projects
-	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
-
-	// Created Created after
-	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
-
-	// CreatedBefore Created before
-	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
-
-	// CurrentUserHasRole Multiple values may be separated by commas.
-	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
-
-	// Customer Multiple values may be separated by commas.
-	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
-
-	// CustomerAbbreviation Customer abbreviation
-	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
-
-	// CustomerName Customer name
-	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
-
-	// CustomerNativeName Customer native name
-	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
-
-	// Description Description
-	Description *string             `form:"description,omitempty" json:"description,omitempty"`
-	Field       *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
-
-	// HasAffiliation Filter projects that have an affiliation.
-	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
-
-	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
-	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
-
-	// IsRemoved Is removed
-	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
-
-	// Modified Modified after
-	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
-
-	// ModifiedBefore Modified before
-	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
-
-	// Name Name
-	Name *string `form:"name,omitempty" json:"name,omitempty"`
-
-	// NameExact Name (exact)
-	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
-
-	// O Ordering
-	//
-	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
-
-	// Page A page number within the paginated result set.
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PageSize Number of results to return per page.
-	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
-
-	// Query Filter by name, slug, UUID, backend ID or resource effective ID
-	Query *string `form:"query,omitempty" json:"query,omitempty"`
-
-	// ScienceDomainUuid Science domain UUID
-	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
-
-	// ScienceSubDomainUuid Science sub-domain UUID
-	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
-
-	// Slug Slug
-	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
-
-	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
-	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
-
-	// UserUuid Filter by user UUID.
-	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
-
-	// UserUuidWithActiveRole Filter projects where the given user has a role.
-	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
-}
-
-// ProjectsCountParams defines parameters for ProjectsCount.
-type ProjectsCountParams struct {
-	// AccountingIsRunning Filter by whether accounting is running.
-	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
 
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
@@ -94299,8 +94580,21 @@ type ProjectsCountParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool               `form:"ended,omitempty" json:"ended,omitempty"`
+	Field *[]ProjectFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
 	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
@@ -94341,6 +94635,137 @@ type ProjectsCountParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
+
+	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
+	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
+
+	// UserUuid Filter by user UUID.
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+
+	// UserUuidWithActiveRole Filter projects where the given user has a role.
+	UserUuidWithActiveRole *openapi_types.UUID `form:"user_uuid_with_active_role,omitempty" json:"user_uuid_with_active_role,omitempty"`
+}
+
+// ProjectsCountParams defines parameters for ProjectsCount.
+type ProjectsCountParams struct {
+	// AccountingIsRunning Filter by whether accounting is running.
+	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
+
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
+
+	// AffiliationName Affiliation name
+	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
+
+	// AffiliationUuid Affiliation UUID
+	AffiliationUuid *[]openapi_types.UUID `form:"affiliation_uuid,omitempty" json:"affiliation_uuid,omitempty"`
+	BackendId       *string               `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// CanAdmin Return a list of projects where current user is admin.
+	CanAdmin *bool `form:"can_admin,omitempty" json:"can_admin,omitempty"`
+
+	// CanManage Return a list of projects where current user is manager or a customer owner.
+	CanManage *bool `form:"can_manage,omitempty" json:"can_manage,omitempty"`
+
+	// ConcealFinishedProjects Conceal finished projects
+	ConcealFinishedProjects *bool `form:"conceal_finished_projects,omitempty" json:"conceal_finished_projects,omitempty"`
+
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// CurrentUserHasRole Multiple values may be separated by commas.
+	CurrentUserHasRole *[]string `form:"current_user_has_role,omitempty" json:"current_user_has_role,omitempty"`
+
+	// Customer Multiple values may be separated by commas.
+	Customer *[]openapi_types.UUID `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerAbbreviation Customer abbreviation
+	CustomerAbbreviation *string `form:"customer_abbreviation,omitempty" json:"customer_abbreviation,omitempty"`
+
+	// CustomerName Customer name
+	CustomerName *string `form:"customer_name,omitempty" json:"customer_name,omitempty"`
+
+	// CustomerNativeName Customer native name
+	CustomerNativeName *string `form:"customer_native_name,omitempty" json:"customer_native_name,omitempty"`
+
+	// Description Description
+	Description *string `form:"description,omitempty" json:"description,omitempty"`
+
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
+	// HasAffiliation Filter projects that have an affiliation.
+	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
+
+	// IncludeTerminated Include soft-deleted (terminated) projects. Only available to staff and support users, or users with organizational roles who can see their terminated projects.
+	IncludeTerminated *bool `form:"include_terminated,omitempty" json:"include_terminated,omitempty"`
+
+	// IsRemoved Is removed
+	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// Name Name
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// NameExact Name (exact)
+	NameExact *string `form:"name_exact,omitempty" json:"name_exact,omitempty"`
+
+	// O Ordering
+	//
+	O *[]MarketplaceProviderCustomerProjectOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Filter by name, slug, UUID, backend ID or resource effective ID
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// ScienceDomainUuid Science domain UUID
+	ScienceDomainUuid *openapi_types.UUID `form:"science_domain_uuid,omitempty" json:"science_domain_uuid,omitempty"`
+
+	// ScienceSubDomainUuid Science sub-domain UUID
+	ScienceSubDomainUuid *openapi_types.UUID `form:"science_sub_domain_uuid,omitempty" json:"science_sub_domain_uuid,omitempty"`
+
+	// Slug Slug
+	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
 
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
@@ -94478,6 +94903,9 @@ type ProjectsHistoryListParams struct {
 	// AccountingIsRunning Filter by whether accounting is running.
 	AccountingIsRunning *bool `form:"accounting_is_running,omitempty" json:"accounting_is_running,omitempty"`
 
+	// ActiveDuring Return projects active during a year (YYYY) or a month (YYYY-MM): started on or before the period's last day (start date, or creation date when there is none) and with no end date or one after the period's first day.
+	ActiveDuring *string `form:"active_during,omitempty" json:"active_during,omitempty"`
+
 	// AffiliationName Affiliation name
 	AffiliationName *string `form:"affiliation_name,omitempty" json:"affiliation_name,omitempty"`
 
@@ -94521,8 +94949,20 @@ type ProjectsHistoryListParams struct {
 	// Description Description
 	Description *string `form:"description,omitempty" json:"description,omitempty"`
 
+	// EndDateAfter Return projects whose end date is on or after the given date.
+	EndDateAfter *openapi_types.Date `form:"end_date_after,omitempty" json:"end_date_after,omitempty"`
+
+	// EndDateBefore Return projects whose end date is on or before the given date.
+	EndDateBefore *openapi_types.Date `form:"end_date_before,omitempty" json:"end_date_before,omitempty"`
+
+	// Ended true: projects whose end date is today or earlier. false: projects with no end date or one after today.
+	Ended *bool `form:"ended,omitempty" json:"ended,omitempty"`
+
 	// HasAffiliation Filter projects that have an affiliation.
 	HasAffiliation *bool `form:"has_affiliation,omitempty" json:"has_affiliation,omitempty"`
+
+	// InGrace true: projects that have ended but whose end date plus grace period (the project's, else the organization's, else none) is after today. false: all other projects.
+	InGrace *bool `form:"in_grace,omitempty" json:"in_grace,omitempty"`
 
 	// IsRemoved Is removed
 	IsRemoved *bool `form:"is_removed,omitempty" json:"is_removed,omitempty"`
@@ -94560,6 +95000,15 @@ type ProjectsHistoryListParams struct {
 
 	// Slug Slug
 	Slug *string `form:"slug,omitempty" json:"slug,omitempty"`
+
+	// StartDateAfter Return projects whose start date is on or after the given date.
+	StartDateAfter *openapi_types.Date `form:"start_date_after,omitempty" json:"start_date_after,omitempty"`
+
+	// StartDateBefore Return projects whose start date is on or before the given date.
+	StartDateBefore *openapi_types.Date `form:"start_date_before,omitempty" json:"start_date_before,omitempty"`
+
+	// Started true: projects with no start date or one not after today. false: projects whose start date is after today.
+	Started *bool `form:"started,omitempty" json:"started,omitempty"`
 
 	// UserRole Role name or UUID; narrows user_uuid_with_active_role to that role and its organization copies.
 	UserRole *string `form:"user_role,omitempty" json:"user_role,omitempty"`
@@ -104466,6 +104915,9 @@ type ProposalProtectedCallsGenerateAssignmentsJSONRequestBody = GenerateAssignme
 
 // ProposalProtectedCallsGenerateSuggestionsJSONRequestBody defines body for ProposalProtectedCallsGenerateSuggestions for application/json ContentType.
 type ProposalProtectedCallsGenerateSuggestionsJSONRequestBody = GenerateSuggestionsRequestRequest
+
+// ProposalProtectedCallsImportAssignmentsMultipartRequestBody defines body for ProposalProtectedCallsImportAssignments for multipart/form-data ContentType.
+type ProposalProtectedCallsImportAssignmentsMultipartRequestBody = AssignmentImportRequest
 
 // ProposalProtectedCallsInviteByEmailJSONRequestBody defines body for ProposalProtectedCallsInviteByEmail for application/json ContentType.
 type ProposalProtectedCallsInviteByEmailJSONRequestBody = EmailInvitationRequest
@@ -120247,6 +120699,68 @@ func (t ProposalRequest_OecdFos2007Code) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ProposalRequest_OecdFos2007Code) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRejectionCauseEnum returns the union data inside the ProposalReview_RejectionCause as a RejectionCauseEnum
+func (t ProposalReview_RejectionCause) AsRejectionCauseEnum() (RejectionCauseEnum, error) {
+	var body RejectionCauseEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRejectionCauseEnum overwrites any union data inside the ProposalReview_RejectionCause as the provided RejectionCauseEnum
+func (t *ProposalReview_RejectionCause) FromRejectionCauseEnum(v RejectionCauseEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRejectionCauseEnum performs a merge with any union data inside the ProposalReview_RejectionCause, using the provided RejectionCauseEnum
+func (t *ProposalReview_RejectionCause) MergeRejectionCauseEnum(v RejectionCauseEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the ProposalReview_RejectionCause as a BlankEnum
+func (t ProposalReview_RejectionCause) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the ProposalReview_RejectionCause as the provided BlankEnum
+func (t *ProposalReview_RejectionCause) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the ProposalReview_RejectionCause, using the provided BlankEnum
+func (t *ProposalReview_RejectionCause) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ProposalReview_RejectionCause) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ProposalReview_RejectionCause) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -140336,10 +140850,20 @@ type ClientInterface interface {
 	// Set membership control for remote project.
 	OpenportalRemoteProjectsSetMembershipControl(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteProjectsSetMembershipControlJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// OpenportalRemoteProjectsStorageReportRetrieve performs a GET /api/openportal-remote-projects/{uuid}/storage-report/ (the `OpenportalRemoteProjectsStorageReportRetrieve` operationId) request.
+	//
+	// Storage snapshots of the award over a date range, across every project it has been attached to. Each project contributes only the snapshots taken while the award was attached there; on the day the award moved, the project it moved to claims the whole day. The report's top level is the latest snapshot in range. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its snapshots keep project-level storage but lose their per-user quotas and user mapping. Unless staff or support, the caller sees per-user storage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping) instead.
+	OpenportalRemoteProjectsStorageReportRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsStorageReportRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// OpenportalRemoteProjectsTotalUsageRetrieve performs a GET /api/openportal-remote-projects/{uuid}/total-usage/ (the `OpenportalRemoteProjectsTotalUsageRetrieve` operationId) request.
 	//
 	// Get total usage for remote project.
 	OpenportalRemoteProjectsTotalUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// OpenportalRemoteProjectsUsageReportRetrieve performs a GET /api/openportal-remote-projects/{uuid}/usage-report/ (the `OpenportalRemoteProjectsUsageReportRetrieve` operationId) request.
+	//
+	// Usage of the award over a date range, across every project it has been attached to. Each project's usage counts only for the days the award was attached there; on the day the award moved, the project it moved to claims the whole day. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its per-user usage is folded into unattributed usage, so that its users' usernames and usage are not shown. Unless staff or support, the caller sees per-user usage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping, and the keys of each day's usage) instead.
+	OpenportalRemoteProjectsUsageReportRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsUsageReportRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// OpenportalUnmanagedProjectsList List projects
 	//
@@ -145750,6 +146274,12 @@ type ClientInterface interface {
 	//
 	// Generate reviewer suggestions with configurable matching source.
 	ProposalProtectedCallsGenerateSuggestions(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsGenerateSuggestionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsImportAssignmentsWithBody performs a POST /api/proposal-protected-calls/{uuid}/import-assignments/ (the `ProposalProtectedCallsImportAssignments` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Assign proposals of a round to reviewers from a CSV file with a header row: reviewer_email, and proposal_slug or proposal_uuid. Rows are grouped by reviewer and assigned as create-manual-assignment does, in the reviewer's draft manual batch: already assigned proposals are skipped, conflicts of interest give conflict-blocked items, and the workload limit applies unless overridden. Every row is reported with a status (ready, created, coi_blocked, skipped, error) and a reason. A dry run, the default, changes nothing; otherwise the valid rows are applied in one transaction. Nothing is sent to reviewers: send the draft batches when they are ready. Refused for a file over 1 MB, not UTF-8, without the required columns, or with more rows than the round's proposals times the call's reviewers.
+	ProposalProtectedCallsImportAssignmentsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsInviteByEmailWithBody performs a POST /api/proposal-protected-calls/{uuid}/invite-by-email/ (the `ProposalProtectedCallsInviteByEmail` operationId) request,
 	// with any type of body and a specified content type.
@@ -190954,11 +191484,41 @@ func (c *Client) OpenportalRemoteProjectsSetMembershipControl(ctx context.Contex
 	return c.Client.Do(req)
 }
 
+// OpenportalRemoteProjectsStorageReportRetrieve performs a GET /api/openportal-remote-projects/{uuid}/storage-report/ (the `OpenportalRemoteProjectsStorageReportRetrieve` operationId) request.
+//
+// Storage snapshots of the award over a date range, across every project it has been attached to. Each project contributes only the snapshots taken while the award was attached there; on the day the award moved, the project it moved to claims the whole day. The report's top level is the latest snapshot in range. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its snapshots keep project-level storage but lose their per-user quotas and user mapping. Unless staff or support, the caller sees per-user storage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping) instead.
+func (c *Client) OpenportalRemoteProjectsStorageReportRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsStorageReportRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalRemoteProjectsStorageReportRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // OpenportalRemoteProjectsTotalUsageRetrieve performs a GET /api/openportal-remote-projects/{uuid}/total-usage/ (the `OpenportalRemoteProjectsTotalUsageRetrieve` operationId) request.
 //
 // Get total usage for remote project.
 func (c *Client) OpenportalRemoteProjectsTotalUsageRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewOpenportalRemoteProjectsTotalUsageRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// OpenportalRemoteProjectsUsageReportRetrieve performs a GET /api/openportal-remote-projects/{uuid}/usage-report/ (the `OpenportalRemoteProjectsUsageReportRetrieve` operationId) request.
+//
+// Usage of the award over a date range, across every project it has been attached to. Each project's usage counts only for the days the award was attached there; on the day the award moved, the project it moved to claims the whole day. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its per-user usage is folded into unattributed usage, so that its users' usernames and usage are not shown. Unless staff or support, the caller sees per-user usage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping, and the keys of each day's usage) instead.
+func (c *Client) OpenportalRemoteProjectsUsageReportRetrieve(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsUsageReportRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewOpenportalRemoteProjectsUsageReportRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -204261,6 +204821,22 @@ func (c *Client) ProposalProtectedCallsGenerateSuggestionsWithBody(ctx context.C
 // Generate reviewer suggestions with configurable matching source.
 func (c *Client) ProposalProtectedCallsGenerateSuggestions(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsGenerateSuggestionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsGenerateSuggestionsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsImportAssignmentsWithBody performs a POST /api/proposal-protected-calls/{uuid}/import-assignments/ (the `ProposalProtectedCallsImportAssignments` operationId) request,
+// with any type of body and a specified content type.
+//
+// Assign proposals of a round to reviewers from a CSV file with a header row: reviewer_email, and proposal_slug or proposal_uuid. Rows are grouped by reviewer and assigned as create-manual-assignment does, in the reviewer's draft manual batch: already assigned proposals are skipped, conflicts of interest give conflict-blocked items, and the workload limit applies unless overridden. Every row is reported with a status (ready, created, coi_blocked, skipped, error) and a reason. A dry run, the default, changes nothing; otherwise the valid rows are applied in one transaction. Nothing is sent to reviewers: send the draft batches when they are ready. Refused for a file over 1 MB, not UTF-8, without the required columns, or with more rows than the round's proposals times the call's reviewers.
+func (c *Client) ProposalProtectedCallsImportAssignmentsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsImportAssignmentsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -334681,6 +335257,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -334849,6 +335437,42 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -334864,6 +335488,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -335016,6 +335652,42 @@ func NewMarketplaceServiceProvidersCustomerProjectsListRequest(server string, se
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -335098,6 +335770,18 @@ func NewMarketplaceServiceProvidersCustomerProjectsCountRequest(server string, s
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -335266,9 +335950,57 @@ func NewMarketplaceServiceProvidersCustomerProjectsCountRequest(server string, s
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -335421,6 +336153,42 @@ func NewMarketplaceServiceProvidersCustomerProjectsCountRequest(server string, s
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -340340,6 +341108,18 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -340508,6 +341288,42 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -340523,6 +341339,18 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -340667,6 +341495,42 @@ func NewMarketplaceServiceProvidersProjectsListRequest(server string, servicePro
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -340749,6 +341613,18 @@ func NewMarketplaceServiceProvidersProjectsCountRequest(server string, servicePr
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -340917,9 +341793,57 @@ func NewMarketplaceServiceProvidersProjectsCountRequest(server string, servicePr
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -341064,6 +341988,42 @@ func NewMarketplaceServiceProvidersProjectsCountRequest(server string, servicePr
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -370145,6 +371105,79 @@ func NewOpenportalRemoteProjectsSetMembershipControlRequestWithBody(server strin
 	return req, nil
 }
 
+// NewOpenportalRemoteProjectsStorageReportRetrieveRequest constructs an http.Request for the OpenportalRemoteProjectsStorageReportRetrieve method
+func NewOpenportalRemoteProjectsStorageReportRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenportalRemoteProjectsStorageReportRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-remote-projects/%s/storage-report/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end", *params.End, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start", *params.Start, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewOpenportalRemoteProjectsTotalUsageRetrieveRequest constructs an http.Request for the OpenportalRemoteProjectsTotalUsageRetrieve method
 func NewOpenportalRemoteProjectsTotalUsageRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -370169,6 +371202,79 @@ func NewOpenportalRemoteProjectsTotalUsageRetrieveRequest(server string, uuid op
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewOpenportalRemoteProjectsUsageReportRetrieveRequest constructs an http.Request for the OpenportalRemoteProjectsUsageReportRetrieve method
+func NewOpenportalRemoteProjectsUsageReportRetrieveRequest(server string, uuid openapi_types.UUID, params *OpenportalRemoteProjectsUsageReportRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/openportal-remote-projects/%s/usage-report/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.End != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end", *params.End, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Start != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start", *params.Start, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -370210,6 +371316,18 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 		if params.AccountingIsRunning != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "accounting_is_running", *params.AccountingIsRunning, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -370387,6 +371505,42 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -370402,6 +371556,18 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -370558,6 +371724,42 @@ func NewOpenportalUnmanagedProjectsListRequest(server string, params *Openportal
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -370657,6 +371859,18 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 		}
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -370825,9 +372039,57 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -370984,6 +372246,42 @@ func NewOpenportalUnmanagedProjectsCountRequest(server string, params *Openporta
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -371641,6 +372939,18 @@ func NewOpenportalUnmanagedProjectsHistoryListRequest(server string, uuid openap
 
 		}
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -371821,9 +373131,57 @@ func NewOpenportalUnmanagedProjectsHistoryListRequest(server string, uuid openap
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -371968,6 +373326,42 @@ func NewOpenportalUnmanagedProjectsHistoryListRequest(server string, uuid openap
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -401034,6 +402428,18 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -401202,6 +402608,42 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Field != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "field", *params.Field, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
@@ -401217,6 +402659,18 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -401373,6 +402827,42 @@ func NewProjectsListRequest(server string, params *ProjectsListParams) (*http.Re
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -401472,6 +402962,18 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 		}
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -401640,9 +403142,57 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -401799,6 +403349,42 @@ func NewProjectsCountRequest(server string, params *ProjectsCountParams) (*http.
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -402986,6 +404572,18 @@ func NewProjectsHistoryListRequest(server string, uuid openapi_types.UUID, param
 
 		}
 
+		if params.ActiveDuring != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "active_during", *params.ActiveDuring, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.AffiliationName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "affiliation_name", *params.AffiliationName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -403166,9 +404764,57 @@ func NewProjectsHistoryListRequest(server string, uuid openapi_types.UUID, param
 
 		}
 
+		if params.EndDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_after", *params.EndDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.EndDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "end_date_before", *params.EndDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Ended != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "ended", *params.Ended, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.HasAffiliation != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_affiliation", *params.HasAffiliation, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.InGrace != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "in_grace", *params.InGrace, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -403313,6 +404959,42 @@ func NewProjectsHistoryListRequest(server string, uuid openapi_types.UUID, param
 		if params.Slug != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateAfter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_after", *params.StartDateAfter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.StartDateBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "start_date_before", *params.StartDateBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Started != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "started", *params.Started, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -416930,6 +418612,42 @@ func NewProposalProtectedCallsGenerateSuggestionsRequestWithBody(server string, 
 	}
 
 	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/generate-suggestions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsImportAssignmentsRequestWithBody constructs an http.Request for the ProposalProtectedCallsImportAssignments method, with any body, and a specified content type
+func NewProposalProtectedCallsImportAssignmentsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/import-assignments/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -490021,12 +491739,26 @@ type ClientWithResponsesInterface interface {
 	// Set membership control for remote project.
 	OpenportalRemoteProjectsSetMembershipControlWithResponse(ctx context.Context, uuid openapi_types.UUID, body OpenportalRemoteProjectsSetMembershipControlJSONRequestBody, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsSetMembershipControlResponse, error)
 
+	// OpenportalRemoteProjectsStorageReportRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/storage-report/ (the `OpenportalRemoteProjectsStorageReportRetrieve` operationId) request.
+	//
+	// Storage snapshots of the award over a date range, across every project it has been attached to. Each project contributes only the snapshots taken while the award was attached there; on the day the award moved, the project it moved to claims the whole day. The report's top level is the latest snapshot in range. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its snapshots keep project-level storage but lose their per-user quotas and user mapping. Unless staff or support, the caller sees per-user storage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping) instead.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OpenportalRemoteProjectsStorageReportRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsStorageReportRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsStorageReportRetrieveResponse, error)
+
 	// OpenportalRemoteProjectsTotalUsageRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/total-usage/ (the `OpenportalRemoteProjectsTotalUsageRetrieve` operationId) request.
 	//
 	// Get total usage for remote project.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	OpenportalRemoteProjectsTotalUsageRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsTotalUsageRetrieveResponse, error)
+
+	// OpenportalRemoteProjectsUsageReportRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/usage-report/ (the `OpenportalRemoteProjectsUsageReportRetrieve` operationId) request.
+	//
+	// Usage of the award over a date range, across every project it has been attached to. Each project's usage counts only for the days the award was attached there; on the day the award moved, the project it moved to claims the whole day. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its per-user usage is folded into unattributed usage, so that its users' usernames and usage are not shown. Unless staff or support, the caller sees per-user usage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping, and the keys of each day's usage) instead.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	OpenportalRemoteProjectsUsageReportRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsUsageReportRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsUsageReportRetrieveResponse, error)
 
 	// OpenportalUnmanagedProjectsListWithResponse List projects
 	//
@@ -496313,6 +498045,14 @@ type ClientWithResponsesInterface interface {
 	//
 	// Generate reviewer suggestions with configurable matching source.
 	ProposalProtectedCallsGenerateSuggestionsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsGenerateSuggestionsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsGenerateSuggestionsResponse, error)
+
+	// ProposalProtectedCallsImportAssignmentsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/import-assignments/ (the `ProposalProtectedCallsImportAssignments` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Assign proposals of a round to reviewers from a CSV file with a header row: reviewer_email, and proposal_slug or proposal_uuid. Rows are grouped by reviewer and assigned as create-manual-assignment does, in the reviewer's draft manual batch: already assigned proposals are skipped, conflicts of interest give conflict-blocked items, and the workload limit applies unless overridden. Every row is reported with a status (ready, created, coi_blocked, skipped, error) and a reason. A dry run, the default, changes nothing; otherwise the valid rows are applied in one transaction. Nothing is sent to reviewers: send the draft batches when they are ready. Refused for a file over 1 MB, not UTF-8, without the required columns, or with more rows than the round's proposals times the call's reviewers.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsImportAssignmentsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsImportAssignmentsResponse, error)
 
 	// ProposalProtectedCallsInviteByEmailWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/invite-by-email/ (the `ProposalProtectedCallsInviteByEmail` operationId) request,
 	// with any type of body and a specified content type.
@@ -577802,6 +579542,47 @@ func (r OpenportalRemoteProjectsSetMembershipControlResponse) ContentType() stri
 	return ""
 }
 
+type OpenportalRemoteProjectsStorageReportRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *RemoteProjectStorageReport
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OpenportalRemoteProjectsStorageReportRetrieveResponse) GetJSON200() *RemoteProjectStorageReport {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenportalRemoteProjectsStorageReportRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalRemoteProjectsStorageReportRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalRemoteProjectsStorageReportRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalRemoteProjectsStorageReportRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type OpenportalRemoteProjectsTotalUsageRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -577837,6 +579618,47 @@ func (r OpenportalRemoteProjectsTotalUsageRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r OpenportalRemoteProjectsTotalUsageRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type OpenportalRemoteProjectsUsageReportRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *RemoteProjectUsageReport
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r OpenportalRemoteProjectsUsageReportRetrieveResponse) GetJSON200() *RemoteProjectUsageReport {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r OpenportalRemoteProjectsUsageReportRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r OpenportalRemoteProjectsUsageReportRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r OpenportalRemoteProjectsUsageReportRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r OpenportalRemoteProjectsUsageReportRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -600810,6 +602632,47 @@ func (r ProposalProtectedCallsGenerateSuggestionsResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProtectedCallsGenerateSuggestionsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsImportAssignmentsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *AssignmentImportResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalProtectedCallsImportAssignmentsResponse) GetJSON200() *AssignmentImportResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsImportAssignmentsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsImportAssignmentsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsImportAssignmentsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsImportAssignmentsResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -664486,6 +666349,19 @@ func (c *ClientWithResponses) OpenportalRemoteProjectsSetMembershipControlWithRe
 	return ParseOpenportalRemoteProjectsSetMembershipControlResponse(rsp)
 }
 
+// OpenportalRemoteProjectsStorageReportRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/storage-report/ (the `OpenportalRemoteProjectsStorageReportRetrieve` operationId) request.
+//
+// Storage snapshots of the award over a date range, across every project it has been attached to. Each project contributes only the snapshots taken while the award was attached there; on the day the award moved, the project it moved to claims the whole day. The report's top level is the latest snapshot in range. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its snapshots keep project-level storage but lose their per-user quotas and user mapping. Unless staff or support, the caller sees per-user storage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping) instead.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OpenportalRemoteProjectsStorageReportRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsStorageReportRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsStorageReportRetrieveResponse, error) {
+	rsp, err := c.OpenportalRemoteProjectsStorageReportRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalRemoteProjectsStorageReportRetrieveResponse(rsp)
+}
+
 // OpenportalRemoteProjectsTotalUsageRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/total-usage/ (the `OpenportalRemoteProjectsTotalUsageRetrieve` operationId) request.
 //
 // Get total usage for remote project.
@@ -664497,6 +666373,19 @@ func (c *ClientWithResponses) OpenportalRemoteProjectsTotalUsageRetrieveWithResp
 		return nil, err
 	}
 	return ParseOpenportalRemoteProjectsTotalUsageRetrieveResponse(rsp)
+}
+
+// OpenportalRemoteProjectsUsageReportRetrieveWithResponse performs a GET /api/openportal-remote-projects/{uuid}/usage-report/ (the `OpenportalRemoteProjectsUsageReportRetrieve` operationId) request.
+//
+// Usage of the award over a date range, across every project it has been attached to. Each project's usage counts only for the days the award was attached there; on the day the award moved, the project it moved to claims the whole day. A window on a project the caller cannot see is listed without its project, but with its start and end dates, and still counts in full; its per-user usage is folded into unattributed usage, so that its users' usernames and usage are not shown. Unless staff or support, the caller sees per-user usage only for windows on projects they can see. The report is labeled with the award's identifier (with none, the local identifier of the latest project it was attached to): its project, and the project part of every user identifier in it, are rewritten to that, so user identifiers read <user>.<award identifier>, which is a remote portal's identifier and matches no local user. Match users by their local username (the values of the report's users mapping, and the keys of each day's usage) instead.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) OpenportalRemoteProjectsUsageReportRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *OpenportalRemoteProjectsUsageReportRetrieveParams, reqEditors ...RequestEditorFn) (*OpenportalRemoteProjectsUsageReportRetrieveResponse, error) {
+	rsp, err := c.OpenportalRemoteProjectsUsageReportRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseOpenportalRemoteProjectsUsageReportRetrieveResponse(rsp)
 }
 
 // OpenportalUnmanagedProjectsListWithResponse List projects
@@ -675525,6 +677414,20 @@ func (c *ClientWithResponses) ProposalProtectedCallsGenerateSuggestionsWithRespo
 		return nil, err
 	}
 	return ParseProposalProtectedCallsGenerateSuggestionsResponse(rsp)
+}
+
+// ProposalProtectedCallsImportAssignmentsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/import-assignments/ (the `ProposalProtectedCallsImportAssignments` operationId) request,
+// with any type of body and a specified content type.
+//
+// Assign proposals of a round to reviewers from a CSV file with a header row: reviewer_email, and proposal_slug or proposal_uuid. Rows are grouped by reviewer and assigned as create-manual-assignment does, in the reviewer's draft manual batch: already assigned proposals are skipped, conflicts of interest give conflict-blocked items, and the workload limit applies unless overridden. Every row is reported with a status (ready, created, coi_blocked, skipped, error) and a reason. A dry run, the default, changes nothing; otherwise the valid rows are applied in one transaction. Nothing is sent to reviewers: send the draft batches when they are ready. Refused for a file over 1 MB, not UTF-8, without the required columns, or with more rows than the round's proposals times the call's reviewers.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsImportAssignmentsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsImportAssignmentsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsImportAssignmentsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsImportAssignmentsResponse(rsp)
 }
 
 // ProposalProtectedCallsInviteByEmailWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/invite-by-email/ (the `ProposalProtectedCallsInviteByEmail` operationId) request,
@@ -735706,6 +737609,32 @@ func ParseOpenportalRemoteProjectsSetMembershipControlResponse(rsp *http.Respons
 	return response, nil
 }
 
+// ParseOpenportalRemoteProjectsStorageReportRetrieveResponse parses an HTTP response from a OpenportalRemoteProjectsStorageReportRetrieveWithResponse call
+func ParseOpenportalRemoteProjectsStorageReportRetrieveResponse(rsp *http.Response) (*OpenportalRemoteProjectsStorageReportRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalRemoteProjectsStorageReportRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RemoteProjectStorageReport
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseOpenportalRemoteProjectsTotalUsageRetrieveResponse parses an HTTP response from a OpenportalRemoteProjectsTotalUsageRetrieveWithResponse call
 func ParseOpenportalRemoteProjectsTotalUsageRetrieveResponse(rsp *http.Response) (*OpenportalRemoteProjectsTotalUsageRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -735722,6 +737651,32 @@ func ParseOpenportalRemoteProjectsTotalUsageRetrieveResponse(rsp *http.Response)
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest map[string]interface{}
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseOpenportalRemoteProjectsUsageReportRetrieveResponse parses an HTTP response from a OpenportalRemoteProjectsUsageReportRetrieveWithResponse call
+func ParseOpenportalRemoteProjectsUsageReportRetrieveResponse(rsp *http.Response) (*OpenportalRemoteProjectsUsageReportRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &OpenportalRemoteProjectsUsageReportRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest RemoteProjectUsageReport
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -750400,6 +752355,32 @@ func ParseProposalProtectedCallsGenerateSuggestionsResponse(rsp *http.Response) 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest GenerateSuggestionsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsImportAssignmentsResponse parses an HTTP response from a ProposalProtectedCallsImportAssignmentsWithResponse call
+func ParseProposalProtectedCallsImportAssignmentsResponse(rsp *http.Response) (*ProposalProtectedCallsImportAssignmentsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsImportAssignmentsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AssignmentImportResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
