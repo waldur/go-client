@@ -12851,6 +12851,7 @@ func (e OfferingEstimatedCostPolicyFieldEnum) Valid() bool {
 const (
 	OfferingFieldEnumAccessUrl                  OfferingFieldEnum = "access_url"
 	OfferingFieldEnumAccountSettings            OfferingFieldEnum = "account_settings"
+	OfferingFieldEnumAgentConfiguration         OfferingFieldEnum = "agent_configuration"
 	OfferingFieldEnumAttributes                 OfferingFieldEnum = "attributes"
 	OfferingFieldEnumBackendId                  OfferingFieldEnum = "backend_id"
 	OfferingFieldEnumBackendMetadata            OfferingFieldEnum = "backend_metadata"
@@ -12946,6 +12947,8 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumAccessUrl:
 		return true
 	case OfferingFieldEnumAccountSettings:
+		return true
+	case OfferingFieldEnumAgentConfiguration:
 		return true
 	case OfferingFieldEnumAttributes:
 		return true
@@ -20102,6 +20105,7 @@ func (e ProviderOfferingCustomerFieldEnum) Valid() bool {
 const (
 	ProviderOfferingDetailsFieldEnumAccessUrl                  ProviderOfferingDetailsFieldEnum = "access_url"
 	ProviderOfferingDetailsFieldEnumAccountSettings            ProviderOfferingDetailsFieldEnum = "account_settings"
+	ProviderOfferingDetailsFieldEnumAgentConfiguration         ProviderOfferingDetailsFieldEnum = "agent_configuration"
 	ProviderOfferingDetailsFieldEnumAttributes                 ProviderOfferingDetailsFieldEnum = "attributes"
 	ProviderOfferingDetailsFieldEnumBackendId                  ProviderOfferingDetailsFieldEnum = "backend_id"
 	ProviderOfferingDetailsFieldEnumBackendIdRules             ProviderOfferingDetailsFieldEnum = "backend_id_rules"
@@ -20196,6 +20200,8 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumAccessUrl:
 		return true
 	case ProviderOfferingDetailsFieldEnumAccountSettings:
+		return true
+	case ProviderOfferingDetailsFieldEnumAgentConfiguration:
 		return true
 	case ProviderOfferingDetailsFieldEnumAttributes:
 		return true
@@ -20735,6 +20741,7 @@ func (e PublicMaintenanceAnnouncementStateEnum) Valid() bool {
 const (
 	PublicOfferingDetailsFieldEnumAccessUrl                  PublicOfferingDetailsFieldEnum = "access_url"
 	PublicOfferingDetailsFieldEnumAccountSettings            PublicOfferingDetailsFieldEnum = "account_settings"
+	PublicOfferingDetailsFieldEnumAgentConfiguration         PublicOfferingDetailsFieldEnum = "agent_configuration"
 	PublicOfferingDetailsFieldEnumAttributes                 PublicOfferingDetailsFieldEnum = "attributes"
 	PublicOfferingDetailsFieldEnumBackendId                  PublicOfferingDetailsFieldEnum = "backend_id"
 	PublicOfferingDetailsFieldEnumBackendMetadata            PublicOfferingDetailsFieldEnum = "backend_metadata"
@@ -20832,6 +20839,8 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumAccessUrl:
 		return true
 	case PublicOfferingDetailsFieldEnumAccountSettings:
+		return true
+	case PublicOfferingDetailsFieldEnumAgentConfiguration:
 		return true
 	case PublicOfferingDetailsFieldEnumAttributes:
 		return true
@@ -23653,6 +23662,30 @@ func (e RoleType) Valid() bool {
 	case RoleTypeResourceProject:
 		return true
 	case RoleTypeServiceProvider:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RolesEnum.
+const (
+	RolesEnumMembershipSync     RolesEnum = "membership_sync"
+	RolesEnumOrderProcessing    RolesEnum = "order_processing"
+	RolesEnumReporting          RolesEnum = "reporting"
+	RolesEnumUsernameManagement RolesEnum = "username_management"
+)
+
+// Valid indicates whether the value is a known member of the RolesEnum enum.
+func (e RolesEnum) Valid() bool {
+	switch e {
+	case RolesEnumMembershipSync:
+		return true
+	case RolesEnumOrderProcessing:
+		return true
+	case RolesEnumReporting:
+		return true
+	case RolesEnumUsernameManagement:
 		return true
 	default:
 		return false
@@ -28953,6 +28986,32 @@ type AgentCompatibility struct {
 // AgentCompatibilityStatusEnum defines model for AgentCompatibilityStatusEnum.
 type AgentCompatibilityStatusEnum string
 
+// AgentConfiguration defines model for AgentConfiguration.
+type AgentConfiguration struct {
+	BackendComponents *map[string]map[string]interface{} `json:"backend_components,omitempty"`
+	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
+
+	// CustomBackends Backends that are not in the plugin catalog, such as a site's own plugin. Their settings and components are not validated.
+	CustomBackends            *[]string `json:"custom_backends,omitempty"`
+	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+}
+
+// AgentConfigurationRequest defines model for AgentConfigurationRequest.
+type AgentConfigurationRequest struct {
+	BackendComponents *map[string]map[string]interface{} `json:"backend_components,omitempty"`
+	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
+
+	// CustomBackends Backends that are not in the plugin catalog, such as a site's own plugin. Their settings and components are not validated.
+	CustomBackends            *[]string `json:"custom_backends,omitempty"`
+	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+}
+
 // AgentConnectionInfo defines model for AgentConnectionInfo.
 type AgentConnectionInfo struct {
 	// AuthKind How the agent authenticated when it registered the queue
@@ -29121,6 +29180,26 @@ type AgentIdentityRequest struct {
 	// Offering UUID of an offering with a site-agent compatible type.
 	Offering openapi_types.UUID `json:"offering"`
 	Version  *string            `json:"version,omitempty"`
+}
+
+// AgentPlugin defines model for AgentPlugin.
+type AgentPlugin struct {
+	// ComponentSchema JSON Schema of the plugin's component fields
+	ComponentSchema *map[string]interface{} `json:"component_schema"`
+
+	// Name Entry point name, as used in the agent configuration
+	Name    string      `json:"name"`
+	Package string      `json:"package"`
+	Roles   []RolesEnum `json:"roles"`
+
+	// SecretSettings Dotted paths of settings that stay in the agent configuration file
+	SecretSettings []string `json:"secret_settings"`
+
+	// SettingsSchema JSON Schema of the backend settings
+	SettingsSchema *map[string]interface{} `json:"settings_schema"`
+
+	// Version Version of the package the catalog was built from
+	Version string `json:"version"`
 }
 
 // AgentProcessor defines model for AgentProcessor.
@@ -45061,6 +45140,9 @@ type MergedPluginOptions struct {
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
+	// PreFlightCheckEnabled Check the tenant's quotas before an instance is ordered
+	PreFlightCheckEnabled *bool `json:"pre_flight_check_enabled,omitempty"`
+
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
 
@@ -45452,6 +45534,9 @@ type MergedPluginOptionsRequest struct {
 	// OpenstackOfferingUuidList List of UUID of OpenStack offerings where tenant can be created
 	OpenstackOfferingUuidList *[]string `json:"openstack_offering_uuid_list,omitempty"`
 
+	// PreFlightCheckEnabled Check the tenant's quotas before an instance is ordered
+	PreFlightCheckEnabled *bool `json:"pre_flight_check_enabled,omitempty"`
+
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
 
@@ -45683,6 +45768,9 @@ type MergedSecretOptions struct {
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
 
+	// ResourceOptionsHandler Script run when a resource's options change
+	ResourceOptionsHandler *string `json:"resource_options_handler,omitempty"`
+
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
 
@@ -45805,6 +45893,9 @@ type MergedSecretOptionsRequest struct {
 
 	// Pull Script for regular resource pull
 	Pull *string `json:"pull,omitempty"`
+
+	// ResourceOptionsHandler Script run when a resource's options change
+	ResourceOptionsHandler *string `json:"resource_options_handler,omitempty"`
 
 	// SharedUserPassword GLAuth shared user password
 	SharedUserPassword *string `json:"shared_user_password,omitempty"`
@@ -47481,9 +47572,10 @@ type OfferingCountryStats struct {
 // OfferingCreateRequest defines model for OfferingCreateRequest.
 type OfferingCreateRequest struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string                 `json:"access_url,omitempty"`
-	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId  *string                 `json:"backend_id,omitempty"`
+	AccessUrl          *string                    `json:"access_url,omitempty"`
+	AgentConfiguration *AgentConfigurationRequest `json:"agent_configuration,omitempty"`
+	Attributes         *map[string]interface{}    `json:"attributes,omitempty"`
+	BackendId          *string                    `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
 	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
@@ -47535,9 +47627,10 @@ type OfferingCreateRequest_Country struct {
 // OfferingCreateRequestForm defines model for OfferingCreateRequestForm.
 type OfferingCreateRequestForm struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string                 `json:"access_url,omitempty"`
-	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId  *string                 `json:"backend_id,omitempty"`
+	AccessUrl          *string                    `json:"access_url,omitempty"`
+	AgentConfiguration *AgentConfigurationRequest `json:"agent_configuration,omitempty"`
+	Attributes         *map[string]interface{}    `json:"attributes,omitempty"`
+	BackendId          *string                    `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
 	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
@@ -47589,9 +47682,10 @@ type OfferingCreateRequestForm_Country struct {
 // OfferingCreateRequestMultipart defines model for OfferingCreateRequestMultipart.
 type OfferingCreateRequestMultipart struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl  *string                 `json:"access_url,omitempty"`
-	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId  *string                 `json:"backend_id,omitempty"`
+	AccessUrl          *string                    `json:"access_url,omitempty"`
+	AgentConfiguration *AgentConfigurationRequest `json:"agent_configuration,omitempty"`
+	Attributes         *map[string]interface{}    `json:"attributes,omitempty"`
+	BackendId          *string                    `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
 	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
@@ -47775,6 +47869,8 @@ type OfferingEstimatedCostPolicyRequest struct {
 
 // OfferingExportData defines model for OfferingExportData.
 type OfferingExportData struct {
+	// AgentConfiguration Site agent configuration, for site agent offerings
+	AgentConfiguration *AgentConfiguration            `json:"agent_configuration,omitempty"`
 	Components         *[]ExportComponentData         `json:"components,omitempty"`
 	Endpoints          *[]ExportEndpointData          `json:"endpoints,omitempty"`
 	Files              *[]ExportFileData              `json:"files,omitempty"`
@@ -47790,6 +47886,8 @@ type OfferingExportData struct {
 
 // OfferingExportDataRequest defines model for OfferingExportDataRequest.
 type OfferingExportDataRequest struct {
+	// AgentConfiguration Site agent configuration, for site agent offerings
+	AgentConfiguration *AgentConfigurationRequest            `json:"agent_configuration,omitempty"`
 	Components         *[]ExportComponentDataRequest         `json:"components,omitempty"`
 	Endpoints          *[]ExportEndpointDataRequest          `json:"endpoints,omitempty"`
 	Files              *[]ExportFileDataRequest              `json:"files,omitempty"`
@@ -48030,10 +48128,12 @@ type OfferingImportResponse struct {
 
 // OfferingIntegrationUpdateRequest defines model for OfferingIntegrationUpdateRequest.
 type OfferingIntegrationUpdateRequest struct {
-	BackendId         *string                     `json:"backend_id,omitempty"`
-	PluginOptions     *MergedPluginOptionsRequest `json:"plugin_options,omitempty"`
-	SecretOptions     *MergedSecretOptionsRequest `json:"secret_options,omitempty"`
-	ServiceAttributes *map[string]interface{}     `json:"service_attributes,omitempty"`
+	// AgentConfiguration Replaces the whole agent configuration of a site agent offering.
+	AgentConfiguration *AgentConfigurationRequest  `json:"agent_configuration,omitempty"`
+	BackendId          *string                     `json:"backend_id,omitempty"`
+	PluginOptions      *MergedPluginOptionsRequest `json:"plugin_options,omitempty"`
+	SecretOptions      *MergedSecretOptionsRequest `json:"secret_options,omitempty"`
+	ServiceAttributes  *map[string]interface{}     `json:"service_attributes,omitempty"`
 }
 
 // OfferingLocationUpdateRequest defines model for OfferingLocationUpdateRequest.
@@ -59965,10 +60065,11 @@ type ProviderOfferingCustomerFieldEnum string
 // ProviderOfferingDetails defines model for ProviderOfferingDetails.
 type ProviderOfferingDetails struct {
 	// AccessUrl Publicly accessible offering access URL
-	AccessUrl       *string                  `json:"access_url,omitempty"`
-	AccountSettings *OfferingAccountSettings `json:"account_settings,omitempty"`
-	Attributes      *map[string]interface{}  `json:"attributes,omitempty"`
-	BackendId       *string                  `json:"backend_id,omitempty"`
+	AccessUrl          *string                  `json:"access_url,omitempty"`
+	AccountSettings    *OfferingAccountSettings `json:"account_settings,omitempty"`
+	AgentConfiguration *AgentConfiguration      `json:"agent_configuration,omitempty"`
+	Attributes         *map[string]interface{}  `json:"attributes,omitempty"`
+	BackendId          *string                  `json:"backend_id,omitempty"`
 
 	// BackendIdRules Validation rules for resource backend_id: format regex and uniqueness scope.
 	BackendIdRules  *map[string]interface{} `json:"backend_id_rules,omitempty"`
@@ -65479,6 +65580,9 @@ type RoleTemplateOEnum string
 
 // RoleType defines model for RoleType.
 type RoleType string
+
+// RolesEnum defines model for RolesEnum.
+type RolesEnum string
 
 // RoundAdoptionRequest defines model for RoundAdoptionRequest.
 type RoundAdoptionRequest struct {
@@ -87651,6 +87755,12 @@ type MarketplaceSiteAgentLogsCreateParams struct {
 	PageSize      *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 	TimestampFrom *float32  `form:"timestamp_from,omitempty" json:"timestamp_from,omitempty"`
 	TimestampTo   *float32  `form:"timestamp_to,omitempty" json:"timestamp_to,omitempty"`
+}
+
+// MarketplaceSiteAgentPluginsListParams defines parameters for MarketplaceSiteAgentPluginsList.
+type MarketplaceSiteAgentPluginsListParams struct {
+	// Role Only backends that can fill this role
+	Role *RolesEnum `form:"role,omitempty" json:"role,omitempty"`
 }
 
 // MarketplaceSiteAgentProcessorsListParams defines parameters for MarketplaceSiteAgentProcessorsList.
@@ -138556,6 +138666,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-site-agent-logs/ (the `MarketplaceSiteAgentLogsCreate` operationId).
 	MarketplaceSiteAgentLogsCreate(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceSiteAgentPluginsList List site agent plugins
+	//
+	// Backends from the site agent plugin catalog, with the roles each can fill, their settings and component schemas, and which settings are secrets that stay in the agent configuration file.
+	//
+	// Corresponds with GET /api/marketplace-site-agent-plugins/ (the `MarketplaceSiteAgentPluginsList` operationId).
+	MarketplaceSiteAgentPluginsList(ctx context.Context, params *MarketplaceSiteAgentPluginsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceSiteAgentProcessorsList performs a GET /api/marketplace-site-agent-processors/ (the `MarketplaceSiteAgentProcessorsList` operationId) request.
 	MarketplaceSiteAgentProcessorsList(ctx context.Context, params *MarketplaceSiteAgentProcessorsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -184816,6 +184933,23 @@ func (c *Client) MarketplaceSiteAgentLogsCreateWithBody(ctx context.Context, par
 // Corresponds with POST /api/marketplace-site-agent-logs/ (the `MarketplaceSiteAgentLogsCreate` operationId).
 func (c *Client) MarketplaceSiteAgentLogsCreate(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceSiteAgentLogsCreateRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceSiteAgentPluginsList List site agent plugins
+//
+// Backends from the site agent plugin catalog, with the roles each can fill, their settings and component schemas, and which settings are secrets that stay in the agent configuration file.
+//
+// Corresponds with GET /api/marketplace-site-agent-plugins/ (the `MarketplaceSiteAgentPluginsList` operationId).
+func (c *Client) MarketplaceSiteAgentPluginsList(ctx context.Context, params *MarketplaceSiteAgentPluginsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceSiteAgentPluginsListRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -345962,6 +346096,60 @@ func NewMarketplaceSiteAgentLogsCreateRequestWithBody(server string, params *Mar
 	return req, nil
 }
 
+// NewMarketplaceSiteAgentPluginsListRequest constructs an http.Request for the MarketplaceSiteAgentPluginsList method
+func NewMarketplaceSiteAgentPluginsListRequest(server string, params *MarketplaceSiteAgentPluginsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-site-agent-plugins/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Role != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceSiteAgentProcessorsListRequest constructs an http.Request for the MarketplaceSiteAgentProcessorsList method
 func NewMarketplaceSiteAgentProcessorsListRequest(server string, params *MarketplaceSiteAgentProcessorsListParams) (*http.Request, error) {
 	var err error
@@ -488822,6 +489010,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-site-agent-logs/ (the `MarketplaceSiteAgentLogsCreate` operationId).
 	MarketplaceSiteAgentLogsCreateWithResponse(ctx context.Context, params *MarketplaceSiteAgentLogsCreateParams, body MarketplaceSiteAgentLogsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentLogsCreateResponse, error)
 
+	// MarketplaceSiteAgentPluginsListWithResponse List site agent plugins
+	//
+	// Backends from the site agent plugin catalog, with the roles each can fill, their settings and component schemas, and which settings are secrets that stay in the agent configuration file.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-site-agent-plugins/ (the `MarketplaceSiteAgentPluginsList` operationId).
+	MarketplaceSiteAgentPluginsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentPluginsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentPluginsListResponse, error)
+
 	// MarketplaceSiteAgentProcessorsListWithResponse performs a GET /api/marketplace-site-agent-processors/ (the `MarketplaceSiteAgentProcessorsList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -565176,6 +565373,54 @@ func (r MarketplaceSiteAgentLogsCreateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceSiteAgentLogsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceSiteAgentPluginsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceSiteAgentPluginsList
+type MarketplaceSiteAgentPluginsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceSiteAgentPluginsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]AgentPlugin
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceSiteAgentPluginsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceSiteAgentPluginsListResponse) GetJSON200() *[]AgentPlugin {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceSiteAgentPluginsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceSiteAgentPluginsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceSiteAgentPluginsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceSiteAgentPluginsListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -660860,6 +661105,21 @@ func (c *ClientWithResponses) MarketplaceSiteAgentLogsCreateWithResponse(ctx con
 	return ParseMarketplaceSiteAgentLogsCreateResponse(rsp)
 }
 
+// MarketplaceSiteAgentPluginsListWithResponse List site agent plugins
+//
+// Backends from the site agent plugin catalog, with the roles each can fill, their settings and component schemas, and which settings are secrets that stay in the agent configuration file.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-site-agent-plugins/ (the `MarketplaceSiteAgentPluginsList` operationId).
+func (c *ClientWithResponses) MarketplaceSiteAgentPluginsListWithResponse(ctx context.Context, params *MarketplaceSiteAgentPluginsListParams, reqEditors ...RequestEditorFn) (*MarketplaceSiteAgentPluginsListResponse, error) {
+	rsp, err := c.MarketplaceSiteAgentPluginsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceSiteAgentPluginsListResponse(rsp)
+}
+
 // MarketplaceSiteAgentProcessorsListWithResponse performs a GET /api/marketplace-site-agent-processors/ (the `MarketplaceSiteAgentProcessorsList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -728549,6 +728809,45 @@ func ParseMarketplaceSiteAgentLogsCreateResponse(rsp *http.Response) (*Marketpla
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceSiteAgentPluginsListResponse parses an HTTP response from a MarketplaceSiteAgentPluginsListWithResponse call
+func ParseMarketplaceSiteAgentPluginsListResponse(rsp *http.Response) (*MarketplaceSiteAgentPluginsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceSiteAgentPluginsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []AgentPlugin
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceSiteAgentPluginsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
