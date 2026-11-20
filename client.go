@@ -45200,6 +45200,9 @@ type MergedPluginOptions struct {
 	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
 	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
 
+	// ScimLoginPort SSH port clients should use for every host in scim_login_nodes. When unset, clients use port 22. Outbound SCIM entitlements carry the hostname only and ignore this value.
+	ScimLoginPort *int `json:"scim_login_port,omitempty"`
+
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
 
@@ -45593,6 +45596,9 @@ type MergedPluginOptionsRequest struct {
 
 	// ScimLoginNodes Bare hostnames of login nodes included in outbound SCIM entitlements when enable_scim_entitlements is set. Each entry is a DNS hostname only (for example login.example.org): stored lowercased, with no ssh:// URL, user@host, or host:port. These are not access links and do not appear in the resource access dropdown.
 	ScimLoginNodes *[]string `json:"scim_login_nodes,omitempty"`
+
+	// ScimLoginPort SSH port clients should use for every host in scim_login_nodes. When unset, clients use port 22. Outbound SCIM entitlements carry the hostname only and ignore this value.
+	ScimLoginPort *int `json:"scim_login_port,omitempty"`
 
 	// ScratchProjectDirectory HEAppE scratch project directory
 	ScratchProjectDirectory *string `json:"scratch_project_directory,omitempty"`
@@ -69779,7 +69785,10 @@ type UserInfoRequest struct {
 
 // UserInvitationAcceptRequest defines model for UserInvitationAcceptRequest.
 type UserInvitationAcceptRequest struct {
-	// User Staff only. Accept the invitation for this user instead of the caller. The user's email must match the invitation. Empty, null or the caller's own uuid accepts for the caller.
+	// AllowEmailMismatch Only with user. Accept even though the user's email differs from the invitation's, for a caller that has verified the person's identity itself. Has no effect while ENABLE_STRICT_CHECK_ACCEPTING_INVITATION is on. The role-granted event records the bypass in email_check_bypassed, invitation_uuid and invitation_email.
+	AllowEmailMismatch *bool `json:"allow_email_mismatch,omitempty"`
+
+	// User Staff only. Accept the invitation for this user instead of the caller. The user's email must match the invitation unless allow_email_mismatch is set. Empty, null or the caller's own uuid accepts for the caller.
 	User *openapi_types.UUID `json:"user,omitempty"`
 }
 
@@ -150851,7 +150860,7 @@ type ClientInterface interface {
 
 	// UserInvitationsAcceptWithBody Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -150860,7 +150869,7 @@ type ClientInterface interface {
 
 	// UserInvitationsAccept Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -218200,7 +218209,7 @@ func (c *Client) UserInvitationsUpdate(ctx context.Context, uuid openapi_types.U
 
 // UserInvitationsAcceptWithBody Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 //
 // Takes any type of body and a specified content type.
 //
@@ -218219,7 +218228,7 @@ func (c *Client) UserInvitationsAcceptWithBody(ctx context.Context, uuid openapi
 
 // UserInvitationsAccept Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -503965,7 +503974,7 @@ type ClientWithResponsesInterface interface {
 
 	// UserInvitationsAcceptWithBodyWithResponse Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -503974,7 +503983,7 @@ type ClientWithResponsesInterface interface {
 
 	// UserInvitationsAcceptWithResponse Accept an invitation
 	//
-	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+	// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -688710,7 +688719,7 @@ func (c *ClientWithResponses) UserInvitationsUpdateWithResponse(ctx context.Cont
 
 // UserInvitationsAcceptWithBodyWithResponse Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -688725,7 +688734,7 @@ func (c *ClientWithResponses) UserInvitationsAcceptWithBodyWithResponse(ctx cont
 
 // UserInvitationsAcceptWithResponse Accept an invitation
 //
-// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation.
+// Accepts an invitation for the currently authenticated user. This grants the user the specified role in the invitation's scope. Staff may pass `user` to accept it for that user instead, for example from a service account that registers users elsewhere; the user's email must match the invitation unless `allow_email_mismatch` is set, for a caller that has verified the person's identity itself.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
