@@ -40711,30 +40711,32 @@ type ExpertiseCategoryOEnum string
 
 // ExportComponentData defines model for ExportComponentData.
 type ExportComponentData struct {
-	ArticleCode  string   `json:"article_code"`
-	BackendId    string   `json:"backend_id"`
-	BillingType  string   `json:"billing_type"`
-	Description  string   `json:"description"`
-	LimitAmount  *int     `json:"limit_amount"`
-	LimitPeriod  *string  `json:"limit_period"`
-	MeasuredUnit string   `json:"measured_unit"`
-	Name         string   `json:"name"`
-	Type         string   `json:"type"`
-	UnitFactor   *float64 `json:"unit_factor"`
+	ArticleCode       string   `json:"article_code"`
+	BackendId         string   `json:"backend_id"`
+	BillingType       string   `json:"billing_type"`
+	Description       string   `json:"description"`
+	LimitAmount       *int     `json:"limit_amount"`
+	LimitIncreaseOnly bool     `json:"limit_increase_only"`
+	LimitPeriod       *string  `json:"limit_period"`
+	MeasuredUnit      string   `json:"measured_unit"`
+	Name              string   `json:"name"`
+	Type              string   `json:"type"`
+	UnitFactor        *float64 `json:"unit_factor"`
 }
 
 // ExportComponentDataRequest defines model for ExportComponentDataRequest.
 type ExportComponentDataRequest struct {
-	ArticleCode  string   `json:"article_code"`
-	BackendId    string   `json:"backend_id"`
-	BillingType  string   `json:"billing_type"`
-	Description  string   `json:"description"`
-	LimitAmount  *int     `json:"limit_amount"`
-	LimitPeriod  *string  `json:"limit_period"`
-	MeasuredUnit string   `json:"measured_unit"`
-	Name         string   `json:"name"`
-	Type         string   `json:"type"`
-	UnitFactor   *float64 `json:"unit_factor"`
+	ArticleCode       string   `json:"article_code"`
+	BackendId         string   `json:"backend_id"`
+	BillingType       string   `json:"billing_type"`
+	Description       string   `json:"description"`
+	LimitAmount       *int     `json:"limit_amount"`
+	LimitIncreaseOnly bool     `json:"limit_increase_only"`
+	LimitPeriod       *string  `json:"limit_period"`
+	MeasuredUnit      string   `json:"measured_unit"`
+	Name              string   `json:"name"`
+	Type              string   `json:"type"`
+	UnitFactor        *float64 `json:"unit_factor"`
 }
 
 // ExportEndpointData defines model for ExportEndpointData.
@@ -47421,7 +47423,10 @@ type OfferingComponent struct {
 	LimitAmount *float64 `json:"limit_amount,omitempty"`
 
 	// LimitDecimalPlaces Number of decimal places accepted for this component's limit. 0 keeps the limit integer-only.
-	LimitDecimalPlaces *int                           `json:"limit_decimal_places,omitempty"`
+	LimitDecimalPlaces *int `json:"limit_decimal_places,omitempty"`
+
+	// LimitIncreaseOnly If set, a consumer cannot lower this component's limit below the resource's current limit.
+	LimitIncreaseOnly  *bool                          `json:"limit_increase_only,omitempty"`
 	LimitPeriod        *OfferingComponent_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *float64                       `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                           `json:"max_prepaid_duration,omitempty"`
@@ -47488,7 +47493,10 @@ type OfferingComponentRequest struct {
 	LimitAmount  *float64        `json:"limit_amount,omitempty"`
 
 	// LimitDecimalPlaces Number of decimal places accepted for this component's limit. 0 keeps the limit integer-only.
-	LimitDecimalPlaces *int                                  `json:"limit_decimal_places,omitempty"`
+	LimitDecimalPlaces *int `json:"limit_decimal_places,omitempty"`
+
+	// LimitIncreaseOnly If set, a consumer cannot lower this component's limit below the resource's current limit.
+	LimitIncreaseOnly  *bool                                 `json:"limit_increase_only,omitempty"`
 	LimitPeriod        *OfferingComponentRequest_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *float64                              `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                                  `json:"max_prepaid_duration,omitempty"`
@@ -69295,7 +69303,10 @@ type UpdateOfferingComponentRequest struct {
 	LimitAmount  *float64        `json:"limit_amount,omitempty"`
 
 	// LimitDecimalPlaces Number of decimal places accepted for this component's limit. 0 keeps the limit integer-only.
-	LimitDecimalPlaces *int                                        `json:"limit_decimal_places,omitempty"`
+	LimitDecimalPlaces *int `json:"limit_decimal_places,omitempty"`
+
+	// LimitIncreaseOnly If set, a consumer cannot lower this component's limit below the resource's current limit.
+	LimitIncreaseOnly  *bool                                       `json:"limit_increase_only,omitempty"`
 	LimitPeriod        *UpdateOfferingComponentRequest_LimitPeriod `json:"limit_period,omitempty"`
 	MaxAvailableLimit  *float64                                    `json:"max_available_limit,omitempty"`
 	MaxPrepaidDuration *int                                        `json:"max_prepaid_duration,omitempty"`
