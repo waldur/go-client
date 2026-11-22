@@ -6544,6 +6544,7 @@ const (
 	EventMetadataResponseEventGroupsProposalPanelChanged                             EventMetadataResponseEventGroups = "proposal_panel_changed"
 	EventMetadataResponseEventGroupsProposalRejectedAtRoundCompletion                EventMetadataResponseEventGroups = "proposal_rejected_at_round_completion"
 	EventMetadataResponseEventGroupsProposalReportReleased                           EventMetadataResponseEventGroups = "proposal_report_released"
+	EventMetadataResponseEventGroupsProposalReviewersNotified                        EventMetadataResponseEventGroups = "proposal_reviewers_notified"
 	EventMetadataResponseEventGroupsProposalRunClosed                                EventMetadataResponseEventGroups = "proposal_run_closed"
 	EventMetadataResponseEventGroupsProposalRunOpened                                EventMetadataResponseEventGroups = "proposal_run_opened"
 	EventMetadataResponseEventGroupsProposalStepCompleted                            EventMetadataResponseEventGroups = "proposal_step_completed"
@@ -7308,6 +7309,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsProposalReportReleased:
 		return true
+	case EventMetadataResponseEventGroupsProposalReviewersNotified:
+		return true
 	case EventMetadataResponseEventGroupsProposalRunClosed:
 		return true
 	case EventMetadataResponseEventGroupsProposalRunOpened:
@@ -7966,6 +7969,7 @@ const (
 	EventTypesEnumProposalPanelChanged                             EventTypesEnum = "proposal_panel_changed"
 	EventTypesEnumProposalRejectedAtRoundCompletion                EventTypesEnum = "proposal_rejected_at_round_completion"
 	EventTypesEnumProposalReportReleased                           EventTypesEnum = "proposal_report_released"
+	EventTypesEnumProposalReviewersNotified                        EventTypesEnum = "proposal_reviewers_notified"
 	EventTypesEnumProposalRunClosed                                EventTypesEnum = "proposal_run_closed"
 	EventTypesEnumProposalRunOpened                                EventTypesEnum = "proposal_run_opened"
 	EventTypesEnumProposalStepCompleted                            EventTypesEnum = "proposal_step_completed"
@@ -8729,6 +8733,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumProposalRejectedAtRoundCompletion:
 		return true
 	case EventTypesEnumProposalReportReleased:
+		return true
+	case EventTypesEnumProposalReviewersNotified:
 		return true
 	case EventTypesEnumProposalRunClosed:
 		return true
@@ -17666,6 +17672,7 @@ const (
 	PermissionMetadataResponsePermissionMapOFFERINGPAUSE                                PermissionMetadataResponsePermissionMap = "OFFERING.PAUSE"
 	PermissionMetadataResponsePermissionMapOFFERINGUNPAUSE                              PermissionMetadataResponsePermissionMap = "OFFERING.UNPAUSE"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATE                               PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE"
+	PermissionMetadataResponsePermissionMapOFFERINGUPDATEAGENTCONFIGURATION             PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_AGENT_CONFIGURATION"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEATTRIBUTES                     PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_ATTRIBUTES"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATECOMPONENTS                     PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_COMPONENTS"
 	PermissionMetadataResponsePermissionMapOFFERINGUPDATEDESCRIPTION                    PermissionMetadataResponsePermissionMap = "OFFERING.UPDATE_DESCRIPTION"
@@ -17878,6 +17885,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapOFFERINGUNPAUSE:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGUPDATE:
+		return true
+	case PermissionMetadataResponsePermissionMapOFFERINGUPDATEAGENTCONFIGURATION:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGUPDATEATTRIBUTES:
 		return true
@@ -18143,6 +18152,7 @@ const (
 	PermissionMetadataResponsePermissionsOFFERINGPAUSE                                PermissionMetadataResponsePermissions = "OFFERING.PAUSE"
 	PermissionMetadataResponsePermissionsOFFERINGUNPAUSE                              PermissionMetadataResponsePermissions = "OFFERING.UNPAUSE"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATE                               PermissionMetadataResponsePermissions = "OFFERING.UPDATE"
+	PermissionMetadataResponsePermissionsOFFERINGUPDATEAGENTCONFIGURATION             PermissionMetadataResponsePermissions = "OFFERING.UPDATE_AGENT_CONFIGURATION"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEATTRIBUTES                     PermissionMetadataResponsePermissions = "OFFERING.UPDATE_ATTRIBUTES"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATECOMPONENTS                     PermissionMetadataResponsePermissions = "OFFERING.UPDATE_COMPONENTS"
 	PermissionMetadataResponsePermissionsOFFERINGUPDATEDESCRIPTION                    PermissionMetadataResponsePermissions = "OFFERING.UPDATE_DESCRIPTION"
@@ -18355,6 +18365,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsOFFERINGUNPAUSE:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGUPDATE:
+		return true
+	case PermissionMetadataResponsePermissionsOFFERINGUPDATEAGENTCONFIGURATION:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGUPDATEATTRIBUTES:
 		return true
@@ -21061,6 +21073,24 @@ func (e QosStrategyEnum) Valid() bool {
 	}
 }
 
+// Defines values for QueryFileFormatEnum.
+const (
+	QueryFileFormatEnumCsv  QueryFileFormatEnum = "csv"
+	QueryFileFormatEnumXlsx QueryFileFormatEnum = "xlsx"
+)
+
+// Valid indicates whether the value is a known member of the QueryFileFormatEnum enum.
+func (e QueryFileFormatEnum) Valid() bool {
+	switch e {
+	case QueryFileFormatEnumCsv:
+		return true
+	case QueryFileFormatEnumXlsx:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for QuestionTypeEnum.
 const (
 	QuestionTypeEnumBoolean       QuestionTypeEnum = "boolean"
@@ -22042,6 +22072,7 @@ func (e RecipientEnum) Valid() bool {
 // Defines values for RecipientsEnum.
 const (
 	RecipientsEnumApplicant RecipientsEnum = "applicant"
+	RecipientsEnumReviewers RecipientsEnum = "reviewers"
 	RecipientsEnumTeam      RecipientsEnum = "team"
 )
 
@@ -22049,6 +22080,8 @@ const (
 func (e RecipientsEnum) Valid() bool {
 	switch e {
 	case RecipientsEnumApplicant:
+		return true
+	case RecipientsEnumReviewers:
 		return true
 	case RecipientsEnumTeam:
 		return true
@@ -22465,6 +22498,27 @@ func (e RequestedOfferingStates) Valid() bool {
 	case RequestedOfferingStatesCanceled:
 		return true
 	case RequestedOfferingStatesRequested:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RequirementEnum.
+const (
+	RequirementEnumOptional           RequirementEnum = "optional"
+	RequirementEnumRequired           RequirementEnum = "required"
+	RequirementEnumRequiredWithParent RequirementEnum = "required_with_parent"
+)
+
+// Valid indicates whether the value is a known member of the RequirementEnum enum.
+func (e RequirementEnum) Valid() bool {
+	switch e {
+	case RequirementEnumOptional:
+		return true
+	case RequirementEnumRequired:
+		return true
+	case RequirementEnumRequiredWithParent:
 		return true
 	default:
 		return false
@@ -24022,6 +24076,24 @@ func (e ScopeEnum) Valid() bool {
 	case ScopeEnumAccount:
 		return true
 	case ScopeEnumUser:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for SecretFormatEnum.
+const (
+	SecretFormatEnumComment SecretFormatEnum = "comment"
+	SecretFormatEnumEnv     SecretFormatEnum = "env"
+)
+
+// Valid indicates whether the value is a known member of the SecretFormatEnum enum.
+func (e SecretFormatEnum) Valid() bool {
+	switch e {
+	case SecretFormatEnumComment:
+		return true
+	case SecretFormatEnumEnv:
 		return true
 	default:
 		return false
@@ -26993,6 +27065,7 @@ const (
 	ValueEnumOFFERINGPAUSE                                ValueEnum = "OFFERING.PAUSE"
 	ValueEnumOFFERINGUNPAUSE                              ValueEnum = "OFFERING.UNPAUSE"
 	ValueEnumOFFERINGUPDATE                               ValueEnum = "OFFERING.UPDATE"
+	ValueEnumOFFERINGUPDATEAGENTCONFIGURATION             ValueEnum = "OFFERING.UPDATE_AGENT_CONFIGURATION"
 	ValueEnumOFFERINGUPDATEATTRIBUTES                     ValueEnum = "OFFERING.UPDATE_ATTRIBUTES"
 	ValueEnumOFFERINGUPDATECOMPONENTS                     ValueEnum = "OFFERING.UPDATE_COMPONENTS"
 	ValueEnumOFFERINGUPDATEDESCRIPTION                    ValueEnum = "OFFERING.UPDATE_DESCRIPTION"
@@ -27205,6 +27278,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumOFFERINGUNPAUSE:
 		return true
 	case ValueEnumOFFERINGUPDATE:
+		return true
+	case ValueEnumOFFERINGUPDATEAGENTCONFIGURATION:
 		return true
 	case ValueEnumOFFERINGUPDATEATTRIBUTES:
 		return true
@@ -28992,11 +29067,12 @@ type AgentConfiguration struct {
 	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
 
 	// CustomBackends Backends that are not in the plugin catalog, such as a site's own plugin. Their settings and components are not validated.
-	CustomBackends            *[]string `json:"custom_backends,omitempty"`
-	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
-	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
-	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
-	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+	CustomBackends            *[]string      `json:"custom_backends,omitempty"`
+	EventSettings             *EventSettings `json:"event_settings,omitempty"`
+	MembershipSyncBackend     *string        `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string        `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string        `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string        `json:"username_management_backend,omitempty"`
 }
 
 // AgentConfigurationRequest defines model for AgentConfigurationRequest.
@@ -29005,11 +29081,12 @@ type AgentConfigurationRequest struct {
 	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
 
 	// CustomBackends Backends that are not in the plugin catalog, such as a site's own plugin. Their settings and components are not validated.
-	CustomBackends            *[]string `json:"custom_backends,omitempty"`
-	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
-	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
-	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
-	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+	CustomBackends            *[]string             `json:"custom_backends,omitempty"`
+	EventSettings             *EventSettingsRequest `json:"event_settings,omitempty"`
+	MembershipSyncBackend     *string               `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string               `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string               `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string               `json:"username_management_backend,omitempty"`
 }
 
 // AgentConnectionInfo defines model for AgentConnectionInfo.
@@ -40578,6 +40655,30 @@ type EventMetadataResponse struct {
 // EventMetadataResponseEventGroups defines model for EventMetadataResponse.EventGroups.
 type EventMetadataResponseEventGroups string
 
+// EventSettings defines model for EventSettings.
+type EventSettings struct {
+	StompEnabled *bool `json:"stomp_enabled,omitempty"`
+
+	// StompMembershipSyncEnabled Use STOMP for membership sync; the agent follows stomp_enabled when this is unset.
+	StompMembershipSyncEnabled *bool   `json:"stomp_membership_sync_enabled,omitempty"`
+	StompWsHost                *string `json:"stomp_ws_host,omitempty"`
+	StompWsPath                *string `json:"stomp_ws_path,omitempty"`
+	StompWsPort                *int    `json:"stomp_ws_port,omitempty"`
+	WebsocketUseTls            *bool   `json:"websocket_use_tls,omitempty"`
+}
+
+// EventSettingsRequest defines model for EventSettingsRequest.
+type EventSettingsRequest struct {
+	StompEnabled *bool `json:"stomp_enabled,omitempty"`
+
+	// StompMembershipSyncEnabled Use STOMP for membership sync; the agent follows stomp_enabled when this is unset.
+	StompMembershipSyncEnabled *bool   `json:"stomp_membership_sync_enabled,omitempty"`
+	StompWsHost                *string `json:"stomp_ws_host,omitempty"`
+	StompWsPath                *string `json:"stomp_ws_path,omitempty"`
+	StompWsPort                *int    `json:"stomp_ws_port,omitempty"`
+	WebsocketUseTls            *bool   `json:"websocket_use_tls,omitempty"`
+}
+
 // EventStats defines model for EventStats.
 type EventStats struct {
 	Count *int `json:"count,omitempty"`
@@ -47141,7 +47242,7 @@ type NotificationWording struct {
 type NotifyProposalsRequest struct {
 	Body string `json:"body"`
 
-	// ProposalUuids Proposals of this call whose applicants receive the message
+	// ProposalUuids Proposals of this call whose applicants or reviewers receive the message
 	ProposalUuids []openapi_types.UUID `json:"proposal_uuids"`
 
 	// Recipients Who receives the message on each proposal
@@ -47153,7 +47254,7 @@ type NotifyProposalsRequest struct {
 type NotifyProposalsResponse struct {
 	ProposalsNotified int `json:"proposals_notified"`
 
-	// SkippedProposals Requested proposals that are not part of this call
+	// SkippedProposals Requested proposals not written to, with the reason: not part of this call, or nobody it is addressed to receives mail
 	SkippedProposals []SkippedProposal `json:"skipped_proposals"`
 }
 
@@ -58848,12 +58949,15 @@ type ProposalReview struct {
 	Criteria *[]ReviewCriterion `json:"criteria,omitempty"`
 
 	// CriteriaScores Score per criterion, 1-5, keyed by criterion UUID. Writing it replaces the scores, and summary_score becomes their weighted average, rounded half up.
-	CriteriaScores *map[string]*int    `json:"criteria_scores,omitempty"`
-	Modified       *time.Time          `json:"modified,omitempty"`
-	Proposal       string              `json:"proposal"`
-	ProposalName   *string             `json:"proposal_name,omitempty"`
-	ProposalSlug   *string             `json:"proposal_slug,omitempty"`
-	ProposalUuid   *openapi_types.UUID `json:"proposal_uuid,omitempty"`
+	CriteriaScores *map[string]*int `json:"criteria_scores,omitempty"`
+
+	// DeclineReason Why the reviewer sent the review back, as they gave it. For the call team only; empty when no reason was given, and on reviews that expired or were withdrawn.
+	DeclineReason *string             `json:"decline_reason,omitempty"`
+	Modified      *time.Time          `json:"modified,omitempty"`
+	Proposal      string              `json:"proposal"`
+	ProposalName  *string             `json:"proposal_name,omitempty"`
+	ProposalSlug  *string             `json:"proposal_slug,omitempty"`
+	ProposalUuid  *openapi_types.UUID `json:"proposal_uuid,omitempty"`
 
 	// RejectionCause Why a rejected review was closed: declined by the reviewer, expired at its deadline, withdrawn when the reviewer joined the proposal team, or closed when the proposal was decided. Empty on reviews not rejected, and on those rejected before this was recorded.
 	RejectionCause *ProposalReview_RejectionCause `json:"rejection_cause,omitempty"`
@@ -61052,6 +61156,9 @@ type PullMarketplaceScriptResourceRequest struct {
 
 // QosStrategyEnum defines model for QosStrategyEnum.
 type QosStrategyEnum string
+
+// QueryFileFormatEnum defines model for QueryFileFormatEnum.
+type QueryFileFormatEnum string
 
 // QueryOutput defines model for QueryOutput.
 type QueryOutput struct {
@@ -63350,6 +63457,9 @@ type RequestedResourceRequest struct {
 	RequestedOfferingUuid    *openapi_types.UUID     `json:"requested_offering_uuid,omitempty"`
 }
 
+// RequirementEnum defines model for RequirementEnum.
+type RequirementEnum string
+
 // ReservedAgentTask defines model for ReservedAgentTask.
 type ReservedAgentTask struct {
 	Id   string `json:"id"`
@@ -64402,6 +64512,12 @@ type ReviewCriterion struct {
 
 	// Weight Weight in the overall score, relative to the step's other criteria.
 	Weight int `json:"weight"`
+}
+
+// ReviewRejectRequest defines model for ReviewRejectRequest.
+type ReviewRejectRequest struct {
+	// Reason Why the reviewer sends the review back, such as a conflict of interest. Kept on the review as decline_reason and sent to the call's managers.
+	Reason *string `json:"reason,omitempty"`
 }
 
 // ReviewSubmitRequest defines model for ReviewSubmitRequest.
@@ -66543,6 +66659,9 @@ type Secret struct {
 	Name string `json:"name"`
 }
 
+// SecretFormatEnum defines model for SecretFormatEnum.
+type SecretFormatEnum string
+
 // Section defines model for Section.
 type Section struct {
 	Category      string     `json:"category"`
@@ -67173,11 +67292,34 @@ type SiteAgentConfigGenerationRequest struct {
 	// OfferingUuids List of SLURM offering UUIDs to include in configuration
 	OfferingUuids []openapi_types.UUID `json:"offering_uuids"`
 
+	// SecretFormat How a secret is left for the operator. 'comment': an empty value with a '# SECRET:' comment. 'env': a ${VARIABLE} reference, for filling the file in with envsubst or a similar tool; the agent does not expand variables itself. Offerings with no agent roles set keep the earlier placeholders in 'comment' format.
+	SecretFormat *SecretFormatEnum `json:"secret_format,omitempty"`
+
 	// Timezone Timezone for the site agent
 	Timezone *string `json:"timezone,omitempty"`
 
 	// WaldurApiUrl Waldur API URL (defaults to current server URL)
 	WaldurApiUrl *string `json:"waldur_api_url,omitempty"`
+}
+
+// SiteAgentConfigSecret defines model for SiteAgentConfigSecret.
+type SiteAgentConfigSecret struct {
+	// Backend The backend that reads it; null for the offering's own fields.
+	Backend *string `json:"backend"`
+
+	// EnvVar The variable the placeholder names, with secret_format=env.
+	EnvVar *string `json:"env_var"`
+
+	// Field Where the secret goes in the offering, such as waldur_api_token or backend_settings.ldap.bind_password.
+	Field string `json:"field"`
+
+	// InFile Whether the file has a placeholder for it; otherwise it is only listed, to be added where it applies.
+	InFile       bool               `json:"in_file"`
+	OfferingName string             `json:"offering_name"`
+	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+
+	// Requirement required_with_parent: needed once the block it sits in is set.
+	Requirement RequirementEnum `json:"requirement"`
 }
 
 // SiteAgentLog defines model for SiteAgentLog.
@@ -75967,7 +76109,7 @@ type EventsStatsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid). Combined with OR. Staff/support may target any user; others only themselves.
+	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid), or an invitation addressed to their email. Combined with OR. Staff/support may target any user; others only themselves.
 	RelatedUserUuid *openapi_types.UUID `form:"related_user_uuid,omitempty" json:"related_user_uuid,omitempty"`
 
 	// Scope Filter by scope URL.
@@ -75988,7 +76130,7 @@ type EventsStatsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid). Combined with OR. Staff/support may target any user; others only themselves.
+	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid), or an invitation addressed to their email. Combined with OR. Staff/support may target any user; others only themselves.
 	RelatedUserUuid *openapi_types.UUID `form:"related_user_uuid,omitempty" json:"related_user_uuid,omitempty"`
 
 	// Scope Filter by scope URL.
@@ -76029,7 +76171,7 @@ type EventsListParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
-	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid). Combined with OR. Staff/support may target any user; others only themselves.
+	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid), or an invitation addressed to their email. Combined with OR. Staff/support may target any user; others only themselves.
 	RelatedUserUuid *openapi_types.UUID `form:"related_user_uuid,omitempty" json:"related_user_uuid,omitempty"`
 
 	// Scope Filter by scope URL.
@@ -76072,7 +76214,7 @@ type EventsCountParams struct {
 	// ProjectUuid Project UUID
 	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
 
-	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid). Combined with OR. Staff/support may target any user; others only themselves.
+	// RelatedUserUuid Filter events related to a user: Feed scope, actor (context.user_uuid), or affected user (context.affected_user_uuid), or an invitation addressed to their email. Combined with OR. Staff/support may target any user; others only themselves.
 	RelatedUserUuid *openapi_types.UUID `form:"related_user_uuid,omitempty" json:"related_user_uuid,omitempty"`
 
 	// Scope Filter by scope URL.
@@ -87659,6 +87801,40 @@ type MarketplaceServiceProvidersRobotAccountProjectsListParams struct {
 	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
 }
 
+// MarketplaceServiceProvidersSiteAgentConfigSecretsParams defines parameters for MarketplaceServiceProvidersSiteAgentConfigSecrets.
+type MarketplaceServiceProvidersSiteAgentConfigSecretsParams struct {
+	// Created Created after
+	Created *time.Time `form:"created,omitempty" json:"created,omitempty"`
+
+	// CreatedBefore Created before
+	CreatedBefore *time.Time `form:"created_before,omitempty" json:"created_before,omitempty"`
+
+	// Customer Customer URL
+	Customer *string `form:"customer,omitempty" json:"customer,omitempty"`
+
+	// CustomerKeyword Customer keyword (name, abbreviation or native name)
+	CustomerKeyword *string `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+
+	// CustomerUuid Customer UUID
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Modified Modified after
+	Modified *time.Time `form:"modified,omitempty" json:"modified,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]CallManagingOrganisationOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MarketplaceServiceProvidersUsernameConflictsListParams defines parameters for MarketplaceServiceProvidersUsernameConflictsList.
 type MarketplaceServiceProvidersUsernameConflictsListParams struct {
 	// Created Created after
@@ -96683,6 +96859,9 @@ type ProposalProtectedCallsExportProposalsParams struct {
 	// CreatedByUuid Limit the export to one applicant.
 	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
 
+	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
+	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
 	// ProposalName Limit the export to proposals whose name contains this text — the list's search box. Named proposal_name because a bare `name` is read by the call's own filterset.
 	ProposalName *string `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
 
@@ -96698,6 +96877,9 @@ type ProposalProtectedCallsExportProposalsParams struct {
 
 // ProposalProtectedCallsExportReviewsParams defines parameters for ProposalProtectedCallsExportReviews.
 type ProposalProtectedCallsExportReviewsParams struct {
+	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
+	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
 	// ProposalName Limit the export to proposals whose name contains this text — the list's search box. Named proposal_name because a bare `name` is read by the call's own filterset.
 	ProposalName *string `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
 
@@ -104052,6 +104234,9 @@ type MarketplaceServiceProvidersGenerateSiteAgentConfigJSONRequestBody = SiteAge
 // MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody defines body for MarketplaceServiceProvidersSetOfferingsUsername for application/json ContentType.
 type MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody = SetOfferingsUsernameRequest
 
+// MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody defines body for MarketplaceServiceProvidersSiteAgentConfigSecrets for application/json ContentType.
+type MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody = SiteAgentConfigGenerationRequest
+
 // MarketplaceServiceProvidersUpdateUserJSONRequestBody defines body for MarketplaceServiceProvidersUpdateUser for application/json ContentType.
 type MarketplaceServiceProvidersUpdateUserJSONRequestBody = UserRoleUpdateRequest
 
@@ -105219,6 +105404,9 @@ type ProposalReviewsPartialUpdateJSONRequestBody = PatchedProposalReviewRequest
 
 // ProposalReviewsUpdateJSONRequestBody defines body for ProposalReviewsUpdate for application/json ContentType.
 type ProposalReviewsUpdateJSONRequestBody = ProposalReviewRequest
+
+// ProposalReviewsRejectJSONRequestBody defines body for ProposalReviewsReject for application/json ContentType.
+type ProposalReviewsRejectJSONRequestBody = ReviewRejectRequest
 
 // ProposalReviewsSubmitJSONRequestBody defines body for ProposalReviewsSubmit for application/json ContentType.
 type ProposalReviewsSubmitJSONRequestBody = ReviewSubmitRequest
@@ -138443,7 +138631,7 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -138452,7 +138640,7 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfig Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -138525,6 +138713,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 	MarketplaceServiceProvidersSetOfferingsUsername(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody List the secrets of a generated site agent configuration
+	//
+	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceServiceProvidersSiteAgentConfigSecrets List the secrets of a generated site agent configuration
+	//
+	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigSecrets(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, body MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceServiceProvidersStatRetrieve Get service provider statistics
 	//
@@ -146371,12 +146577,12 @@ type ClientInterface interface {
 
 	// ProposalProtectedCallsExportProposals performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 	//
-	// Download the call's proposals as CSV, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
+	// Download the call's proposals as CSV or as an Excel workbook, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
 	ProposalProtectedCallsExportProposals(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportProposalsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsExportReviews performs a GET /api/proposal-protected-calls/{uuid}/export-reviews/ (the `ProposalProtectedCallsExportReviews` operationId) request.
 	//
-	// Download the call's reviews as CSV, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
+	// Download the call's reviews as CSV or as an Excel workbook, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
 	ProposalProtectedCallsExportReviews(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportReviewsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsExportCallWithBody Export call configuration
@@ -146544,13 +146750,13 @@ type ClientInterface interface {
 	// ProposalProtectedCallsNotifyProposalsWithBody performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+	// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 	ProposalProtectedCallsNotifyProposalsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsNotifyProposals performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+	// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 	ProposalProtectedCallsNotifyProposals(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsNotifyProposalsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsOfferingComponentsList performs a GET /api/proposal-protected-calls/{uuid}/offering_components/ (the `ProposalProtectedCallsOfferingComponentsList` operationId) request.
@@ -147399,10 +147605,17 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	ProposalReviewsUpdate(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// ProposalReviewsReject performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+	// ProposalReviewsRejectWithBody performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request,
+	// with any type of body and a specified content type.
 	//
-	// Reject a review, changing its state to REJECTED.
-	ProposalReviewsReject(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+	ProposalReviewsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalReviewsReject performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+	ProposalReviewsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalReviewsSubmitWithBody performs a POST /api/proposal-reviews/{uuid}/submit/ (the `ProposalReviewsSubmit` operationId) request,
 	// with any type of body and a specified content type.
@@ -184362,7 +184575,7 @@ func (c *Client) MarketplaceServiceProvidersDeleteUser(ctx context.Context, uuid
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 //
 // Takes any type of body and a specified content type.
 //
@@ -184381,7 +184594,7 @@ func (c *Client) MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody(ctx 
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfig Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -184545,6 +184758,44 @@ func (c *Client) MarketplaceServiceProvidersSetOfferingsUsernameWithBody(ctx con
 // Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 func (c *Client) MarketplaceServiceProvidersSetOfferingsUsername(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersSetOfferingsUsernameRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody List the secrets of a generated site agent configuration
+//
+// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+func (c *Client) MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequestWithBody(c.Server, uuid, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigSecrets List the secrets of a generated site agent configuration
+//
+// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+func (c *Client) MarketplaceServiceProvidersSiteAgentConfigSecrets(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, body MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequest(c.Server, uuid, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -204882,7 +205133,7 @@ func (c *Client) ProposalProtectedCallsDuplicate(ctx context.Context, uuid opena
 
 // ProposalProtectedCallsExportProposals performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 //
-// Download the call's proposals as CSV, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
+// Download the call's proposals as CSV or as an Excel workbook, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
 func (c *Client) ProposalProtectedCallsExportProposals(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportProposalsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsExportProposalsRequest(c.Server, uuid, params)
 	if err != nil {
@@ -204897,7 +205148,7 @@ func (c *Client) ProposalProtectedCallsExportProposals(ctx context.Context, uuid
 
 // ProposalProtectedCallsExportReviews performs a GET /api/proposal-protected-calls/{uuid}/export-reviews/ (the `ProposalProtectedCallsExportReviews` operationId) request.
 //
-// Download the call's reviews as CSV, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
+// Download the call's reviews as CSV or as an Excel workbook, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
 func (c *Client) ProposalProtectedCallsExportReviews(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportReviewsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsExportReviewsRequest(c.Server, uuid, params)
 	if err != nil {
@@ -205345,7 +205596,7 @@ func (c *Client) ProposalProtectedCallsNotificationPreviewDraft(ctx context.Cont
 // ProposalProtectedCallsNotifyProposalsWithBody performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request,
 // with any type of body and a specified content type.
 //
-// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 func (c *Client) ProposalProtectedCallsNotifyProposalsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsNotifyProposalsRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -205361,7 +205612,7 @@ func (c *Client) ProposalProtectedCallsNotifyProposalsWithBody(ctx context.Conte
 // ProposalProtectedCallsNotifyProposals performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 func (c *Client) ProposalProtectedCallsNotifyProposals(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsNotifyProposalsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsNotifyProposalsRequest(c.Server, uuid, body)
 	if err != nil {
@@ -207930,11 +208181,28 @@ func (c *Client) ProposalReviewsUpdate(ctx context.Context, uuid openapi_types.U
 	return c.Client.Do(req)
 }
 
-// ProposalReviewsReject performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+// ProposalReviewsRejectWithBody performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request,
+// with any type of body and a specified content type.
 //
-// Reject a review, changing its state to REJECTED.
-func (c *Client) ProposalReviewsReject(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewProposalReviewsRejectRequest(c.Server, uuid)
+// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+func (c *Client) ProposalReviewsRejectWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalReviewsRejectRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalReviewsReject performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+func (c *Client) ProposalReviewsReject(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalReviewsRejectRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -344860,6 +345128,188 @@ func NewMarketplaceServiceProvidersSetOfferingsUsernameRequestWithBody(server st
 	return req, nil
 }
 
+// NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequest calls the generic MarketplaceServiceProvidersSiteAgentConfigSecrets builder with application/json body
+func NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, body MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequestWithBody(server, uuid, params, "application/json", bodyReader)
+}
+
+// NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequestWithBody constructs an http.Request for the MarketplaceServiceProvidersSiteAgentConfigSecrets method, with any body, and a specified content type
+func NewMarketplaceServiceProvidersSiteAgentConfigSecretsRequestWithBody(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/site_agent_config_secrets/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Created != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created", *params.Created, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CreatedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_before", *params.CreatedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Modified != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified", *params.Modified, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceServiceProvidersStatRetrieveRequest constructs an http.Request for the MarketplaceServiceProvidersStatRetrieve method
 func NewMarketplaceServiceProvidersStatRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -418588,6 +419038,18 @@ func NewProposalProtectedCallsExportProposalsRequest(server string, uuid openapi
 
 		}
 
+		if params.FileFormat != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.ProposalName != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_name", *params.ProposalName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -418684,6 +419146,18 @@ func NewProposalProtectedCallsExportReviewsRequest(server string, uuid openapi_t
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.FileFormat != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.ProposalName != nil {
 
@@ -429401,8 +429875,19 @@ func NewProposalReviewsUpdateRequestWithBody(server string, uuid openapi_types.U
 	return req, nil
 }
 
-// NewProposalReviewsRejectRequest constructs an http.Request for the ProposalReviewsReject method
-func NewProposalReviewsRejectRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+// NewProposalReviewsRejectRequest calls the generic ProposalReviewsReject builder with application/json body
+func NewProposalReviewsRejectRequest(server string, uuid openapi_types.UUID, body ProposalReviewsRejectJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalReviewsRejectRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalReviewsRejectRequestWithBody constructs an http.Request for the ProposalReviewsReject method, with any body, and a specified content type
+func NewProposalReviewsRejectRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -429427,10 +429912,12 @@ func NewProposalReviewsRejectRequest(server string, uuid openapi_types.UUID) (*h
 		return nil, err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -488743,7 +489230,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithBodyWithResponse Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -488752,7 +489239,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithResponse Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -488839,6 +489326,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 	MarketplaceServiceProvidersSetOfferingsUsernameWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSetOfferingsUsernameResponse, error)
+
+	// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse List the secrets of a generated site agent configuration
+	//
+	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigSecretsResponse, error)
+
+	// MarketplaceServiceProvidersSiteAgentConfigSecretsWithResponse List the secrets of a generated site agent configuration
+	//
+	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigSecretsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, body MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigSecretsResponse, error)
 
 	// MarketplaceServiceProvidersStatRetrieveWithResponse Get service provider statistics
 	//
@@ -498277,14 +498782,14 @@ type ClientWithResponsesInterface interface {
 
 	// ProposalProtectedCallsExportProposalsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 	//
-	// Download the call's proposals as CSV, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
+	// Download the call's proposals as CSV or as an Excel workbook, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsExportProposalsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportProposalsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportProposalsResponse, error)
 
 	// ProposalProtectedCallsExportReviewsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-reviews/ (the `ProposalProtectedCallsExportReviews` operationId) request.
 	//
-	// Download the call's reviews as CSV, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
+	// Download the call's reviews as CSV or as an Excel workbook, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsExportReviewsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportReviewsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportReviewsResponse, error)
@@ -498486,7 +498991,7 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsNotifyProposalsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+	// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	ProposalProtectedCallsNotifyProposalsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsNotifyProposalsResponse, error)
@@ -498494,7 +498999,7 @@ type ClientWithResponsesInterface interface {
 	// ProposalProtectedCallsNotifyProposalsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+	// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 	ProposalProtectedCallsNotifyProposalsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsNotifyProposalsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsNotifyProposalsResponse, error)
 
 	// ProposalProtectedCallsOfferingComponentsListWithResponse performs a GET /api/proposal-protected-calls/{uuid}/offering_components/ (the `ProposalProtectedCallsOfferingComponentsList` operationId) request.
@@ -499585,12 +500090,19 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	ProposalReviewsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalReviewsUpdateResponse, error)
 
-	// ProposalReviewsRejectWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+	// ProposalReviewsRejectWithBodyWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request,
+	// with any type of body and a specified content type.
 	//
-	// Reject a review, changing its state to REJECTED.
+	// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
 	//
 	// Returns a wrapper object for the known response body format(s).
-	ProposalReviewsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error)
+	ProposalReviewsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error)
+
+	// ProposalReviewsRejectWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+	ProposalReviewsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error)
 
 	// ProposalReviewsSubmitWithBodyWithResponse performs a POST /api/proposal-reviews/{uuid}/submit/ (the `ProposalReviewsSubmit` operationId) request,
 	// with any type of body and a specified content type.
@@ -564668,6 +565180,47 @@ func (r MarketplaceServiceProvidersSetOfferingsUsernameResponse) StatusCode() in
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceServiceProvidersSetOfferingsUsernameResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceServiceProvidersSiteAgentConfigSecretsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]SiteAgentConfigSecret
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceServiceProvidersSiteAgentConfigSecretsResponse) GetJSON200() *[]SiteAgentConfigSecret {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceServiceProvidersSiteAgentConfigSecretsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersSiteAgentConfigSecretsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersSiteAgentConfigSecretsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceServiceProvidersSiteAgentConfigSecretsResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -660623,7 +661176,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersDeleteUserWithResponse(
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithBodyWithResponse Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -660638,7 +661191,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersGenerateSiteAgentConfig
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithResponse Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected SLURM offerings. The configuration includes offering details, components, backend settings, and optionally SLURM periodic usage policy settings. Secrets are shown as placeholders that need to be filled in.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -660784,6 +661337,36 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersSetOfferingsUsernameWit
 		return nil, err
 	}
 	return ParseMarketplaceServiceProvidersSetOfferingsUsernameResponse(rsp)
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse List the secrets of a generated site agent configuration
+//
+// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+func (c *ClientWithResponses) MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigSecretsResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody(ctx, uuid, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersSiteAgentConfigSecretsResponse(rsp)
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigSecretsWithResponse List the secrets of a generated site agent configuration
+//
+// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-service-providers/{uuid}/site_agent_config_secrets/ (the `MarketplaceServiceProvidersSiteAgentConfigSecrets` operationId).
+func (c *ClientWithResponses) MarketplaceServiceProvidersSiteAgentConfigSecretsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigSecretsParams, body MarketplaceServiceProvidersSiteAgentConfigSecretsJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigSecretsResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersSiteAgentConfigSecrets(ctx, uuid, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersSiteAgentConfigSecretsResponse(rsp)
 }
 
 // MarketplaceServiceProvidersStatRetrieveWithResponse Get service provider statistics
@@ -677720,7 +678303,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsDuplicateWithResponse(ctx co
 
 // ProposalProtectedCallsExportProposalsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 //
-// Download the call's proposals as CSV, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
+// Download the call's proposals as CSV or as an Excel workbook, one row per proposal, with one column per requested offering component. The column set is derived from the call, so it is the same for every row and between exports of the same call.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProtectedCallsExportProposalsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportProposalsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportProposalsResponse, error) {
@@ -677733,7 +678316,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsExportProposalsWithResponse(
 
 // ProposalProtectedCallsExportReviewsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-reviews/ (the `ProposalProtectedCallsExportReviews` operationId) request.
 //
-// Download the call's reviews as CSV, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
+// Download the call's reviews as CSV or as an Excel workbook, one row per review. The reviewer's private comment is never included: the export is open to call managers, and the review API keeps that field from them.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProtectedCallsExportReviewsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportReviewsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportReviewsResponse, error) {
@@ -678103,7 +678686,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsNotificationPreviewDraftWith
 // ProposalProtectedCallsNotifyProposalsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request,
 // with any type of body and a specified content type.
 //
-// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) ProposalProtectedCallsNotifyProposalsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsNotifyProposalsResponse, error) {
@@ -678117,7 +678700,7 @@ func (c *ClientWithResponses) ProposalProtectedCallsNotifyProposalsWithBodyWithR
 // ProposalProtectedCallsNotifyProposalsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/notify-proposals/ (the `ProposalProtectedCallsNotifyProposals` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Email the applicants of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it.
+// Email the applicants or the reviewers of selected proposals of this call. One message per recipient per proposal, sent asynchronously; each proposal gets an event recording it. Each reviewer of a proposal's reviews in progress or submitted is written to separately, with a link to their own review; that event is read by the call team, staff and support, not by the applicant team.
 func (c *ClientWithResponses) ProposalProtectedCallsNotifyProposalsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsNotifyProposalsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsNotifyProposalsResponse, error) {
 	rsp, err := c.ProposalProtectedCallsNotifyProposals(ctx, uuid, body, reqEditors...)
 	if err != nil {
@@ -680240,13 +680823,26 @@ func (c *ClientWithResponses) ProposalReviewsUpdateWithResponse(ctx context.Cont
 	return ParseProposalReviewsUpdateResponse(rsp)
 }
 
-// ProposalReviewsRejectWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+// ProposalReviewsRejectWithBodyWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request,
+// with any type of body and a specified content type.
 //
-// Reject a review, changing its state to REJECTED.
+// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
 //
 // Returns a wrapper object for the known response body format(s).
-func (c *ClientWithResponses) ProposalReviewsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error) {
-	rsp, err := c.ProposalReviewsReject(ctx, uuid, reqEditors...)
+func (c *ClientWithResponses) ProposalReviewsRejectWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error) {
+	rsp, err := c.ProposalReviewsRejectWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalReviewsRejectResponse(rsp)
+}
+
+// ProposalReviewsRejectWithResponse performs a POST /api/proposal-reviews/{uuid}/reject/ (the `ProposalReviewsReject` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Reject a review, changing its state to REJECTED: the reviewer sends back a review they accepted. They may say why; the reason is kept on the review as decline_reason and sent to the call's managers.
+func (c *ClientWithResponses) ProposalReviewsRejectWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalReviewsRejectJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalReviewsRejectResponse, error) {
+	rsp, err := c.ProposalReviewsReject(ctx, uuid, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -728350,6 +728946,32 @@ func ParseMarketplaceServiceProvidersSetOfferingsUsernameResponse(rsp *http.Resp
 	response := &MarketplaceServiceProvidersSetOfferingsUsernameResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersSiteAgentConfigSecretsResponse parses an HTTP response from a MarketplaceServiceProvidersSiteAgentConfigSecretsWithResponse call
+func ParseMarketplaceServiceProvidersSiteAgentConfigSecretsResponse(rsp *http.Response) (*MarketplaceServiceProvidersSiteAgentConfigSecretsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersSiteAgentConfigSecretsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []SiteAgentConfigSecret
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
