@@ -25402,6 +25402,66 @@ func (e SupportUserOEnum) Valid() bool {
 	}
 }
 
+// Defines values for SurveyQuestionTypeEnum.
+const (
+	SurveyQuestionTypeEnumBoolean      SurveyQuestionTypeEnum = "boolean"
+	SurveyQuestionTypeEnumCountry      SurveyQuestionTypeEnum = "country"
+	SurveyQuestionTypeEnumDate         SurveyQuestionTypeEnum = "date"
+	SurveyQuestionTypeEnumDatetime     SurveyQuestionTypeEnum = "datetime"
+	SurveyQuestionTypeEnumEmail        SurveyQuestionTypeEnum = "email"
+	SurveyQuestionTypeEnumLikert       SurveyQuestionTypeEnum = "likert"
+	SurveyQuestionTypeEnumMultiSelect  SurveyQuestionTypeEnum = "multi_select"
+	SurveyQuestionTypeEnumNumber       SurveyQuestionTypeEnum = "number"
+	SurveyQuestionTypeEnumPhoneNumber  SurveyQuestionTypeEnum = "phone_number"
+	SurveyQuestionTypeEnumRating       SurveyQuestionTypeEnum = "rating"
+	SurveyQuestionTypeEnumRichText     SurveyQuestionTypeEnum = "rich_text"
+	SurveyQuestionTypeEnumSingleSelect SurveyQuestionTypeEnum = "single_select"
+	SurveyQuestionTypeEnumTextArea     SurveyQuestionTypeEnum = "text_area"
+	SurveyQuestionTypeEnumTextInput    SurveyQuestionTypeEnum = "text_input"
+	SurveyQuestionTypeEnumUrl          SurveyQuestionTypeEnum = "url"
+	SurveyQuestionTypeEnumYear         SurveyQuestionTypeEnum = "year"
+)
+
+// Valid indicates whether the value is a known member of the SurveyQuestionTypeEnum enum.
+func (e SurveyQuestionTypeEnum) Valid() bool {
+	switch e {
+	case SurveyQuestionTypeEnumBoolean:
+		return true
+	case SurveyQuestionTypeEnumCountry:
+		return true
+	case SurveyQuestionTypeEnumDate:
+		return true
+	case SurveyQuestionTypeEnumDatetime:
+		return true
+	case SurveyQuestionTypeEnumEmail:
+		return true
+	case SurveyQuestionTypeEnumLikert:
+		return true
+	case SurveyQuestionTypeEnumMultiSelect:
+		return true
+	case SurveyQuestionTypeEnumNumber:
+		return true
+	case SurveyQuestionTypeEnumPhoneNumber:
+		return true
+	case SurveyQuestionTypeEnumRating:
+		return true
+	case SurveyQuestionTypeEnumRichText:
+		return true
+	case SurveyQuestionTypeEnumSingleSelect:
+		return true
+	case SurveyQuestionTypeEnumTextArea:
+		return true
+	case SurveyQuestionTypeEnumTextInput:
+		return true
+	case SurveyQuestionTypeEnumUrl:
+		return true
+	case SurveyQuestionTypeEnumYear:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for SyncStatusEnum.
 const (
 	InSync     SyncStatusEnum = "in_sync"
@@ -30643,9 +30703,6 @@ type ArrowLicense struct {
 
 // ArrowSettings defines model for ArrowSettings.
 type ArrowSettings struct {
-	// ApiKey Arrow API Key (leave empty on update to keep current)
-	ApiKey *string `json:"api_key,omitempty"`
-
 	// ApiUrl Arrow API base URL
 	ApiUrl string `json:"api_url"`
 
@@ -31383,6 +31440,7 @@ type Attribute struct {
 	Created *time.Time              `json:"created,omitempty"`
 	Default *map[string]interface{} `json:"default,omitempty"`
 	Key     string                  `json:"key"`
+	Options *[]AttributeOptionItem  `json:"options,omitempty"`
 
 	// Required A value must be provided for the attribute.
 	Required     *bool               `json:"required,omitempty"`
@@ -31392,6 +31450,19 @@ type Attribute struct {
 	Type         AttributeTypeEnum   `json:"type"`
 	Url          *string             `json:"url,omitempty"`
 	Uuid         *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AttributeCreateRequest defines model for AttributeCreateRequest.
+type AttributeCreateRequest struct {
+	Default *map[string]interface{}       `json:"default,omitempty"`
+	Key     *string                       `json:"key,omitempty"`
+	Options *[]AttributeOptionItemRequest `json:"options,omitempty"`
+
+	// Required A value must be provided for the attribute.
+	Required *bool             `json:"required,omitempty"`
+	Section  string            `json:"section"`
+	Title    string            `json:"title"`
+	Type     AttributeTypeEnum `json:"type"`
 }
 
 // AttributeOption defines model for AttributeOption.
@@ -31408,6 +31479,20 @@ type AttributeOption struct {
 	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// AttributeOptionItem defines model for AttributeOptionItem.
+type AttributeOptionItem struct {
+	IsDefault *bool               `json:"is_default,omitempty"`
+	Key       *string             `json:"key,omitempty"`
+	Title     string              `json:"title"`
+	Uuid      *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AttributeOptionItemRequest defines model for AttributeOptionItemRequest.
+type AttributeOptionItemRequest struct {
+	Key   *string `json:"key,omitempty"`
+	Title string  `json:"title"`
+}
+
 // AttributeOptionRequest defines model for AttributeOptionRequest.
 type AttributeOptionRequest struct {
 	Attribute string `json:"attribute"`
@@ -31417,8 +31502,9 @@ type AttributeOptionRequest struct {
 
 // AttributeRequest defines model for AttributeRequest.
 type AttributeRequest struct {
-	Default *map[string]interface{} `json:"default,omitempty"`
-	Key     string                  `json:"key"`
+	Default *map[string]interface{}       `json:"default,omitempty"`
+	Key     string                        `json:"key"`
+	Options *[]AttributeOptionItemRequest `json:"options,omitempty"`
 
 	// Required A value must be provided for the attribute.
 	Required *bool             `json:"required,omitempty"`
@@ -35155,7 +35241,13 @@ type CleanupConsumptionResponse struct {
 	DryRun                    bool `json:"dry_run"`
 	InvoiceItemsAffected      int  `json:"invoice_items_affected"`
 	RecordsDeleted            int  `json:"records_deleted"`
-	RecordsToDelete           int  `json:"records_to_delete"`
+
+	// RecordsKeptImported Records left in place because an import settled their month
+	RecordsKeptImported int `json:"records_kept_imported"`
+
+	// RecordsKeptIssued Records left in place because their charge is on an issued invoice
+	RecordsKeptIssued int `json:"records_kept_issued"`
+	RecordsToDelete   int `json:"records_to_delete"`
 }
 
 // CleanupRequestRequest defines model for CleanupRequestRequest.
@@ -41657,11 +41749,9 @@ type FeedbackStateEnum string
 
 // FeedbackSurvey defines model for FeedbackSurvey.
 type FeedbackSurvey struct {
-	Audience      *QueryOutput       `json:"audience,omitempty"`
-	Checklist     openapi_types.UUID `json:"checklist"`
-	ChecklistName *string            `json:"checklist_name,omitempty"`
-	Created       *time.Time         `json:"created,omitempty"`
-	EndsAt        time.Time          `json:"ends_at"`
+	Audience *QueryOutput `json:"audience,omitempty"`
+	Created  *time.Time   `json:"created,omitempty"`
+	EndsAt   time.Time    `json:"ends_at"`
 
 	// Intro Markdown text shown above the questions.
 	Intro    *string `json:"intro,omitempty"`
@@ -41678,6 +41768,47 @@ type FeedbackSurvey struct {
 	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
+// FeedbackSurveyDetail defines model for FeedbackSurveyDetail.
+type FeedbackSurveyDetail struct {
+	Audience *QueryOutput `json:"audience,omitempty"`
+	Created  *time.Time   `json:"created,omitempty"`
+	EndsAt   time.Time    `json:"ends_at"`
+
+	// Intro Markdown text shown above the questions.
+	Intro    *string `json:"intro,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+	IsOpen   *bool   `json:"is_open,omitempty"`
+
+	// MaxPrompts How many times a user is prompted at most.
+	MaxPrompts *int              `json:"max_prompts,omitempty"`
+	Name       string            `json:"name"`
+	Questions  *[]SurveyQuestion `json:"questions,omitempty"`
+
+	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
+	SnoozeDays *int                `json:"snooze_days,omitempty"`
+	StartsAt   time.Time           `json:"starts_at"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// FeedbackSurveyDetailRequest defines model for FeedbackSurveyDetailRequest.
+type FeedbackSurveyDetailRequest struct {
+	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
+	EndsAt        time.Time                     `json:"ends_at"`
+
+	// Intro Markdown text shown above the questions.
+	Intro    *string `json:"intro,omitempty"`
+	IsActive *bool   `json:"is_active,omitempty"`
+
+	// MaxPrompts How many times a user is prompted at most.
+	MaxPrompts *int                     `json:"max_prompts,omitempty"`
+	Name       string                   `json:"name"`
+	Questions  *[]SurveyQuestionRequest `json:"questions,omitempty"`
+
+	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
+	SnoozeDays *int      `json:"snooze_days,omitempty"`
+	StartsAt   time.Time `json:"starts_at"`
+}
+
 // FeedbackSurveyOEnum defines model for FeedbackSurveyOEnum.
 type FeedbackSurveyOEnum string
 
@@ -41689,25 +41820,6 @@ type FeedbackSurveyPublic struct {
 	Intro *string             `json:"intro,omitempty"`
 	Name  string              `json:"name"`
 	Uuid  *openapi_types.UUID `json:"uuid,omitempty"`
-}
-
-// FeedbackSurveyRequest defines model for FeedbackSurveyRequest.
-type FeedbackSurveyRequest struct {
-	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
-	Checklist     openapi_types.UUID            `json:"checklist"`
-	EndsAt        time.Time                     `json:"ends_at"`
-
-	// Intro Markdown text shown above the questions.
-	Intro    *string `json:"intro,omitempty"`
-	IsActive *bool   `json:"is_active,omitempty"`
-
-	// MaxPrompts How many times a user is prompted at most.
-	MaxPrompts *int   `json:"max_prompts,omitempty"`
-	Name       string `json:"name"`
-
-	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
-	SnoozeDays *int      `json:"snooze_days,omitempty"`
-	StartsAt   time.Time `json:"starts_at"`
 }
 
 // FeedbackSurveySummary defines model for FeedbackSurveySummary.
@@ -41722,6 +41834,7 @@ type FeedbackSurveySummary struct {
 
 // FetchBillingExportRequestRequest defines model for FetchBillingExportRequestRequest.
 type FetchBillingExportRequestRequest struct {
+	// Classification Classification to keep (e.g. IAAS); empty keeps every line. Defaults to the settings' classification filter.
 	Classification *string `json:"classification,omitempty"`
 
 	// PeriodFrom YYYY-MM format
@@ -53953,8 +54066,9 @@ type PatchedAttributeOptionRequest struct {
 
 // PatchedAttributeRequest defines model for PatchedAttributeRequest.
 type PatchedAttributeRequest struct {
-	Default *map[string]interface{} `json:"default,omitempty"`
-	Key     *string                 `json:"key,omitempty"`
+	Default *map[string]interface{}       `json:"default,omitempty"`
+	Key     *string                       `json:"key,omitempty"`
+	Options *[]AttributeOptionItemRequest `json:"options,omitempty"`
 
 	// Required A value must be provided for the attribute.
 	Required *bool              `json:"required,omitempty"`
@@ -54813,10 +54927,9 @@ type PatchedExternalLinkRequestMultipart struct {
 	Name        *string             `json:"name,omitempty"`
 }
 
-// PatchedFeedbackSurveyRequest defines model for PatchedFeedbackSurveyRequest.
-type PatchedFeedbackSurveyRequest struct {
+// PatchedFeedbackSurveyDetailRequest defines model for PatchedFeedbackSurveyDetailRequest.
+type PatchedFeedbackSurveyDetailRequest struct {
 	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
-	Checklist     *openapi_types.UUID           `json:"checklist,omitempty"`
 	EndsAt        *time.Time                    `json:"ends_at,omitempty"`
 
 	// Intro Markdown text shown above the questions.
@@ -54824,8 +54937,9 @@ type PatchedFeedbackSurveyRequest struct {
 	IsActive *bool   `json:"is_active,omitempty"`
 
 	// MaxPrompts How many times a user is prompted at most.
-	MaxPrompts *int    `json:"max_prompts,omitempty"`
-	Name       *string `json:"name,omitempty"`
+	MaxPrompts *int                     `json:"max_prompts,omitempty"`
+	Name       *string                  `json:"name,omitempty"`
+	Questions  *[]SurveyQuestionRequest `json:"questions,omitempty"`
 
 	// SnoozeDays Days the prompt stays hidden after it is shown or postponed.
 	SnoozeDays *int       `json:"snooze_days,omitempty"`
@@ -67283,6 +67397,16 @@ type Section struct {
 	Url          *string `json:"url,omitempty"`
 }
 
+// SectionCreateRequest defines model for SectionCreateRequest.
+type SectionCreateRequest struct {
+	Category string `json:"category"`
+
+	// IsStandalone Whether section is rendered as a separate tab.
+	IsStandalone *bool   `json:"is_standalone,omitempty"`
+	Key          *string `json:"key,omitempty"`
+	Title        string  `json:"title"`
+}
+
 // SectionRequest defines model for SectionRequest.
 type SectionRequest struct {
 	Category string `json:"category"`
@@ -69387,6 +69511,91 @@ type SupportUserRequest struct {
 type SupportedCountriesResponse struct {
 	SupportedCountries []string `json:"supported_countries"`
 }
+
+// SurveyQuestion defines model for SurveyQuestion.
+type SurveyQuestion struct {
+	Conditions              *[]SurveyQuestionCondition        `json:"conditions,omitempty"`
+	DependencyLogicOperator *DependencyLogicOperatorEnum      `json:"dependency_logic_operator,omitempty"`
+	Description             string                            `json:"description"`
+	Key                     string                            `json:"key"`
+	LikertAllowNa           *bool                             `json:"likert_allow_na,omitempty"`
+	LikertHighLabel         *string                           `json:"likert_high_label,omitempty"`
+	LikertLowLabel          *string                           `json:"likert_low_label,omitempty"`
+	LikertScaleLength       *SurveyQuestion_LikertScaleLength `json:"likert_scale_length,omitempty"`
+	MaxValue                *string                           `json:"max_value,omitempty"`
+	MinValue                *string                           `json:"min_value,omitempty"`
+	Options                 *[]SurveyQuestionOption           `json:"options,omitempty"`
+	QuestionType            SurveyQuestionTypeEnum            `json:"question_type"`
+	Required                *bool                             `json:"required,omitempty"`
+	RichTextCharLimit       *int                              `json:"rich_text_char_limit,omitempty"`
+	RichTextToolbarLevel    *RichTextToolbarLevelEnum         `json:"rich_text_toolbar_level,omitempty"`
+	UserGuidance            *string                           `json:"user_guidance,omitempty"`
+}
+
+// SurveyQuestion_LikertScaleLength defines model for SurveyQuestion.LikertScaleLength.
+type SurveyQuestion_LikertScaleLength struct {
+	union json.RawMessage
+}
+
+// SurveyQuestionCondition defines model for SurveyQuestionCondition.
+type SurveyQuestionCondition struct {
+	// DependsOn Key of the question it depends on.
+	DependsOn string             `json:"depends_on"`
+	Operator  ChecklistOperators `json:"operator"`
+
+	// RequiredAnswerValue For a select question, option keys instead of option UUIDs.
+	RequiredAnswerValue interface{} `json:"required_answer_value"`
+}
+
+// SurveyQuestionConditionRequest defines model for SurveyQuestionConditionRequest.
+type SurveyQuestionConditionRequest struct {
+	// DependsOn Key of the question it depends on.
+	DependsOn string             `json:"depends_on"`
+	Operator  ChecklistOperators `json:"operator"`
+
+	// RequiredAnswerValue For a select question, option keys instead of option UUIDs.
+	RequiredAnswerValue interface{} `json:"required_answer_value"`
+}
+
+// SurveyQuestionOption defines model for SurveyQuestionOption.
+type SurveyQuestionOption struct {
+	Key   string `json:"key"`
+	Label string `json:"label"`
+}
+
+// SurveyQuestionOptionRequest defines model for SurveyQuestionOptionRequest.
+type SurveyQuestionOptionRequest struct {
+	Key   string `json:"key"`
+	Label string `json:"label"`
+}
+
+// SurveyQuestionRequest defines model for SurveyQuestionRequest.
+type SurveyQuestionRequest struct {
+	Conditions              *[]SurveyQuestionConditionRequest        `json:"conditions,omitempty"`
+	DependencyLogicOperator *DependencyLogicOperatorEnum             `json:"dependency_logic_operator,omitempty"`
+	Description             string                                   `json:"description"`
+	Key                     string                                   `json:"key"`
+	LikertAllowNa           *bool                                    `json:"likert_allow_na,omitempty"`
+	LikertHighLabel         *string                                  `json:"likert_high_label,omitempty"`
+	LikertLowLabel          *string                                  `json:"likert_low_label,omitempty"`
+	LikertScaleLength       *SurveyQuestionRequest_LikertScaleLength `json:"likert_scale_length,omitempty"`
+	MaxValue                *string                                  `json:"max_value,omitempty"`
+	MinValue                *string                                  `json:"min_value,omitempty"`
+	Options                 *[]SurveyQuestionOptionRequest           `json:"options,omitempty"`
+	QuestionType            SurveyQuestionTypeEnum                   `json:"question_type"`
+	Required                *bool                                    `json:"required,omitempty"`
+	RichTextCharLimit       *int                                     `json:"rich_text_char_limit,omitempty"`
+	RichTextToolbarLevel    *RichTextToolbarLevelEnum                `json:"rich_text_toolbar_level,omitempty"`
+	UserGuidance            *string                                  `json:"user_guidance,omitempty"`
+}
+
+// SurveyQuestionRequest_LikertScaleLength defines model for SurveyQuestionRequest.LikertScaleLength.
+type SurveyQuestionRequest_LikertScaleLength struct {
+	union json.RawMessage
+}
+
+// SurveyQuestionTypeEnum defines model for SurveyQuestionTypeEnum.
+type SurveyQuestionTypeEnum string
 
 // SwitchBillingModeRequest defines model for SwitchBillingModeRequest.
 type SwitchBillingModeRequest struct {
@@ -72866,7 +73075,10 @@ type AdminArrowBillingSyncsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Arrow company, Waldur organization, Arrow reference or statement
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
 	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
 	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
@@ -72885,7 +73097,10 @@ type AdminArrowBillingSyncsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Arrow company, Waldur organization, Arrow reference or statement
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
 	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
 	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
@@ -72904,7 +73119,10 @@ type AdminArrowBillingSyncsPendingRecordsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Arrow company, Waldur organization, Arrow reference or statement
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
 	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
 	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
@@ -72923,7 +73141,10 @@ type AdminArrowBillingSyncsPendingRecordsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Arrow company, Waldur organization, Arrow reference or statement
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	ReportPeriod       *string             `form:"report_period,omitempty" json:"report_period,omitempty"`
 	ReportPeriodFrom   *string             `form:"report_period_from,omitempty" json:"report_period_from,omitempty"`
 	ReportPeriodTo     *string             `form:"report_period_to,omitempty" json:"report_period_to,omitempty"`
@@ -72982,7 +73203,10 @@ type AdminArrowCustomerMappingsListParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Waldur organization, Arrow company or Arrow reference
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	Settings           *string             `form:"settings,omitempty" json:"settings,omitempty"`
 	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	WaldurCustomer     *string             `form:"waldur_customer,omitempty" json:"waldur_customer,omitempty"`
@@ -72999,7 +73223,10 @@ type AdminArrowCustomerMappingsCountParams struct {
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PageSize Number of results to return per page.
-	PageSize           *PageSize           `form:"page_size,omitempty" json:"page_size,omitempty"`
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Query Search by Waldur organization, Arrow company or Arrow reference
+	Query              *string             `form:"query,omitempty" json:"query,omitempty"`
 	Settings           *string             `form:"settings,omitempty" json:"settings,omitempty"`
 	SettingsUuid       *openapi_types.UUID `form:"settings_uuid,omitempty" json:"settings_uuid,omitempty"`
 	WaldurCustomer     *string             `form:"waldur_customer,omitempty" json:"waldur_customer,omitempty"`
@@ -86153,6 +86380,12 @@ type MarketplaceScriptAsyncDryRunCountParams struct {
 
 // MarketplaceSectionsListParams defines parameters for MarketplaceSectionsList.
 type MarketplaceSectionsListParams struct {
+	// Category Category URL
+	Category *string `form:"category,omitempty" json:"category,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -86162,6 +86395,12 @@ type MarketplaceSectionsListParams struct {
 
 // MarketplaceSectionsCountParams defines parameters for MarketplaceSectionsCount.
 type MarketplaceSectionsCountParams struct {
+	// Category Category URL
+	Category *string `form:"category,omitempty" json:"category,omitempty"`
+
+	// CategoryUuid Category UUID
+	CategoryUuid *openapi_types.UUID `form:"category_uuid,omitempty" json:"category_uuid,omitempty"`
+
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
@@ -103830,13 +104069,13 @@ type FeedbackRequestsLaterJSONRequestBody = FeedbackRequestsLaterJSONBody
 type FeedbackRequestsSubmitAnswersJSONRequestBody = FeedbackRequestsSubmitAnswersJSONBody
 
 // FeedbackSurveysCreateJSONRequestBody defines body for FeedbackSurveysCreate for application/json ContentType.
-type FeedbackSurveysCreateJSONRequestBody = FeedbackSurveyRequest
+type FeedbackSurveysCreateJSONRequestBody = FeedbackSurveyDetailRequest
 
 // FeedbackSurveysPartialUpdateJSONRequestBody defines body for FeedbackSurveysPartialUpdate for application/json ContentType.
-type FeedbackSurveysPartialUpdateJSONRequestBody = PatchedFeedbackSurveyRequest
+type FeedbackSurveysPartialUpdateJSONRequestBody = PatchedFeedbackSurveyDetailRequest
 
 // FeedbackSurveysUpdateJSONRequestBody defines body for FeedbackSurveysUpdate for application/json ContentType.
-type FeedbackSurveysUpdateJSONRequestBody = FeedbackSurveyRequest
+type FeedbackSurveysUpdateJSONRequestBody = FeedbackSurveyDetailRequest
 
 // FreeipaProfilesCreateJSONRequestBody defines body for FreeipaProfilesCreate for application/json ContentType.
 type FreeipaProfilesCreateJSONRequestBody = FreeipaProfileRequest
@@ -103992,7 +104231,7 @@ type MarketplaceAttributeOptionsPartialUpdateJSONRequestBody = PatchedAttributeO
 type MarketplaceAttributeOptionsUpdateJSONRequestBody = AttributeOptionRequest
 
 // MarketplaceAttributesCreateJSONRequestBody defines body for MarketplaceAttributesCreate for application/json ContentType.
-type MarketplaceAttributesCreateJSONRequestBody = AttributeRequest
+type MarketplaceAttributesCreateJSONRequestBody = AttributeCreateRequest
 
 // MarketplaceAttributesPartialUpdateJSONRequestBody defines body for MarketplaceAttributesPartialUpdate for application/json ContentType.
 type MarketplaceAttributesPartialUpdateJSONRequestBody = PatchedAttributeRequest
@@ -104919,7 +105158,7 @@ type MarketplaceScriptDryRunRunJSONRequestBody = DryRunRequest
 type MarketplaceScriptSyncResourceJSONRequestBody = PullMarketplaceScriptResourceRequest
 
 // MarketplaceSectionsCreateJSONRequestBody defines body for MarketplaceSectionsCreate for application/json ContentType.
-type MarketplaceSectionsCreateJSONRequestBody = SectionRequest
+type MarketplaceSectionsCreateJSONRequestBody = SectionCreateRequest
 
 // MarketplaceSectionsPartialUpdateJSONRequestBody defines body for MarketplaceSectionsPartialUpdate for application/json ContentType.
 type MarketplaceSectionsPartialUpdateJSONRequestBody = PatchedSectionRequest
@@ -125441,6 +125680,130 @@ func (t *SuggestedReviewer_AssignmentBatchStatus) UnmarshalJSON(b []byte) error 
 	return err
 }
 
+// AsLikertScaleLengthEnum returns the union data inside the SurveyQuestion_LikertScaleLength as a LikertScaleLengthEnum
+func (t SurveyQuestion_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the SurveyQuestion_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *SurveyQuestion_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the SurveyQuestion_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *SurveyQuestion_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the SurveyQuestion_LikertScaleLength as a NullEnum
+func (t SurveyQuestion_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the SurveyQuestion_LikertScaleLength as the provided NullEnum
+func (t *SurveyQuestion_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the SurveyQuestion_LikertScaleLength, using the provided NullEnum
+func (t *SurveyQuestion_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SurveyQuestion_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SurveyQuestion_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsLikertScaleLengthEnum returns the union data inside the SurveyQuestionRequest_LikertScaleLength as a LikertScaleLengthEnum
+func (t SurveyQuestionRequest_LikertScaleLength) AsLikertScaleLengthEnum() (LikertScaleLengthEnum, error) {
+	var body LikertScaleLengthEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromLikertScaleLengthEnum overwrites any union data inside the SurveyQuestionRequest_LikertScaleLength as the provided LikertScaleLengthEnum
+func (t *SurveyQuestionRequest_LikertScaleLength) FromLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeLikertScaleLengthEnum performs a merge with any union data inside the SurveyQuestionRequest_LikertScaleLength, using the provided LikertScaleLengthEnum
+func (t *SurveyQuestionRequest_LikertScaleLength) MergeLikertScaleLengthEnum(v LikertScaleLengthEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the SurveyQuestionRequest_LikertScaleLength as a NullEnum
+func (t SurveyQuestionRequest_LikertScaleLength) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the SurveyQuestionRequest_LikertScaleLength as the provided NullEnum
+func (t *SurveyQuestionRequest_LikertScaleLength) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the SurveyQuestionRequest_LikertScaleLength, using the provided NullEnum
+func (t *SurveyQuestionRequest_LikertScaleLength) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SurveyQuestionRequest_LikertScaleLength) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SurveyQuestionRequest_LikertScaleLength) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsLimitPeriodEnum returns the union data inside the UpdateOfferingComponentRequest_LimitPeriod as a LimitPeriodEnum
 func (t UpdateOfferingComponentRequest_LimitPeriod) AsLimitPeriodEnum() (LimitPeriodEnum, error) {
 	var body LimitPeriodEnum
@@ -132102,7 +132465,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributeOptionsCreateWithBody Create an attribute option
 	//
-	// Creates a new option for a choice-type attribute. Requires staff permissions.
+	// Creates a new option for a choice or list attribute. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -132111,7 +132474,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributeOptionsCreate Create an attribute option
 	//
-	// Creates a new option for a choice-type attribute. Requires staff permissions.
+	// Creates a new option for a choice or list attribute. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -132184,7 +132547,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesCreateWithBody Create an attribute
 	//
-	// Creates a new attribute within a section. Requires staff permissions.
+	// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -132193,7 +132556,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesCreate Create an attribute
 	//
-	// Creates a new attribute within a section. Requires staff permissions.
+	// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -132216,7 +132579,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesPartialUpdateWithBody Partially update an attribute
 	//
-	// Partially updates an existing attribute. Requires staff permissions.
+	// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -132225,7 +132588,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesPartialUpdate Partially update an attribute
 	//
-	// Partially updates an existing attribute. Requires staff permissions.
+	// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -132234,7 +132597,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesUpdateWithBody Update an attribute
 	//
-	// Updates an existing attribute. Requires staff permissions.
+	// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -132243,7 +132606,7 @@ type ClientInterface interface {
 
 	// MarketplaceAttributesUpdate Update an attribute
 	//
-	// Updates an existing attribute. Requires staff permissions.
+	// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -138832,7 +139195,7 @@ type ClientInterface interface {
 
 	// MarketplaceSectionsList List sections
 	//
-	// Returns a paginated list of all sections. Sections are used to group attributes within a category.
+	// Returns a paginated list of all sections. Sections are used to group attributes within a category. Filter by category (URL or UUID).
 	//
 	// Corresponds with GET /api/marketplace-sections/ (the `MarketplaceSectionsList` operationId).
 	MarketplaceSectionsList(ctx context.Context, params *MarketplaceSectionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -138846,7 +139209,7 @@ type ClientInterface interface {
 
 	// MarketplaceSectionsCreateWithBody Create a section
 	//
-	// Creates a new section within a category. Requires staff permissions.
+	// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -138855,7 +139218,7 @@ type ClientInterface interface {
 
 	// MarketplaceSectionsCreate Create a section
 	//
-	// Creates a new section within a category. Requires staff permissions.
+	// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -167780,7 +168143,7 @@ func (c *Client) MarketplaceAttributeOptionsCount(ctx context.Context, params *M
 
 // MarketplaceAttributeOptionsCreateWithBody Create an attribute option
 //
-// Creates a new option for a choice-type attribute. Requires staff permissions.
+// Creates a new option for a choice or list attribute. Requires staff permissions.
 //
 // Takes any type of body and a specified content type.
 //
@@ -167799,7 +168162,7 @@ func (c *Client) MarketplaceAttributeOptionsCreateWithBody(ctx context.Context, 
 
 // MarketplaceAttributeOptionsCreate Create an attribute option
 //
-// Creates a new option for a choice-type attribute. Requires staff permissions.
+// Creates a new option for a choice or list attribute. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -167962,7 +168325,7 @@ func (c *Client) MarketplaceAttributesCount(ctx context.Context, params *Marketp
 
 // MarketplaceAttributesCreateWithBody Create an attribute
 //
-// Creates a new attribute within a section. Requires staff permissions.
+// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes any type of body and a specified content type.
 //
@@ -167981,7 +168344,7 @@ func (c *Client) MarketplaceAttributesCreateWithBody(ctx context.Context, conten
 
 // MarketplaceAttributesCreate Create an attribute
 //
-// Creates a new attribute within a section. Requires staff permissions.
+// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -168034,7 +168397,7 @@ func (c *Client) MarketplaceAttributesRetrieve(ctx context.Context, uuid openapi
 
 // MarketplaceAttributesPartialUpdateWithBody Partially update an attribute
 //
-// Partially updates an existing attribute. Requires staff permissions.
+// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes any type of body and a specified content type.
 //
@@ -168053,7 +168416,7 @@ func (c *Client) MarketplaceAttributesPartialUpdateWithBody(ctx context.Context,
 
 // MarketplaceAttributesPartialUpdate Partially update an attribute
 //
-// Partially updates an existing attribute. Requires staff permissions.
+// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -168072,7 +168435,7 @@ func (c *Client) MarketplaceAttributesPartialUpdate(ctx context.Context, uuid op
 
 // MarketplaceAttributesUpdateWithBody Update an attribute
 //
-// Updates an existing attribute. Requires staff permissions.
+// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes any type of body and a specified content type.
 //
@@ -168091,7 +168454,7 @@ func (c *Client) MarketplaceAttributesUpdateWithBody(ctx context.Context, uuid o
 
 // MarketplaceAttributesUpdate Update an attribute
 //
-// Updates an existing attribute. Requires staff permissions.
+// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -184085,7 +184448,7 @@ func (c *Client) MarketplaceScriptSyncResource(ctx context.Context, body Marketp
 
 // MarketplaceSectionsList List sections
 //
-// Returns a paginated list of all sections. Sections are used to group attributes within a category.
+// Returns a paginated list of all sections. Sections are used to group attributes within a category. Filter by category (URL or UUID).
 //
 // Corresponds with GET /api/marketplace-sections/ (the `MarketplaceSectionsList` operationId).
 func (c *Client) MarketplaceSectionsList(ctx context.Context, params *MarketplaceSectionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -184119,7 +184482,7 @@ func (c *Client) MarketplaceSectionsCount(ctx context.Context, params *Marketpla
 
 // MarketplaceSectionsCreateWithBody Create a section
 //
-// Creates a new section within a category. Requires staff permissions.
+// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes any type of body and a specified content type.
 //
@@ -184138,7 +184501,7 @@ func (c *Client) MarketplaceSectionsCreateWithBody(ctx context.Context, contentT
 
 // MarketplaceSectionsCreate Create a section
 //
-// Creates a new section within a category. Requires staff permissions.
+// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -224066,6 +224429,18 @@ func NewAdminArrowBillingSyncsListRequest(server string, params *AdminArrowBilli
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.ReportPeriod != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "report_period", *params.ReportPeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -224231,6 +224606,18 @@ func NewAdminArrowBillingSyncsCountRequest(server string, params *AdminArrowBill
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -224722,6 +225109,18 @@ func NewAdminArrowBillingSyncsPendingRecordsListRequest(server string, params *A
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.ReportPeriod != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "report_period", *params.ReportPeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -224887,6 +225286,18 @@ func NewAdminArrowBillingSyncsPendingRecordsCountRequest(server string, params *
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -225790,6 +226201,18 @@ func NewAdminArrowCustomerMappingsListRequest(server string, params *AdminArrowC
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Settings != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "settings", *params.Settings, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
@@ -225931,6 +226354,18 @@ func NewAdminArrowCustomerMappingsCountRequest(server string, params *AdminArrow
 		if params.PageSize != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -333865,6 +334300,30 @@ func NewMarketplaceSectionsListRequest(server string, params *MarketplaceSection
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category", *params.Category, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
@@ -333930,6 +334389,30 @@ func NewMarketplaceSectionsCountRequest(server string, params *MarketplaceSectio
 		// styled parameters, preserving literal commas as delimiters
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
+
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category", *params.Category, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CategoryUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "category_uuid", *params.CategoryUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
 
 		if params.Page != nil {
 
@@ -482481,7 +482964,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributeOptionsCreateWithBodyWithResponse Create an attribute option
 	//
-	// Creates a new option for a choice-type attribute. Requires staff permissions.
+	// Creates a new option for a choice or list attribute. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482490,7 +482973,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributeOptionsCreateWithResponse Create an attribute option
 	//
-	// Creates a new option for a choice-type attribute. Requires staff permissions.
+	// Creates a new option for a choice or list attribute. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482571,7 +483054,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesCreateWithBodyWithResponse Create an attribute
 	//
-	// Creates a new attribute within a section. Requires staff permissions.
+	// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482580,7 +483063,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesCreateWithResponse Create an attribute
 	//
-	// Creates a new attribute within a section. Requires staff permissions.
+	// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482607,7 +483090,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesPartialUpdateWithBodyWithResponse Partially update an attribute
 	//
-	// Partially updates an existing attribute. Requires staff permissions.
+	// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482616,7 +483099,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesPartialUpdateWithResponse Partially update an attribute
 	//
-	// Partially updates an existing attribute. Requires staff permissions.
+	// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482625,7 +483108,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesUpdateWithBodyWithResponse Update an attribute
 	//
-	// Updates an existing attribute. Requires staff permissions.
+	// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -482634,7 +483117,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceAttributesUpdateWithResponse Update an attribute
 	//
-	// Updates an existing attribute. Requires staff permissions.
+	// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -490187,7 +490670,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceSectionsListWithResponse List sections
 	//
-	// Returns a paginated list of all sections. Sections are used to group attributes within a category.
+	// Returns a paginated list of all sections. Sections are used to group attributes within a category. Filter by category (URL or UUID).
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -490205,7 +490688,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceSectionsCreateWithBodyWithResponse Create a section
 	//
-	// Creates a new section within a category. Requires staff permissions.
+	// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -490214,7 +490697,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceSectionsCreateWithResponse Create a section
 	//
-	// Creates a new section within a category. Requires staff permissions.
+	// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -530062,11 +530545,11 @@ type FeedbackSurveysCreateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON201 the response for an HTTP 201 `application/json` response
-	JSON201 *FeedbackSurvey
+	JSON201 *FeedbackSurveyDetail
 }
 
 // GetJSON201 returns the response for an HTTP 201 `application/json` response
-func (r FeedbackSurveysCreateResponse) GetJSON201() *FeedbackSurvey {
+func (r FeedbackSurveysCreateResponse) GetJSON201() *FeedbackSurveyDetail {
 	return r.JSON201
 }
 
@@ -530178,11 +530661,11 @@ type FeedbackSurveysRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FeedbackSurvey
+	JSON200 *FeedbackSurveyDetail
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FeedbackSurveysRetrieveResponse) GetJSON200() *FeedbackSurvey {
+func (r FeedbackSurveysRetrieveResponse) GetJSON200() *FeedbackSurveyDetail {
 	return r.JSON200
 }
 
@@ -530219,11 +530702,11 @@ type FeedbackSurveysPartialUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FeedbackSurvey
+	JSON200 *FeedbackSurveyDetail
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FeedbackSurveysPartialUpdateResponse) GetJSON200() *FeedbackSurvey {
+func (r FeedbackSurveysPartialUpdateResponse) GetJSON200() *FeedbackSurveyDetail {
 	return r.JSON200
 }
 
@@ -530260,11 +530743,11 @@ type FeedbackSurveysUpdateResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
 	// JSON200 the response for an HTTP 200 `application/json` response
-	JSON200 *FeedbackSurvey
+	JSON200 *FeedbackSurveyDetail
 }
 
 // GetJSON200 returns the response for an HTTP 200 `application/json` response
-func (r FeedbackSurveysUpdateResponse) GetJSON200() *FeedbackSurvey {
+func (r FeedbackSurveysUpdateResponse) GetJSON200() *FeedbackSurveyDetail {
 	return r.JSON200
 }
 
@@ -648713,7 +649196,7 @@ func (c *ClientWithResponses) MarketplaceAttributeOptionsCountWithResponse(ctx c
 
 // MarketplaceAttributeOptionsCreateWithBodyWithResponse Create an attribute option
 //
-// Creates a new option for a choice-type attribute. Requires staff permissions.
+// Creates a new option for a choice or list attribute. Requires staff permissions.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648728,7 +649211,7 @@ func (c *ClientWithResponses) MarketplaceAttributeOptionsCreateWithBodyWithRespo
 
 // MarketplaceAttributeOptionsCreateWithResponse Create an attribute option
 //
-// Creates a new option for a choice-type attribute. Requires staff permissions.
+// Creates a new option for a choice or list attribute. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648863,7 +649346,7 @@ func (c *ClientWithResponses) MarketplaceAttributesCountWithResponse(ctx context
 
 // MarketplaceAttributesCreateWithBodyWithResponse Create an attribute
 //
-// Creates a new attribute within a section. Requires staff permissions.
+// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648878,7 +649361,7 @@ func (c *ClientWithResponses) MarketplaceAttributesCreateWithBodyWithResponse(ct
 
 // MarketplaceAttributesCreateWithResponse Create an attribute
 //
-// Creates a new attribute within a section. Requires staff permissions.
+// Creates a new attribute within a section, optionally with its options. The key is generated from the section key and title when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648923,7 +649406,7 @@ func (c *ClientWithResponses) MarketplaceAttributesRetrieveWithResponse(ctx cont
 
 // MarketplaceAttributesPartialUpdateWithBodyWithResponse Partially update an attribute
 //
-// Partially updates an existing attribute. Requires staff permissions.
+// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648938,7 +649421,7 @@ func (c *ClientWithResponses) MarketplaceAttributesPartialUpdateWithBodyWithResp
 
 // MarketplaceAttributesPartialUpdateWithResponse Partially update an attribute
 //
-// Partially updates an existing attribute. Requires staff permissions.
+// Partially updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648953,7 +649436,7 @@ func (c *ClientWithResponses) MarketplaceAttributesPartialUpdateWithResponse(ctx
 
 // MarketplaceAttributesUpdateWithBodyWithResponse Update an attribute
 //
-// Updates an existing attribute. Requires staff permissions.
+// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -648968,7 +649451,7 @@ func (c *ClientWithResponses) MarketplaceAttributesUpdateWithBodyWithResponse(ct
 
 // MarketplaceAttributesUpdateWithResponse Update an attribute
 //
-// Updates an existing attribute. Requires staff permissions.
+// Updates an existing attribute. When options are given, they replace the current ones: options are matched by key, new ones are created and missing ones deleted. Switching to a type without options deletes them. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -662150,7 +662633,7 @@ func (c *ClientWithResponses) MarketplaceScriptSyncResourceWithResponse(ctx cont
 
 // MarketplaceSectionsListWithResponse List sections
 //
-// Returns a paginated list of all sections. Sections are used to group attributes within a category.
+// Returns a paginated list of all sections. Sections are used to group attributes within a category. Filter by category (URL or UUID).
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -662180,7 +662663,7 @@ func (c *ClientWithResponses) MarketplaceSectionsCountWithResponse(ctx context.C
 
 // MarketplaceSectionsCreateWithBodyWithResponse Create a section
 //
-// Creates a new section within a category. Requires staff permissions.
+// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -662195,7 +662678,7 @@ func (c *ClientWithResponses) MarketplaceSectionsCreateWithBodyWithResponse(ctx 
 
 // MarketplaceSectionsCreateWithResponse Create a section
 //
-// Creates a new section within a category. Requires staff permissions.
+// Creates a new section within a category. The key is generated from the category and section titles when omitted, and cannot be changed afterwards. Requires staff permissions.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -707857,7 +708340,7 @@ func ParseFeedbackSurveysCreateResponse(rsp *http.Response) (*FeedbackSurveysCre
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
-		var dest FeedbackSurvey
+		var dest FeedbackSurveyDetail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -707928,7 +708411,7 @@ func ParseFeedbackSurveysRetrieveResponse(rsp *http.Response) (*FeedbackSurveysR
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FeedbackSurvey
+		var dest FeedbackSurveyDetail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -707954,7 +708437,7 @@ func ParseFeedbackSurveysPartialUpdateResponse(rsp *http.Response) (*FeedbackSur
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FeedbackSurvey
+		var dest FeedbackSurveyDetail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -707980,7 +708463,7 @@ func ParseFeedbackSurveysUpdateResponse(rsp *http.Response) (*FeedbackSurveysUpd
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest FeedbackSurvey
+		var dest FeedbackSurveyDetail
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
