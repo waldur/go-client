@@ -1687,6 +1687,69 @@ func (e BidEnum) Valid() bool {
 	}
 }
 
+// Defines values for BillingChangesJobStateEnum.
+const (
+	BillingChangesJobStateEnumDone    BillingChangesJobStateEnum = "done"
+	BillingChangesJobStateEnumFailed  BillingChangesJobStateEnum = "failed"
+	BillingChangesJobStateEnumRunning BillingChangesJobStateEnum = "running"
+)
+
+// Valid indicates whether the value is a known member of the BillingChangesJobStateEnum enum.
+func (e BillingChangesJobStateEnum) Valid() bool {
+	switch e {
+	case BillingChangesJobStateEnumDone:
+		return true
+	case BillingChangesJobStateEnumFailed:
+		return true
+	case BillingChangesJobStateEnumRunning:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BillingChangesRequestActionEnum.
+const (
+	SettleMonth     BillingChangesRequestActionEnum = "settle_month"
+	SyncBilling     BillingChangesRequestActionEnum = "sync_billing"
+	SyncConsumption BillingChangesRequestActionEnum = "sync_consumption"
+)
+
+// Valid indicates whether the value is a known member of the BillingChangesRequestActionEnum enum.
+func (e BillingChangesRequestActionEnum) Valid() bool {
+	switch e {
+	case SettleMonth:
+		return true
+	case SyncBilling:
+		return true
+	case SyncConsumption:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BillingItemChangeChangeEnum.
+const (
+	BillingItemChangeChangeEnumCreated BillingItemChangeChangeEnum = "created"
+	BillingItemChangeChangeEnumDeleted BillingItemChangeChangeEnum = "deleted"
+	BillingItemChangeChangeEnumUpdated BillingItemChangeChangeEnum = "updated"
+)
+
+// Valid indicates whether the value is a known member of the BillingItemChangeChangeEnum enum.
+func (e BillingItemChangeChangeEnum) Valid() bool {
+	switch e {
+	case BillingItemChangeChangeEnumCreated:
+		return true
+	case BillingItemChangeChangeEnumDeleted:
+		return true
+	case BillingItemChangeChangeEnumUpdated:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for BillingModeEnum.
 const (
 	BillingModeEnumMonthly BillingModeEnum = "monthly"
@@ -32223,6 +32286,76 @@ type BasicUser struct {
 // BidEnum defines model for BidEnum.
 type BidEnum string
 
+// BillingChangesJob defines model for BillingChangesJob.
+type BillingChangesJob struct {
+	Error  *string                    `json:"error"`
+	JobId  string                     `json:"job_id"`
+	Report *BillingChangesResponse    `json:"report"`
+	State  BillingChangesJobStateEnum `json:"state"`
+}
+
+// BillingChangesJobStateEnum defines model for BillingChangesJobStateEnum.
+type BillingChangesJobStateEnum string
+
+// BillingChangesRequestActionEnum defines model for BillingChangesRequestActionEnum.
+type BillingChangesRequestActionEnum string
+
+// BillingChangesRequestRequest defines model for BillingChangesRequestRequest.
+type BillingChangesRequestRequest struct {
+	Action BillingChangesRequestActionEnum `json:"action"`
+
+	// DryRun Preview the changes and keep nothing; false applies them.
+	DryRun *bool `json:"dry_run,omitempty"`
+	Month  int   `json:"month"`
+
+	// ResourceUuid Limit billing or consumption sync to one resource.
+	ResourceUuid *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	Year         int                 `json:"year"`
+}
+
+// BillingChangesResponse defines model for BillingChangesResponse.
+type BillingChangesResponse struct {
+	Action   string                 `json:"action"`
+	DryRun   bool                   `json:"dry_run"`
+	Invoices []BillingInvoiceChange `json:"invoices"`
+	Month    int                    `json:"month"`
+
+	// Problems Warnings and errors the run logged, such as a failed Arrow call.
+	Problems     []string `json:"problems"`
+	ResourceUuid *string  `json:"resource_uuid"`
+
+	// Result What the underlying task reported.
+	Result  *map[string]interface{} `json:"result"`
+	TakenAt time.Time               `json:"taken_at"`
+	Year    int                     `json:"year"`
+}
+
+// BillingInvoiceChange defines model for BillingInvoiceChange.
+type BillingInvoiceChange struct {
+	CustomerName string              `json:"customer_name"`
+	CustomerUuid string              `json:"customer_uuid"`
+	InvoiceUuid  string              `json:"invoice_uuid"`
+	Items        []BillingItemChange `json:"items"`
+	Month        int                 `json:"month"`
+	State        string              `json:"state"`
+	TotalAfter   string              `json:"total_after"`
+	TotalBefore  string              `json:"total_before"`
+	Year         int                 `json:"year"`
+}
+
+// BillingItemChange defines model for BillingItemChange.
+type BillingItemChange struct {
+	AmountAfter  string                      `json:"amount_after"`
+	AmountBefore string                      `json:"amount_before"`
+	Change       BillingItemChangeChangeEnum `json:"change"`
+	Name         string                      `json:"name"`
+	ResourceName string                      `json:"resource_name"`
+	Uuid         string                      `json:"uuid"`
+}
+
+// BillingItemChangeChangeEnum defines model for BillingItemChangeChangeEnum.
+type BillingItemChangeChangeEnum string
+
 // BillingModeComponent defines model for BillingModeComponent.
 type BillingModeComponent struct {
 	BillingType  BillingTypeEnum `json:"billing_type"`
@@ -41890,7 +42023,7 @@ type FetchCustomerArrowDataResponse struct {
 	MatchedResources int    `json:"matched_resources"`
 	Period           string `json:"period"`
 
-	// ResourcesWithBackendId Number of resources with backend_id set (Arrow license reference).
+	// ResourcesWithBackendId Number of resources linked to an Arrow license.
 	ResourcesWithBackendId int `json:"resources_with_backend_id"`
 
 	// TotalCustomerResources Total number of resources for this customer in Waldur.
@@ -73109,6 +73242,16 @@ type AdminArrowBillingSyncsCountParams struct {
 	StatementReference *string             `form:"statement_reference,omitempty" json:"statement_reference,omitempty"`
 }
 
+// AdminArrowBillingSyncsBillingChangesJobRetrieveParams defines parameters for AdminArrowBillingSyncsBillingChangesJobRetrieve.
+type AdminArrowBillingSyncsBillingChangesJobRetrieveParams struct {
+	JobId string `form:"job_id" json:"job_id"`
+}
+
+// AdminArrowBillingSyncsBillingChangesJobCountParams defines parameters for AdminArrowBillingSyncsBillingChangesJobCount.
+type AdminArrowBillingSyncsBillingChangesJobCountParams struct {
+	JobId string `form:"job_id" json:"job_id"`
+}
+
 // AdminArrowBillingSyncsPendingRecordsListParams defines parameters for AdminArrowBillingSyncsPendingRecordsList.
 type AdminArrowBillingSyncsPendingRecordsListParams struct {
 	ArrowState          *string             `form:"arrow_state,omitempty" json:"arrow_state,omitempty"`
@@ -103535,6 +103678,9 @@ type AdminAnnouncementsPartialUpdateJSONRequestBody = PatchedAdminAnnouncementRe
 // AdminAnnouncementsUpdateJSONRequestBody defines body for AdminAnnouncementsUpdate for application/json ContentType.
 type AdminAnnouncementsUpdateJSONRequestBody = AdminAnnouncementRequest
 
+// AdminArrowBillingSyncsBillingChangesJSONRequestBody defines body for AdminArrowBillingSyncsBillingChanges for application/json ContentType.
+type AdminArrowBillingSyncsBillingChangesJSONRequestBody = BillingChangesRequestRequest
+
 // AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody defines body for AdminArrowBillingSyncsCleanupConsumption for application/json ContentType.
 type AdminArrowBillingSyncsCleanupConsumptionJSONRequestBody = CleanupConsumptionRequestRequest
 
@@ -127340,6 +127486,28 @@ type ClientInterface interface {
 	// Get number of items in the collection matching the request parameters.
 	AdminArrowBillingSyncsCount(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// AdminArrowBillingSyncsBillingChangesWithBody performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+	AdminArrowBillingSyncsBillingChangesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsBillingChanges performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+	AdminArrowBillingSyncsBillingChanges(ctx context.Context, body AdminArrowBillingSyncsBillingChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsBillingChangesJobRetrieve performs a GET /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobRetrieve` operationId) request.
+	//
+	// State and report of a Billing changes job.
+	AdminArrowBillingSyncsBillingChangesJobRetrieve(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// AdminArrowBillingSyncsBillingChangesJobCount performs a HEAD /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	AdminArrowBillingSyncsBillingChangesJobCount(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// AdminArrowBillingSyncsCleanupConsumptionWithBody performs a POST /api/admin/arrow/billing-syncs/cleanup_consumption/ (the `AdminArrowBillingSyncsCleanupConsumption` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -127618,13 +127786,13 @@ type ClientInterface interface {
 	// AdminArrowCustomerMappingsLinkResourceWithBody performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Link a Waldur resource to an Arrow license by setting its backend_id.
+	// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 	AdminArrowCustomerMappingsLinkResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AdminArrowCustomerMappingsLinkResource performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request.
 	// Takes a body of the `application/json` content type.
 	//
-	// Link a Waldur resource to an Arrow license by setting its backend_id.
+	// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 	AdminArrowCustomerMappingsLinkResource(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// AdminArrowSettingsList performs a GET /api/admin/arrow/settings/ (the `AdminArrowSettingsList` operationId) request.
@@ -153925,6 +154093,68 @@ func (c *Client) AdminArrowBillingSyncsCount(ctx context.Context, params *AdminA
 	return c.Client.Do(req)
 }
 
+// AdminArrowBillingSyncsBillingChangesWithBody performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request,
+// with any type of body and a specified content type.
+//
+// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+func (c *Client) AdminArrowBillingSyncsBillingChangesWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsBillingChangesRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// AdminArrowBillingSyncsBillingChanges performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+func (c *Client) AdminArrowBillingSyncsBillingChanges(ctx context.Context, body AdminArrowBillingSyncsBillingChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsBillingChangesRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// AdminArrowBillingSyncsBillingChangesJobRetrieve performs a GET /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobRetrieve` operationId) request.
+//
+// State and report of a Billing changes job.
+func (c *Client) AdminArrowBillingSyncsBillingChangesJobRetrieve(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsBillingChangesJobRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// AdminArrowBillingSyncsBillingChangesJobCount performs a HEAD /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) AdminArrowBillingSyncsBillingChangesJobCount(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewAdminArrowBillingSyncsBillingChangesJobCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // AdminArrowBillingSyncsCleanupConsumptionWithBody performs a POST /api/admin/arrow/billing-syncs/cleanup_consumption/ (the `AdminArrowBillingSyncsCleanupConsumption` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -154733,7 +154963,7 @@ func (c *Client) AdminArrowCustomerMappingsImportLicense(ctx context.Context, uu
 // AdminArrowCustomerMappingsLinkResourceWithBody performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request,
 // with any type of body and a specified content type.
 //
-// Link a Waldur resource to an Arrow license by setting its backend_id.
+// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 func (c *Client) AdminArrowCustomerMappingsLinkResourceWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAdminArrowCustomerMappingsLinkResourceRequestWithBody(c.Server, uuid, contentType, body)
 	if err != nil {
@@ -154749,7 +154979,7 @@ func (c *Client) AdminArrowCustomerMappingsLinkResourceWithBody(ctx context.Cont
 // AdminArrowCustomerMappingsLinkResource performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request.
 // Takes a body of the `application/json` content type.
 //
-// Link a Waldur resource to an Arrow license by setting its backend_id.
+// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 func (c *Client) AdminArrowCustomerMappingsLinkResource(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewAdminArrowCustomerMappingsLinkResourceRequest(c.Server, uuid, body)
 	if err != nil {
@@ -224697,6 +224927,146 @@ func NewAdminArrowBillingSyncsCountRequest(server string, params *AdminArrowBill
 				}
 			}
 
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsBillingChangesRequest calls the generic AdminArrowBillingSyncsBillingChanges builder with application/json body
+func NewAdminArrowBillingSyncsBillingChangesRequest(server string, body AdminArrowBillingSyncsBillingChangesJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewAdminArrowBillingSyncsBillingChangesRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewAdminArrowBillingSyncsBillingChangesRequestWithBody constructs an http.Request for the AdminArrowBillingSyncsBillingChanges method, with any body, and a specified content type
+func NewAdminArrowBillingSyncsBillingChangesRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/billing_changes/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsBillingChangesJobRetrieveRequest constructs an http.Request for the AdminArrowBillingSyncsBillingChangesJobRetrieve method
+func NewAdminArrowBillingSyncsBillingChangesJobRetrieveRequest(server string, params *AdminArrowBillingSyncsBillingChangesJobRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/billing_changes_job/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "job_id", params.JobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewAdminArrowBillingSyncsBillingChangesJobCountRequest constructs an http.Request for the AdminArrowBillingSyncsBillingChangesJobCount method
+func NewAdminArrowBillingSyncsBillingChangesJobCountRequest(server string, params *AdminArrowBillingSyncsBillingChangesJobCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/admin/arrow/billing-syncs/billing_changes_job/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "job_id", params.JobId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -476575,6 +476945,34 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	AdminArrowBillingSyncsCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsCountResponse, error)
 
+	// AdminArrowBillingSyncsBillingChangesWithBodyWithResponse performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	AdminArrowBillingSyncsBillingChangesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesResponse, error)
+
+	// AdminArrowBillingSyncsBillingChangesWithResponse performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+	AdminArrowBillingSyncsBillingChangesWithResponse(ctx context.Context, body AdminArrowBillingSyncsBillingChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesResponse, error)
+
+	// AdminArrowBillingSyncsBillingChangesJobRetrieveWithResponse performs a GET /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobRetrieve` operationId) request.
+	//
+	// State and report of a Billing changes job.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	AdminArrowBillingSyncsBillingChangesJobRetrieveWithResponse(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobRetrieveParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesJobRetrieveResponse, error)
+
+	// AdminArrowBillingSyncsBillingChangesJobCountWithResponse performs a HEAD /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	AdminArrowBillingSyncsBillingChangesJobCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesJobCountResponse, error)
+
 	// AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse performs a POST /api/admin/arrow/billing-syncs/cleanup_consumption/ (the `AdminArrowBillingSyncsCleanupConsumption` operationId) request,
 	// with any type of body and a specified content type.
 	//
@@ -476925,7 +477323,7 @@ type ClientWithResponsesInterface interface {
 	// AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request,
 	// with any type of body and a specified content type.
 	//
-	// Link a Waldur resource to an Arrow license by setting its backend_id.
+	// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 	//
 	// Returns a wrapper object for the known response body format(s).
 	AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error)
@@ -476933,7 +477331,7 @@ type ClientWithResponsesInterface interface {
 	// AdminArrowCustomerMappingsLinkResourceWithResponse performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request.
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
-	// Link a Waldur resource to an Arrow license by setting its backend_id.
+	// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 	AdminArrowCustomerMappingsLinkResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error)
 
 	// AdminArrowSettingsListWithResponse performs a GET /api/admin/arrow/settings/ (the `AdminArrowSettingsList` operationId) request.
@@ -509270,6 +509668,122 @@ func (r AdminArrowBillingSyncsCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r AdminArrowBillingSyncsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminArrowBillingSyncsBillingChangesResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON202 the response for an HTTP 202 `application/json` response
+	JSON202 *BillingChangesJob
+}
+
+// GetJSON202 returns the response for an HTTP 202 `application/json` response
+func (r AdminArrowBillingSyncsBillingChangesResponse) GetJSON202() *BillingChangesJob {
+	return r.JSON202
+}
+
+// GetBody returns the raw response body bytes
+func (r AdminArrowBillingSyncsBillingChangesResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsBillingChangesResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsBillingChangesResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminArrowBillingSyncsBillingChangesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminArrowBillingSyncsBillingChangesJobRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *BillingChangesJob
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r AdminArrowBillingSyncsBillingChangesJobRetrieveResponse) GetJSON200() *BillingChangesJob {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r AdminArrowBillingSyncsBillingChangesJobRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsBillingChangesJobRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsBillingChangesJobRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminArrowBillingSyncsBillingChangesJobRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type AdminArrowBillingSyncsBillingChangesJobCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r AdminArrowBillingSyncsBillingChangesJobCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r AdminArrowBillingSyncsBillingChangesJobCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r AdminArrowBillingSyncsBillingChangesJobCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r AdminArrowBillingSyncsBillingChangesJobCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -637349,6 +637863,58 @@ func (c *ClientWithResponses) AdminArrowBillingSyncsCountWithResponse(ctx contex
 	return ParseAdminArrowBillingSyncsCountResponse(rsp)
 }
 
+// AdminArrowBillingSyncsBillingChangesWithBodyWithResponse performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request,
+// with any type of body and a specified content type.
+//
+// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) AdminArrowBillingSyncsBillingChangesWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsBillingChangesWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsBillingChangesResponse(rsp)
+}
+
+// AdminArrowBillingSyncsBillingChangesWithResponse performs a POST /api/admin/arrow/billing-syncs/billing_changes/ (the `AdminArrowBillingSyncsBillingChanges` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Start an Arrow billing action as a background job that reports the invoice items it creates, changes or deletes. With dry_run (the default) nothing is kept, so the report is a preview of applying the same action. Poll billing_changes_job for the report.
+func (c *ClientWithResponses) AdminArrowBillingSyncsBillingChangesWithResponse(ctx context.Context, body AdminArrowBillingSyncsBillingChangesJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsBillingChanges(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsBillingChangesResponse(rsp)
+}
+
+// AdminArrowBillingSyncsBillingChangesJobRetrieveWithResponse performs a GET /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobRetrieve` operationId) request.
+//
+// State and report of a Billing changes job.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) AdminArrowBillingSyncsBillingChangesJobRetrieveWithResponse(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobRetrieveParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesJobRetrieveResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsBillingChangesJobRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsBillingChangesJobRetrieveResponse(rsp)
+}
+
+// AdminArrowBillingSyncsBillingChangesJobCountWithResponse performs a HEAD /api/admin/arrow/billing-syncs/billing_changes_job/ (the `AdminArrowBillingSyncsBillingChangesJobCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) AdminArrowBillingSyncsBillingChangesJobCountWithResponse(ctx context.Context, params *AdminArrowBillingSyncsBillingChangesJobCountParams, reqEditors ...RequestEditorFn) (*AdminArrowBillingSyncsBillingChangesJobCountResponse, error) {
+	rsp, err := c.AdminArrowBillingSyncsBillingChangesJobCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseAdminArrowBillingSyncsBillingChangesJobCountResponse(rsp)
+}
+
 // AdminArrowBillingSyncsCleanupConsumptionWithBodyWithResponse performs a POST /api/admin/arrow/billing-syncs/cleanup_consumption/ (the `AdminArrowBillingSyncsCleanupConsumption` operationId) request,
 // with any type of body and a specified content type.
 //
@@ -638017,7 +638583,7 @@ func (c *ClientWithResponses) AdminArrowCustomerMappingsImportLicenseWithRespons
 // AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request,
 // with any type of body and a specified content type.
 //
-// Link a Waldur resource to an Arrow license by setting its backend_id.
+// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 //
 // Returns a wrapper object for the known response body format(s).
 func (c *ClientWithResponses) AdminArrowCustomerMappingsLinkResourceWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error) {
@@ -638031,7 +638597,7 @@ func (c *ClientWithResponses) AdminArrowCustomerMappingsLinkResourceWithBodyWith
 // AdminArrowCustomerMappingsLinkResourceWithResponse performs a POST /api/admin/arrow/customer-mappings/{uuid}/link_resource/ (the `AdminArrowCustomerMappingsLinkResource` operationId) request.
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
-// Link a Waldur resource to an Arrow license by setting its backend_id.
+// Link a Waldur resource to an Arrow license (its arrow_license_reference attribute).
 func (c *ClientWithResponses) AdminArrowCustomerMappingsLinkResourceWithResponse(ctx context.Context, uuid openapi_types.UUID, body AdminArrowCustomerMappingsLinkResourceJSONRequestBody, reqEditors ...RequestEditorFn) (*AdminArrowCustomerMappingsLinkResourceResponse, error) {
 	rsp, err := c.AdminArrowCustomerMappingsLinkResource(ctx, uuid, body, reqEditors...)
 	if err != nil {
@@ -694847,6 +695413,77 @@ func ParseAdminArrowBillingSyncsCountResponse(rsp *http.Response) (*AdminArrowBi
 	}
 
 	response := &AdminArrowBillingSyncsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsBillingChangesResponse parses an HTTP response from a AdminArrowBillingSyncsBillingChangesWithResponse call
+func ParseAdminArrowBillingSyncsBillingChangesResponse(rsp *http.Response) (*AdminArrowBillingSyncsBillingChangesResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsBillingChangesResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest BillingChangesJob
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	case rsp.StatusCode == 409:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsBillingChangesJobRetrieveResponse parses an HTTP response from a AdminArrowBillingSyncsBillingChangesJobRetrieveWithResponse call
+func ParseAdminArrowBillingSyncsBillingChangesJobRetrieveResponse(rsp *http.Response) (*AdminArrowBillingSyncsBillingChangesJobRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsBillingChangesJobRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BillingChangesJob
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseAdminArrowBillingSyncsBillingChangesJobCountResponse parses an HTTP response from a AdminArrowBillingSyncsBillingChangesJobCountWithResponse call
+func ParseAdminArrowBillingSyncsBillingChangesJobCountResponse(rsp *http.Response) (*AdminArrowBillingSyncsBillingChangesJobCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &AdminArrowBillingSyncsBillingChangesJobCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
