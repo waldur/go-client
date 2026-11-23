@@ -1783,6 +1783,45 @@ func (e BillingUnit) Valid() bool {
 	}
 }
 
+// Defines values for BindableEntityTypeEnum.
+const (
+	BindableEntityTypeEnumCall            BindableEntityTypeEnum = "call"
+	BindableEntityTypeEnumCallOrganizer   BindableEntityTypeEnum = "call_organizer"
+	BindableEntityTypeEnumCustomer        BindableEntityTypeEnum = "customer"
+	BindableEntityTypeEnumOffering        BindableEntityTypeEnum = "offering"
+	BindableEntityTypeEnumProject         BindableEntityTypeEnum = "project"
+	BindableEntityTypeEnumProposal        BindableEntityTypeEnum = "proposal"
+	BindableEntityTypeEnumResource        BindableEntityTypeEnum = "resource"
+	BindableEntityTypeEnumResourceProject BindableEntityTypeEnum = "resource_project"
+	BindableEntityTypeEnumServiceProvider BindableEntityTypeEnum = "service_provider"
+)
+
+// Valid indicates whether the value is a known member of the BindableEntityTypeEnum enum.
+func (e BindableEntityTypeEnum) Valid() bool {
+	switch e {
+	case BindableEntityTypeEnumCall:
+		return true
+	case BindableEntityTypeEnumCallOrganizer:
+		return true
+	case BindableEntityTypeEnumCustomer:
+		return true
+	case BindableEntityTypeEnumOffering:
+		return true
+	case BindableEntityTypeEnumProject:
+		return true
+	case BindableEntityTypeEnumProposal:
+		return true
+	case BindableEntityTypeEnumResource:
+		return true
+	case BindableEntityTypeEnumResourceProject:
+		return true
+	case BindableEntityTypeEnumServiceProvider:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for BookingResourceFieldEnum.
 const (
 	BookingResourceFieldEnumApiKeyCounts               BookingResourceFieldEnum = "api_key_counts"
@@ -6298,6 +6337,7 @@ const (
 	EventMetadataResponseEventGroupsCustomerPermissionReviewClosed                   EventMetadataResponseEventGroups = "customer_permission_review_closed"
 	EventMetadataResponseEventGroupsCustomerPermissionReviewCreated                  EventMetadataResponseEventGroups = "customer_permission_review_created"
 	EventMetadataResponseEventGroupsCustomerUpdateSucceeded                          EventMetadataResponseEventGroups = "customer_update_succeeded"
+	EventMetadataResponseEventGroupsDedicatedUserCreated                             EventMetadataResponseEventGroups = "dedicated_user_created"
 	EventMetadataResponseEventGroupsDropletResizeScheduled                           EventMetadataResponseEventGroups = "droplet_resize_scheduled"
 	EventMetadataResponseEventGroupsDropletResizeSucceeded                           EventMetadataResponseEventGroups = "droplet_resize_succeeded"
 	EventMetadataResponseEventGroupsEventConsumerRegisteredWithBroadCredential       EventMetadataResponseEventGroups = "event_consumer_registered_with_broad_credential"
@@ -6694,6 +6734,7 @@ const (
 	EventMetadataResponseEventGroupsRoundUndecidedProposalsRejected                  EventMetadataResponseEventGroups = "round_undecided_proposals_rejected"
 	EventMetadataResponseEventGroupsServiceAccountCreated                            EventMetadataResponseEventGroups = "service_account_created"
 	EventMetadataResponseEventGroupsServiceAccountDeleted                            EventMetadataResponseEventGroups = "service_account_deleted"
+	EventMetadataResponseEventGroupsServiceAccountSignedIn                           EventMetadataResponseEventGroups = "service_account_signed_in"
 	EventMetadataResponseEventGroupsServiceAccountUpdated                            EventMetadataResponseEventGroups = "service_account_updated"
 	EventMetadataResponseEventGroupsSetToZeroOverdueCredit                           EventMetadataResponseEventGroups = "set_to_zero_overdue_credit"
 	EventMetadataResponseEventGroupsSlurmPolicyEvaluation                            EventMetadataResponseEventGroups = "slurm_policy_evaluation"
@@ -6816,6 +6857,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsCustomerPermissionReviewCreated:
 		return true
 	case EventMetadataResponseEventGroupsCustomerUpdateSucceeded:
+		return true
+	case EventMetadataResponseEventGroupsDedicatedUserCreated:
 		return true
 	case EventMetadataResponseEventGroupsDropletResizeScheduled:
 		return true
@@ -7609,6 +7652,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsServiceAccountDeleted:
 		return true
+	case EventMetadataResponseEventGroupsServiceAccountSignedIn:
+		return true
 	case EventMetadataResponseEventGroupsServiceAccountUpdated:
 		return true
 	case EventMetadataResponseEventGroupsSetToZeroOverdueCredit:
@@ -7723,6 +7768,7 @@ const (
 	EventTypesEnumCustomerPermissionReviewClosed                   EventTypesEnum = "customer_permission_review_closed"
 	EventTypesEnumCustomerPermissionReviewCreated                  EventTypesEnum = "customer_permission_review_created"
 	EventTypesEnumCustomerUpdateSucceeded                          EventTypesEnum = "customer_update_succeeded"
+	EventTypesEnumDedicatedUserCreated                             EventTypesEnum = "dedicated_user_created"
 	EventTypesEnumDropletResizeScheduled                           EventTypesEnum = "droplet_resize_scheduled"
 	EventTypesEnumDropletResizeSucceeded                           EventTypesEnum = "droplet_resize_succeeded"
 	EventTypesEnumEventConsumerRegisteredWithBroadCredential       EventTypesEnum = "event_consumer_registered_with_broad_credential"
@@ -8119,6 +8165,7 @@ const (
 	EventTypesEnumRoundUndecidedProposalsRejected                  EventTypesEnum = "round_undecided_proposals_rejected"
 	EventTypesEnumServiceAccountCreated                            EventTypesEnum = "service_account_created"
 	EventTypesEnumServiceAccountDeleted                            EventTypesEnum = "service_account_deleted"
+	EventTypesEnumServiceAccountSignedIn                           EventTypesEnum = "service_account_signed_in"
 	EventTypesEnumServiceAccountUpdated                            EventTypesEnum = "service_account_updated"
 	EventTypesEnumSetToZeroOverdueCredit                           EventTypesEnum = "set_to_zero_overdue_credit"
 	EventTypesEnumSlurmPolicyEvaluation                            EventTypesEnum = "slurm_policy_evaluation"
@@ -8241,6 +8288,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumCustomerPermissionReviewCreated:
 		return true
 	case EventTypesEnumCustomerUpdateSucceeded:
+		return true
+	case EventTypesEnumDedicatedUserCreated:
 		return true
 	case EventTypesEnumDropletResizeScheduled:
 		return true
@@ -9033,6 +9082,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumServiceAccountCreated:
 		return true
 	case EventTypesEnumServiceAccountDeleted:
+		return true
+	case EventTypesEnumServiceAccountSignedIn:
 		return true
 	case EventTypesEnumServiceAccountUpdated:
 		return true
@@ -17440,6 +17491,252 @@ func (e OrderDetailsOEnum) Valid() bool {
 	}
 }
 
+// Defines values for OrderFlowActorEnum.
+const (
+	OrderFlowActorEnumBackend   OrderFlowActorEnum = "backend"
+	OrderFlowActorEnumConsumer  OrderFlowActorEnum = "consumer"
+	OrderFlowActorEnumProvider  OrderFlowActorEnum = "provider"
+	OrderFlowActorEnumScheduler OrderFlowActorEnum = "scheduler"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowActorEnum enum.
+func (e OrderFlowActorEnum) Valid() bool {
+	switch e {
+	case OrderFlowActorEnumBackend:
+		return true
+	case OrderFlowActorEnumConsumer:
+		return true
+	case OrderFlowActorEnumProvider:
+		return true
+	case OrderFlowActorEnumScheduler:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowDescriptionOrderKindEnum.
+const (
+	OrderFlowDescriptionOrderKindEnumAutoTerminate OrderFlowDescriptionOrderKindEnum = "auto_terminate"
+	OrderFlowDescriptionOrderKindEnumCreate        OrderFlowDescriptionOrderKindEnum = "create"
+	OrderFlowDescriptionOrderKindEnumRenew         OrderFlowDescriptionOrderKindEnum = "renew"
+	OrderFlowDescriptionOrderKindEnumRestore       OrderFlowDescriptionOrderKindEnum = "restore"
+	OrderFlowDescriptionOrderKindEnumSwitchPlan    OrderFlowDescriptionOrderKindEnum = "switch_plan"
+	OrderFlowDescriptionOrderKindEnumTerminate     OrderFlowDescriptionOrderKindEnum = "terminate"
+	OrderFlowDescriptionOrderKindEnumUpdateLimits  OrderFlowDescriptionOrderKindEnum = "update_limits"
+	OrderFlowDescriptionOrderKindEnumUpdateOptions OrderFlowDescriptionOrderKindEnum = "update_options"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowDescriptionOrderKindEnum enum.
+func (e OrderFlowDescriptionOrderKindEnum) Valid() bool {
+	switch e {
+	case OrderFlowDescriptionOrderKindEnumAutoTerminate:
+		return true
+	case OrderFlowDescriptionOrderKindEnumCreate:
+		return true
+	case OrderFlowDescriptionOrderKindEnumRenew:
+		return true
+	case OrderFlowDescriptionOrderKindEnumRestore:
+		return true
+	case OrderFlowDescriptionOrderKindEnumSwitchPlan:
+		return true
+	case OrderFlowDescriptionOrderKindEnumTerminate:
+		return true
+	case OrderFlowDescriptionOrderKindEnumUpdateLimits:
+		return true
+	case OrderFlowDescriptionOrderKindEnumUpdateOptions:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowDescriptionOrdererEnum.
+const (
+	OrderFlowDescriptionOrdererEnumAny                OrderFlowDescriptionOrdererEnum = "any"
+	OrderFlowDescriptionOrdererEnumProposalAllocation OrderFlowDescriptionOrdererEnum = "proposal_allocation"
+	OrderFlowDescriptionOrdererEnumProviderOwner      OrderFlowDescriptionOrdererEnum = "provider_owner"
+	OrderFlowDescriptionOrdererEnumRole               OrderFlowDescriptionOrdererEnum = "role"
+	OrderFlowDescriptionOrdererEnumStaff              OrderFlowDescriptionOrdererEnum = "staff"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowDescriptionOrdererEnum enum.
+func (e OrderFlowDescriptionOrdererEnum) Valid() bool {
+	switch e {
+	case OrderFlowDescriptionOrdererEnumAny:
+		return true
+	case OrderFlowDescriptionOrdererEnumProposalAllocation:
+		return true
+	case OrderFlowDescriptionOrdererEnumProviderOwner:
+		return true
+	case OrderFlowDescriptionOrdererEnumRole:
+		return true
+	case OrderFlowDescriptionOrdererEnumStaff:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowOrdererKindEnum.
+const (
+	OrderFlowOrdererKindEnumAny                OrderFlowOrdererKindEnum = "any"
+	OrderFlowOrdererKindEnumProposalAllocation OrderFlowOrdererKindEnum = "proposal_allocation"
+	OrderFlowOrdererKindEnumProviderOwner      OrderFlowOrdererKindEnum = "provider_owner"
+	OrderFlowOrdererKindEnumRole               OrderFlowOrdererKindEnum = "role"
+	OrderFlowOrdererKindEnumStaff              OrderFlowOrdererKindEnum = "staff"
+	OrderFlowOrdererKindEnumSystem             OrderFlowOrdererKindEnum = "system"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowOrdererKindEnum enum.
+func (e OrderFlowOrdererKindEnum) Valid() bool {
+	switch e {
+	case OrderFlowOrdererKindEnumAny:
+		return true
+	case OrderFlowOrdererKindEnumProposalAllocation:
+		return true
+	case OrderFlowOrdererKindEnumProviderOwner:
+		return true
+	case OrderFlowOrdererKindEnumRole:
+		return true
+	case OrderFlowOrdererKindEnumStaff:
+		return true
+	case OrderFlowOrdererKindEnumSystem:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowSourceKindEnum.
+const (
+	OrderFlowSourceKindEnumConstance    OrderFlowSourceKindEnum = "constance"
+	OrderFlowSourceKindEnumEngine       OrderFlowSourceKindEnum = "engine"
+	OrderFlowSourceKindEnumOffering     OrderFlowSourceKindEnum = "offering"
+	OrderFlowSourceKindEnumOrder        OrderFlowSourceKindEnum = "order"
+	OrderFlowSourceKindEnumOrderer      OrderFlowSourceKindEnum = "orderer"
+	OrderFlowSourceKindEnumPluginOption OrderFlowSourceKindEnum = "plugin_option"
+	OrderFlowSourceKindEnumProject      OrderFlowSourceKindEnum = "project"
+	OrderFlowSourceKindEnumRole         OrderFlowSourceKindEnum = "role"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowSourceKindEnum enum.
+func (e OrderFlowSourceKindEnum) Valid() bool {
+	switch e {
+	case OrderFlowSourceKindEnumConstance:
+		return true
+	case OrderFlowSourceKindEnumEngine:
+		return true
+	case OrderFlowSourceKindEnumOffering:
+		return true
+	case OrderFlowSourceKindEnumOrder:
+		return true
+	case OrderFlowSourceKindEnumOrderer:
+		return true
+	case OrderFlowSourceKindEnumPluginOption:
+		return true
+	case OrderFlowSourceKindEnumProject:
+		return true
+	case OrderFlowSourceKindEnumRole:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowStepKeyEnum.
+const (
+	OrderFlowStepKeyEnumConsumerReview OrderFlowStepKeyEnum = "consumer_review"
+	OrderFlowStepKeyEnumDone           OrderFlowStepKeyEnum = "done"
+	OrderFlowStepKeyEnumExecution      OrderFlowStepKeyEnum = "execution"
+	OrderFlowStepKeyEnumPlaced         OrderFlowStepKeyEnum = "placed"
+	OrderFlowStepKeyEnumProjectStart   OrderFlowStepKeyEnum = "project_start"
+	OrderFlowStepKeyEnumProviderReview OrderFlowStepKeyEnum = "provider_review"
+	OrderFlowStepKeyEnumStartDate      OrderFlowStepKeyEnum = "start_date"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowStepKeyEnum enum.
+func (e OrderFlowStepKeyEnum) Valid() bool {
+	switch e {
+	case OrderFlowStepKeyEnumConsumerReview:
+		return true
+	case OrderFlowStepKeyEnumDone:
+		return true
+	case OrderFlowStepKeyEnumExecution:
+		return true
+	case OrderFlowStepKeyEnumPlaced:
+		return true
+	case OrderFlowStepKeyEnumProjectStart:
+		return true
+	case OrderFlowStepKeyEnumProviderReview:
+		return true
+	case OrderFlowStepKeyEnumStartDate:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowStepModeEnum.
+const (
+	Callback OrderFlowStepModeEnum = "callback"
+	Sync     OrderFlowStepModeEnum = "sync"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowStepModeEnum enum.
+func (e OrderFlowStepModeEnum) Valid() bool {
+	switch e {
+	case Callback:
+		return true
+	case Sync:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowStepStatusEnum.
+const (
+	OrderFlowStepStatusEnumConditional OrderFlowStepStatusEnum = "conditional"
+	OrderFlowStepStatusEnumRuns        OrderFlowStepStatusEnum = "runs"
+	OrderFlowStepStatusEnumSkipped     OrderFlowStepStatusEnum = "skipped"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowStepStatusEnum enum.
+func (e OrderFlowStepStatusEnum) Valid() bool {
+	switch e {
+	case OrderFlowStepStatusEnumConditional:
+		return true
+	case OrderFlowStepStatusEnumRuns:
+		return true
+	case OrderFlowStepStatusEnumSkipped:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OrderFlowTerminalKeyEnum.
+const (
+	OrderFlowTerminalKeyEnumCanceled OrderFlowTerminalKeyEnum = "canceled"
+	OrderFlowTerminalKeyEnumErred    OrderFlowTerminalKeyEnum = "erred"
+	OrderFlowTerminalKeyEnumRejected OrderFlowTerminalKeyEnum = "rejected"
+)
+
+// Valid indicates whether the value is a known member of the OrderFlowTerminalKeyEnum enum.
+func (e OrderFlowTerminalKeyEnum) Valid() bool {
+	switch e {
+	case OrderFlowTerminalKeyEnumCanceled:
+		return true
+	case OrderFlowTerminalKeyEnumErred:
+		return true
+	case OrderFlowTerminalKeyEnumRejected:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for OrderState.
 const (
 	OrderStateCanceled         OrderState = "canceled"
@@ -17665,6 +17962,7 @@ const (
 	PermissionMetadataResponsePermissionMapOFFERINGDELETEUSER                           PermissionMetadataResponsePermissionMap = "OFFERING.DELETE_USER"
 	PermissionMetadataResponsePermissionMapOFFERINGDRYRUNSCRIPT                         PermissionMetadataResponsePermissionMap = "OFFERING.DRY_RUN_SCRIPT"
 	PermissionMetadataResponsePermissionMapOFFERINGLIST                                 PermissionMetadataResponsePermissionMap = "OFFERING.LIST"
+	PermissionMetadataResponsePermissionMapOFFERINGMANAGEAGENT                          PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_AGENT"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGEBACKENDRESOURCES               PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGECAMPAIGN                       PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_CAMPAIGN"
 	PermissionMetadataResponsePermissionMapOFFERINGMANAGEUSERGROUP                      PermissionMetadataResponsePermissionMap = "OFFERING.MANAGE_USER_GROUP"
@@ -17871,6 +18169,8 @@ func (e PermissionMetadataResponsePermissionMap) Valid() bool {
 	case PermissionMetadataResponsePermissionMapOFFERINGDRYRUNSCRIPT:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGLIST:
+		return true
+	case PermissionMetadataResponsePermissionMapOFFERINGMANAGEAGENT:
 		return true
 	case PermissionMetadataResponsePermissionMapOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -18145,6 +18445,7 @@ const (
 	PermissionMetadataResponsePermissionsOFFERINGDELETEUSER                           PermissionMetadataResponsePermissions = "OFFERING.DELETE_USER"
 	PermissionMetadataResponsePermissionsOFFERINGDRYRUNSCRIPT                         PermissionMetadataResponsePermissions = "OFFERING.DRY_RUN_SCRIPT"
 	PermissionMetadataResponsePermissionsOFFERINGLIST                                 PermissionMetadataResponsePermissions = "OFFERING.LIST"
+	PermissionMetadataResponsePermissionsOFFERINGMANAGEAGENT                          PermissionMetadataResponsePermissions = "OFFERING.MANAGE_AGENT"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGEBACKENDRESOURCES               PermissionMetadataResponsePermissions = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGECAMPAIGN                       PermissionMetadataResponsePermissions = "OFFERING.MANAGE_CAMPAIGN"
 	PermissionMetadataResponsePermissionsOFFERINGMANAGEUSERGROUP                      PermissionMetadataResponsePermissions = "OFFERING.MANAGE_USER_GROUP"
@@ -18351,6 +18652,8 @@ func (e PermissionMetadataResponsePermissions) Valid() bool {
 	case PermissionMetadataResponsePermissionsOFFERINGDRYRUNSCRIPT:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGLIST:
+		return true
+	case PermissionMetadataResponsePermissionsOFFERINGMANAGEAGENT:
 		return true
 	case PermissionMetadataResponsePermissionsOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -25907,6 +26210,7 @@ const (
 	UserFieldEnumIsActive                      UserFieldEnum = "is_active"
 	UserFieldEnumIsAdminDeactivated            UserFieldEnum = "is_admin_deactivated"
 	UserFieldEnumIsIdentityManager             UserFieldEnum = "is_identity_manager"
+	UserFieldEnumIsServiceAccount              UserFieldEnum = "is_service_account"
 	UserFieldEnumIsStaff                       UserFieldEnum = "is_staff"
 	UserFieldEnumIsSupport                     UserFieldEnum = "is_support"
 	UserFieldEnumJobTitle                      UserFieldEnum = "job_title"
@@ -26008,6 +26312,8 @@ func (e UserFieldEnum) Valid() bool {
 	case UserFieldEnumIsAdminDeactivated:
 		return true
 	case UserFieldEnumIsIdentityManager:
+		return true
+	case UserFieldEnumIsServiceAccount:
 		return true
 	case UserFieldEnumIsStaff:
 		return true
@@ -26114,6 +26420,7 @@ const (
 	UserMeFieldEnumIsActive                      UserMeFieldEnum = "is_active"
 	UserMeFieldEnumIsAdminDeactivated            UserMeFieldEnum = "is_admin_deactivated"
 	UserMeFieldEnumIsIdentityManager             UserMeFieldEnum = "is_identity_manager"
+	UserMeFieldEnumIsServiceAccount              UserMeFieldEnum = "is_service_account"
 	UserMeFieldEnumIsStaff                       UserMeFieldEnum = "is_staff"
 	UserMeFieldEnumIsSupport                     UserMeFieldEnum = "is_support"
 	UserMeFieldEnumJobTitle                      UserMeFieldEnum = "job_title"
@@ -26216,6 +26523,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumIsAdminDeactivated:
 		return true
 	case UserMeFieldEnumIsIdentityManager:
+		return true
+	case UserMeFieldEnumIsServiceAccount:
 		return true
 	case UserMeFieldEnumIsStaff:
 		return true
@@ -26382,19 +26691,20 @@ func (e UserRequestedResourceOEnum) Valid() bool {
 
 // Defines values for UserRoleDetailsFieldEnum.
 const (
-	UserRoleDetailsFieldEnumCreated           UserRoleDetailsFieldEnum = "created"
-	UserRoleDetailsFieldEnumCreatedByFullName UserRoleDetailsFieldEnum = "created_by_full_name"
-	UserRoleDetailsFieldEnumCreatedByUuid     UserRoleDetailsFieldEnum = "created_by_uuid"
-	UserRoleDetailsFieldEnumExpirationTime    UserRoleDetailsFieldEnum = "expiration_time"
-	UserRoleDetailsFieldEnumRoleName          UserRoleDetailsFieldEnum = "role_name"
-	UserRoleDetailsFieldEnumRoleUuid          UserRoleDetailsFieldEnum = "role_uuid"
-	UserRoleDetailsFieldEnumSource            UserRoleDetailsFieldEnum = "source"
-	UserRoleDetailsFieldEnumUserEmail         UserRoleDetailsFieldEnum = "user_email"
-	UserRoleDetailsFieldEnumUserFullName      UserRoleDetailsFieldEnum = "user_full_name"
-	UserRoleDetailsFieldEnumUserImage         UserRoleDetailsFieldEnum = "user_image"
-	UserRoleDetailsFieldEnumUserUsername      UserRoleDetailsFieldEnum = "user_username"
-	UserRoleDetailsFieldEnumUserUuid          UserRoleDetailsFieldEnum = "user_uuid"
-	UserRoleDetailsFieldEnumUuid              UserRoleDetailsFieldEnum = "uuid"
+	UserRoleDetailsFieldEnumCreated              UserRoleDetailsFieldEnum = "created"
+	UserRoleDetailsFieldEnumCreatedByFullName    UserRoleDetailsFieldEnum = "created_by_full_name"
+	UserRoleDetailsFieldEnumCreatedByUuid        UserRoleDetailsFieldEnum = "created_by_uuid"
+	UserRoleDetailsFieldEnumExpirationTime       UserRoleDetailsFieldEnum = "expiration_time"
+	UserRoleDetailsFieldEnumRoleName             UserRoleDetailsFieldEnum = "role_name"
+	UserRoleDetailsFieldEnumRoleUuid             UserRoleDetailsFieldEnum = "role_uuid"
+	UserRoleDetailsFieldEnumSource               UserRoleDetailsFieldEnum = "source"
+	UserRoleDetailsFieldEnumUserEmail            UserRoleDetailsFieldEnum = "user_email"
+	UserRoleDetailsFieldEnumUserFullName         UserRoleDetailsFieldEnum = "user_full_name"
+	UserRoleDetailsFieldEnumUserImage            UserRoleDetailsFieldEnum = "user_image"
+	UserRoleDetailsFieldEnumUserIsServiceAccount UserRoleDetailsFieldEnum = "user_is_service_account"
+	UserRoleDetailsFieldEnumUserUsername         UserRoleDetailsFieldEnum = "user_username"
+	UserRoleDetailsFieldEnumUserUuid             UserRoleDetailsFieldEnum = "user_uuid"
+	UserRoleDetailsFieldEnumUuid                 UserRoleDetailsFieldEnum = "uuid"
 )
 
 // Valid indicates whether the value is a known member of the UserRoleDetailsFieldEnum enum.
@@ -26419,6 +26729,8 @@ func (e UserRoleDetailsFieldEnum) Valid() bool {
 	case UserRoleDetailsFieldEnumUserFullName:
 		return true
 	case UserRoleDetailsFieldEnumUserImage:
+		return true
+	case UserRoleDetailsFieldEnumUserIsServiceAccount:
 		return true
 	case UserRoleDetailsFieldEnumUserUsername:
 		return true
@@ -27058,6 +27370,7 @@ const (
 	ValueEnumOFFERINGDELETEUSER                           ValueEnum = "OFFERING.DELETE_USER"
 	ValueEnumOFFERINGDRYRUNSCRIPT                         ValueEnum = "OFFERING.DRY_RUN_SCRIPT"
 	ValueEnumOFFERINGLIST                                 ValueEnum = "OFFERING.LIST"
+	ValueEnumOFFERINGMANAGEAGENT                          ValueEnum = "OFFERING.MANAGE_AGENT"
 	ValueEnumOFFERINGMANAGEBACKENDRESOURCES               ValueEnum = "OFFERING.MANAGE_BACKEND_RESOURCES"
 	ValueEnumOFFERINGMANAGECAMPAIGN                       ValueEnum = "OFFERING.MANAGE_CAMPAIGN"
 	ValueEnumOFFERINGMANAGEUSERGROUP                      ValueEnum = "OFFERING.MANAGE_USER_GROUP"
@@ -27264,6 +27577,8 @@ func (e ValueEnum) Valid() bool {
 	case ValueEnumOFFERINGDRYRUNSCRIPT:
 		return true
 	case ValueEnumOFFERINGLIST:
+		return true
+	case ValueEnumOFFERINGMANAGEAGENT:
 		return true
 	case ValueEnumOFFERINGMANAGEBACKENDRESOURCES:
 		return true
@@ -29063,6 +29378,7 @@ type AgentCompatibilityStatusEnum string
 
 // AgentConfiguration defines model for AgentConfiguration.
 type AgentConfiguration struct {
+	AgentSettings     *AgentSettings                     `json:"agent_settings,omitempty"`
 	BackendComponents *map[string]map[string]interface{} `json:"backend_components,omitempty"`
 	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
 
@@ -29077,6 +29393,7 @@ type AgentConfiguration struct {
 
 // AgentConfigurationRequest defines model for AgentConfigurationRequest.
 type AgentConfigurationRequest struct {
+	AgentSettings     *AgentSettingsRequest              `json:"agent_settings,omitempty"`
 	BackendComponents *map[string]map[string]interface{} `json:"backend_components,omitempty"`
 	BackendSettings   *map[string]interface{}            `json:"backend_settings,omitempty"`
 
@@ -29408,6 +29725,36 @@ type AgentServiceStatus struct {
 
 	// Uuid Service UUID
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// AgentSettings defines model for AgentSettings.
+type AgentSettings struct {
+	// OmitAnomalousUsageComponents Report usage without a decreasing component instead of withholding the whole report.
+	OmitAnomalousUsageComponents *bool `json:"omit_anomalous_usage_components,omitempty"`
+
+	// PreserveUnmanagedBackendUsers Membership sync keeps backend users Waldur has never known as offering users, instead of removing every user not on the resource team.
+	PreserveUnmanagedBackendUsers *bool `json:"preserve_unmanaged_backend_users,omitempty"`
+
+	// ResourceImportEnabled Import resources found on the backend into Waldur.
+	ResourceImportEnabled *bool `json:"resource_import_enabled,omitempty"`
+
+	// UsernameReconciliationEnabled Periodically reconcile usernames from the backend.
+	UsernameReconciliationEnabled *bool `json:"username_reconciliation_enabled,omitempty"`
+}
+
+// AgentSettingsRequest defines model for AgentSettingsRequest.
+type AgentSettingsRequest struct {
+	// OmitAnomalousUsageComponents Report usage without a decreasing component instead of withholding the whole report.
+	OmitAnomalousUsageComponents *bool `json:"omit_anomalous_usage_components,omitempty"`
+
+	// PreserveUnmanagedBackendUsers Membership sync keeps backend users Waldur has never known as offering users, instead of removing every user not on the resource team.
+	PreserveUnmanagedBackendUsers *bool `json:"preserve_unmanaged_backend_users,omitempty"`
+
+	// ResourceImportEnabled Import resources found on the backend into Waldur.
+	ResourceImportEnabled *bool `json:"resource_import_enabled,omitempty"`
+
+	// UsernameReconciliationEnabled Periodically reconcile usernames from the backend.
+	UsernameReconciliationEnabled *bool `json:"username_reconciliation_enabled,omitempty"`
 }
 
 // AgentStatsBackendType defines model for AgentStatsBackendType.
@@ -31810,6 +32157,18 @@ type BillingTypeEnum string
 
 // BillingUnit defines model for BillingUnit.
 type BillingUnit string
+
+// BindableEntity defines model for BindableEntity.
+type BindableEntity struct {
+	// Context Where the entity belongs, such as its organization.
+	Context string             `json:"context"`
+	Name    string             `json:"name"`
+	Type    string             `json:"type"`
+	Uuid    openapi_types.UUID `json:"uuid"`
+}
+
+// BindableEntityTypeEnum defines model for BindableEntityTypeEnum.
+type BindableEntityTypeEnum string
 
 // BlankEnum defines model for BlankEnum.
 type BlankEnum = interface{}
@@ -39073,6 +39432,40 @@ type DeadLetterQueue struct {
 type DeclineStepContributionRequest struct {
 	Comment          *string            `json:"comment,omitempty"`
 	ContributionUuid openapi_types.UUID `json:"contribution_uuid"`
+}
+
+// DedicatedUserTokenCreateRequest defines model for DedicatedUserTokenCreateRequest.
+type DedicatedUserTokenCreateRequest struct {
+	AllowedNetworks *[]string `json:"allowed_networks,omitempty"`
+	ExpiresAt       time.Time `json:"expires_at"`
+
+	// Features Keys of the template's optional features to add.
+	Features   *[]string          `json:"features,omitempty"`
+	Name       string             `json:"name"`
+	TargetType string             `json:"target_type"`
+	TargetUuid openapi_types.UUID `json:"target_uuid"`
+	Template   string             `json:"template"`
+
+	// Username Of the new user; derived from the target when left out.
+	Username *string `json:"username,omitempty"`
+}
+
+// DedicatedUserTokenCreated defines model for DedicatedUserTokenCreated.
+type DedicatedUserTokenCreated struct {
+	AllowedNetworks []string             `json:"allowed_networks"`
+	AllowedScopes   []AllowedScopeOutput `json:"allowed_scopes"`
+	Created         time.Time            `json:"created"`
+	ExpiresAt       time.Time            `json:"expires_at"`
+	Name            string               `json:"name"`
+	Scopes          []string             `json:"scopes"`
+
+	// Token Plaintext token — shown only once.
+	Token string `json:"token"`
+
+	// UserUuid The new user the token is for.
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
 }
 
 // DefaultPermissionEnum defines model for DefaultPermissionEnum.
@@ -52923,6 +53316,167 @@ type OrderErrorDetailsRequest struct {
 	ErrorTraceback           *string `json:"error_traceback,omitempty"`
 }
 
+// OrderFlowActor defines model for OrderFlowActor.
+type OrderFlowActor struct {
+	Key   OrderFlowActorEnum `json:"key"`
+	Label string             `json:"label"`
+}
+
+// OrderFlowActorEnum defines model for OrderFlowActorEnum.
+type OrderFlowActorEnum string
+
+// OrderFlowCheck defines model for OrderFlowCheck.
+type OrderFlowCheck struct {
+	// Active Whether the check is configured for this offering.
+	Active  bool              `json:"active"`
+	Key     string            `json:"key"`
+	Sources []OrderFlowSource `json:"sources"`
+	Text    string            `json:"text"`
+}
+
+// OrderFlowDescription defines model for OrderFlowDescription.
+type OrderFlowDescription struct {
+	Actors     []OrderFlowActor     `json:"actors"`
+	Checks     []OrderFlowCheck     `json:"checks"`
+	Offering   OrderFlowOffering    `json:"offering"`
+	OrderKind  string               `json:"order_kind"`
+	OrderKinds []OrderFlowOrderKind `json:"order_kinds"`
+	Orderer    OrderFlowOrderer     `json:"orderer"`
+	Orderers   []OrderFlowOrderer   `json:"orderers"`
+	Reason     string               `json:"reason"`
+	Stats      *OrderFlowStats      `json:"stats"`
+	Steps      []OrderFlowStep      `json:"steps"`
+
+	// Supported Whether the offering processes this kind of order at all.
+	Supported bool                `json:"supported"`
+	Terminals []OrderFlowTerminal `json:"terminals"`
+}
+
+// OrderFlowDescriptionOrderKindEnum defines model for OrderFlowDescriptionOrderKindEnum.
+type OrderFlowDescriptionOrderKindEnum string
+
+// OrderFlowDescriptionOrdererEnum defines model for OrderFlowDescriptionOrdererEnum.
+type OrderFlowDescriptionOrdererEnum string
+
+// OrderFlowOffering defines model for OrderFlowOffering.
+type OrderFlowOffering struct {
+	Name string             `json:"name"`
+	Type string             `json:"type"`
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// OrderFlowOrderKind defines model for OrderFlowOrderKind.
+type OrderFlowOrderKind struct {
+	Key       string            `json:"key"`
+	Label     string            `json:"label"`
+	Reason    string            `json:"reason"`
+	Sources   []OrderFlowSource `json:"sources"`
+	Supported bool              `json:"supported"`
+}
+
+// OrderFlowOrderer defines model for OrderFlowOrderer.
+type OrderFlowOrderer struct {
+	Kind  OrderFlowOrdererKindEnum `json:"kind"`
+	Label string                   `json:"label"`
+	Role  *string                  `json:"role"`
+}
+
+// OrderFlowOrdererKindEnum defines model for OrderFlowOrdererKindEnum.
+type OrderFlowOrdererKindEnum string
+
+// OrderFlowRule defines model for OrderFlowRule.
+type OrderFlowRule struct {
+	// Holds Null: depends on the order.
+	Holds *bool  `json:"holds"`
+	Key   string `json:"key"`
+
+	// Reached False when an earlier rule always decides first.
+	Reached bool `json:"reached"`
+
+	// Skips When the rule holds, whether the step is skipped. Null when the rule does not hold or the outcome depends on the order.
+	Skips   *bool             `json:"skips"`
+	Sources []OrderFlowSource `json:"sources"`
+	Text    string            `json:"text"`
+}
+
+// OrderFlowSource defines model for OrderFlowSource.
+type OrderFlowSource struct {
+	// Editable Whether the offering's provider can change it.
+	Editable bool   `json:"editable"`
+	Field    string `json:"field"`
+
+	// Kind Where the input lives. Only plugin_option and offering belong to the provider.
+	Kind OrderFlowSourceKindEnum `json:"kind"`
+
+	// Value Current value, for settings that have one.
+	Value *map[string]interface{} `json:"value"`
+}
+
+// OrderFlowSourceKindEnum defines model for OrderFlowSourceKindEnum.
+type OrderFlowSourceKindEnum string
+
+// OrderFlowStateCount defines model for OrderFlowStateCount.
+type OrderFlowStateCount struct {
+	Count int    `json:"count"`
+	State string `json:"state"`
+}
+
+// OrderFlowStats defines model for OrderFlowStats.
+type OrderFlowStats struct {
+	States     []OrderFlowStateCount `json:"states"`
+	Steps      []OrderFlowStepStat   `json:"steps"`
+	WindowDays int                   `json:"window_days"`
+}
+
+// OrderFlowStep defines model for OrderFlowStep.
+type OrderFlowStep struct {
+	Actor     OrderFlowActorEnum   `json:"actor"`
+	CanReject bool                 `json:"can_reject"`
+	Key       OrderFlowStepKeyEnum `json:"key"`
+	Label     string               `json:"label"`
+
+	// Mode Execution only: done when processing returns, or when something outside Waldur reports back.
+	Mode    *OrderFlowStep_Mode     `json:"mode"`
+	Notes   []string                `json:"notes"`
+	Rules   []OrderFlowRule         `json:"rules"`
+	Sources []OrderFlowSource       `json:"sources"`
+	Status  OrderFlowStepStatusEnum `json:"status"`
+	Summary string                  `json:"summary"`
+}
+
+// OrderFlowStep_Mode Execution only: done when processing returns, or when something outside Waldur reports back.
+type OrderFlowStep_Mode struct {
+	union json.RawMessage
+}
+
+// OrderFlowStepKeyEnum defines model for OrderFlowStepKeyEnum.
+type OrderFlowStepKeyEnum string
+
+// OrderFlowStepModeEnum defines model for OrderFlowStepModeEnum.
+type OrderFlowStepModeEnum string
+
+// OrderFlowStepStat defines model for OrderFlowStepStat.
+type OrderFlowStepStat struct {
+	MedianSeconds *float64 `json:"median_seconds"`
+	Samples       int      `json:"samples"`
+	Step          string   `json:"step"`
+}
+
+// OrderFlowStepStatusEnum defines model for OrderFlowStepStatusEnum.
+type OrderFlowStepStatusEnum string
+
+// OrderFlowTerminal defines model for OrderFlowTerminal.
+type OrderFlowTerminal struct {
+	FromSteps []string                 `json:"from_steps"`
+	Key       OrderFlowTerminalKeyEnum `json:"key"`
+
+	// Retry Whether an order ending here can be retried.
+	Retry bool `json:"retry"`
+}
+
+// OrderFlowTerminalKeyEnum defines model for OrderFlowTerminalKeyEnum.
+type OrderFlowTerminalKeyEnum string
+
 // OrderInfoResponse defines model for OrderInfoResponse.
 type OrderInfoResponse struct {
 	Detail *string `json:"detail,omitempty"`
@@ -53230,6 +53784,58 @@ type PasskeyToken struct {
 // PasswordChangeRequest defines model for PasswordChangeRequest.
 type PasswordChangeRequest struct {
 	NewPassword *string `json:"new_password,omitempty"`
+}
+
+// PatTemplate defines model for PatTemplate.
+type PatTemplate struct {
+	// BindingTypes Entity types a token from this template is bound to.
+	BindingTypes []string `json:"binding_types"`
+
+	// DedicatedUserTypes Target types staff can create a dedicated user for, whose token is restricted to the target (agent_user).
+	DedicatedUserTypes []string `json:"dedicated_user_types"`
+
+	// DefaultLifetimeDays Suggested lifetime, capped by the site's maximum token lifetime.
+	DefaultLifetimeDays int                  `json:"default_lifetime_days"`
+	Description         string               `json:"description"`
+	Key                 string               `json:"key"`
+	Name                string               `json:"name"`
+	OptionalFeatures    []PatTemplateFeature `json:"optional_features"`
+	RequiredScopes      []string             `json:"required_scopes"`
+}
+
+// PatTemplateBinding defines model for PatTemplateBinding.
+type PatTemplateBinding struct {
+	Type *string            `json:"type,omitempty"`
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
+// PatTemplateFeature defines model for PatTemplateFeature.
+type PatTemplateFeature struct {
+	Description string   `json:"description"`
+	Key         string   `json:"key"`
+	Name        string   `json:"name"`
+	Scopes      []string `json:"scopes"`
+}
+
+// PatTemplateTarget defines model for PatTemplateTarget.
+type PatTemplateTarget struct {
+	// Bindings What to bind the token to (its allowed_scopes) for it to work on this target.
+	Bindings []PatTemplateBinding `json:"bindings"`
+
+	// Context Where the entity belongs, such as an offering's organization.
+	Context string `json:"context"`
+
+	// Features Optional features of the template the caller can add here.
+	Features []string `json:"features"`
+	Name     string   `json:"name"`
+
+	// StaffAccess Staff only: the caller holds no role that would do here, so the token works only with STAFF.ACCESS added to its scopes. Such a token cannot be restricted: bindings is empty, and it can do everything the caller can as staff.
+	StaffAccess bool `json:"staff_access"`
+
+	// SuggestedUsername Staff only, where the template takes a dedicated user for this type of target: the username agent_user gives one when none is chosen. Empty otherwise.
+	SuggestedUsername *string            `json:"suggested_username,omitempty"`
+	Type              string             `json:"type"`
+	Uuid              openapi_types.UUID `json:"uuid"`
 }
 
 // PatchedAccessSubnetRequest defines model for PatchedAccessSubnetRequest.
@@ -56820,32 +57426,33 @@ type PeriodBreakdown struct {
 
 // Permission defines model for Permission.
 type Permission struct {
-	Created           *time.Time          `json:"created,omitempty"`
-	CreatedByFullName *string             `json:"created_by_full_name,omitempty"`
-	CreatedByUsername *string             `json:"created_by_username,omitempty"`
-	CustomerName      *string             `json:"customer_name,omitempty"`
-	CustomerUuid      *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	ExpirationTime    *time.Time          `json:"expiration_time,omitempty"`
-	IsActive          *bool               `json:"is_active,omitempty"`
-	ProjectUuid       *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ResourceUuid      *openapi_types.UUID `json:"resource_uuid,omitempty"`
-	RevokeReason      *string             `json:"revoke_reason,omitempty"`
-	RevokedByFullName *string             `json:"revoked_by_full_name,omitempty"`
-	RevokedByUsername *string             `json:"revoked_by_username,omitempty"`
-	RoleDescription   *string             `json:"role_description,omitempty"`
-	RoleName          *string             `json:"role_name,omitempty"`
-	RoleUuid          *openapi_types.UUID `json:"role_uuid,omitempty"`
-	ScopeIsRemoved    *bool               `json:"scope_is_removed,omitempty"`
-	ScopeName         *string             `json:"scope_name,omitempty"`
-	ScopeType         *string             `json:"scope_type,omitempty"`
-	ScopeUuid         *openapi_types.UUID `json:"scope_uuid,omitempty"`
-	Source            *string             `json:"source,omitempty"`
-	UserEmail         *string             `json:"user_email,omitempty"`
-	UserName          *string             `json:"user_name,omitempty"`
-	UserSlug          *string             `json:"user_slug,omitempty"`
-	UserUsername      *string             `json:"user_username,omitempty"`
-	UserUuid          *openapi_types.UUID `json:"user_uuid,omitempty"`
-	Uuid              *openapi_types.UUID `json:"uuid,omitempty"`
+	Created              *time.Time          `json:"created,omitempty"`
+	CreatedByFullName    *string             `json:"created_by_full_name,omitempty"`
+	CreatedByUsername    *string             `json:"created_by_username,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	ExpirationTime       *time.Time          `json:"expiration_time,omitempty"`
+	IsActive             *bool               `json:"is_active,omitempty"`
+	ProjectUuid          *openapi_types.UUID `json:"project_uuid,omitempty"`
+	ResourceUuid         *openapi_types.UUID `json:"resource_uuid,omitempty"`
+	RevokeReason         *string             `json:"revoke_reason,omitempty"`
+	RevokedByFullName    *string             `json:"revoked_by_full_name,omitempty"`
+	RevokedByUsername    *string             `json:"revoked_by_username,omitempty"`
+	RoleDescription      *string             `json:"role_description,omitempty"`
+	RoleName             *string             `json:"role_name,omitempty"`
+	RoleUuid             *openapi_types.UUID `json:"role_uuid,omitempty"`
+	ScopeIsRemoved       *bool               `json:"scope_is_removed,omitempty"`
+	ScopeName            *string             `json:"scope_name,omitempty"`
+	ScopeType            *string             `json:"scope_type,omitempty"`
+	ScopeUuid            *openapi_types.UUID `json:"scope_uuid,omitempty"`
+	Source               *string             `json:"source,omitempty"`
+	UserEmail            *string             `json:"user_email,omitempty"`
+	UserIsServiceAccount *bool               `json:"user_is_service_account,omitempty"`
+	UserName             *string             `json:"user_name,omitempty"`
+	UserSlug             *string             `json:"user_slug,omitempty"`
+	UserUsername         *string             `json:"user_username,omitempty"`
+	UserUuid             *openapi_types.UUID `json:"user_uuid,omitempty"`
+	Uuid                 *openapi_types.UUID `json:"uuid,omitempty"`
 }
 
 // PermissionDescription defines model for PermissionDescription.
@@ -60674,9 +61281,10 @@ type ProviderUserRoleDetails struct {
 	UserGender *ProviderUserRoleDetails_UserGender `json:"user_gender,omitempty"`
 
 	// UserIdentitySource Indicates what identity provider was used.
-	UserIdentitySource *string `json:"user_identity_source,omitempty"`
-	UserImage          *string `json:"user_image,omitempty"`
-	UserJobTitle       *string `json:"user_job_title,omitempty"`
+	UserIdentitySource   *string `json:"user_identity_source,omitempty"`
+	UserImage            *string `json:"user_image,omitempty"`
+	UserIsServiceAccount *bool   `json:"user_is_service_account,omitempty"`
+	UserJobTitle         *string `json:"user_job_title,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	UserNationalities *[]string `json:"user_nationalities,omitempty"`
@@ -67346,6 +67954,69 @@ type SiteAgentLogCreateRequest struct {
 	Timestamp         float64            `json:"timestamp"`
 }
 
+// SiteAgentOfferingConfig defines model for SiteAgentOfferingConfig.
+type SiteAgentOfferingConfig struct {
+	Offering SiteAgentOfferingSettings `json:"offering"`
+
+	// Secrets The backend secrets the offering's backends declare; none of them is in offering.
+	Secrets []SiteAgentOfferingSecret `json:"secrets"`
+
+	// Version sha256 of offering as canonical JSON (sorted keys, no whitespace); changes when, and only when, offering does.
+	Version string `json:"version"`
+}
+
+// SiteAgentOfferingSecret defines model for SiteAgentOfferingSecret.
+type SiteAgentOfferingSecret struct {
+	// Backend The backend that reads it.
+	Backend string `json:"backend"`
+
+	// Field Where the secret goes in the offering, such as backend_settings.ldap.bind_password.
+	Field string `json:"field"`
+
+	// Requirement required_with_parent: needed once the block it sits in is set.
+	Requirement RequirementEnum `json:"requirement"`
+}
+
+// SiteAgentOfferingSettings defines model for SiteAgentOfferingSettings.
+type SiteAgentOfferingSettings struct {
+	// BackendComponents The offering's components by type, as the agent reads them.
+	BackendComponents map[string]map[string]interface{} `json:"backend_components"`
+
+	// BackendSettings Settings of the backends, with their secrets left out.
+	BackendSettings map[string]interface{} `json:"backend_settings"`
+
+	// BackendType The backend of the first role set, in role order.
+	BackendType           string  `json:"backend_type"`
+	MembershipSyncBackend *string `json:"membership_sync_backend,omitempty"`
+	Name                  string  `json:"name"`
+
+	// OmitAnomalousUsageComponents Report usage without a decreasing component instead of withholding the whole report.
+	OmitAnomalousUsageComponents *bool   `json:"omit_anomalous_usage_components,omitempty"`
+	OrderProcessingBackend       *string `json:"order_processing_backend,omitempty"`
+
+	// PolicySettings The offering's SLURM periodic usage policy, if it has one.
+	PolicySettings *map[string]interface{} `json:"policy_settings,omitempty"`
+
+	// PreserveUnmanagedBackendUsers Membership sync keeps backend users Waldur has never known as offering users, instead of removing every user not on the resource team.
+	PreserveUnmanagedBackendUsers *bool   `json:"preserve_unmanaged_backend_users,omitempty"`
+	ReportingBackend              *string `json:"reporting_backend,omitempty"`
+
+	// ResourceImportEnabled Import resources found on the backend into Waldur.
+	ResourceImportEnabled *bool `json:"resource_import_enabled,omitempty"`
+	StompEnabled          *bool `json:"stomp_enabled,omitempty"`
+
+	// StompMembershipSyncEnabled Use STOMP for membership sync; the agent follows stomp_enabled when this is unset.
+	StompMembershipSyncEnabled *bool   `json:"stomp_membership_sync_enabled,omitempty"`
+	StompWsHost                *string `json:"stomp_ws_host,omitempty"`
+	StompWsPath                *string `json:"stomp_ws_path,omitempty"`
+	StompWsPort                *int    `json:"stomp_ws_port,omitempty"`
+	UsernameManagementBackend  *string `json:"username_management_backend,omitempty"`
+
+	// UsernameReconciliationEnabled Periodically reconcile usernames from the backend.
+	UsernameReconciliationEnabled *bool `json:"username_reconciliation_enabled,omitempty"`
+	WebsocketUseTls               *bool `json:"websocket_use_tls,omitempty"`
+}
+
 // SiteMaintenanceReservationRequest defines model for SiteMaintenanceReservationRequest.
 type SiteMaintenanceReservationRequest struct {
 	End      time.Time `json:"end"`
@@ -69597,6 +70268,9 @@ type User struct {
 	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
 	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
 
+	// IsServiceAccount Created for an integration, such as a site agent, to hold a role and authenticate with its token. Signing in to it through single sign-on is allowed and recorded as an event.
+	IsServiceAccount *bool `json:"is_service_account,omitempty"`
+
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
 
@@ -70026,6 +70700,9 @@ type UserMe struct {
 
 	// IsIdentityManager Designates whether the user is allowed to manage remote user identities.
 	IsIdentityManager *bool `json:"is_identity_manager,omitempty"`
+
+	// IsServiceAccount Created for an integration, such as a site agent, to hold a role and authenticate with its token. Signing in to it through single sign-on is allowed and recorded as an event.
+	IsServiceAccount *bool `json:"is_service_account,omitempty"`
 
 	// IsStaff Designates whether the user can log into this admin site.
 	IsStaff *bool `json:"is_staff,omitempty"`
@@ -70484,16 +71161,17 @@ type UserRoleDeleteRequest struct {
 
 // UserRoleDetails defines model for UserRoleDetails.
 type UserRoleDetails struct {
-	Created           *time.Time           `json:"created,omitempty"`
-	CreatedByFullName *string              `json:"created_by_full_name,omitempty"`
-	CreatedByUuid     *openapi_types.UUID  `json:"created_by_uuid,omitempty"`
-	ExpirationTime    *time.Time           `json:"expiration_time,omitempty"`
-	RoleName          *string              `json:"role_name,omitempty"`
-	RoleUuid          *openapi_types.UUID  `json:"role_uuid,omitempty"`
-	Source            *string              `json:"source,omitempty"`
-	UserEmail         *openapi_types.Email `json:"user_email,omitempty"`
-	UserFullName      *string              `json:"user_full_name,omitempty"`
-	UserImage         *string              `json:"user_image,omitempty"`
+	Created              *time.Time           `json:"created,omitempty"`
+	CreatedByFullName    *string              `json:"created_by_full_name,omitempty"`
+	CreatedByUuid        *openapi_types.UUID  `json:"created_by_uuid,omitempty"`
+	ExpirationTime       *time.Time           `json:"expiration_time,omitempty"`
+	RoleName             *string              `json:"role_name,omitempty"`
+	RoleUuid             *openapi_types.UUID  `json:"role_uuid,omitempty"`
+	Source               *string              `json:"source,omitempty"`
+	UserEmail            *openapi_types.Email `json:"user_email,omitempty"`
+	UserFullName         *string              `json:"user_full_name,omitempty"`
+	UserImage            *string              `json:"user_image,omitempty"`
+	UserIsServiceAccount *bool                `json:"user_is_service_account,omitempty"`
 
 	// UserUsername Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	UserUsername *string             `json:"user_username,omitempty"`
@@ -82635,6 +83313,21 @@ type MarketplaceProviderOfferingsListUsersCountParams struct {
 	Username *string `form:"username,omitempty" json:"username,omitempty"`
 }
 
+// MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams defines parameters for MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve.
+type MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams struct {
+	// OrderKind The kind of order to describe.
+	OrderKind *OrderFlowDescriptionOrderKindEnum `form:"order_kind,omitempty" json:"order_kind,omitempty"`
+
+	// Orderer Who places the order. `any` draws every branch; `role` needs `role`.
+	Orderer *OrderFlowDescriptionOrdererEnum `form:"orderer,omitempty" json:"orderer,omitempty"`
+
+	// Role Name of a project or organization role the orderer holds.
+	Role *string `form:"role,omitempty" json:"role,omitempty"`
+
+	// WithStats Add order counts per state and step durations.
+	WithStats *bool `form:"with_stats,omitempty" json:"with_stats,omitempty"`
+}
+
 // MarketplaceProviderOfferingsOrdersListParams defines parameters for MarketplaceProviderOfferingsOrdersList.
 type MarketplaceProviderOfferingsOrdersListParams struct {
 	Field *[]OrderDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
@@ -94595,6 +95288,30 @@ type PersonalAccessTokensCreateParams struct {
 	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
 }
 
+// PersonalAccessTokensAgentUserParams defines parameters for PersonalAccessTokensAgentUser.
+type PersonalAccessTokensAgentUserParams struct {
+	// XReauthenticationGrant A re-authentication grant for this change, from /api/reauthentication/password/ or /api/reauthentication/passkey/. Without a valid one, a change that needs it is refused with a 401 challenge.
+	XReauthenticationGrant *string `json:"X-Reauthentication-Grant,omitempty"`
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesListParams defines parameters for PersonalAccessTokensAvailableBindingEntitiesList.
+type PersonalAccessTokensAvailableBindingEntitiesListParams struct {
+	// Query Part of the name to match.
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Type Entity type.
+	Type BindableEntityTypeEnum `form:"type" json:"type"`
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesCountParams defines parameters for PersonalAccessTokensAvailableBindingEntitiesCount.
+type PersonalAccessTokensAvailableBindingEntitiesCountParams struct {
+	// Query Part of the name to match.
+	Query *string `form:"query,omitempty" json:"query,omitempty"`
+
+	// Type Entity type.
+	Type BindableEntityTypeEnum `form:"type" json:"type"`
+}
+
 // PersonalAccessTokensAvailableBindingTargetsListParams defines parameters for PersonalAccessTokensAvailableBindingTargetsList.
 type PersonalAccessTokensAvailableBindingTargetsListParams struct {
 	// Page A page number within the paginated result set.
@@ -94629,6 +95346,42 @@ type PersonalAccessTokensAvailableScopesCountParams struct {
 
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// PersonalAccessTokensTemplateTargetsListParams defines parameters for PersonalAccessTokensTemplateTargetsList.
+type PersonalAccessTokensTemplateTargetsListParams struct {
+	// Name Part of the entity's name to match.
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Template Key of the template.
+	Template string `form:"template" json:"template"`
+
+	// Uuid Only the entity with this UUID, of any type.
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
+// PersonalAccessTokensTemplateTargetsCountParams defines parameters for PersonalAccessTokensTemplateTargetsCount.
+type PersonalAccessTokensTemplateTargetsCountParams struct {
+	// Name Part of the entity's name to match.
+	Name *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Template Key of the template.
+	Template string `form:"template" json:"template"`
+
+	// Uuid Only the entity with this UUID, of any type.
+	Uuid *openapi_types.UUID `form:"uuid,omitempty" json:"uuid,omitempty"`
 }
 
 // PersonalAccessTokensRotateParams defines parameters for PersonalAccessTokensRotate.
@@ -104936,6 +105689,9 @@ type PaymentsLinkToInvoiceJSONRequestBody = LinkToInvoiceRequest
 
 // PersonalAccessTokensCreateJSONRequestBody defines body for PersonalAccessTokensCreate for application/json ContentType.
 type PersonalAccessTokensCreateJSONRequestBody = PersonalAccessTokenCreateRequest
+
+// PersonalAccessTokensAgentUserJSONRequestBody defines body for PersonalAccessTokensAgentUser for application/json ContentType.
+type PersonalAccessTokensAgentUserJSONRequestBody = DedicatedUserTokenCreateRequest
 
 // PersonalAccessTokensSetNetworkAclJSONRequestBody defines body for PersonalAccessTokensSetNetworkAcl for application/json ContentType.
 type PersonalAccessTokensSetNetworkAclJSONRequestBody = PersonalAccessTokenNetworkAclRequest
@@ -118555,6 +119311,68 @@ func (t OrderCreateRequest_Attributes) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OrderCreateRequest_Attributes) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOrderFlowStepModeEnum returns the union data inside the OrderFlowStep_Mode as a OrderFlowStepModeEnum
+func (t OrderFlowStep_Mode) AsOrderFlowStepModeEnum() (OrderFlowStepModeEnum, error) {
+	var body OrderFlowStepModeEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOrderFlowStepModeEnum overwrites any union data inside the OrderFlowStep_Mode as the provided OrderFlowStepModeEnum
+func (t *OrderFlowStep_Mode) FromOrderFlowStepModeEnum(v OrderFlowStepModeEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOrderFlowStepModeEnum performs a merge with any union data inside the OrderFlowStep_Mode, using the provided OrderFlowStepModeEnum
+func (t *OrderFlowStep_Mode) MergeOrderFlowStepModeEnum(v OrderFlowStepModeEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the OrderFlowStep_Mode as a NullEnum
+func (t OrderFlowStep_Mode) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the OrderFlowStep_Mode as the provided NullEnum
+func (t *OrderFlowStep_Mode) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the OrderFlowStep_Mode, using the provided NullEnum
+func (t *OrderFlowStep_Mode) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OrderFlowStep_Mode) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OrderFlowStep_Mode) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -135051,6 +135869,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/move_offering/ (the `MarketplaceProviderOfferingsMoveOffering` operationId).
 	MarketplaceProviderOfferingsMoveOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve Describe how orders for the offering move from placement to done
+	//
+	// For one kind of order and one kind of orderer: the steps an order goes through, who acts at each, the rules that decide whether a review step runs and the settings each rule reads. Review steps are decided by the same rules that route real orders. A fact that depends on the order, such as an attached purchase order, is drawn as a branch. With `with_stats`, how many of the offering's orders are in each state and how long each step has taken.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/order_flow_description/ (the `MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve` operationId).
+	MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsOrdersList List orders for an offering
 	//
 	// Returns a paginated list of orders associated with a specific offering.
@@ -135233,6 +136058,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/set_profile/ (the `MarketplaceProviderOfferingsSetProfile` operationId).
 	MarketplaceProviderOfferingsSetProfile(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetProfileJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsSiteAgentConfigRetrieve Site agent configuration of an offering
+	//
+	// The configuration a site agent loads for this offering: the offering block that generate_site_agent_config writes, from the same build, without the Waldur API URL, token and offering UUID the agent needs to make this call. No secret is included, not even as a placeholder: each secret the offering's backends declare is listed in secrets, for the agent to take from its own configuration. version changes when, and only when, offering does. Site agent offerings only.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/site_agent_config/ (the `MarketplaceProviderOfferingsSiteAgentConfigRetrieve` operationId).
+	MarketplaceProviderOfferingsSiteAgentConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsStateCountersRetrieve Get offering resource and user state counters
 	//
@@ -144885,15 +145717,62 @@ type ClientInterface interface {
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
 	PersonalAccessTokensCreate(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// PersonalAccessTokensAgentUserWithBody Create a dedicated user and its token for a template target
+	//
+	// Staff: create a user that only holds the template's role on the
+	// target (an offering's manager, for a site agent), and a token for it
+	// with the template's scopes, restricted to the target.
+	//
+	// Unlike a staff user's own token, which works there only with
+	// STAFF.ACCESS and then reaches everything, this one reaches the target
+	// alone. The user has no usable password; it exists for the token.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+	PersonalAccessTokensAgentUserWithBody(ctx context.Context, params *PersonalAccessTokensAgentUserParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAgentUser Create a dedicated user and its token for a template target
+	//
+	// Staff: create a user that only holds the template's role on the
+	// target (an offering's manager, for a site agent), and a token for it
+	// with the template's scopes, restricted to the target.
+	//
+	// Unlike a staff user's own token, which works there only with
+	// STAFF.ACCESS and then reaches everything, this one reaches the target
+	// alone. The user has no usable password; it exists for the token.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+	PersonalAccessTokensAgentUser(ctx context.Context, params *PersonalAccessTokensAgentUserParams, body PersonalAccessTokensAgentUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableBindingEntitiesList List entities the caller can restrict a token to
+	//
+	// The first matches, for a search-as-you-type picker: entities the
+	// create endpoint would accept as a binding, before the token's
+	// permissions are known.
+	//
+	// Corresponds with GET /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesList` operationId).
+	PersonalAccessTokensAvailableBindingEntitiesList(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensAvailableBindingEntitiesCount List entities the caller can restrict a token to
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesCount` operationId).
+	PersonalAccessTokensAvailableBindingEntitiesCount(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// PersonalAccessTokensAvailableBindingTargetsList List entity types the caller can bind each permission to
 	//
 	// For each permission, which scope types the caller could bind a PAT to.
 	//
 	// Drives the create-PAT frontend's type picker. For staff users every
 	// type is offered for every permission (they bypass UserRole checks).
-	// For other users we return only types where they hold an active role
-	// granting the permission directly (the binding then inherits to
-	// descendants at request time).
+	// For other users, the type a role granting the permission is held on
+	// and the types below it (an organization's projects, offerings and
+	// resources, say), as the create serializer accepts a binding below the
+	// role; every type for a permission held site-wide.
 	//
 	// Corresponds with GET /api/personal-access-tokens/available_binding_targets/ (the `PersonalAccessTokensAvailableBindingTargetsList` operationId).
 	PersonalAccessTokensAvailableBindingTargetsList(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -144923,6 +145802,39 @@ type ClientInterface interface {
 	//
 	// Corresponds with HEAD /api/personal-access-tokens/available_scopes/ (the `PersonalAccessTokensAvailableScopesCount` operationId).
 	PersonalAccessTokensAvailableScopesCount(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensTemplateTargetsList List the entities a template's token can be bound to
+	//
+	// Entities where the caller holds every scope the template requires,
+	// with the optional features they can add on each.
+	//
+	// Corresponds with GET /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsList` operationId).
+	PersonalAccessTokensTemplateTargetsList(ctx context.Context, params *PersonalAccessTokensTemplateTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensTemplateTargetsCount List the entities a template's token can be bound to
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsCount` operationId).
+	PersonalAccessTokensTemplateTargetsCount(ctx context.Context, params *PersonalAccessTokensTemplateTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensTemplatesList List token templates the caller can use
+	//
+	// Suggested scopes for known integrations, such as the site agent.
+	//
+	// A template is listed only when the caller can bind a token from it to
+	// an entity where it would work. A token is still created with explicit
+	// scopes; a template grants nothing by itself.
+	//
+	// Corresponds with GET /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesList` operationId).
+	PersonalAccessTokensTemplatesList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PersonalAccessTokensTemplatesCount List token templates the caller can use
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesCount` operationId).
+	PersonalAccessTokensTemplatesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PersonalAccessTokensDestroy Revoke a personal access token
 	//
@@ -176337,6 +177249,23 @@ func (c *Client) MarketplaceProviderOfferingsMoveOffering(ctx context.Context, u
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve Describe how orders for the offering move from placement to done
+//
+// For one kind of order and one kind of orderer: the steps an order goes through, who acts at each, the rules that decide whether a review step runs and the settings each rule reads. Review steps are decided by the same rules that route real orders. A fact that depends on the order, such as an attached purchase order, is drawn as a branch. With `with_stats`, how many of the offering's orders are in each state and how long each step has taken.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/order_flow_description/ (the `MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve` operationId).
+func (c *Client) MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderOfferingsOrdersList List orders for an offering
 //
 // Returns a paginated list of orders associated with a specific offering.
@@ -176720,6 +177649,23 @@ func (c *Client) MarketplaceProviderOfferingsSetProfileWithBody(ctx context.Cont
 // Corresponds with POST /api/marketplace-provider-offerings/{uuid}/set_profile/ (the `MarketplaceProviderOfferingsSetProfile` operationId).
 func (c *Client) MarketplaceProviderOfferingsSetProfile(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetProfileJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSetProfileRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsSiteAgentConfigRetrieve Site agent configuration of an offering
+//
+// The configuration a site agent loads for this offering: the offering block that generate_site_agent_config writes, from the same build, without the Waldur API URL, token and offering UUID the agent needs to make this call. No secret is included, not even as a placeholder: each secret the offering's backends declare is listed in secrets, for the agent to take from its own configuration. version changes when, and only when, offering does. Site agent offerings only.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/site_agent_config/ (the `MarketplaceProviderOfferingsSiteAgentConfigRetrieve` operationId).
+func (c *Client) MarketplaceProviderOfferingsSiteAgentConfigRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSiteAgentConfigRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -200611,15 +201557,102 @@ func (c *Client) PersonalAccessTokensCreate(ctx context.Context, params *Persona
 	return c.Client.Do(req)
 }
 
+// PersonalAccessTokensAgentUserWithBody Create a dedicated user and its token for a template target
+//
+// Staff: create a user that only holds the template's role on the
+// target (an offering's manager, for a site agent), and a token for it
+// with the template's scopes, restricted to the target.
+//
+// Unlike a staff user's own token, which works there only with
+// STAFF.ACCESS and then reaches everything, this one reaches the target
+// alone. The user has no usable password; it exists for the token.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+func (c *Client) PersonalAccessTokensAgentUserWithBody(ctx context.Context, params *PersonalAccessTokensAgentUserParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAgentUserRequestWithBody(c.Server, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensAgentUser Create a dedicated user and its token for a template target
+//
+// Staff: create a user that only holds the template's role on the
+// target (an offering's manager, for a site agent), and a token for it
+// with the template's scopes, restricted to the target.
+//
+// Unlike a staff user's own token, which works there only with
+// STAFF.ACCESS and then reaches everything, this one reaches the target
+// alone. The user has no usable password; it exists for the token.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+func (c *Client) PersonalAccessTokensAgentUser(ctx context.Context, params *PersonalAccessTokensAgentUserParams, body PersonalAccessTokensAgentUserJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAgentUserRequest(c.Server, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesList List entities the caller can restrict a token to
+//
+// The first matches, for a search-as-you-type picker: entities the
+// create endpoint would accept as a binding, before the token's
+// permissions are known.
+//
+// Corresponds with GET /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesList` operationId).
+func (c *Client) PersonalAccessTokensAvailableBindingEntitiesList(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableBindingEntitiesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesCount List entities the caller can restrict a token to
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesCount` operationId).
+func (c *Client) PersonalAccessTokensAvailableBindingEntitiesCount(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensAvailableBindingEntitiesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // PersonalAccessTokensAvailableBindingTargetsList List entity types the caller can bind each permission to
 //
 // For each permission, which scope types the caller could bind a PAT to.
 //
 // Drives the create-PAT frontend's type picker. For staff users every
 // type is offered for every permission (they bypass UserRole checks).
-// For other users we return only types where they hold an active role
-// granting the permission directly (the binding then inherits to
-// descendants at request time).
+// For other users, the type a role granting the permission is held on
+// and the types below it (an organization's projects, offerings and
+// resources, say), as the create serializer accepts a binding below the
+// role; every type for a permission held site-wide.
 //
 // Corresponds with GET /api/personal-access-tokens/available_binding_targets/ (the `PersonalAccessTokensAvailableBindingTargetsList` operationId).
 func (c *Client) PersonalAccessTokensAvailableBindingTargetsList(ctx context.Context, params *PersonalAccessTokensAvailableBindingTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -200680,6 +201713,79 @@ func (c *Client) PersonalAccessTokensAvailableScopesList(ctx context.Context, pa
 // Corresponds with HEAD /api/personal-access-tokens/available_scopes/ (the `PersonalAccessTokensAvailableScopesCount` operationId).
 func (c *Client) PersonalAccessTokensAvailableScopesCount(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPersonalAccessTokensAvailableScopesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensTemplateTargetsList List the entities a template's token can be bound to
+//
+// Entities where the caller holds every scope the template requires,
+// with the optional features they can add on each.
+//
+// Corresponds with GET /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsList` operationId).
+func (c *Client) PersonalAccessTokensTemplateTargetsList(ctx context.Context, params *PersonalAccessTokensTemplateTargetsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensTemplateTargetsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensTemplateTargetsCount List the entities a template's token can be bound to
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsCount` operationId).
+func (c *Client) PersonalAccessTokensTemplateTargetsCount(ctx context.Context, params *PersonalAccessTokensTemplateTargetsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensTemplateTargetsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensTemplatesList List token templates the caller can use
+//
+// Suggested scopes for known integrations, such as the site agent.
+//
+// A template is listed only when the caller can bind a token from it to
+// an entity where it would work. A token is still created with explicit
+// scopes; a template grants nothing by itself.
+//
+// Corresponds with GET /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesList` operationId).
+func (c *Client) PersonalAccessTokensTemplatesList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensTemplatesListRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// PersonalAccessTokensTemplatesCount List token templates the caller can use
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesCount` operationId).
+func (c *Client) PersonalAccessTokensTemplatesCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPersonalAccessTokensTemplatesCountRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -310992,6 +312098,103 @@ func NewMarketplaceProviderOfferingsMoveOfferingRequestWithBody(server string, u
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveRequest constructs an http.Request for the MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve method
+func NewMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/order_flow_description/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.OrderKind != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "order_kind", *params.OrderKind, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Orderer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "orderer", *params.Orderer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Role != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "role", *params.Role, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.WithStats != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "with_stats", *params.WithStats, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsOrdersListRequest constructs an http.Request for the MarketplaceProviderOfferingsOrdersList method
 func NewMarketplaceProviderOfferingsOrdersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrdersListParams) (*http.Request, error) {
 	var err error
@@ -311598,6 +312801,40 @@ func NewMarketplaceProviderOfferingsSetProfileRequestWithBody(server string, uui
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsSiteAgentConfigRetrieveRequest constructs an http.Request for the MarketplaceProviderOfferingsSiteAgentConfigRetrieve method
+func NewMarketplaceProviderOfferingsSiteAgentConfigRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/site_agent_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -400898,6 +402135,185 @@ func NewPersonalAccessTokensCreateRequestWithBody(server string, params *Persona
 	return req, nil
 }
 
+// NewPersonalAccessTokensAgentUserRequest calls the generic PersonalAccessTokensAgentUser builder with application/json body
+func NewPersonalAccessTokensAgentUserRequest(server string, params *PersonalAccessTokensAgentUserParams, body PersonalAccessTokensAgentUserJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPersonalAccessTokensAgentUserRequestWithBody(server, params, "application/json", bodyReader)
+}
+
+// NewPersonalAccessTokensAgentUserRequestWithBody constructs an http.Request for the PersonalAccessTokensAgentUser method, with any body, and a specified content type
+func NewPersonalAccessTokensAgentUserRequestWithBody(server string, params *PersonalAccessTokensAgentUserParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/agent_user/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.XReauthenticationGrant != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "X-Reauthentication-Grant", *params.XReauthenticationGrant, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("X-Reauthentication-Grant", headerParam0)
+		}
+
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensAvailableBindingEntitiesListRequest constructs an http.Request for the PersonalAccessTokensAvailableBindingEntitiesList method
+func NewPersonalAccessTokensAvailableBindingEntitiesListRequest(server string, params *PersonalAccessTokensAvailableBindingEntitiesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_binding_entities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensAvailableBindingEntitiesCountRequest constructs an http.Request for the PersonalAccessTokensAvailableBindingEntitiesCount method
+func NewPersonalAccessTokensAvailableBindingEntitiesCountRequest(server string, params *PersonalAccessTokensAvailableBindingEntitiesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/available_binding_entities/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "type", params.Type, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewPersonalAccessTokensAvailableBindingTargetsListRequest constructs an http.Request for the PersonalAccessTokensAvailableBindingTargetsList method
 func NewPersonalAccessTokensAvailableBindingTargetsListRequest(server string, params *PersonalAccessTokensAvailableBindingTargetsListParams) (*http.Request, error) {
 	var err error
@@ -401152,6 +402568,256 @@ func NewPersonalAccessTokensAvailableScopesCountRequest(server string, params *P
 			rawQueryFragments = append(rawQueryFragments, encoded)
 		}
 		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensTemplateTargetsListRequest constructs an http.Request for the PersonalAccessTokensTemplateTargetsList method
+func NewPersonalAccessTokensTemplateTargetsListRequest(server string, params *PersonalAccessTokensTemplateTargetsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/template_targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "template", params.Template, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensTemplateTargetsCountRequest constructs an http.Request for the PersonalAccessTokensTemplateTargetsCount method
+func NewPersonalAccessTokensTemplateTargetsCountRequest(server string, params *PersonalAccessTokensTemplateTargetsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/template_targets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "template", params.Template, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensTemplatesListRequest constructs an http.Request for the PersonalAccessTokensTemplatesList method
+func NewPersonalAccessTokensTemplatesListRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewPersonalAccessTokensTemplatesCountRequest constructs an http.Request for the PersonalAccessTokensTemplatesCount method
+func NewPersonalAccessTokensTemplatesCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/personal-access-tokens/templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
 	}
 
 	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
@@ -485266,6 +486932,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/move_offering/ (the `MarketplaceProviderOfferingsMoveOffering` operationId).
 	MarketplaceProviderOfferingsMoveOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsMoveOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsMoveOfferingResponse, error)
 
+	// MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveWithResponse Describe how orders for the offering move from placement to done
+	//
+	// For one kind of order and one kind of orderer: the steps an order goes through, who acts at each, the rules that decide whether a review step runs and the settings each rule reads. Review steps are decided by the same rules that route real orders. A fact that depends on the order, such as an attached purchase order, is drawn as a branch. With `with_stats`, how many of the offering's orders are in each state and how long each step has taken.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/order_flow_description/ (the `MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve` operationId).
+	MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse, error)
+
 	// MarketplaceProviderOfferingsOrdersListWithResponse List orders for an offering
 	//
 	// Returns a paginated list of orders associated with a specific offering.
@@ -485454,6 +487129,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/set_profile/ (the `MarketplaceProviderOfferingsSetProfile` operationId).
 	MarketplaceProviderOfferingsSetProfileWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSetProfileJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSetProfileResponse, error)
+
+	// MarketplaceProviderOfferingsSiteAgentConfigRetrieveWithResponse Site agent configuration of an offering
+	//
+	// The configuration a site agent loads for this offering: the offering block that generate_site_agent_config writes, from the same build, without the Waldur API URL, token and offering UUID the agent needs to make this call. No secret is included, not even as a placeholder: each secret the offering's backends declare is listed in secrets, for the agent to take from its own configuration. version changes when, and only when, offering does. Site agent offerings only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/site_agent_config/ (the `MarketplaceProviderOfferingsSiteAgentConfigRetrieve` operationId).
+	MarketplaceProviderOfferingsSiteAgentConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsStateCountersRetrieveWithResponse Get offering resource and user state counters
 	//
@@ -496734,15 +498418,66 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/personal-access-tokens/ (the `PersonalAccessTokensCreate` operationId).
 	PersonalAccessTokensCreateWithResponse(ctx context.Context, params *PersonalAccessTokensCreateParams, body PersonalAccessTokensCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensCreateResponse, error)
 
+	// PersonalAccessTokensAgentUserWithBodyWithResponse Create a dedicated user and its token for a template target
+	//
+	// Staff: create a user that only holds the template's role on the
+	// target (an offering's manager, for a site agent), and a token for it
+	// with the template's scopes, restricted to the target.
+	//
+	// Unlike a staff user's own token, which works there only with
+	// STAFF.ACCESS and then reaches everything, this one reaches the target
+	// alone. The user has no usable password; it exists for the token.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+	PersonalAccessTokensAgentUserWithBodyWithResponse(ctx context.Context, params *PersonalAccessTokensAgentUserParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAgentUserResponse, error)
+
+	// PersonalAccessTokensAgentUserWithResponse Create a dedicated user and its token for a template target
+	//
+	// Staff: create a user that only holds the template's role on the
+	// target (an offering's manager, for a site agent), and a token for it
+	// with the template's scopes, restricted to the target.
+	//
+	// Unlike a staff user's own token, which works there only with
+	// STAFF.ACCESS and then reaches everything, this one reaches the target
+	// alone. The user has no usable password; it exists for the token.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+	PersonalAccessTokensAgentUserWithResponse(ctx context.Context, params *PersonalAccessTokensAgentUserParams, body PersonalAccessTokensAgentUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAgentUserResponse, error)
+
+	// PersonalAccessTokensAvailableBindingEntitiesListWithResponse List entities the caller can restrict a token to
+	//
+	// The first matches, for a search-as-you-type picker: entities the
+	// create endpoint would accept as a binding, before the token's
+	// permissions are known.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesList` operationId).
+	PersonalAccessTokensAvailableBindingEntitiesListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingEntitiesListResponse, error)
+
+	// PersonalAccessTokensAvailableBindingEntitiesCountWithResponse List entities the caller can restrict a token to
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesCount` operationId).
+	PersonalAccessTokensAvailableBindingEntitiesCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingEntitiesCountResponse, error)
+
 	// PersonalAccessTokensAvailableBindingTargetsListWithResponse List entity types the caller can bind each permission to
 	//
 	// For each permission, which scope types the caller could bind a PAT to.
 	//
 	// Drives the create-PAT frontend's type picker. For staff users every
 	// type is offered for every permission (they bypass UserRole checks).
-	// For other users we return only types where they hold an active role
-	// granting the permission directly (the binding then inherits to
-	// descendants at request time).
+	// For other users, the type a role granting the permission is held on
+	// and the types below it (an organization's projects, offerings and
+	// resources, say), as the create serializer accepts a binding below the
+	// role; every type for a permission held site-wide.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -496780,6 +498515,47 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with HEAD /api/personal-access-tokens/available_scopes/ (the `PersonalAccessTokensAvailableScopesCount` operationId).
 	PersonalAccessTokensAvailableScopesCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableScopesCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableScopesCountResponse, error)
+
+	// PersonalAccessTokensTemplateTargetsListWithResponse List the entities a template's token can be bound to
+	//
+	// Entities where the caller holds every scope the template requires,
+	// with the optional features they can add on each.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsList` operationId).
+	PersonalAccessTokensTemplateTargetsListWithResponse(ctx context.Context, params *PersonalAccessTokensTemplateTargetsListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplateTargetsListResponse, error)
+
+	// PersonalAccessTokensTemplateTargetsCountWithResponse List the entities a template's token can be bound to
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsCount` operationId).
+	PersonalAccessTokensTemplateTargetsCountWithResponse(ctx context.Context, params *PersonalAccessTokensTemplateTargetsCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplateTargetsCountResponse, error)
+
+	// PersonalAccessTokensTemplatesListWithResponse List token templates the caller can use
+	//
+	// Suggested scopes for known integrations, such as the site agent.
+	//
+	// A template is listed only when the caller can bind a token from it to
+	// an entity where it would work. A token is still created with explicit
+	// scopes; a template grants nothing by itself.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesList` operationId).
+	PersonalAccessTokensTemplatesListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplatesListResponse, error)
+
+	// PersonalAccessTokensTemplatesCountWithResponse List token templates the caller can use
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesCount` operationId).
+	PersonalAccessTokensTemplatesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplatesCountResponse, error)
 
 	// PersonalAccessTokensDestroyWithResponse Revoke a personal access token
 	//
@@ -552058,6 +553834,47 @@ func (r MarketplaceProviderOfferingsMoveOfferingResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OrderFlowDescription
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse) GetJSON200() *OrderFlowDescription {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceProviderOfferingsOrdersListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderOfferingsOrdersList
 type MarketplaceProviderOfferingsOrdersListResponse200Headers struct {
 	XResultCount *int
@@ -552502,6 +554319,47 @@ func (r MarketplaceProviderOfferingsSetProfileResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsSetProfileResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *SiteAgentOfferingConfig
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse) GetJSON200() *SiteAgentOfferingConfig {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -595161,6 +597019,136 @@ func (r PersonalAccessTokensCreateResponse) ContentType() string {
 	return ""
 }
 
+type PersonalAccessTokensAgentUserResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *DedicatedUserTokenCreated
+	// JSON401 the response for an HTTP 401 `application/json` response
+	JSON401 *ReauthenticationChallenge
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r PersonalAccessTokensAgentUserResponse) GetJSON201() *DedicatedUserTokenCreated {
+	return r.JSON201
+}
+
+// GetJSON401 returns the response for an HTTP 401 `application/json` response
+func (r PersonalAccessTokensAgentUserResponse) GetJSON401() *ReauthenticationChallenge {
+	return r.JSON401
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensAgentUserResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAgentUserResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAgentUserResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensAgentUserResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesListResponse200Headers the declared response headers of an HTTP 200 response for PersonalAccessTokensAvailableBindingEntitiesList
+type PersonalAccessTokensAvailableBindingEntitiesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type PersonalAccessTokensAvailableBindingEntitiesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]BindableEntity
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *PersonalAccessTokensAvailableBindingEntitiesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r PersonalAccessTokensAvailableBindingEntitiesListResponse) GetJSON200() *[]BindableEntity {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensAvailableBindingEntitiesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableBindingEntitiesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableBindingEntitiesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensAvailableBindingEntitiesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PersonalAccessTokensAvailableBindingEntitiesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensAvailableBindingEntitiesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensAvailableBindingEntitiesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensAvailableBindingEntitiesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensAvailableBindingEntitiesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // PersonalAccessTokensAvailableBindingTargetsListResponse200Headers the declared response headers of an HTTP 200 response for PersonalAccessTokensAvailableBindingTargetsList
 type PersonalAccessTokensAvailableBindingTargetsListResponse200Headers struct {
 	XResultCount *int
@@ -595319,6 +597307,170 @@ func (r PersonalAccessTokensAvailableScopesCountResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r PersonalAccessTokensAvailableScopesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// PersonalAccessTokensTemplateTargetsListResponse200Headers the declared response headers of an HTTP 200 response for PersonalAccessTokensTemplateTargetsList
+type PersonalAccessTokensTemplateTargetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type PersonalAccessTokensTemplateTargetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]PatTemplateTarget
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *PersonalAccessTokensTemplateTargetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r PersonalAccessTokensTemplateTargetsListResponse) GetJSON200() *[]PatTemplateTarget {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensTemplateTargetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensTemplateTargetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensTemplateTargetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensTemplateTargetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PersonalAccessTokensTemplateTargetsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensTemplateTargetsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensTemplateTargetsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensTemplateTargetsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensTemplateTargetsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// PersonalAccessTokensTemplatesListResponse200Headers the declared response headers of an HTTP 200 response for PersonalAccessTokensTemplatesList
+type PersonalAccessTokensTemplatesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type PersonalAccessTokensTemplatesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]PatTemplate
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *PersonalAccessTokensTemplatesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r PersonalAccessTokensTemplatesListResponse) GetJSON200() *[]PatTemplate {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensTemplatesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensTemplatesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensTemplatesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensTemplatesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type PersonalAccessTokensTemplatesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r PersonalAccessTokensTemplatesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r PersonalAccessTokensTemplatesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PersonalAccessTokensTemplatesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r PersonalAccessTokensTemplatesCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -654422,6 +656574,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsMoveOfferingWithRespon
 	return ParseMarketplaceProviderOfferingsMoveOfferingResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveWithResponse Describe how orders for the offering move from placement to done
+//
+// For one kind of order and one kind of orderer: the steps an order goes through, who acts at each, the rules that decide whether a review step runs and the settings each rule reads. Review steps are decided by the same rules that route real orders. A fact that depends on the order, such as an attached purchase order, is drawn as a branch. With `with_stats`, how many of the offering's orders are in each state and how long each step has taken.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/order_flow_description/ (the `MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsOrderFlowDescriptionRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsOrdersListWithResponse List orders for an offering
 //
 // Returns a paginated list of orders associated with a specific offering.
@@ -654735,6 +656902,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSetProfileWithResponse
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsSetProfileResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsSiteAgentConfigRetrieveWithResponse Site agent configuration of an offering
+//
+// The configuration a site agent loads for this offering: the offering block that generate_site_agent_config writes, from the same build, without the Waldur API URL, token and offering UUID the agent needs to make this call. No secret is included, not even as a placeholder: each secret the offering's backends declare is listed in secrets, for the agent to take from its own configuration. version changes when, and only when, offering does. Site agent offerings only.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/site_agent_config/ (the `MarketplaceProviderOfferingsSiteAgentConfigRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSiteAgentConfigRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSiteAgentConfigRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsStateCountersRetrieveWithResponse Get offering resource and user state counters
@@ -674557,15 +676739,90 @@ func (c *ClientWithResponses) PersonalAccessTokensCreateWithResponse(ctx context
 	return ParsePersonalAccessTokensCreateResponse(rsp)
 }
 
+// PersonalAccessTokensAgentUserWithBodyWithResponse Create a dedicated user and its token for a template target
+//
+// Staff: create a user that only holds the template's role on the
+// target (an offering's manager, for a site agent), and a token for it
+// with the template's scopes, restricted to the target.
+//
+// Unlike a staff user's own token, which works there only with
+// STAFF.ACCESS and then reaches everything, this one reaches the target
+// alone. The user has no usable password; it exists for the token.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensAgentUserWithBodyWithResponse(ctx context.Context, params *PersonalAccessTokensAgentUserParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAgentUserResponse, error) {
+	rsp, err := c.PersonalAccessTokensAgentUserWithBody(ctx, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAgentUserResponse(rsp)
+}
+
+// PersonalAccessTokensAgentUserWithResponse Create a dedicated user and its token for a template target
+//
+// Staff: create a user that only holds the template's role on the
+// target (an offering's manager, for a site agent), and a token for it
+// with the template's scopes, restricted to the target.
+//
+// Unlike a staff user's own token, which works there only with
+// STAFF.ACCESS and then reaches everything, this one reaches the target
+// alone. The user has no usable password; it exists for the token.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/personal-access-tokens/agent_user/ (the `PersonalAccessTokensAgentUser` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensAgentUserWithResponse(ctx context.Context, params *PersonalAccessTokensAgentUserParams, body PersonalAccessTokensAgentUserJSONRequestBody, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAgentUserResponse, error) {
+	rsp, err := c.PersonalAccessTokensAgentUser(ctx, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAgentUserResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesListWithResponse List entities the caller can restrict a token to
+//
+// The first matches, for a search-as-you-type picker: entities the
+// create endpoint would accept as a binding, before the token's
+// permissions are known.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesList` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensAvailableBindingEntitiesListWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingEntitiesListResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableBindingEntitiesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableBindingEntitiesListResponse(rsp)
+}
+
+// PersonalAccessTokensAvailableBindingEntitiesCountWithResponse List entities the caller can restrict a token to
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/personal-access-tokens/available_binding_entities/ (the `PersonalAccessTokensAvailableBindingEntitiesCount` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensAvailableBindingEntitiesCountWithResponse(ctx context.Context, params *PersonalAccessTokensAvailableBindingEntitiesCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensAvailableBindingEntitiesCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensAvailableBindingEntitiesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensAvailableBindingEntitiesCountResponse(rsp)
+}
+
 // PersonalAccessTokensAvailableBindingTargetsListWithResponse List entity types the caller can bind each permission to
 //
 // For each permission, which scope types the caller could bind a PAT to.
 //
 // Drives the create-PAT frontend's type picker. For staff users every
 // type is offered for every permission (they bypass UserRole checks).
-// For other users we return only types where they hold an active role
-// granting the permission directly (the binding then inherits to
-// descendants at request time).
+// For other users, the type a role granting the permission is held on
+// and the types below it (an organization's projects, offerings and
+// resources, say), as the create serializer accepts a binding below the
+// role; every type for a permission held site-wide.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -674626,6 +676883,71 @@ func (c *ClientWithResponses) PersonalAccessTokensAvailableScopesCountWithRespon
 		return nil, err
 	}
 	return ParsePersonalAccessTokensAvailableScopesCountResponse(rsp)
+}
+
+// PersonalAccessTokensTemplateTargetsListWithResponse List the entities a template's token can be bound to
+//
+// Entities where the caller holds every scope the template requires,
+// with the optional features they can add on each.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsList` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensTemplateTargetsListWithResponse(ctx context.Context, params *PersonalAccessTokensTemplateTargetsListParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplateTargetsListResponse, error) {
+	rsp, err := c.PersonalAccessTokensTemplateTargetsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensTemplateTargetsListResponse(rsp)
+}
+
+// PersonalAccessTokensTemplateTargetsCountWithResponse List the entities a template's token can be bound to
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/personal-access-tokens/template_targets/ (the `PersonalAccessTokensTemplateTargetsCount` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensTemplateTargetsCountWithResponse(ctx context.Context, params *PersonalAccessTokensTemplateTargetsCountParams, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplateTargetsCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensTemplateTargetsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensTemplateTargetsCountResponse(rsp)
+}
+
+// PersonalAccessTokensTemplatesListWithResponse List token templates the caller can use
+//
+// Suggested scopes for known integrations, such as the site agent.
+//
+// A template is listed only when the caller can bind a token from it to
+// an entity where it would work. A token is still created with explicit
+// scopes; a template grants nothing by itself.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesList` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensTemplatesListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplatesListResponse, error) {
+	rsp, err := c.PersonalAccessTokensTemplatesList(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensTemplatesListResponse(rsp)
+}
+
+// PersonalAccessTokensTemplatesCountWithResponse List token templates the caller can use
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/personal-access-tokens/templates/ (the `PersonalAccessTokensTemplatesCount` operationId).
+func (c *ClientWithResponses) PersonalAccessTokensTemplatesCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PersonalAccessTokensTemplatesCountResponse, error) {
+	rsp, err := c.PersonalAccessTokensTemplatesCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePersonalAccessTokensTemplatesCountResponse(rsp)
 }
 
 // PersonalAccessTokensDestroyWithResponse Revoke a personal access token
@@ -720584,6 +722906,32 @@ func ParseMarketplaceProviderOfferingsMoveOfferingResponse(rsp *http.Response) (
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsOrderFlowDescriptionRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OrderFlowDescription
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsOrdersListResponse parses an HTTP response from a MarketplaceProviderOfferingsOrdersListWithResponse call
 func ParseMarketplaceProviderOfferingsOrdersListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsOrdersListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -720834,6 +723182,35 @@ func ParseMarketplaceProviderOfferingsSetProfileResponse(rsp *http.Response) (*M
 	response := &MarketplaceProviderOfferingsSetProfileResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsSiteAgentConfigRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsSiteAgentConfigRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SiteAgentOfferingConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 400:
+		break // No content-type
+
 	}
 
 	return response, nil
@@ -747973,6 +750350,94 @@ func ParsePersonalAccessTokensCreateResponse(rsp *http.Response) (*PersonalAcces
 	return response, nil
 }
 
+// ParsePersonalAccessTokensAgentUserResponse parses an HTTP response from a PersonalAccessTokensAgentUserWithResponse call
+func ParsePersonalAccessTokensAgentUserResponse(rsp *http.Response) (*PersonalAccessTokensAgentUserResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAgentUserResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest DedicatedUserTokenCreated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest ReauthenticationChallenge
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON401 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableBindingEntitiesListResponse parses an HTTP response from a PersonalAccessTokensAvailableBindingEntitiesListWithResponse call
+func ParsePersonalAccessTokensAvailableBindingEntitiesListResponse(rsp *http.Response) (*PersonalAccessTokensAvailableBindingEntitiesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableBindingEntitiesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BindableEntity
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers PersonalAccessTokensAvailableBindingEntitiesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensAvailableBindingEntitiesCountResponse parses an HTTP response from a PersonalAccessTokensAvailableBindingEntitiesCountWithResponse call
+func ParsePersonalAccessTokensAvailableBindingEntitiesCountResponse(rsp *http.Response) (*PersonalAccessTokensAvailableBindingEntitiesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensAvailableBindingEntitiesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParsePersonalAccessTokensAvailableBindingTargetsListResponse parses an HTTP response from a PersonalAccessTokensAvailableBindingTargetsListWithResponse call
 func ParsePersonalAccessTokensAvailableBindingTargetsListResponse(rsp *http.Response) (*PersonalAccessTokensAvailableBindingTargetsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -748076,6 +750541,116 @@ func ParsePersonalAccessTokensAvailableScopesCountResponse(rsp *http.Response) (
 	}
 
 	response := &PersonalAccessTokensAvailableScopesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensTemplateTargetsListResponse parses an HTTP response from a PersonalAccessTokensTemplateTargetsListWithResponse call
+func ParsePersonalAccessTokensTemplateTargetsListResponse(rsp *http.Response) (*PersonalAccessTokensTemplateTargetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensTemplateTargetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PatTemplateTarget
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers PersonalAccessTokensTemplateTargetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensTemplateTargetsCountResponse parses an HTTP response from a PersonalAccessTokensTemplateTargetsCountWithResponse call
+func ParsePersonalAccessTokensTemplateTargetsCountResponse(rsp *http.Response) (*PersonalAccessTokensTemplateTargetsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensTemplateTargetsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensTemplatesListResponse parses an HTTP response from a PersonalAccessTokensTemplatesListWithResponse call
+func ParsePersonalAccessTokensTemplatesListResponse(rsp *http.Response) (*PersonalAccessTokensTemplatesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensTemplatesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []PatTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers PersonalAccessTokensTemplatesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParsePersonalAccessTokensTemplatesCountResponse parses an HTTP response from a PersonalAccessTokensTemplatesCountWithResponse call
+func ParsePersonalAccessTokensTemplatesCountResponse(rsp *http.Response) (*PersonalAccessTokensTemplatesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PersonalAccessTokensTemplatesCountResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
