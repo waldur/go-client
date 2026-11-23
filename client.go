@@ -131223,7 +131223,7 @@ type ClientInterface interface {
 
 	// IdentityBridgeWithBody Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -131232,7 +131232,7 @@ type ClientInterface interface {
 
 	// IdentityBridge Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -165461,7 +165461,7 @@ func (c *Client) HpcWorkspacesUsageRetrieve(ctx context.Context, uuid openapi_ty
 
 // IdentityBridgeWithBody Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes any type of body and a specified content type.
 //
@@ -165480,7 +165480,7 @@ func (c *Client) IdentityBridgeWithBody(ctx context.Context, contentType string,
 
 // IdentityBridge Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes a body of the `application/json` content type.
 //
@@ -481424,7 +481424,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -481433,7 +481433,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -646792,7 +646792,7 @@ func (c *ClientWithResponses) HpcWorkspacesUsageRetrieveWithResponse(ctx context
 
 // IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -646807,7 +646807,7 @@ func (c *ClientWithResponses) IdentityBridgeWithBodyWithResponse(ctx context.Con
 
 // IdentityBridgeWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may push staff, support or identity manager accounts.
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
