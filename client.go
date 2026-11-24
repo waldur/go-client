@@ -214,6 +214,7 @@ const (
 	AdminAnnouncementFieldEnumMaintenanceUuid                 AdminAnnouncementFieldEnum = "maintenance_uuid"
 	AdminAnnouncementFieldEnumType                            AdminAnnouncementFieldEnum = "type"
 	AdminAnnouncementFieldEnumUuid                            AdminAnnouncementFieldEnum = "uuid"
+	AdminAnnouncementFieldEnumVisibleToAnonymousUsers         AdminAnnouncementFieldEnum = "visible_to_anonymous_users"
 )
 
 // Valid indicates whether the value is a known member of the AdminAnnouncementFieldEnum enum.
@@ -250,6 +251,8 @@ func (e AdminAnnouncementFieldEnum) Valid() bool {
 	case AdminAnnouncementFieldEnumType:
 		return true
 	case AdminAnnouncementFieldEnumUuid:
+		return true
+	case AdminAnnouncementFieldEnumVisibleToAnonymousUsers:
 		return true
 	default:
 		return false
@@ -3706,6 +3709,24 @@ func (e ComponentUserUsageOEnum) Valid() bool {
 	case ComponentUserUsageOEnumUsage:
 		return true
 	case ComponentUserUsageOEnumUsername:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for ConfigurationSourceEnum.
+const (
+	Local  ConfigurationSourceEnum = "local"
+	Waldur ConfigurationSourceEnum = "waldur"
+)
+
+// Valid indicates whether the value is a known member of the ConfigurationSourceEnum enum.
+func (e ConfigurationSourceEnum) Valid() bool {
+	switch e {
+	case Local:
+		return true
+	case Waldur:
 		return true
 	default:
 		return false
@@ -13534,6 +13555,30 @@ func (e OfferingState) Valid() bool {
 	case OfferingStatePaused:
 		return true
 	case OfferingStateUnavailable:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OfferingTemplateParameterTypeEnum.
+const (
+	OfferingTemplateParameterTypeEnumBoolean OfferingTemplateParameterTypeEnum = "boolean"
+	OfferingTemplateParameterTypeEnumInteger OfferingTemplateParameterTypeEnum = "integer"
+	OfferingTemplateParameterTypeEnumNumber  OfferingTemplateParameterTypeEnum = "number"
+	OfferingTemplateParameterTypeEnumString  OfferingTemplateParameterTypeEnum = "string"
+)
+
+// Valid indicates whether the value is a known member of the OfferingTemplateParameterTypeEnum enum.
+func (e OfferingTemplateParameterTypeEnum) Valid() bool {
+	switch e {
+	case OfferingTemplateParameterTypeEnumBoolean:
+		return true
+	case OfferingTemplateParameterTypeEnumInteger:
+		return true
+	case OfferingTemplateParameterTypeEnumNumber:
+		return true
+	case OfferingTemplateParameterTypeEnumString:
 		return true
 	default:
 		return false
@@ -29294,6 +29339,9 @@ type AdminAnnouncement struct {
 	MaintenanceUuid                 *string                    `json:"maintenance_uuid,omitempty"`
 	Type                            *AdminAnnouncementTypeEnum `json:"type,omitempty"`
 	Uuid                            *openapi_types.UUID        `json:"uuid,omitempty"`
+
+	// VisibleToAnonymousUsers Show the announcement to signed-out visitors, e.g. on the login page, while it is active.
+	VisibleToAnonymousUsers *bool `json:"visible_to_anonymous_users,omitempty"`
 }
 
 // AdminAnnouncementFieldEnum defines model for AdminAnnouncementFieldEnum.
@@ -29308,6 +29356,9 @@ type AdminAnnouncementRequest struct {
 	ActiveTo    time.Time                  `json:"active_to"`
 	Description *string                    `json:"description,omitempty"`
 	Type        *AdminAnnouncementTypeEnum `json:"type,omitempty"`
+
+	// VisibleToAnonymousUsers Show the announcement to signed-out visitors, e.g. on the login page, while it is active.
+	VisibleToAnonymousUsers *bool `json:"visible_to_anonymous_users,omitempty"`
 }
 
 // AdminAnnouncementTypeEnum defines model for AdminAnnouncementTypeEnum.
@@ -35979,6 +36030,9 @@ type ComputeAffinitiesResponse struct {
 	Message       string `json:"message"`
 }
 
+// ConfigurationSourceEnum defines model for ConfigurationSourceEnum.
+type ConfigurationSourceEnum string
+
 // ConfirmEmailRequestRequest defines model for ConfirmEmailRequestRequest.
 type ConfirmEmailRequestRequest struct {
 	Code string `json:"code"`
@@ -41433,14 +41487,21 @@ type ExportComponentData struct {
 	ArticleCode       string   `json:"article_code"`
 	BackendId         string   `json:"backend_id"`
 	BillingType       string   `json:"billing_type"`
+	DefaultLimit      *float64 `json:"default_limit,omitempty"`
 	Description       string   `json:"description"`
 	LimitAmount       *int     `json:"limit_amount"`
 	LimitIncreaseOnly bool     `json:"limit_increase_only"`
 	LimitPeriod       *string  `json:"limit_period"`
+	MaxAvailableLimit *float64 `json:"max_available_limit,omitempty"`
+	MaxValue          *float64 `json:"max_value,omitempty"`
 	MeasuredUnit      string   `json:"measured_unit"`
+	MinValue          *float64 `json:"min_value,omitempty"`
 	Name              string   `json:"name"`
-	Type              string   `json:"type"`
-	UnitFactor        *float64 `json:"unit_factor"`
+
+	// SpendingLimitPeriods Periods customers can set spending limits for, each with an optional default and maximum.
+	SpendingLimitPeriods *map[string]interface{} `json:"spending_limit_periods,omitempty"`
+	Type                 string                  `json:"type"`
+	UnitFactor           *float64                `json:"unit_factor"`
 }
 
 // ExportComponentDataRequest defines model for ExportComponentDataRequest.
@@ -41448,14 +41509,21 @@ type ExportComponentDataRequest struct {
 	ArticleCode       string   `json:"article_code"`
 	BackendId         string   `json:"backend_id"`
 	BillingType       string   `json:"billing_type"`
+	DefaultLimit      *float64 `json:"default_limit,omitempty"`
 	Description       string   `json:"description"`
 	LimitAmount       *int     `json:"limit_amount"`
 	LimitIncreaseOnly bool     `json:"limit_increase_only"`
 	LimitPeriod       *string  `json:"limit_period"`
+	MaxAvailableLimit *float64 `json:"max_available_limit,omitempty"`
+	MaxValue          *float64 `json:"max_value,omitempty"`
 	MeasuredUnit      string   `json:"measured_unit"`
+	MinValue          *float64 `json:"min_value,omitempty"`
 	Name              string   `json:"name"`
-	Type              string   `json:"type"`
-	UnitFactor        *float64 `json:"unit_factor"`
+
+	// SpendingLimitPeriods Periods customers can set spending limits for, each with an optional default and maximum.
+	SpendingLimitPeriods *map[string]interface{} `json:"spending_limit_periods,omitempty"`
+	Type                 string                  `json:"type"`
+	UnitFactor           *float64                `json:"unit_factor"`
 }
 
 // ExportEndpointData defines model for ExportEndpointData.
@@ -44606,6 +44674,21 @@ type LoadCallTemplatePresetRequest struct {
 
 // LoadCallTemplatePresetResponse defines model for LoadCallTemplatePresetResponse.
 type LoadCallTemplatePresetResponse struct {
+	Created      int      `json:"created"`
+	CreatedNames []string `json:"created_names"`
+}
+
+// LoadOfferingTemplatePresetRequest defines model for LoadOfferingTemplatePresetRequest.
+type LoadOfferingTemplatePresetRequest struct {
+	// Presets Keys of the presets to load, as the presets action lists them.
+	Presets []string `json:"presets"`
+
+	// Publish Publish the templates created, so offering creators see them.
+	Publish *bool `json:"publish,omitempty"`
+}
+
+// LoadOfferingTemplatePresetResponse defines model for LoadOfferingTemplatePresetResponse.
+type LoadOfferingTemplatePresetResponse struct {
 	Created      int      `json:"created"`
 	CreatedNames []string `json:"created_names"`
 }
@@ -49637,6 +49720,15 @@ type OfferingRoleRequest struct {
 	Offering *openapi_types.UUID `json:"offering,omitempty"`
 }
 
+// OfferingSaveAsTemplateRequest defines model for OfferingSaveAsTemplateRequest.
+type OfferingSaveAsTemplateRequest struct {
+	// Description Description of the template. Defaults to the offering's.
+	Description *string `json:"description,omitempty"`
+
+	// Name Name of the template. Defaults to the offering's name.
+	Name *string `json:"name,omitempty"`
+}
+
 // OfferingSoftwareCatalog defines model for OfferingSoftwareCatalog.
 type OfferingSoftwareCatalog struct {
 	Catalog        openapi_types.UUID `json:"catalog"`
@@ -49790,6 +49882,79 @@ type OfferingTeamStep struct {
 	// TeamPart Whether the offering managers complete the step or contribute to it.
 	TeamPart TeamPartEnum       `json:"team_part"`
 	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
+// OfferingTemplate defines model for OfferingTemplate.
+type OfferingTemplate struct {
+	Created     *time.Time          `json:"created,omitempty"`
+	CreatedBy   *openapi_types.UUID `json:"created_by,omitempty"`
+	Description *string             `json:"description,omitempty"`
+
+	// Document Offering document in the export_offering format, as a mapping or a YAML string, with agent_configuration and parameters. It may not hold secret_options, organization groups, screenshots, files, a customer, resources or people. Non-staff see only the offering's name, description and type, its components, plans and parameters.
+	Document    map[string]interface{} `json:"document"`
+	IsPublished *bool                  `json:"is_published,omitempty"`
+	Modified    *time.Time             `json:"modified,omitempty"`
+	Name        string                 `json:"name"`
+
+	// OfferingType Offering type the template creates; only Marketplace.SiteAgent for now.
+	OfferingType  string                       `json:"offering_type"`
+	Parameters    *[]OfferingTemplateParameter `json:"parameters,omitempty"`
+	SchemaVersion *int                         `json:"schema_version,omitempty"`
+	Url           *string                      `json:"url,omitempty"`
+	Uuid          *openapi_types.UUID          `json:"uuid,omitempty"`
+
+	// Version Incremented whenever the document changes; name, description and publication leave it as it is.
+	Version *int `json:"version,omitempty"`
+}
+
+// OfferingTemplateParameter defines model for OfferingTemplateParameter.
+type OfferingTemplateParameter struct {
+	Default     *map[string]interface{} `json:"default"`
+	Description string                  `json:"description"`
+	Key         string                  `json:"key"`
+	Label       string                  `json:"label"`
+
+	// Paths Dotted paths into the document that the value fills, such as offering.backend_id; digits address list items.
+	Paths    []string                          `json:"paths"`
+	Required bool                              `json:"required"`
+	Type     OfferingTemplateParameterTypeEnum `json:"type"`
+}
+
+// OfferingTemplateParameterTypeEnum defines model for OfferingTemplateParameterTypeEnum.
+type OfferingTemplateParameterTypeEnum string
+
+// OfferingTemplatePreset defines model for OfferingTemplatePreset.
+type OfferingTemplatePreset struct {
+	Description string `json:"description"`
+	Key         string `json:"key"`
+	Name        string `json:"name"`
+
+	// NameTaken An offering template already holds the name this preset would be loaded under: rename or delete it to load the preset.
+	NameTaken    bool                        `json:"name_taken"`
+	OfferingType string                      `json:"offering_type"`
+	Parameters   []OfferingTemplateParameter `json:"parameters"`
+}
+
+// OfferingTemplateRequest defines model for OfferingTemplateRequest.
+type OfferingTemplateRequest struct {
+	Description *string `json:"description,omitempty"`
+
+	// Document Offering document in the export_offering format, as a mapping or a YAML string, with agent_configuration and parameters. It may not hold secret_options, organization groups, screenshots, files, a customer, resources or people. Non-staff see only the offering's name, description and type, its components, plans and parameters.
+	Document    map[string]interface{} `json:"document"`
+	IsPublished *bool                  `json:"is_published,omitempty"`
+	Name        string                 `json:"name"`
+
+	// OfferingType Offering type the template creates; only Marketplace.SiteAgent for now.
+	OfferingType string `json:"offering_type"`
+}
+
+// OfferingTemplateVersion defines model for OfferingTemplateVersion.
+type OfferingTemplateVersion struct {
+	Created      *time.Time              `json:"created,omitempty"`
+	CreatedBy    *openapi_types.UUID     `json:"created_by,omitempty"`
+	Document     *map[string]interface{} `json:"document,omitempty"`
+	DocumentHash *string                 `json:"document_hash,omitempty"`
+	Number       *int                    `json:"number,omitempty"`
 }
 
 // OfferingTermsOfService defines model for OfferingTermsOfService.
@@ -54101,6 +54266,9 @@ type PatchedAdminAnnouncementRequest struct {
 	ActiveTo    *time.Time                 `json:"active_to,omitempty"`
 	Description *string                    `json:"description,omitempty"`
 	Type        *AdminAnnouncementTypeEnum `json:"type,omitempty"`
+
+	// VisibleToAnonymousUsers Show the announcement to signed-out visitors, e.g. on the login page, while it is active.
+	VisibleToAnonymousUsers *bool `json:"visible_to_anonymous_users,omitempty"`
 }
 
 // PatchedAffiliatedOrganizationRequest defines model for PatchedAffiliatedOrganizationRequest.
@@ -55597,6 +55765,19 @@ type PatchedOfferingSoftwareCatalogUpdateRequest struct {
 	EnabledCpuMicroarchitectures *[]string           `json:"enabled_cpu_microarchitectures,omitempty"`
 	OfferingCatalogUuid          *openapi_types.UUID `json:"offering_catalog_uuid,omitempty"`
 	Partition                    *openapi_types.UUID `json:"partition,omitempty"`
+}
+
+// PatchedOfferingTemplateRequest defines model for PatchedOfferingTemplateRequest.
+type PatchedOfferingTemplateRequest struct {
+	Description *string `json:"description,omitempty"`
+
+	// Document Offering document in the export_offering format, as a mapping or a YAML string, with agent_configuration and parameters. It may not hold secret_options, organization groups, screenshots, files, a customer, resources or people. Non-staff see only the offering's name, description and type, its components, plans and parameters.
+	Document    *map[string]interface{} `json:"document,omitempty"`
+	IsPublished *bool                   `json:"is_published,omitempty"`
+	Name        *string                 `json:"name,omitempty"`
+
+	// OfferingType Offering type the template creates; only Marketplace.SiteAgent for now.
+	OfferingType *string `json:"offering_type,omitempty"`
 }
 
 // PatchedOfferingTermsOfServiceRequest defines model for PatchedOfferingTermsOfServiceRequest.
@@ -68151,6 +68332,9 @@ type SilenceActionResponse struct {
 
 // SiteAgentConfigGenerationRequest defines model for SiteAgentConfigGenerationRequest.
 type SiteAgentConfigGenerationRequest struct {
+	// ConfigurationSource Where the agent takes each offering's configuration from. 'local': the file holds all of it. 'waldur': the file holds only how to reach Waldur and the secrets, and the agent reads the rest from the offering's site_agent_config when it starts; include_policy_settings does not apply, as Waldur always serves them.
+	ConfigurationSource *ConfigurationSourceEnum `json:"configuration_source,omitempty"`
+
 	// IncludePolicySettings Include SLURM periodic usage policy settings in configuration
 	IncludePolicySettings *bool `json:"include_policy_settings,omitempty"`
 
@@ -80150,6 +80334,40 @@ type MarketplaceOfferingRolesCountParams struct {
 	ContentType  *string `form:"content_type,omitempty" json:"content_type,omitempty"`
 	Name         *string `form:"name,omitempty" json:"name,omitempty"`
 	OfferingUuid *string `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceOfferingTemplatesListParams defines parameters for MarketplaceOfferingTemplatesList.
+type MarketplaceOfferingTemplatesListParams struct {
+	IsPublished *bool   `form:"is_published,omitempty" json:"is_published,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]CallTemplateOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingType *string              `form:"offering_type,omitempty" json:"offering_type,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MarketplaceOfferingTemplatesCountParams defines parameters for MarketplaceOfferingTemplatesCount.
+type MarketplaceOfferingTemplatesCountParams struct {
+	IsPublished *bool   `form:"is_published,omitempty" json:"is_published,omitempty"`
+	Name        *string `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O            *[]CallTemplateOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingType *string              `form:"offering_type,omitempty" json:"offering_type,omitempty"`
 
 	// Page A page number within the paginated result set.
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
@@ -104646,6 +104864,18 @@ type MarketplaceOfferingRolesPartialUpdateJSONRequestBody = PatchedOfferingRoleR
 // MarketplaceOfferingRolesUpdateJSONRequestBody defines body for MarketplaceOfferingRolesUpdate for application/json ContentType.
 type MarketplaceOfferingRolesUpdateJSONRequestBody = OfferingRoleRequest
 
+// MarketplaceOfferingTemplatesCreateJSONRequestBody defines body for MarketplaceOfferingTemplatesCreate for application/json ContentType.
+type MarketplaceOfferingTemplatesCreateJSONRequestBody = OfferingTemplateRequest
+
+// MarketplaceOfferingTemplatesLoadPresetJSONRequestBody defines body for MarketplaceOfferingTemplatesLoadPreset for application/json ContentType.
+type MarketplaceOfferingTemplatesLoadPresetJSONRequestBody = LoadOfferingTemplatePresetRequest
+
+// MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody defines body for MarketplaceOfferingTemplatesPartialUpdate for application/json ContentType.
+type MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody = PatchedOfferingTemplateRequest
+
+// MarketplaceOfferingTemplatesUpdateJSONRequestBody defines body for MarketplaceOfferingTemplatesUpdate for application/json ContentType.
+type MarketplaceOfferingTemplatesUpdateJSONRequestBody = OfferingTemplateRequest
+
 // MarketplaceOfferingTermsOfServiceCreateJSONRequestBody defines body for MarketplaceOfferingTermsOfServiceCreate for application/json ContentType.
 type MarketplaceOfferingTermsOfServiceCreateJSONRequestBody = OfferingTermsOfServiceCreateRequest
 
@@ -104879,6 +105109,9 @@ type MarketplaceProviderOfferingsRemoveQosJSONRequestBody = RemoveQoSRequest
 
 // MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody defines body for MarketplaceProviderOfferingsRemoveSoftwareCatalog for application/json ContentType.
 type MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody = RemoveSoftwareCatalogRequest
+
+// MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody defines body for MarketplaceProviderOfferingsSaveAsTemplate for application/json ContentType.
+type MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody = OfferingSaveAsTemplateRequest
 
 // MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody defines body for MarketplaceProviderOfferingsSetBackendMetadata for application/json ContentType.
 type MarketplaceProviderOfferingsSetBackendMetadataJSONRequestBody = OfferingBackendMetadataRequest
@@ -134433,6 +134666,83 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	MarketplaceOfferingRolesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingRolesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingTemplatesList performs a GET /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesList` operationId) request.
+	MarketplaceOfferingTemplatesList(ctx context.Context, params *MarketplaceOfferingTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesCount performs a HEAD /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	MarketplaceOfferingTemplatesCount(ctx context.Context, params *MarketplaceOfferingTemplatesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesCreateWithBody performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request,
+	// with any type of body and a specified content type.
+	MarketplaceOfferingTemplatesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesCreate performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	MarketplaceOfferingTemplatesCreate(ctx context.Context, body MarketplaceOfferingTemplatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesLoadPresetWithBody Load offering template presets
+	//
+	// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+	MarketplaceOfferingTemplatesLoadPresetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesLoadPreset Load offering template presets
+	//
+	// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+	MarketplaceOfferingTemplatesLoadPreset(ctx context.Context, body MarketplaceOfferingTemplatesLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesPresetsList List the offering template presets
+	//
+	// The offering templates shipped with this portal: starting points for a template, with whether a template already holds the name each would be loaded under.
+	//
+	// Corresponds with GET /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsList` operationId).
+	MarketplaceOfferingTemplatesPresetsList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesPresetsCount List the offering template presets
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsCount` operationId).
+	MarketplaceOfferingTemplatesPresetsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesDestroy performs a DELETE /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesDestroy` operationId) request.
+	MarketplaceOfferingTemplatesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesRetrieve performs a GET /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesRetrieve` operationId) request.
+	MarketplaceOfferingTemplatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesPartialUpdateWithBody performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	MarketplaceOfferingTemplatesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesPartialUpdate performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	MarketplaceOfferingTemplatesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesUpdateWithBody performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	MarketplaceOfferingTemplatesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesUpdate performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	MarketplaceOfferingTemplatesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesVersionsList List the template's versions
+	//
+	// Every version of the template's document, oldest first.
+	//
+	// Corresponds with GET /api/marketplace-offering-templates/{uuid}/versions/ (the `MarketplaceOfferingTemplatesVersionsList` operationId).
+	MarketplaceOfferingTemplatesVersionsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingTermsOfServiceList List Terms of Service configurations
 	//
 	// Returns a paginated list of Terms of Service configurations for offerings. Visibility depends on user permissions: staff/support see all; service providers see their own; regular users see ToS for offerings they have consented to or shared offerings.
@@ -135208,7 +135518,7 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersSetStateErredWithBody Set order state to erred (agent)
 	//
-	// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+	// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -135217,7 +135527,7 @@ type ClientInterface interface {
 
 	// MarketplaceOrdersSetStateErred Set order state to erred (agent)
 	//
-	// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+	// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -136517,6 +136827,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/remove_software_catalog/ (the `MarketplaceProviderOfferingsRemoveSoftwareCatalog` operationId).
 	MarketplaceProviderOfferingsRemoveSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsSaveAsTemplateWithBody Save the offering as an offering template
+	//
+	// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+	MarketplaceProviderOfferingsSaveAsTemplateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsSaveAsTemplate Save the offering as an offering template
+	//
+	// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+	MarketplaceProviderOfferingsSaveAsTemplate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsSetBackendMetadataWithBody Set offering backend metadata
 	//
@@ -139994,7 +140322,7 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -140003,7 +140331,7 @@ type ClientInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfig Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -173115,6 +173443,233 @@ func (c *Client) MarketplaceOfferingRolesUpdate(ctx context.Context, uuid openap
 	return c.Client.Do(req)
 }
 
+// MarketplaceOfferingTemplatesList performs a GET /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesList` operationId) request.
+func (c *Client) MarketplaceOfferingTemplatesList(ctx context.Context, params *MarketplaceOfferingTemplatesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesCount performs a HEAD /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) MarketplaceOfferingTemplatesCount(ctx context.Context, params *MarketplaceOfferingTemplatesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesCreateWithBody performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) MarketplaceOfferingTemplatesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesCreate performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) MarketplaceOfferingTemplatesCreate(ctx context.Context, body MarketplaceOfferingTemplatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesLoadPresetWithBody Load offering template presets
+//
+// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+func (c *Client) MarketplaceOfferingTemplatesLoadPresetWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesLoadPresetRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesLoadPreset Load offering template presets
+//
+// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+func (c *Client) MarketplaceOfferingTemplatesLoadPreset(ctx context.Context, body MarketplaceOfferingTemplatesLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesLoadPresetRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesPresetsList List the offering template presets
+//
+// The offering templates shipped with this portal: starting points for a template, with whether a template already holds the name each would be loaded under.
+//
+// Corresponds with GET /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsList` operationId).
+func (c *Client) MarketplaceOfferingTemplatesPresetsList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesPresetsListRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesPresetsCount List the offering template presets
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsCount` operationId).
+func (c *Client) MarketplaceOfferingTemplatesPresetsCount(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesPresetsCountRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesDestroy performs a DELETE /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesDestroy` operationId) request.
+func (c *Client) MarketplaceOfferingTemplatesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesRetrieve performs a GET /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesRetrieve` operationId) request.
+func (c *Client) MarketplaceOfferingTemplatesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesPartialUpdateWithBody performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) MarketplaceOfferingTemplatesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesPartialUpdate performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) MarketplaceOfferingTemplatesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesUpdateWithBody performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request,
+// with any type of body and a specified content type.
+func (c *Client) MarketplaceOfferingTemplatesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesUpdate performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+func (c *Client) MarketplaceOfferingTemplatesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesVersionsList List the template's versions
+//
+// Every version of the template's document, oldest first.
+//
+// Corresponds with GET /api/marketplace-offering-templates/{uuid}/versions/ (the `MarketplaceOfferingTemplatesVersionsList` operationId).
+func (c *Client) MarketplaceOfferingTemplatesVersionsList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesVersionsListRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceOfferingTermsOfServiceList List Terms of Service configurations
 //
 // Returns a paginated list of Terms of Service configurations for offerings. Visibility depends on user permissions: staff/support see all; service providers see their own; regular users see ToS for offerings they have consented to or shared offerings.
@@ -174978,7 +175533,7 @@ func (c *Client) MarketplaceOrdersSetStateDone(ctx context.Context, uuid openapi
 
 // MarketplaceOrdersSetStateErredWithBody Set order state to erred (agent)
 //
-// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 //
 // Takes any type of body and a specified content type.
 //
@@ -174997,7 +175552,7 @@ func (c *Client) MarketplaceOrdersSetStateErredWithBody(ctx context.Context, uui
 
 // MarketplaceOrdersSetStateErred Set order state to erred (agent)
 //
-// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -178090,6 +178645,44 @@ func (c *Client) MarketplaceProviderOfferingsRemoveSoftwareCatalogWithBody(ctx c
 // Corresponds with POST /api/marketplace-provider-offerings/{uuid}/remove_software_catalog/ (the `MarketplaceProviderOfferingsRemoveSoftwareCatalog` operationId).
 func (c *Client) MarketplaceProviderOfferingsRemoveSoftwareCatalog(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsSaveAsTemplateWithBody Save the offering as an offering template
+//
+// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+func (c *Client) MarketplaceProviderOfferingsSaveAsTemplateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSaveAsTemplateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsSaveAsTemplate Save the offering as an offering template
+//
+// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+func (c *Client) MarketplaceProviderOfferingsSaveAsTemplate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsSaveAsTemplateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -186114,7 +186707,7 @@ func (c *Client) MarketplaceServiceProvidersDeleteUser(ctx context.Context, uuid
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 //
 // Takes any type of body and a specified content type.
 //
@@ -186133,7 +186726,7 @@ func (c *Client) MarketplaceServiceProvidersGenerateSiteAgentConfigWithBody(ctx 
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfig Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -290499,6 +291092,564 @@ func NewMarketplaceOfferingRolesUpdateRequestWithBody(server string, uuid openap
 	return req, nil
 }
 
+// NewMarketplaceOfferingTemplatesListRequest constructs an http.Request for the MarketplaceOfferingTemplatesList method
+func NewMarketplaceOfferingTemplatesListRequest(server string, params *MarketplaceOfferingTemplatesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IsPublished != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_published", *params.IsPublished, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesCountRequest constructs an http.Request for the MarketplaceOfferingTemplatesCount method
+func NewMarketplaceOfferingTemplatesCountRequest(server string, params *MarketplaceOfferingTemplatesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.IsPublished != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_published", *params.IsPublished, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_type", *params.OfferingType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesCreateRequest calls the generic MarketplaceOfferingTemplatesCreate builder with application/json body
+func NewMarketplaceOfferingTemplatesCreateRequest(server string, body MarketplaceOfferingTemplatesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTemplatesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTemplatesCreateRequestWithBody constructs an http.Request for the MarketplaceOfferingTemplatesCreate method, with any body, and a specified content type
+func NewMarketplaceOfferingTemplatesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesLoadPresetRequest calls the generic MarketplaceOfferingTemplatesLoadPreset builder with application/json body
+func NewMarketplaceOfferingTemplatesLoadPresetRequest(server string, body MarketplaceOfferingTemplatesLoadPresetJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTemplatesLoadPresetRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTemplatesLoadPresetRequestWithBody constructs an http.Request for the MarketplaceOfferingTemplatesLoadPreset method, with any body, and a specified content type
+func NewMarketplaceOfferingTemplatesLoadPresetRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/load_preset/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesPresetsListRequest constructs an http.Request for the MarketplaceOfferingTemplatesPresetsList method
+func NewMarketplaceOfferingTemplatesPresetsListRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/presets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesPresetsCountRequest constructs an http.Request for the MarketplaceOfferingTemplatesPresetsCount method
+func NewMarketplaceOfferingTemplatesPresetsCountRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/presets/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesDestroyRequest constructs an http.Request for the MarketplaceOfferingTemplatesDestroy method
+func NewMarketplaceOfferingTemplatesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesRetrieveRequest constructs an http.Request for the MarketplaceOfferingTemplatesRetrieve method
+func NewMarketplaceOfferingTemplatesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesPartialUpdateRequest calls the generic MarketplaceOfferingTemplatesPartialUpdate builder with application/json body
+func NewMarketplaceOfferingTemplatesPartialUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTemplatesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTemplatesPartialUpdateRequestWithBody constructs an http.Request for the MarketplaceOfferingTemplatesPartialUpdate method, with any body, and a specified content type
+func NewMarketplaceOfferingTemplatesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesUpdateRequest calls the generic MarketplaceOfferingTemplatesUpdate builder with application/json body
+func NewMarketplaceOfferingTemplatesUpdateRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTemplatesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTemplatesUpdateRequestWithBody constructs an http.Request for the MarketplaceOfferingTemplatesUpdate method, with any body, and a specified content type
+func NewMarketplaceOfferingTemplatesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingTemplatesVersionsListRequest constructs an http.Request for the MarketplaceOfferingTemplatesVersionsList method
+func NewMarketplaceOfferingTemplatesVersionsListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/versions/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingTermsOfServiceListRequest constructs an http.Request for the MarketplaceOfferingTermsOfServiceList method
 func NewMarketplaceOfferingTermsOfServiceListRequest(server string, params *MarketplaceOfferingTermsOfServiceListParams) (*http.Request, error) {
 	var err error
@@ -313403,6 +314554,53 @@ func NewMarketplaceProviderOfferingsRemoveSoftwareCatalogRequestWithBody(server 
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/remove_software_catalog/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsSaveAsTemplateRequest calls the generic MarketplaceProviderOfferingsSaveAsTemplate builder with application/json body
+func NewMarketplaceProviderOfferingsSaveAsTemplateRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsSaveAsTemplateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsSaveAsTemplateRequestWithBody constructs an http.Request for the MarketplaceProviderOfferingsSaveAsTemplate method, with any body, and a specified content type
+func NewMarketplaceProviderOfferingsSaveAsTemplateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/save_as_template/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -485522,6 +486720,103 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceOfferingRolesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingRolesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingRolesUpdateResponse, error)
 
+	// MarketplaceOfferingTemplatesListWithResponse performs a GET /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesListWithResponse(ctx context.Context, params *MarketplaceOfferingTemplatesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesListResponse, error)
+
+	// MarketplaceOfferingTemplatesCountWithResponse performs a HEAD /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesCountWithResponse(ctx context.Context, params *MarketplaceOfferingTemplatesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCountResponse, error)
+
+	// MarketplaceOfferingTemplatesCreateWithBodyWithResponse performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateResponse, error)
+
+	// MarketplaceOfferingTemplatesCreateWithResponse performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesCreateWithResponse(ctx context.Context, body MarketplaceOfferingTemplatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateResponse, error)
+
+	// MarketplaceOfferingTemplatesLoadPresetWithBodyWithResponse Load offering template presets
+	//
+	// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+	MarketplaceOfferingTemplatesLoadPresetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesLoadPresetResponse, error)
+
+	// MarketplaceOfferingTemplatesLoadPresetWithResponse Load offering template presets
+	//
+	// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+	MarketplaceOfferingTemplatesLoadPresetWithResponse(ctx context.Context, body MarketplaceOfferingTemplatesLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesLoadPresetResponse, error)
+
+	// MarketplaceOfferingTemplatesPresetsListWithResponse List the offering template presets
+	//
+	// The offering templates shipped with this portal: starting points for a template, with whether a template already holds the name each would be loaded under.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsList` operationId).
+	MarketplaceOfferingTemplatesPresetsListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPresetsListResponse, error)
+
+	// MarketplaceOfferingTemplatesPresetsCountWithResponse List the offering template presets
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsCount` operationId).
+	MarketplaceOfferingTemplatesPresetsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPresetsCountResponse, error)
+
+	// MarketplaceOfferingTemplatesDestroyWithResponse performs a DELETE /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesDestroy` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesDestroyResponse, error)
+
+	// MarketplaceOfferingTemplatesRetrieveWithResponse performs a GET /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesRetrieveResponse, error)
+
+	// MarketplaceOfferingTemplatesPartialUpdateWithBodyWithResponse performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPartialUpdateResponse, error)
+
+	// MarketplaceOfferingTemplatesPartialUpdateWithResponse performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPartialUpdateResponse, error)
+
+	// MarketplaceOfferingTemplatesUpdateWithBodyWithResponse performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesUpdateResponse, error)
+
+	// MarketplaceOfferingTemplatesUpdateWithResponse performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	MarketplaceOfferingTemplatesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesUpdateResponse, error)
+
+	// MarketplaceOfferingTemplatesVersionsListWithResponse List the template's versions
+	//
+	// Every version of the template's document, oldest first.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-templates/{uuid}/versions/ (the `MarketplaceOfferingTemplatesVersionsList` operationId).
+	MarketplaceOfferingTemplatesVersionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesVersionsListResponse, error)
+
 	// MarketplaceOfferingTermsOfServiceListWithResponse List Terms of Service configurations
 	//
 	// Returns a paginated list of Terms of Service configurations for offerings. Visibility depends on user permissions: staff/support see all; service providers see their own; regular users see ToS for offerings they have consented to or shared offerings.
@@ -486423,7 +487718,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOrdersSetStateErredWithBodyWithResponse Set order state to erred (agent)
 	//
-	// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+	// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -486432,7 +487727,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOrdersSetStateErredWithResponse Set order state to erred (agent)
 	//
-	// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+	// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -487938,6 +489233,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/remove_software_catalog/ (the `MarketplaceProviderOfferingsRemoveSoftwareCatalog` operationId).
 	MarketplaceProviderOfferingsRemoveSoftwareCatalogWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsRemoveSoftwareCatalogJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse, error)
+
+	// MarketplaceProviderOfferingsSaveAsTemplateWithBodyWithResponse Save the offering as an offering template
+	//
+	// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+	MarketplaceProviderOfferingsSaveAsTemplateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSaveAsTemplateResponse, error)
+
+	// MarketplaceProviderOfferingsSaveAsTemplateWithResponse Save the offering as an offering template
+	//
+	// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+	MarketplaceProviderOfferingsSaveAsTemplateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSaveAsTemplateResponse, error)
 
 	// MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse Set offering backend metadata
 	//
@@ -491795,7 +493108,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithBodyWithResponse Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -491804,7 +493117,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceServiceProvidersGenerateSiteAgentConfigWithResponse Generate site agent configuration
 	//
-	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+	// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -546409,6 +547722,457 @@ func (r MarketplaceOfferingRolesUpdateResponse) ContentType() string {
 	return ""
 }
 
+// MarketplaceOfferingTemplatesListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingTemplatesList
+type MarketplaceOfferingTemplatesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOfferingTemplatesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OfferingTemplate
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOfferingTemplatesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesListResponse) GetJSON200() *[]OfferingTemplate {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *OfferingTemplate
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r MarketplaceOfferingTemplatesCreateResponse) GetJSON201() *OfferingTemplate {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesCreateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesLoadPresetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *LoadOfferingTemplatePresetResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesLoadPresetResponse) GetJSON200() *LoadOfferingTemplatePresetResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesLoadPresetResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesLoadPresetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesLoadPresetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesLoadPresetResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceOfferingTemplatesPresetsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingTemplatesPresetsList
+type MarketplaceOfferingTemplatesPresetsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOfferingTemplatesPresetsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OfferingTemplatePreset
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOfferingTemplatesPresetsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesPresetsListResponse) GetJSON200() *[]OfferingTemplatePreset {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesPresetsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesPresetsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesPresetsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesPresetsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesPresetsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesPresetsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesPresetsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesPresetsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesPresetsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingTemplate
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesRetrieveResponse) GetJSON200() *OfferingTemplate {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingTemplate
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesPartialUpdateResponse) GetJSON200() *OfferingTemplate {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesPartialUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingTemplatesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingTemplate
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesUpdateResponse) GetJSON200() *OfferingTemplate {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceOfferingTemplatesVersionsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingTemplatesVersionsList
+type MarketplaceOfferingTemplatesVersionsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceOfferingTemplatesVersionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OfferingTemplateVersion
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceOfferingTemplatesVersionsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesVersionsListResponse) GetJSON200() *[]OfferingTemplateVersion {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesVersionsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesVersionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesVersionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesVersionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceOfferingTermsOfServiceListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingTermsOfServiceList
 type MarketplaceOfferingTermsOfServiceListResponse200Headers struct {
 	XResultCount *int
@@ -555173,6 +556937,47 @@ func (r MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse) StatusCode() 
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsSaveAsTemplateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *OfferingTemplate
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r MarketplaceProviderOfferingsSaveAsTemplateResponse) GetJSON201() *OfferingTemplate {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsSaveAsTemplateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsSaveAsTemplateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsSaveAsTemplateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsSaveAsTemplateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -653680,6 +655485,193 @@ func (c *ClientWithResponses) MarketplaceOfferingRolesUpdateWithResponse(ctx con
 	return ParseMarketplaceOfferingRolesUpdateResponse(rsp)
 }
 
+// MarketplaceOfferingTemplatesListWithResponse performs a GET /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesListWithResponse(ctx context.Context, params *MarketplaceOfferingTemplatesListParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesListResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesListResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesCountWithResponse performs a HEAD /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesCountWithResponse(ctx context.Context, params *MarketplaceOfferingTemplatesCountParams, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesCountResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesCreateWithBodyWithResponse performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesCreateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesCreateWithResponse performs a POST /api/marketplace-offering-templates/ (the `MarketplaceOfferingTemplatesCreate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesCreateWithResponse(ctx context.Context, body MarketplaceOfferingTemplatesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesCreateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesLoadPresetWithBodyWithResponse Load offering template presets
+//
+// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesLoadPresetWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesLoadPresetResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesLoadPresetWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesLoadPresetResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesLoadPresetWithResponse Load offering template presets
+//
+// Create an offering template from each preset given: a copy that keeps no link to the preset. Refused, with nothing created, when a template already holds the name a preset would be loaded under. The templates are published only if publish is set.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-templates/load_preset/ (the `MarketplaceOfferingTemplatesLoadPreset` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesLoadPresetWithResponse(ctx context.Context, body MarketplaceOfferingTemplatesLoadPresetJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesLoadPresetResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesLoadPreset(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesLoadPresetResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesPresetsListWithResponse List the offering template presets
+//
+// The offering templates shipped with this portal: starting points for a template, with whether a template already holds the name each would be loaded under.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsList` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesPresetsListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPresetsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesPresetsList(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesPresetsListResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesPresetsCountWithResponse List the offering template presets
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/marketplace-offering-templates/presets/ (the `MarketplaceOfferingTemplatesPresetsCount` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesPresetsCountWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPresetsCountResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesPresetsCount(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesPresetsCountResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesDestroyWithResponse performs a DELETE /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesDestroy` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesDestroyResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesDestroyResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesRetrieveWithResponse performs a GET /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesRetrieveResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesPartialUpdateWithBodyWithResponse performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesPartialUpdateWithResponse performs a PATCH /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesPartialUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesPartialUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesUpdateWithBodyWithResponse performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesUpdateWithResponse performs a PUT /api/marketplace-offering-templates/{uuid}/ (the `MarketplaceOfferingTemplatesUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesUpdateResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesUpdateResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesVersionsListWithResponse List the template's versions
+//
+// Every version of the template's document, oldest first.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-templates/{uuid}/versions/ (the `MarketplaceOfferingTemplatesVersionsList` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesVersionsListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesVersionsListResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesVersionsList(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesVersionsListResponse(rsp)
+}
+
 // MarketplaceOfferingTermsOfServiceListWithResponse List Terms of Service configurations
 //
 // Returns a paginated list of Terms of Service configurations for offerings. Visibility depends on user permissions: staff/support see all; service providers see their own; regular users see ToS for offerings they have consented to or shared offerings.
@@ -655233,7 +657225,7 @@ func (c *ClientWithResponses) MarketplaceOrdersSetStateDoneWithResponse(ctx cont
 
 // MarketplaceOrdersSetStateErredWithBodyWithResponse Set order state to erred (agent)
 //
-// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -655248,7 +657240,7 @@ func (c *ClientWithResponses) MarketplaceOrdersSetStateErredWithBodyWithResponse
 
 // MarketplaceOrdersSetStateErredWithResponse Set order state to erred (agent)
 //
-// Used by external agents to report a failure during order processing. An error message and traceback can be provided.
+// Used by external agents to report a failure during order processing. An error message and traceback can be provided. Only an unfinished order (pending or executing) can be marked as erred.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -657831,6 +659823,36 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsRemoveSoftwareCatalogW
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsSaveAsTemplateWithBodyWithResponse Save the offering as an offering template
+//
+// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSaveAsTemplateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSaveAsTemplateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSaveAsTemplateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSaveAsTemplateResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsSaveAsTemplateWithResponse Save the offering as an offering template
+//
+// Save the offering's setup -- options, plugin options, agent configuration, components, plans, endpoints and terms of service -- as a new, unpublished offering template. Secrets, organization groups, screenshots and files are left out. The values that tie the offering to its site (its backend ID, access and endpoint URLs, the cluster name, account prefixes and service URLs in the agent configuration) are removed and declared as required parameters. Staff only.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/save_as_template/ (the `MarketplaceProviderOfferingsSaveAsTemplate` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsSaveAsTemplateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsSaveAsTemplateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSaveAsTemplateResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsSaveAsTemplate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsSaveAsTemplateResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsSetBackendMetadataWithBodyWithResponse Set offering backend metadata
@@ -664407,7 +666429,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersDeleteUserWithResponse(
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithBodyWithResponse Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -664422,7 +666444,7 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersGenerateSiteAgentConfig
 
 // MarketplaceServiceProvidersGenerateSiteAgentConfigWithResponse Generate site agent configuration
 //
-// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data.
+// Generates a YAML configuration file for waldur-site-agent based on selected site agent offerings. The configuration includes offering details, the agent roles, event and backend settings, components, and optionally SLURM periodic usage policy settings. Secrets are never included: each is left as a placeholder (secret_format) and listed in the header; site_agent_config_secrets lists them as data. With configuration_source 'waldur' each offering holds only how to reach Waldur and the secret placeholders, and the agent reads the rest from site_agent_config.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -718694,6 +720716,301 @@ func ParseMarketplaceOfferingRolesUpdateResponse(rsp *http.Response) (*Marketpla
 	return response, nil
 }
 
+// ParseMarketplaceOfferingTemplatesListResponse parses an HTTP response from a MarketplaceOfferingTemplatesListWithResponse call
+func ParseMarketplaceOfferingTemplatesListResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOfferingTemplatesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesCountResponse parses an HTTP response from a MarketplaceOfferingTemplatesCountWithResponse call
+func ParseMarketplaceOfferingTemplatesCountResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesCreateResponse parses an HTTP response from a MarketplaceOfferingTemplatesCreateWithResponse call
+func ParseMarketplaceOfferingTemplatesCreateResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesLoadPresetResponse parses an HTTP response from a MarketplaceOfferingTemplatesLoadPresetWithResponse call
+func ParseMarketplaceOfferingTemplatesLoadPresetResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesLoadPresetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesLoadPresetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest LoadOfferingTemplatePresetResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesPresetsListResponse parses an HTTP response from a MarketplaceOfferingTemplatesPresetsListWithResponse call
+func ParseMarketplaceOfferingTemplatesPresetsListResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesPresetsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesPresetsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingTemplatePreset
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOfferingTemplatesPresetsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesPresetsCountResponse parses an HTTP response from a MarketplaceOfferingTemplatesPresetsCountWithResponse call
+func ParseMarketplaceOfferingTemplatesPresetsCountResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesPresetsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesPresetsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesDestroyResponse parses an HTTP response from a MarketplaceOfferingTemplatesDestroyWithResponse call
+func ParseMarketplaceOfferingTemplatesDestroyResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesRetrieveResponse parses an HTTP response from a MarketplaceOfferingTemplatesRetrieveWithResponse call
+func ParseMarketplaceOfferingTemplatesRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesPartialUpdateResponse parses an HTTP response from a MarketplaceOfferingTemplatesPartialUpdateWithResponse call
+func ParseMarketplaceOfferingTemplatesPartialUpdateResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesUpdateResponse parses an HTTP response from a MarketplaceOfferingTemplatesUpdateWithResponse call
+func ParseMarketplaceOfferingTemplatesUpdateResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingTemplatesVersionsListResponse parses an HTTP response from a MarketplaceOfferingTemplatesVersionsListWithResponse call
+func ParseMarketplaceOfferingTemplatesVersionsListResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesVersionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesVersionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingTemplateVersion
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceOfferingTemplatesVersionsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingTermsOfServiceListResponse parses an HTTP response from a MarketplaceOfferingTermsOfServiceListWithResponse call
 func ParseMarketplaceOfferingTermsOfServiceListResponse(rsp *http.Response) (*MarketplaceOfferingTermsOfServiceListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -724228,6 +726545,32 @@ func ParseMarketplaceProviderOfferingsRemoveSoftwareCatalogResponse(rsp *http.Re
 	response := &MarketplaceProviderOfferingsRemoveSoftwareCatalogResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsSaveAsTemplateResponse parses an HTTP response from a MarketplaceProviderOfferingsSaveAsTemplateWithResponse call
+func ParseMarketplaceProviderOfferingsSaveAsTemplateResponse(rsp *http.Response) (*MarketplaceProviderOfferingsSaveAsTemplateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsSaveAsTemplateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingTemplate
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
 	}
 
 	return response, nil
