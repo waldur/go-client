@@ -15787,6 +15787,7 @@ const (
 	OpenStackPortFieldEnumErrorMessage                     OpenStackPortFieldEnum = "error_message"
 	OpenStackPortFieldEnumErrorTraceback                   OpenStackPortFieldEnum = "error_traceback"
 	OpenStackPortFieldEnumFixedIps                         OpenStackPortFieldEnum = "fixed_ips"
+	OpenStackPortFieldEnumFloatingIpAddresses              OpenStackPortFieldEnum = "floating_ip_addresses"
 	OpenStackPortFieldEnumFloatingIps                      OpenStackPortFieldEnum = "floating_ips"
 	OpenStackPortFieldEnumIsLimitBased                     OpenStackPortFieldEnum = "is_limit_based"
 	OpenStackPortFieldEnumIsUsageBased                     OpenStackPortFieldEnum = "is_usage_based"
@@ -15860,6 +15861,8 @@ func (e OpenStackPortFieldEnum) Valid() bool {
 	case OpenStackPortFieldEnumErrorTraceback:
 		return true
 	case OpenStackPortFieldEnumFixedIps:
+		return true
+	case OpenStackPortFieldEnumFloatingIpAddresses:
 		return true
 	case OpenStackPortFieldEnumFloatingIps:
 		return true
@@ -32492,7 +32495,7 @@ type BookingResource struct {
 	Downscaled    *bool               `json:"downscaled,omitempty"`
 	EffectiveId   *string             `json:"effective_id,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
 
@@ -32560,7 +32563,7 @@ type BookingResource struct {
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
-	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	// ProjectEndDate The project's resources are scheduled for termination on this date plus the grace period, if one is configured. Offerings that disable the grace period terminate them on this date.
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 
@@ -45252,7 +45255,7 @@ type MarketplaceProviderCustomerProject struct {
 	BillingPriceEstimate *NestedPriceEstimate `json:"billing_price_estimate,omitempty"`
 	Description          *string              `json:"description,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	// EndDate The project's resources are scheduled for termination on this date plus the grace period, if one is configured. Offerings that disable the grace period terminate them on this date.
 	EndDate        *openapi_types.Date `json:"end_date,omitempty"`
 	Name           *string             `json:"name,omitempty"`
 	ResourcesCount *int                `json:"resources_count,omitempty"`
@@ -52116,9 +52119,12 @@ type OpenStackPort struct {
 	ErrorMessage   *string             `json:"error_message,omitempty"`
 	ErrorTraceback *string             `json:"error_traceback,omitempty"`
 	FixedIps       *[]OpenStackFixedIp `json:"fixed_ips,omitempty"`
-	FloatingIps    *[]string           `json:"floating_ips,omitempty"`
-	IsLimitBased   *bool               `json:"is_limit_based,omitempty"`
-	IsUsageBased   *bool               `json:"is_usage_based,omitempty"`
+
+	// FloatingIpAddresses Floating IPs associated with the port, with the public IP each one is mapped to, if any
+	FloatingIpAddresses *[]OpenStackPortFloatingIp `json:"floating_ip_addresses,omitempty"`
+	FloatingIps         *[]string                  `json:"floating_ips,omitempty"`
+	IsLimitBased        *bool                      `json:"is_limit_based,omitempty"`
+	IsUsageBased        *bool                      `json:"is_usage_based,omitempty"`
 
 	// MacAddress MAC address of the port
 	MacAddress                       *string                 `json:"mac_address,omitempty"`
@@ -52177,6 +52183,27 @@ type OpenStackPort_AccessUrl struct {
 
 // OpenStackPortFieldEnum defines model for OpenStackPortFieldEnum.
 type OpenStackPortFieldEnum string
+
+// OpenStackPortFloatingIp defines model for OpenStackPortFloatingIp.
+type OpenStackPortFloatingIp struct {
+	// Address The public IPv4 address of the floating IP
+	Address *string `json:"address,omitempty"`
+
+	// ExternalAddress Optional address that maps to floating IP's address in external networks
+	ExternalAddress *OpenStackPortFloatingIp_ExternalAddress `json:"external_address,omitempty"`
+	Uuid            *openapi_types.UUID                      `json:"uuid,omitempty"`
+}
+
+// OpenStackPortFloatingIpExternalAddress0 defines model for OpenStackPortFloatingIp.ExternalAddress.0.
+type OpenStackPortFloatingIpExternalAddress0 = string
+
+// OpenStackPortFloatingIpExternalAddress1 defines model for OpenStackPortFloatingIp.ExternalAddress.1.
+type OpenStackPortFloatingIpExternalAddress1 = string
+
+// OpenStackPortFloatingIp_ExternalAddress Optional address that maps to floating IP's address in external networks
+type OpenStackPortFloatingIp_ExternalAddress struct {
+	union json.RawMessage
+}
 
 // OpenStackPortIPUpdateRequest defines model for OpenStackPortIPUpdateRequest.
 type OpenStackPortIPUpdateRequest struct {
@@ -56995,7 +57022,7 @@ type PatchedResourceProjectRequest struct {
 type PatchedResourceUpdateRequest struct {
 	Description *string `json:"description,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 	Name    *string             `json:"name,omitempty"`
 }
@@ -64532,7 +64559,7 @@ type Resource struct {
 	Downscaled    *bool               `json:"downscaled,omitempty"`
 	EffectiveId   *string             `json:"effective_id,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate            *openapi_types.Date `json:"end_date,omitempty"`
 	EndDateRequestedBy *string             `json:"end_date_requested_by,omitempty"`
 
@@ -64600,7 +64627,7 @@ type Resource struct {
 	// ProjectEffectiveEndDate Effective project end date including grace period. After this date, resources are terminated, except resources of offerings that disable the grace period — those are terminated on the raw project end date.
 	ProjectEffectiveEndDate *openapi_types.Date `json:"project_effective_end_date,omitempty"`
 
-	// ProjectEndDate The date is inclusive. Once reached, all project resource will be scheduled for termination.
+	// ProjectEndDate The project's resources are scheduled for termination on this date plus the grace period, if one is configured. Offerings that disable the grace period terminate them on this date.
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 
@@ -64878,7 +64905,7 @@ type ResourceEffectiveIDRequest struct {
 
 // ResourceEndDateByProviderRequest defines model for ResourceEndDateByProviderRequest.
 type ResourceEndDateByProviderRequest struct {
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 }
 
@@ -64948,7 +64975,7 @@ type ResourceEndDateChangeRequestCreateRequest struct {
 
 // ResourceEndDateRequest defines model for ResourceEndDateRequest.
 type ResourceEndDateRequest struct {
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 }
 
@@ -65291,7 +65318,7 @@ type ResourceReportRequest struct {
 type ResourceRequest struct {
 	Downscaled *bool `json:"downscaled,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate  *openapi_types.Date `json:"end_date,omitempty"`
 	Name     string              `json:"name"`
 	Offering string              `json:"offering"`
@@ -65373,7 +65400,7 @@ type ResourceTerminateRequest struct {
 type ResourceUpdate struct {
 	Description *string `json:"description,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 	Name    string              `json:"name"`
 }
@@ -65406,7 +65433,7 @@ type ResourceUpdateLimitsRequestMultipart struct {
 type ResourceUpdateRequest struct {
 	Description *string `json:"description,omitempty"`
 
-	// EndDate The date is inclusive. Once reached, a resource will be scheduled for termination.
+	// EndDate The resource is scheduled for termination on this date, so the day before is the last full day of use.
 	EndDate *openapi_types.Date `json:"end_date,omitempty"`
 	Name    string              `json:"name"`
 }
@@ -93039,8 +93066,11 @@ type OpenstackFloatingIpsListParams struct {
 	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name, address or mapped public IP
+	Query        *string `form:"query,omitempty" json:"query,omitempty"`
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
 	// ServiceSettingsName Service settings name
 	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
@@ -93112,8 +93142,11 @@ type OpenstackFloatingIpsCountParams struct {
 	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
 
 	// ProjectUuid Project UUID
-	ProjectUuid  *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
-	RuntimeState *string             `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// Query Search by name, address or mapped public IP
+	Query        *string `form:"query,omitempty" json:"query,omitempty"`
+	RuntimeState *string `form:"runtime_state,omitempty" json:"runtime_state,omitempty"`
 
 	// ServiceSettingsName Service settings name
 	ServiceSettingsName *string `form:"service_settings_name,omitempty" json:"service_settings_name,omitempty"`
@@ -94329,7 +94362,7 @@ type OpenstackPortsListParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Search by name, MAC address or backend ID
+	// Query Search by name, MAC address, backend ID, fixed IP, floating IP or its mapped public IP
 	Query  *string `form:"query,omitempty" json:"query,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 
@@ -94379,7 +94412,7 @@ type OpenstackPortsCountParams struct {
 	// PageSize Number of results to return per page.
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 
-	// Query Search by name, MAC address or backend ID
+	// Query Search by name, MAC address, backend ID, fixed IP, floating IP or its mapped public IP
 	Query  *string `form:"query,omitempty" json:"query,omitempty"`
 	Status *string `form:"status,omitempty" json:"status,omitempty"`
 
@@ -118001,6 +118034,68 @@ func (t OpenStackPort_AccessUrl) MarshalJSON() ([]byte, error) {
 }
 
 func (t *OpenStackPort_AccessUrl) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsOpenStackPortFloatingIpExternalAddress0 returns the union data inside the OpenStackPortFloatingIp_ExternalAddress as a OpenStackPortFloatingIpExternalAddress0
+func (t OpenStackPortFloatingIp_ExternalAddress) AsOpenStackPortFloatingIpExternalAddress0() (OpenStackPortFloatingIpExternalAddress0, error) {
+	var body OpenStackPortFloatingIpExternalAddress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortFloatingIpExternalAddress0 overwrites any union data inside the OpenStackPortFloatingIp_ExternalAddress as the provided OpenStackPortFloatingIpExternalAddress0
+func (t *OpenStackPortFloatingIp_ExternalAddress) FromOpenStackPortFloatingIpExternalAddress0(v OpenStackPortFloatingIpExternalAddress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortFloatingIpExternalAddress0 performs a merge with any union data inside the OpenStackPortFloatingIp_ExternalAddress, using the provided OpenStackPortFloatingIpExternalAddress0
+func (t *OpenStackPortFloatingIp_ExternalAddress) MergeOpenStackPortFloatingIpExternalAddress0(v OpenStackPortFloatingIpExternalAddress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsOpenStackPortFloatingIpExternalAddress1 returns the union data inside the OpenStackPortFloatingIp_ExternalAddress as a OpenStackPortFloatingIpExternalAddress1
+func (t OpenStackPortFloatingIp_ExternalAddress) AsOpenStackPortFloatingIpExternalAddress1() (OpenStackPortFloatingIpExternalAddress1, error) {
+	var body OpenStackPortFloatingIpExternalAddress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOpenStackPortFloatingIpExternalAddress1 overwrites any union data inside the OpenStackPortFloatingIp_ExternalAddress as the provided OpenStackPortFloatingIpExternalAddress1
+func (t *OpenStackPortFloatingIp_ExternalAddress) FromOpenStackPortFloatingIpExternalAddress1(v OpenStackPortFloatingIpExternalAddress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOpenStackPortFloatingIpExternalAddress1 performs a merge with any union data inside the OpenStackPortFloatingIp_ExternalAddress, using the provided OpenStackPortFloatingIpExternalAddress1
+func (t *OpenStackPortFloatingIp_ExternalAddress) MergeOpenStackPortFloatingIpExternalAddress1(v OpenStackPortFloatingIpExternalAddress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t OpenStackPortFloatingIp_ExternalAddress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *OpenStackPortFloatingIp_ExternalAddress) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -381260,6 +381355,18 @@ func NewOpenstackFloatingIpsListRequest(server string, params *OpenstackFloating
 
 		}
 
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.RuntimeState != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "runtime_state", *params.RuntimeState, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
@@ -381581,6 +381688,18 @@ func NewOpenstackFloatingIpsCountRequest(server string, params *OpenstackFloatin
 		if params.ProjectUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Query != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "query", *params.Query, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
