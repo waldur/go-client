@@ -1908,6 +1908,7 @@ const (
 	BookingResourceFieldEnumCreatedByUsername          BookingResourceFieldEnum = "created_by_username"
 	BookingResourceFieldEnumCreationOrder              BookingResourceFieldEnum = "creation_order"
 	BookingResourceFieldEnumCurrentUsages              BookingResourceFieldEnum = "current_usages"
+	BookingResourceFieldEnumCustomerAbbreviation       BookingResourceFieldEnum = "customer_abbreviation"
 	BookingResourceFieldEnumCustomerName               BookingResourceFieldEnum = "customer_name"
 	BookingResourceFieldEnumCustomerSlug               BookingResourceFieldEnum = "customer_slug"
 	BookingResourceFieldEnumCustomerUuid               BookingResourceFieldEnum = "customer_uuid"
@@ -2032,6 +2033,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumCreationOrder:
 		return true
 	case BookingResourceFieldEnumCurrentUsages:
+		return true
+	case BookingResourceFieldEnumCustomerAbbreviation:
 		return true
 	case BookingResourceFieldEnumCustomerName:
 		return true
@@ -23076,6 +23079,7 @@ const (
 	ResourceFieldEnumCreated                    ResourceFieldEnum = "created"
 	ResourceFieldEnumCreationOrder              ResourceFieldEnum = "creation_order"
 	ResourceFieldEnumCurrentUsages              ResourceFieldEnum = "current_usages"
+	ResourceFieldEnumCustomerAbbreviation       ResourceFieldEnum = "customer_abbreviation"
 	ResourceFieldEnumCustomerName               ResourceFieldEnum = "customer_name"
 	ResourceFieldEnumCustomerSlug               ResourceFieldEnum = "customer_slug"
 	ResourceFieldEnumCustomerUuid               ResourceFieldEnum = "customer_uuid"
@@ -23187,6 +23191,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumCreationOrder:
 		return true
 	case ResourceFieldEnumCurrentUsages:
+		return true
+	case ResourceFieldEnumCustomerAbbreviation:
 		return true
 	case ResourceFieldEnumCustomerName:
 		return true
@@ -32484,11 +32490,12 @@ type BookingResource struct {
 	CreationOrder     *OrderDetails `json:"creation_order,omitempty"`
 
 	// CurrentUsages Dictionary mapping component types to their latest reported usage amounts.
-	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	CustomerName  *string             `json:"customer_name,omitempty"`
-	CustomerSlug  *string             `json:"customer_slug,omitempty"`
-	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description   *string             `json:"description,omitempty"`
+	CurrentUsages        *map[string]float64 `json:"current_usages,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerSlug         *string             `json:"customer_slug,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// DisplayLimits Resource option values shown as the limits of usage-based components. Display only: not stored in limits, billed or enforced.
 	DisplayLimits *map[string]float64 `json:"display_limits,omitempty"`
@@ -49298,11 +49305,14 @@ type OfferingMetric struct {
 	GoodDirection *GoodDirectionEnum `json:"good_direction,omitempty"`
 
 	// Key Name services report against. Cannot be changed.
-	Key          *string            `json:"key,omitempty"`
-	Kind         *MetricKindEnum    `json:"kind,omitempty"`
-	Name         *string            `json:"name,omitempty"`
-	Offering     openapi_types.UUID `json:"offering"`
-	OfferingName *string            `json:"offering_name,omitempty"`
+	Key  *string         `json:"key,omitempty"`
+	Kind *MetricKindEnum `json:"kind,omitempty"`
+
+	// LastReportedAt When a point for this metric was last accepted, to within a minute; empty if none ever was.
+	LastReportedAt *time.Time         `json:"last_reported_at,omitempty"`
+	Name           *string            `json:"name,omitempty"`
+	Offering       openapi_types.UUID `json:"offering"`
+	OfferingName   *string            `json:"offering_name,omitempty"`
 
 	// ProjectAggregation How the figures of a project's resources combine. An average is unweighted: every resource counts once.
 	ProjectAggregation *ProjectAggregationEnum  `json:"project_aggregation,omitempty"`
@@ -64548,11 +64558,12 @@ type Resource struct {
 	CreationOrder    *OrderDetails           `json:"creation_order,omitempty"`
 
 	// CurrentUsages Dictionary mapping component types to their latest reported usage amounts.
-	CurrentUsages *map[string]float64 `json:"current_usages,omitempty"`
-	CustomerName  *string             `json:"customer_name,omitempty"`
-	CustomerSlug  *string             `json:"customer_slug,omitempty"`
-	CustomerUuid  *openapi_types.UUID `json:"customer_uuid,omitempty"`
-	Description   *string             `json:"description,omitempty"`
+	CurrentUsages        *map[string]float64 `json:"current_usages,omitempty"`
+	CustomerAbbreviation *string             `json:"customer_abbreviation,omitempty"`
+	CustomerName         *string             `json:"customer_name,omitempty"`
+	CustomerSlug         *string             `json:"customer_slug,omitempty"`
+	CustomerUuid         *openapi_types.UUID `json:"customer_uuid,omitempty"`
+	Description          *string             `json:"description,omitempty"`
 
 	// DisplayLimits Resource option values shown as the limits of usage-based components. Display only: not stored in limits, billed or enforced.
 	DisplayLimits *map[string]float64 `json:"display_limits,omitempty"`
