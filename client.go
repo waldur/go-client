@@ -13193,6 +13193,9 @@ const (
 	OfferingFieldEnumSoftwareCatalogs           OfferingFieldEnum = "software_catalogs"
 	OfferingFieldEnumState                      OfferingFieldEnum = "state"
 	OfferingFieldEnumTags                       OfferingFieldEnum = "tags"
+	OfferingFieldEnumTemplateName               OfferingFieldEnum = "template_name"
+	OfferingFieldEnumTemplateUuid               OfferingFieldEnum = "template_uuid"
+	OfferingFieldEnumTemplateVersion            OfferingFieldEnum = "template_version"
 	OfferingFieldEnumThumbnail                  OfferingFieldEnum = "thumbnail"
 	OfferingFieldEnumTotalCost                  OfferingFieldEnum = "total_cost"
 	OfferingFieldEnumTotalCostEstimated         OfferingFieldEnum = "total_cost_estimated"
@@ -13367,6 +13370,12 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumState:
 		return true
 	case OfferingFieldEnumTags:
+		return true
+	case OfferingFieldEnumTemplateName:
+		return true
+	case OfferingFieldEnumTemplateUuid:
+		return true
+	case OfferingFieldEnumTemplateVersion:
 		return true
 	case OfferingFieldEnumThumbnail:
 		return true
@@ -20736,6 +20745,9 @@ const (
 	ProviderOfferingDetailsFieldEnumSoftwareCatalogs           ProviderOfferingDetailsFieldEnum = "software_catalogs"
 	ProviderOfferingDetailsFieldEnumState                      ProviderOfferingDetailsFieldEnum = "state"
 	ProviderOfferingDetailsFieldEnumTags                       ProviderOfferingDetailsFieldEnum = "tags"
+	ProviderOfferingDetailsFieldEnumTemplateName               ProviderOfferingDetailsFieldEnum = "template_name"
+	ProviderOfferingDetailsFieldEnumTemplateUuid               ProviderOfferingDetailsFieldEnum = "template_uuid"
+	ProviderOfferingDetailsFieldEnumTemplateVersion            ProviderOfferingDetailsFieldEnum = "template_version"
 	ProviderOfferingDetailsFieldEnumThumbnail                  ProviderOfferingDetailsFieldEnum = "thumbnail"
 	ProviderOfferingDetailsFieldEnumTotalCost                  ProviderOfferingDetailsFieldEnum = "total_cost"
 	ProviderOfferingDetailsFieldEnumTotalCostEstimated         ProviderOfferingDetailsFieldEnum = "total_cost_estimated"
@@ -20910,6 +20922,12 @@ func (e ProviderOfferingDetailsFieldEnum) Valid() bool {
 	case ProviderOfferingDetailsFieldEnumState:
 		return true
 	case ProviderOfferingDetailsFieldEnumTags:
+		return true
+	case ProviderOfferingDetailsFieldEnumTemplateName:
+		return true
+	case ProviderOfferingDetailsFieldEnumTemplateUuid:
+		return true
+	case ProviderOfferingDetailsFieldEnumTemplateVersion:
 		return true
 	case ProviderOfferingDetailsFieldEnumThumbnail:
 		return true
@@ -21373,6 +21391,9 @@ const (
 	PublicOfferingDetailsFieldEnumSoftwareCatalogs           PublicOfferingDetailsFieldEnum = "software_catalogs"
 	PublicOfferingDetailsFieldEnumState                      PublicOfferingDetailsFieldEnum = "state"
 	PublicOfferingDetailsFieldEnumTags                       PublicOfferingDetailsFieldEnum = "tags"
+	PublicOfferingDetailsFieldEnumTemplateName               PublicOfferingDetailsFieldEnum = "template_name"
+	PublicOfferingDetailsFieldEnumTemplateUuid               PublicOfferingDetailsFieldEnum = "template_uuid"
+	PublicOfferingDetailsFieldEnumTemplateVersion            PublicOfferingDetailsFieldEnum = "template_version"
 	PublicOfferingDetailsFieldEnumThumbnail                  PublicOfferingDetailsFieldEnum = "thumbnail"
 	PublicOfferingDetailsFieldEnumTotalCost                  PublicOfferingDetailsFieldEnum = "total_cost"
 	PublicOfferingDetailsFieldEnumTotalCostEstimated         PublicOfferingDetailsFieldEnum = "total_cost_estimated"
@@ -21551,6 +21572,12 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumState:
 		return true
 	case PublicOfferingDetailsFieldEnumTags:
+		return true
+	case PublicOfferingDetailsFieldEnumTemplateName:
+		return true
+	case PublicOfferingDetailsFieldEnumTemplateUuid:
+		return true
+	case PublicOfferingDetailsFieldEnumTemplateVersion:
 		return true
 	case PublicOfferingDetailsFieldEnumThumbnail:
 		return true
@@ -41754,6 +41781,7 @@ type ExportFileDataRequest struct {
 type ExportOfferingData struct {
 	AccessUrl        string                  `json:"access_url"`
 	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId        *string                 `json:"backend_id,omitempty"`
 	Billable         bool                    `json:"billable"`
 	CategoryName     *string                 `json:"category_name"`
 	Country          string                  `json:"country"`
@@ -41776,6 +41804,7 @@ type ExportOfferingData struct {
 type ExportOfferingDataRequest struct {
 	AccessUrl        string                  `json:"access_url"`
 	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
+	BackendId        *string                 `json:"backend_id,omitempty"`
 	Billable         bool                    `json:"billable"`
 	CategoryName     *string                 `json:"category_name"`
 	Country          string                  `json:"country"`
@@ -48528,6 +48557,9 @@ type Offering struct {
 	SoftwareCatalogs    *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State               *OfferingState           `json:"state,omitempty"`
 	Tags                *[]NestedTag             `json:"tags,omitempty"`
+	TemplateName        *string                  `json:"template_name,omitempty"`
+	TemplateUuid        *openapi_types.UUID      `json:"template_uuid,omitempty"`
+	TemplateVersion     *int                     `json:"template_version,omitempty"`
 	Thumbnail           *string                  `json:"thumbnail,omitempty"`
 	TotalCost           *int                     `json:"total_cost,omitempty"`
 	TotalCostEstimated  *int                     `json:"total_cost_estimated,omitempty"`
@@ -50355,15 +50387,84 @@ type OfferingTemplate struct {
 	Version *int `json:"version,omitempty"`
 }
 
+// OfferingTemplateCreateOfferingRequest defines model for OfferingTemplateCreateOfferingRequest.
+type OfferingTemplateCreateOfferingRequest struct {
+	// Category The category the offering is listed in.
+	Category openapi_types.UUID `json:"category"`
+
+	// Customer The organization the offering is created for.
+	Customer openapi_types.UUID `json:"customer"`
+
+	// DryRun Check everything and report what would be created, creating nothing.
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// Name Name of the new offering.
+	Name string `json:"name"`
+
+	// Parameters A value for each of the template's parameters, by key. A parameter left out takes its default.
+	Parameters *map[string]interface{} `json:"parameters,omitempty"`
+}
+
+// OfferingTemplateCreateOfferingResponse defines model for OfferingTemplateCreateOfferingResponse.
+type OfferingTemplateCreateOfferingResponse struct {
+	// Document The template's document with the parameters filled in: what the offering is created from, in the import_offering format.
+	Document map[string]interface{} `json:"document"`
+	DryRun   bool                   `json:"dry_run"`
+
+	// Findings What the site-agent consistency rules find in the filled-in document, errors first. A create with an error is refused.
+	Findings     []OfferingConfigurationFinding `json:"findings"`
+	OfferingName string                         `json:"offering_name"`
+
+	// OfferingUuid The new offering; null on a dry run.
+	OfferingUuid *openapi_types.UUID `json:"offering_uuid"`
+
+	// Parameters The value of every parameter, defaults included.
+	Parameters      map[string]interface{} `json:"parameters"`
+	TemplateVersion int                    `json:"template_version"`
+
+	// Warnings What the import of the document reported.
+	Warnings []string `json:"warnings"`
+}
+
+// OfferingTemplateDiff defines model for OfferingTemplateDiff.
+type OfferingTemplateDiff struct {
+	// CreatedVersionDifferences Differences from the version the offering was created from.
+	CreatedVersionDifferences []OfferingTemplateDifference `json:"created_version_differences"`
+	LatestVersion             int                          `json:"latest_version"`
+	LatestVersionDifferences  []OfferingTemplateDifference `json:"latest_version_differences"`
+	TemplateName              string                       `json:"template_name"`
+	TemplateUuid              openapi_types.UUID           `json:"template_uuid"`
+
+	// TemplateVersion The version the offering was created from.
+	TemplateVersion int `json:"template_version"`
+}
+
+// OfferingTemplateDifference defines model for OfferingTemplateDifference.
+type OfferingTemplateDifference struct {
+	// Offering What the offering has; null when it has none.
+	Offering *map[string]interface{} `json:"offering"`
+
+	// Path Where the offering differs, such as components[cpu].unit_factor: list items are named by their type, name or version.
+	Path string `json:"path"`
+
+	// Template What the template sets; null when it has none.
+	Template *map[string]interface{} `json:"template"`
+}
+
 // OfferingTemplateParameter defines model for OfferingTemplateParameter.
 type OfferingTemplateParameter struct {
-	Default     *map[string]interface{} `json:"default"`
-	Description string                  `json:"description"`
-	Key         string                  `json:"key"`
-	Label       string                  `json:"label"`
+	// Choices The values allowed, when the parameter is limited to some.
+	Choices     *[]map[string]interface{} `json:"choices,omitempty"`
+	Default     *map[string]interface{}   `json:"default"`
+	Description string                    `json:"description"`
+	Key         string                    `json:"key"`
+	Label       string                    `json:"label"`
 
 	// Paths Dotted paths into the document that the value fills, such as offering.backend_id; digits address list items.
-	Paths    []string                          `json:"paths"`
+	Paths []string `json:"paths"`
+
+	// Pattern A regular expression a string value must match in full.
+	Pattern  *string                           `json:"pattern,omitempty"`
 	Required bool                              `json:"required"`
 	Type     OfferingTemplateParameterTypeEnum `json:"type"`
 }
@@ -61824,6 +61925,9 @@ type ProviderOfferingDetails struct {
 	SoftwareCatalogs   *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State              *OfferingState           `json:"state,omitempty"`
 	Tags               *[]NestedTag             `json:"tags,omitempty"`
+	TemplateName       *string                  `json:"template_name,omitempty"`
+	TemplateUuid       *openapi_types.UUID      `json:"template_uuid,omitempty"`
+	TemplateVersion    *int                     `json:"template_version,omitempty"`
 	Thumbnail          *string                  `json:"thumbnail,omitempty"`
 	TotalCost          *int                     `json:"total_cost,omitempty"`
 	TotalCostEstimated *int                     `json:"total_cost_estimated,omitempty"`
@@ -62510,6 +62614,9 @@ type PublicOfferingDetails struct {
 	SoftwareCatalogs    *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State               *OfferingState           `json:"state,omitempty"`
 	Tags                *[]NestedTag             `json:"tags,omitempty"`
+	TemplateName        *string                  `json:"template_name,omitempty"`
+	TemplateUuid        *openapi_types.UUID      `json:"template_uuid,omitempty"`
+	TemplateVersion     *int                     `json:"template_version,omitempty"`
 	Thumbnail           *string                  `json:"thumbnail,omitempty"`
 	TotalCost           *int                     `json:"total_cost,omitempty"`
 	TotalCostEstimated  *int                     `json:"total_cost_estimated,omitempty"`
@@ -105501,6 +105608,9 @@ type MarketplaceOfferingTemplatesPartialUpdateJSONRequestBody = PatchedOfferingT
 // MarketplaceOfferingTemplatesUpdateJSONRequestBody defines body for MarketplaceOfferingTemplatesUpdate for application/json ContentType.
 type MarketplaceOfferingTemplatesUpdateJSONRequestBody = OfferingTemplateRequest
 
+// MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody defines body for MarketplaceOfferingTemplatesCreateOffering for application/json ContentType.
+type MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody = OfferingTemplateCreateOfferingRequest
+
 // MarketplaceOfferingTermsOfServiceCreateJSONRequestBody defines body for MarketplaceOfferingTermsOfServiceCreate for application/json ContentType.
 type MarketplaceOfferingTermsOfServiceCreateJSONRequestBody = OfferingTermsOfServiceCreateRequest
 
@@ -135689,6 +135799,24 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	MarketplaceOfferingTemplatesUpdate(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingTemplatesCreateOfferingWithBody Create an offering from the template
+	//
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+	MarketplaceOfferingTemplatesCreateOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingTemplatesCreateOffering Create an offering from the template
+	//
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+	MarketplaceOfferingTemplatesCreateOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingTemplatesVersionsList List the template's versions
 	//
 	// Every version of the template's document, oldest first.
@@ -137930,6 +138058,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/sync_resources/ (the `MarketplaceProviderOfferingsSyncResources` operationId).
 	MarketplaceProviderOfferingsSyncResources(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsTemplateDiffRetrieve Compare the offering with its offering template
+	//
+	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
+	MarketplaceProviderOfferingsTemplateDiffRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsTosStatsRetrieve Get Terms of Service consent statistics
 	//
@@ -174887,6 +175022,44 @@ func (c *Client) MarketplaceOfferingTemplatesUpdate(ctx context.Context, uuid op
 	return c.Client.Do(req)
 }
 
+// MarketplaceOfferingTemplatesCreateOfferingWithBody Create an offering from the template
+//
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+func (c *Client) MarketplaceOfferingTemplatesCreateOfferingWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesCreateOfferingRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingTemplatesCreateOffering Create an offering from the template
+//
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+func (c *Client) MarketplaceOfferingTemplatesCreateOffering(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingTemplatesCreateOfferingRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceOfferingTemplatesVersionsList List the template's versions
 //
 // Every version of the template's document, oldest first.
@@ -180209,6 +180382,23 @@ func (c *Client) MarketplaceProviderOfferingsSync(ctx context.Context, uuid open
 // Corresponds with POST /api/marketplace-provider-offerings/{uuid}/sync_resources/ (the `MarketplaceProviderOfferingsSyncResources` operationId).
 func (c *Client) MarketplaceProviderOfferingsSyncResources(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsSyncResourcesRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsTemplateDiffRetrieve Compare the offering with its offering template
+//
+// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
+func (c *Client) MarketplaceProviderOfferingsTemplateDiffRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsTemplateDiffRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -293527,6 +293717,53 @@ func NewMarketplaceOfferingTemplatesUpdateRequestWithBody(server string, uuid op
 	return req, nil
 }
 
+// NewMarketplaceOfferingTemplatesCreateOfferingRequest calls the generic MarketplaceOfferingTemplatesCreateOffering builder with application/json body
+func NewMarketplaceOfferingTemplatesCreateOfferingRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingTemplatesCreateOfferingRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingTemplatesCreateOfferingRequestWithBody constructs an http.Request for the MarketplaceOfferingTemplatesCreateOffering method, with any body, and a specified content type
+func NewMarketplaceOfferingTemplatesCreateOfferingRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-templates/%s/create_offering/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingTemplatesVersionsListRequest constructs an http.Request for the MarketplaceOfferingTemplatesVersionsList method
 func NewMarketplaceOfferingTemplatesVersionsListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -316963,6 +317200,40 @@ func NewMarketplaceProviderOfferingsSyncResourcesRequest(server string, uuid ope
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsTemplateDiffRetrieveRequest constructs an http.Request for the MarketplaceProviderOfferingsTemplateDiffRetrieve method
+func NewMarketplaceProviderOfferingsTemplateDiffRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/template_diff/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -489242,6 +489513,24 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceOfferingTemplatesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesUpdateResponse, error)
 
+	// MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse Create an offering from the template
+	//
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+	MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateOfferingResponse, error)
+
+	// MarketplaceOfferingTemplatesCreateOfferingWithResponse Create an offering from the template
+	//
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+	MarketplaceOfferingTemplatesCreateOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateOfferingResponse, error)
+
 	// MarketplaceOfferingTemplatesVersionsListWithResponse List the template's versions
 	//
 	// Every version of the template's document, oldest first.
@@ -491829,6 +492118,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/sync_resources/ (the `MarketplaceProviderOfferingsSyncResources` operationId).
 	MarketplaceProviderOfferingsSyncResourcesWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsSyncResourcesResponse, error)
+
+	// MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse Compare the offering with its offering template
+	//
+	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
+	MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTemplateDiffRetrieveResponse, error)
 
 	// MarketplaceProviderOfferingsTosStatsRetrieveWithResponse Get Terms of Service consent statistics
 	//
@@ -551009,6 +551307,54 @@ func (r MarketplaceOfferingTemplatesUpdateResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceOfferingTemplatesCreateOfferingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingTemplateCreateOfferingResponse
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *OfferingTemplateCreateOfferingResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) GetJSON200() *OfferingTemplateCreateOfferingResponse {
+	return r.JSON200
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) GetJSON201() *OfferingTemplateCreateOfferingResponse {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingTemplatesCreateOfferingResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceOfferingTemplatesVersionsListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceOfferingTemplatesVersionsList
 type MarketplaceOfferingTemplatesVersionsListResponse200Headers struct {
 	XResultCount *int
@@ -560291,6 +560637,47 @@ func (r MarketplaceProviderOfferingsSyncResourcesResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsSyncResourcesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderOfferingsTemplateDiffRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingTemplateDiff
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsTemplateDiffRetrieveResponse) GetJSON200() *OfferingTemplateDiff {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsTemplateDiffRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsTemplateDiffRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsTemplateDiffRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsTemplateDiffRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -659085,6 +659472,36 @@ func (c *ClientWithResponses) MarketplaceOfferingTemplatesUpdateWithResponse(ctx
 	return ParseMarketplaceOfferingTemplatesUpdateResponse(rsp)
 }
 
+// MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse Create an offering from the template
+//
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateOfferingResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesCreateOfferingWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesCreateOfferingResponse(rsp)
+}
+
+// MarketplaceOfferingTemplatesCreateOfferingWithResponse Create an offering from the template
+//
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-templates/{uuid}/create_offering/ (the `MarketplaceOfferingTemplatesCreateOffering` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingTemplatesCreateOfferingWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingTemplatesCreateOfferingJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingTemplatesCreateOfferingResponse, error) {
+	rsp, err := c.MarketplaceOfferingTemplatesCreateOffering(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingTemplatesCreateOfferingResponse(rsp)
+}
+
 // MarketplaceOfferingTemplatesVersionsListWithResponse List the template's versions
 //
 // Every version of the template's document, oldest first.
@@ -663521,6 +663938,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncResourcesWithRespo
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsSyncResourcesResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse Compare the offering with its offering template
+//
+// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsTemplateDiffRetrieveResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsTemplateDiffRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsTemplateDiffRetrieveResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsTosStatsRetrieveWithResponse Get Terms of Service consent statistics
@@ -724787,6 +725219,39 @@ func ParseMarketplaceOfferingTemplatesUpdateResponse(rsp *http.Response) (*Marke
 	return response, nil
 }
 
+// ParseMarketplaceOfferingTemplatesCreateOfferingResponse parses an HTTP response from a MarketplaceOfferingTemplatesCreateOfferingWithResponse call
+func ParseMarketplaceOfferingTemplatesCreateOfferingResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesCreateOfferingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingTemplatesCreateOfferingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTemplateCreateOfferingResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest OfferingTemplateCreateOfferingResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingTemplatesVersionsListResponse parses an HTTP response from a MarketplaceOfferingTemplatesVersionsListWithResponse call
 func ParseMarketplaceOfferingTemplatesVersionsListResponse(rsp *http.Response) (*MarketplaceOfferingTemplatesVersionsListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -730643,6 +731108,32 @@ func ParseMarketplaceProviderOfferingsSyncResourcesResponse(rsp *http.Response) 
 			return nil, err
 		}
 		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsTemplateDiffRetrieveResponse parses an HTTP response from a MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse call
+func ParseMarketplaceProviderOfferingsTemplateDiffRetrieveResponse(rsp *http.Response) (*MarketplaceProviderOfferingsTemplateDiffRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsTemplateDiffRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingTemplateDiff
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
