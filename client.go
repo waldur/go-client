@@ -13857,6 +13857,7 @@ const (
 	OfferingUserFieldEnumUserFullName                   OfferingUserFieldEnum = "user_full_name"
 	OfferingUserFieldEnumUserGender                     OfferingUserFieldEnum = "user_gender"
 	OfferingUserFieldEnumUserIdentitySource             OfferingUserFieldEnum = "user_identity_source"
+	OfferingUserFieldEnumUserIsActive                   OfferingUserFieldEnum = "user_is_active"
 	OfferingUserFieldEnumUserJobTitle                   OfferingUserFieldEnum = "user_job_title"
 	OfferingUserFieldEnumUserLastName                   OfferingUserFieldEnum = "user_last_name"
 	OfferingUserFieldEnumUserNationalities              OfferingUserFieldEnum = "user_nationalities"
@@ -13958,6 +13959,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumUserGender:
 		return true
 	case OfferingUserFieldEnumUserIdentitySource:
+		return true
+	case OfferingUserFieldEnumUserIsActive:
 		return true
 	case OfferingUserFieldEnumUserJobTitle:
 		return true
@@ -50733,8 +50736,11 @@ type OfferingUser struct {
 
 	// UserIdentitySource Indicates what identity provider was used.
 	UserIdentitySource *string `json:"user_identity_source,omitempty"`
-	UserJobTitle       *string `json:"user_job_title,omitempty"`
-	UserLastName       *string `json:"user_last_name,omitempty"`
+
+	// UserIsActive Whether the Waldur account is active. Deactivating the account does not change this offering user's state.
+	UserIsActive *bool   `json:"user_is_active,omitempty"`
+	UserJobTitle *string `json:"user_job_title,omitempty"`
+	UserLastName *string `json:"user_last_name,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	UserNationalities *[]string `json:"user_nationalities,omitempty"`
@@ -62313,6 +62319,7 @@ type ProviderUserRoleDetails struct {
 	// UserEdupersonAssurance REFEDS assurance profile URIs from identity provider
 	UserEdupersonAssurance *[]string            `json:"user_eduperson_assurance,omitempty"`
 	UserEmail              *openapi_types.Email `json:"user_email,omitempty"`
+	UserFirstName          *string              `json:"user_first_name,omitempty"`
 	UserFullName           *string              `json:"user_full_name,omitempty"`
 
 	// UserGender User's gender (male, female, or unknown)
@@ -62323,6 +62330,7 @@ type ProviderUserRoleDetails struct {
 	UserImage            *string `json:"user_image,omitempty"`
 	UserIsServiceAccount *bool   `json:"user_is_service_account,omitempty"`
 	UserJobTitle         *string `json:"user_job_title,omitempty"`
+	UserLastName         *string `json:"user_last_name,omitempty"`
 
 	// UserNationalities List of all citizenships (ISO 3166-1 alpha-2 codes)
 	UserNationalities *[]string `json:"user_nationalities,omitempty"`
