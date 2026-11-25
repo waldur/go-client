@@ -5596,6 +5596,24 @@ func (e DeploymentModeEnum) Valid() bool {
 	}
 }
 
+// Defines values for DestinationTypeEnum.
+const (
+	DestinationTypeEnumCidr   DestinationTypeEnum = "cidr"
+	DestinationTypeEnumDomain DestinationTypeEnum = "domain"
+)
+
+// Valid indicates whether the value is a known member of the DestinationTypeEnum enum.
+func (e DestinationTypeEnum) Valid() bool {
+	switch e {
+	case DestinationTypeEnumCidr:
+		return true
+	case DestinationTypeEnumDomain:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for DetectionMethodEnum.
 const (
 	Automated         DetectionMethodEnum = "automated"
@@ -11047,6 +11065,27 @@ func (e IssueTypeEnum) Valid() bool {
 	}
 }
 
+// Defines values for K8sEgressRuleProtocolEnum.
+const (
+	K8sEgressRuleProtocolEnumICMP K8sEgressRuleProtocolEnum = "ICMP"
+	K8sEgressRuleProtocolEnumTCP  K8sEgressRuleProtocolEnum = "TCP"
+	K8sEgressRuleProtocolEnumUDP  K8sEgressRuleProtocolEnum = "UDP"
+)
+
+// Valid indicates whether the value is a known member of the K8sEgressRuleProtocolEnum enum.
+func (e K8sEgressRuleProtocolEnum) Valid() bool {
+	switch e {
+	case K8sEgressRuleProtocolEnumICMP:
+		return true
+	case K8sEgressRuleProtocolEnumTCP:
+		return true
+	case K8sEgressRuleProtocolEnumUDP:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for KeycloakUserGroupMembershipState.
 const (
 	KeycloakUserGroupMembershipStateActive  KeycloakUserGroupMembershipState = "active"
@@ -11379,16 +11418,16 @@ func (e LoadBalancerModeEnum) Valid() bool {
 
 // Defines values for LoadBalancerProtocolEnum.
 const (
-	TCP LoadBalancerProtocolEnum = "TCP"
-	UDP LoadBalancerProtocolEnum = "UDP"
+	LoadBalancerProtocolEnumTCP LoadBalancerProtocolEnum = "TCP"
+	LoadBalancerProtocolEnumUDP LoadBalancerProtocolEnum = "UDP"
 )
 
 // Valid indicates whether the value is a known member of the LoadBalancerProtocolEnum enum.
 func (e LoadBalancerProtocolEnum) Valid() bool {
 	switch e {
-	case TCP:
+	case LoadBalancerProtocolEnumTCP:
 		return true
-	case UDP:
+	case LoadBalancerProtocolEnumUDP:
 		return true
 	default:
 		return false
@@ -17126,6 +17165,7 @@ const (
 	OptionFieldTypeEnumDate                             OptionFieldTypeEnum = "date"
 	OptionFieldTypeEnumHtmlText                         OptionFieldTypeEnum = "html_text"
 	OptionFieldTypeEnumInteger                          OptionFieldTypeEnum = "integer"
+	OptionFieldTypeEnumK8sEgressRules                   OptionFieldTypeEnum = "k8s_egress_rules"
 	OptionFieldTypeEnumMoney                            OptionFieldTypeEnum = "money"
 	OptionFieldTypeEnumMultiDatacenterK8sConfig         OptionFieldTypeEnum = "multi_datacenter_k8s_config"
 	OptionFieldTypeEnumSelectMultipleOpenstackInstances OptionFieldTypeEnum = "select_multiple_openstack_instances"
@@ -17159,6 +17199,8 @@ func (e OptionFieldTypeEnum) Valid() bool {
 	case OptionFieldTypeEnumHtmlText:
 		return true
 	case OptionFieldTypeEnumInteger:
+		return true
+	case OptionFieldTypeEnumK8sEgressRules:
 		return true
 	case OptionFieldTypeEnumMoney:
 		return true
@@ -40017,6 +40059,9 @@ type DeprecatedNetworkRBACPolicyRequest struct {
 	TargetTenant string          `json:"target_tenant"`
 }
 
+// DestinationTypeEnum defines model for DestinationTypeEnum.
+type DestinationTypeEnum string
+
 // Detail defines model for Detail.
 type Detail struct {
 	Detail string `json:"detail"`
@@ -44399,6 +44444,15 @@ type K8sDefaultConfiguration struct {
 	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
 	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
 
+	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
+	EgressBaselineRules *[]K8sEgressRule `json:"egress_baseline_rules,omitempty"`
+
+	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
+	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
+
+	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
+	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
+
 	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
 	LoadBalancerMode   *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
 	MinimalWorkerRamGb *int                  `json:"minimal_worker_ram_gb,omitempty"`
@@ -44424,6 +44478,15 @@ type K8sDefaultConfigurationRequest struct {
 	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
 	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
 
+	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
+	EgressBaselineRules *[]K8sEgressRuleRequest `json:"egress_baseline_rules,omitempty"`
+
+	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
+	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
+
+	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
+	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
+
 	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
 	LoadBalancerMode   *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
 	MinimalWorkerRamGb *int                  `json:"minimal_worker_ram_gb,omitempty"`
@@ -44431,6 +44494,63 @@ type K8sDefaultConfigurationRequest struct {
 
 	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
 	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
+}
+
+// K8sEgressRule defines model for K8sEgressRule.
+type K8sEgressRule struct {
+	Description *string `json:"description,omitempty"`
+
+	// Destination An IPv4 or IPv6 network for a cidr rule; a domain name, optionally led by a *. wildcard, for a domain rule.
+	Destination     string              `json:"destination"`
+	DestinationType DestinationTypeEnum `json:"destination_type"`
+	Name            string              `json:"name"`
+
+	// PortRangeMax Empty for a single port, port_range_min.
+	PortRangeMax *int `json:"port_range_max,omitempty"`
+
+	// PortRangeMin Empty for any port.
+	PortRangeMin *int `json:"port_range_min,omitempty"`
+
+	// Protocol Empty for any protocol.
+	Protocol *K8sEgressRule_Protocol `json:"protocol,omitempty"`
+
+	// Uuid A client-side row id, kept as given. Ignored by the server.
+	Uuid *string `json:"uuid,omitempty"`
+}
+
+// K8sEgressRule_Protocol Empty for any protocol.
+type K8sEgressRule_Protocol struct {
+	union json.RawMessage
+}
+
+// K8sEgressRuleProtocolEnum defines model for K8sEgressRuleProtocolEnum.
+type K8sEgressRuleProtocolEnum string
+
+// K8sEgressRuleRequest defines model for K8sEgressRuleRequest.
+type K8sEgressRuleRequest struct {
+	Description *string `json:"description,omitempty"`
+
+	// Destination An IPv4 or IPv6 network for a cidr rule; a domain name, optionally led by a *. wildcard, for a domain rule.
+	Destination     string              `json:"destination"`
+	DestinationType DestinationTypeEnum `json:"destination_type"`
+	Name            string              `json:"name"`
+
+	// PortRangeMax Empty for a single port, port_range_min.
+	PortRangeMax *int `json:"port_range_max,omitempty"`
+
+	// PortRangeMin Empty for any port.
+	PortRangeMin *int `json:"port_range_min,omitempty"`
+
+	// Protocol Empty for any protocol.
+	Protocol *K8sEgressRuleRequest_Protocol `json:"protocol,omitempty"`
+
+	// Uuid A client-side row id, kept as given. Ignored by the server.
+	Uuid *string `json:"uuid,omitempty"`
+}
+
+// K8sEgressRuleRequest_Protocol Empty for any protocol.
+type K8sEgressRuleRequest_Protocol struct {
+	union json.RawMessage
 }
 
 // KeycloakGroup defines model for KeycloakGroup.
@@ -53343,9 +53463,12 @@ type OptionField struct {
 	// DisplayLimitConfig Show this option's value as the limit of a usage-based component. Only for integer resource options; the value is not billed or enforced.
 	DisplayLimitConfig *DisplayLimitConfig `json:"display_limit_config,omitempty"`
 	HelpText           *string             `json:"help_text,omitempty"`
-	Label              string              `json:"label"`
-	Max                *int                `json:"max,omitempty"`
-	Min                *int                `json:"min,omitempty"`
+
+	// K8sConfigOption For a k8s_egress_rules resource option: the Kubernetes cluster order option it pairs with. Set by the server.
+	K8sConfigOption *string `json:"k8s_config_option,omitempty"`
+	Label           string  `json:"label"`
+	Max             *int    `json:"max,omitempty"`
+	Min             *int    `json:"min,omitempty"`
 
 	// Pattern Regular expression the whole value must match. Only for string and text options. Use syntax common to Python and JavaScript, so the order form can check it too; \w, \d, \s and \b match ASCII characters only. Blank means no pattern.
 	Pattern *string `json:"pattern,omitempty"`
@@ -57498,7 +57621,7 @@ type PatchedUserRequest struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -57580,7 +57703,7 @@ type PatchedUserRequestForm struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -57662,7 +57785,7 @@ type PatchedUserRequestMultipart struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -70791,7 +70914,7 @@ type User struct {
 	AttributeSources *map[string]interface{} `json:"attribute_sources,omitempty"`
 	BirthDate        *openapi_types.Date     `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
 	CivilNumber                *string    `json:"civil_number,omitempty"`
 	CountryOfResidence         *string    `json:"country_of_residence,omitempty"`
@@ -71224,7 +71347,7 @@ type UserMe struct {
 	AttributeSources *map[string]interface{} `json:"attribute_sources,omitempty"`
 	BirthDate        *openapi_types.Date     `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool      `json:"can_use_personal_access_tokens,omitempty"`
 	CivilNumber                *string    `json:"civil_number,omitempty"`
 	CountryOfResidence         *string    `json:"country_of_residence,omitempty"`
@@ -71438,7 +71561,7 @@ type UserRequest struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -71521,7 +71644,7 @@ type UserRequestForm struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -71604,7 +71727,7 @@ type UserRequestMultipart struct {
 	AgreeWithPolicy *bool               `json:"agree_with_policy,omitempty"`
 	BirthDate       *openapi_types.Date `json:"birth_date,omitempty"`
 
-	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens.
+	// CanUsePersonalAccessTokens Designates whether the user is allowed to create and use personal access tokens while they are not enabled for every user (PAT_ENABLED).
 	CanUsePersonalAccessTokens *bool   `json:"can_use_personal_access_tokens,omitempty"`
 	CountryOfResidence         *string `json:"country_of_residence,omitempty"`
 
@@ -114887,6 +115010,182 @@ func (t IdentityBridgeRequestRequest_Gender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *IdentityBridgeRequestRequest_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsK8sEgressRuleProtocolEnum returns the union data inside the K8sEgressRule_Protocol as a K8sEgressRuleProtocolEnum
+func (t K8sEgressRule_Protocol) AsK8sEgressRuleProtocolEnum() (K8sEgressRuleProtocolEnum, error) {
+	var body K8sEgressRuleProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromK8sEgressRuleProtocolEnum overwrites any union data inside the K8sEgressRule_Protocol as the provided K8sEgressRuleProtocolEnum
+func (t *K8sEgressRule_Protocol) FromK8sEgressRuleProtocolEnum(v K8sEgressRuleProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeK8sEgressRuleProtocolEnum performs a merge with any union data inside the K8sEgressRule_Protocol, using the provided K8sEgressRuleProtocolEnum
+func (t *K8sEgressRule_Protocol) MergeK8sEgressRuleProtocolEnum(v K8sEgressRuleProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the K8sEgressRule_Protocol as a BlankEnum
+func (t K8sEgressRule_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the K8sEgressRule_Protocol as the provided BlankEnum
+func (t *K8sEgressRule_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the K8sEgressRule_Protocol, using the provided BlankEnum
+func (t *K8sEgressRule_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the K8sEgressRule_Protocol as a NullEnum
+func (t K8sEgressRule_Protocol) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the K8sEgressRule_Protocol as the provided NullEnum
+func (t *K8sEgressRule_Protocol) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the K8sEgressRule_Protocol, using the provided NullEnum
+func (t *K8sEgressRule_Protocol) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t K8sEgressRule_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *K8sEgressRule_Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsK8sEgressRuleProtocolEnum returns the union data inside the K8sEgressRuleRequest_Protocol as a K8sEgressRuleProtocolEnum
+func (t K8sEgressRuleRequest_Protocol) AsK8sEgressRuleProtocolEnum() (K8sEgressRuleProtocolEnum, error) {
+	var body K8sEgressRuleProtocolEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromK8sEgressRuleProtocolEnum overwrites any union data inside the K8sEgressRuleRequest_Protocol as the provided K8sEgressRuleProtocolEnum
+func (t *K8sEgressRuleRequest_Protocol) FromK8sEgressRuleProtocolEnum(v K8sEgressRuleProtocolEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeK8sEgressRuleProtocolEnum performs a merge with any union data inside the K8sEgressRuleRequest_Protocol, using the provided K8sEgressRuleProtocolEnum
+func (t *K8sEgressRuleRequest_Protocol) MergeK8sEgressRuleProtocolEnum(v K8sEgressRuleProtocolEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsBlankEnum returns the union data inside the K8sEgressRuleRequest_Protocol as a BlankEnum
+func (t K8sEgressRuleRequest_Protocol) AsBlankEnum() (BlankEnum, error) {
+	var body BlankEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromBlankEnum overwrites any union data inside the K8sEgressRuleRequest_Protocol as the provided BlankEnum
+func (t *K8sEgressRuleRequest_Protocol) FromBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeBlankEnum performs a merge with any union data inside the K8sEgressRuleRequest_Protocol, using the provided BlankEnum
+func (t *K8sEgressRuleRequest_Protocol) MergeBlankEnum(v BlankEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the K8sEgressRuleRequest_Protocol as a NullEnum
+func (t K8sEgressRuleRequest_Protocol) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the K8sEgressRuleRequest_Protocol as the provided NullEnum
+func (t *K8sEgressRuleRequest_Protocol) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the K8sEgressRuleRequest_Protocol, using the provided NullEnum
+func (t *K8sEgressRuleRequest_Protocol) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t K8sEgressRuleRequest_Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *K8sEgressRuleRequest_Protocol) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
