@@ -6448,6 +6448,9 @@ const (
 	EventMetadataResponseEventGroupsEventConsumerRegisteredWithBroadCredential       EventMetadataResponseEventGroups = "event_consumer_registered_with_broad_credential"
 	EventMetadataResponseEventGroupsEventConsumerResyncRequested                     EventMetadataResponseEventGroups = "event_consumer_resync_requested"
 	EventMetadataResponseEventGroupsEventConsumerWebhookUpdated                      EventMetadataResponseEventGroups = "event_consumer_webhook_updated"
+	EventMetadataResponseEventGroupsFeatureRuleCreated                               EventMetadataResponseEventGroups = "feature_rule_created"
+	EventMetadataResponseEventGroupsFeatureRuleDeleted                               EventMetadataResponseEventGroups = "feature_rule_deleted"
+	EventMetadataResponseEventGroupsFeatureRuleUpdated                               EventMetadataResponseEventGroups = "feature_rule_updated"
 	EventMetadataResponseEventGroupsFeedbackSurveyAnswered                           EventMetadataResponseEventGroups = "feedback_survey_answered"
 	EventMetadataResponseEventGroupsFreeipaProfileCreated                            EventMetadataResponseEventGroups = "freeipa_profile_created"
 	EventMetadataResponseEventGroupsFreeipaProfileDeleted                            EventMetadataResponseEventGroups = "freeipa_profile_deleted"
@@ -6550,6 +6553,7 @@ const (
 	EventMetadataResponseEventGroupsMatrixRecoveryKeyEscrowed                        EventMetadataResponseEventGroups = "matrix_recovery_key_escrowed"
 	EventMetadataResponseEventGroupsMatrixRecoveryKeyViewed                          EventMetadataResponseEventGroups = "matrix_recovery_key_viewed"
 	EventMetadataResponseEventGroupsMcpToolCalled                                    EventMetadataResponseEventGroups = "mcp_tool_called"
+	EventMetadataResponseEventGroupsMicroAppSettingUpdated                           EventMetadataResponseEventGroups = "micro_app_setting_updated"
 	EventMetadataResponseEventGroupsNotifyExternalUser                               EventMetadataResponseEventGroups = "notify_external_user"
 	EventMetadataResponseEventGroupsNotifyOrganizationOwners                         EventMetadataResponseEventGroups = "notify_organization_owners"
 	EventMetadataResponseEventGroupsNotifyProjectTeam                                EventMetadataResponseEventGroups = "notify_project_team"
@@ -6975,6 +6979,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsEventConsumerWebhookUpdated:
 		return true
+	case EventMetadataResponseEventGroupsFeatureRuleCreated:
+		return true
+	case EventMetadataResponseEventGroupsFeatureRuleDeleted:
+		return true
+	case EventMetadataResponseEventGroupsFeatureRuleUpdated:
+		return true
 	case EventMetadataResponseEventGroupsFeedbackSurveyAnswered:
 		return true
 	case EventMetadataResponseEventGroupsFreeipaProfileCreated:
@@ -7178,6 +7188,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMatrixRecoveryKeyViewed:
 		return true
 	case EventMetadataResponseEventGroupsMcpToolCalled:
+		return true
+	case EventMetadataResponseEventGroupsMicroAppSettingUpdated:
 		return true
 	case EventMetadataResponseEventGroupsNotifyExternalUser:
 		return true
@@ -7879,6 +7891,9 @@ const (
 	EventTypesEnumEventConsumerRegisteredWithBroadCredential       EventTypesEnum = "event_consumer_registered_with_broad_credential"
 	EventTypesEnumEventConsumerResyncRequested                     EventTypesEnum = "event_consumer_resync_requested"
 	EventTypesEnumEventConsumerWebhookUpdated                      EventTypesEnum = "event_consumer_webhook_updated"
+	EventTypesEnumFeatureRuleCreated                               EventTypesEnum = "feature_rule_created"
+	EventTypesEnumFeatureRuleDeleted                               EventTypesEnum = "feature_rule_deleted"
+	EventTypesEnumFeatureRuleUpdated                               EventTypesEnum = "feature_rule_updated"
 	EventTypesEnumFeedbackSurveyAnswered                           EventTypesEnum = "feedback_survey_answered"
 	EventTypesEnumFreeipaProfileCreated                            EventTypesEnum = "freeipa_profile_created"
 	EventTypesEnumFreeipaProfileDeleted                            EventTypesEnum = "freeipa_profile_deleted"
@@ -7981,6 +7996,7 @@ const (
 	EventTypesEnumMatrixRecoveryKeyEscrowed                        EventTypesEnum = "matrix_recovery_key_escrowed"
 	EventTypesEnumMatrixRecoveryKeyViewed                          EventTypesEnum = "matrix_recovery_key_viewed"
 	EventTypesEnumMcpToolCalled                                    EventTypesEnum = "mcp_tool_called"
+	EventTypesEnumMicroAppSettingUpdated                           EventTypesEnum = "micro_app_setting_updated"
 	EventTypesEnumNotifyExternalUser                               EventTypesEnum = "notify_external_user"
 	EventTypesEnumNotifyOrganizationOwners                         EventTypesEnum = "notify_organization_owners"
 	EventTypesEnumNotifyProjectTeam                                EventTypesEnum = "notify_project_team"
@@ -8406,6 +8422,12 @@ func (e EventTypesEnum) Valid() bool {
 		return true
 	case EventTypesEnumEventConsumerWebhookUpdated:
 		return true
+	case EventTypesEnumFeatureRuleCreated:
+		return true
+	case EventTypesEnumFeatureRuleDeleted:
+		return true
+	case EventTypesEnumFeatureRuleUpdated:
+		return true
 	case EventTypesEnumFeedbackSurveyAnswered:
 		return true
 	case EventTypesEnumFreeipaProfileCreated:
@@ -8609,6 +8631,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMatrixRecoveryKeyViewed:
 		return true
 	case EventTypesEnumMcpToolCalled:
+		return true
+	case EventTypesEnumMicroAppSettingUpdated:
 		return true
 	case EventTypesEnumNotifyExternalUser:
 		return true
@@ -9424,6 +9448,24 @@ func (e FONTFAMILYEnum) Valid() bool {
 	case Inter:
 		return true
 	case MavenPro:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FeatureScopeEnum.
+const (
+	FeatureScopeEnumDeployment FeatureScopeEnum = "deployment"
+	FeatureScopeEnumUser       FeatureScopeEnum = "user"
+)
+
+// Valid indicates whether the value is a known member of the FeatureScopeEnum enum.
+func (e FeatureScopeEnum) Valid() bool {
+	switch e {
+	case FeatureScopeEnumDeployment:
+		return true
+	case FeatureScopeEnumUser:
 		return true
 	default:
 		return false
@@ -12451,6 +12493,27 @@ func (e MetricSeriesResponseGranularityEnum) Valid() bool {
 	}
 }
 
+// Defines values for MicroAppModeEnum.
+const (
+	MicroAppModeEnumAll      MicroAppModeEnum = "all"
+	MicroAppModeEnumAudience MicroAppModeEnum = "audience"
+	MicroAppModeEnumOff      MicroAppModeEnum = "off"
+)
+
+// Valid indicates whether the value is a known member of the MicroAppModeEnum enum.
+func (e MicroAppModeEnum) Valid() bool {
+	switch e {
+	case MicroAppModeEnumAll:
+		return true
+	case MicroAppModeEnumAudience:
+		return true
+	case MicroAppModeEnumOff:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for MinimalConsumptionLogicEnum.
 const (
 	MinimalConsumptionLogicEnumFixed  MinimalConsumptionLogicEnum = "fixed"
@@ -12910,6 +12973,24 @@ func (e OecdFos2007CodeEnum) Valid() bool {
 	case OecdFos2007CodeEnumN64:
 		return true
 	case OecdFos2007CodeEnumN65:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OfferingConfigurationFindingSeverityEnum.
+const (
+	OfferingConfigurationFindingSeverityEnumError   OfferingConfigurationFindingSeverityEnum = "error"
+	OfferingConfigurationFindingSeverityEnumWarning OfferingConfigurationFindingSeverityEnum = "warning"
+)
+
+// Valid indicates whether the value is a known member of the OfferingConfigurationFindingSeverityEnum enum.
+func (e OfferingConfigurationFindingSeverityEnum) Valid() bool {
+	switch e {
+	case OfferingConfigurationFindingSeverityEnumError:
+		return true
+	case OfferingConfigurationFindingSeverityEnumWarning:
 		return true
 	default:
 		return false
@@ -24277,6 +24358,39 @@ func (e RoundStatusEnum) Valid() bool {
 	}
 }
 
+// Defines values for RuleEnum.
+const (
+	DwdiNodeComponent         RuleEnum = "dwdi_node_component"
+	DwdiUnitFactorReporting   RuleEnum = "dwdi_unit_factor_reporting"
+	PlanComponentPrice        RuleEnum = "plan_component_price"
+	RequiredBackendSetting    RuleEnum = "required_backend_setting"
+	SlurmClusterName          RuleEnum = "slurm_cluster_name"
+	SlurmComponentBillingType RuleEnum = "slurm_component_billing_type"
+	SlurmComponentTres        RuleEnum = "slurm_component_tres"
+)
+
+// Valid indicates whether the value is a known member of the RuleEnum enum.
+func (e RuleEnum) Valid() bool {
+	switch e {
+	case DwdiNodeComponent:
+		return true
+	case DwdiUnitFactorReporting:
+		return true
+	case PlanComponentPrice:
+		return true
+	case RequiredBackendSetting:
+		return true
+	case SlurmClusterName:
+		return true
+	case SlurmComponentBillingType:
+		return true
+	case SlurmComponentTres:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for RuntimeStateEnum.
 const (
 	RuntimeStateEnumActive                      RuntimeStateEnum = "Active"
@@ -24316,6 +24430,24 @@ func (e S3BrowserFlavorEnum) Valid() bool {
 	case S3BrowserFlavorEnumGeneric:
 		return true
 	case S3BrowserFlavorEnumMinio:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for S3QuotasScopeEnum.
+const (
+	S3QuotasScopeEnumAccount S3QuotasScopeEnum = "account"
+	S3QuotasScopeEnumUser    S3QuotasScopeEnum = "user"
+)
+
+// Valid indicates whether the value is a known member of the S3QuotasScopeEnum enum.
+func (e S3QuotasScopeEnum) Valid() bool {
+	switch e {
+	case S3QuotasScopeEnumAccount:
+		return true
+	case S3QuotasScopeEnumUser:
 		return true
 	default:
 		return false
@@ -24520,24 +24652,6 @@ func (e ScienceSubDomainOEnum) Valid() bool {
 	case ScienceSubDomainOEnumName:
 		return true
 	case ScienceSubDomainOEnumProjectsCount:
-		return true
-	default:
-		return false
-	}
-}
-
-// Defines values for ScopeEnum.
-const (
-	ScopeEnumAccount ScopeEnum = "account"
-	ScopeEnumUser    ScopeEnum = "user"
-)
-
-// Valid indicates whether the value is a known member of the ScopeEnum enum.
-func (e ScopeEnum) Valid() bool {
-	switch e {
-	case ScopeEnumAccount:
-		return true
-	case ScopeEnumUser:
 		return true
 	default:
 		return false
@@ -26395,6 +26509,27 @@ func (e UserChecklistCompletionOEnum) Valid() bool {
 	}
 }
 
+// Defines values for UserFeatureStateSourceEnum.
+const (
+	UserFeatureStateSourceEnumGlobal UserFeatureStateSourceEnum = "global"
+	UserFeatureStateSourceEnumOff    UserFeatureStateSourceEnum = "off"
+	UserFeatureStateSourceEnumRule   UserFeatureStateSourceEnum = "rule"
+)
+
+// Valid indicates whether the value is a known member of the UserFeatureStateSourceEnum enum.
+func (e UserFeatureStateSourceEnum) Valid() bool {
+	switch e {
+	case UserFeatureStateSourceEnumGlobal:
+		return true
+	case UserFeatureStateSourceEnumOff:
+		return true
+	case UserFeatureStateSourceEnumRule:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for UserFieldEnum.
 const (
 	UserFieldEnumActiveIsds                    UserFieldEnum = "active_isds"
@@ -26623,6 +26758,7 @@ const (
 	UserMeFieldEnumDetails                       UserMeFieldEnum = "details"
 	UserMeFieldEnumEdupersonAssurance            UserMeFieldEnum = "eduperson_assurance"
 	UserMeFieldEnumEmail                         UserMeFieldEnum = "email"
+	UserMeFieldEnumFeatures                      UserMeFieldEnum = "features"
 	UserMeFieldEnumFirstName                     UserMeFieldEnum = "first_name"
 	UserMeFieldEnumFullName                      UserMeFieldEnum = "full_name"
 	UserMeFieldEnumGender                        UserMeFieldEnum = "gender"
@@ -26645,6 +26781,7 @@ const (
 	UserMeFieldEnumJobTitle                      UserMeFieldEnum = "job_title"
 	UserMeFieldEnumLastName                      UserMeFieldEnum = "last_name"
 	UserMeFieldEnumManagedIsds                   UserMeFieldEnum = "managed_isds"
+	UserMeFieldEnumMicroApps                     UserMeFieldEnum = "micro_apps"
 	UserMeFieldEnumNationalities                 UserMeFieldEnum = "nationalities"
 	UserMeFieldEnumNationality                   UserMeFieldEnum = "nationality"
 	UserMeFieldEnumNativeName                    UserMeFieldEnum = "native_name"
@@ -26711,6 +26848,8 @@ func (e UserMeFieldEnum) Valid() bool {
 		return true
 	case UserMeFieldEnumEmail:
 		return true
+	case UserMeFieldEnumFeatures:
+		return true
 	case UserMeFieldEnumFirstName:
 		return true
 	case UserMeFieldEnumFullName:
@@ -26754,6 +26893,8 @@ func (e UserMeFieldEnum) Valid() bool {
 	case UserMeFieldEnumLastName:
 		return true
 	case UserMeFieldEnumManagedIsds:
+		return true
+	case UserMeFieldEnumMicroApps:
 		return true
 	case UserMeFieldEnumNationalities:
 		return true
@@ -41921,6 +42062,9 @@ type FacetValue struct {
 type FeatureItem struct {
 	Description string `json:"description"`
 	Key         string `json:"key"`
+
+	// Scope 'deployment': one value for the whole portal. 'user': may also be turned on for selected users by feature rules.
+	Scope FeatureScopeEnum `json:"scope"`
 }
 
 // FeatureMetadataResponse defines model for FeatureMetadataResponse.
@@ -41929,6 +42073,132 @@ type FeatureMetadataResponse struct {
 	FeatureEnums map[string]map[string]string `json:"feature_enums"`
 	Features     []FeatureSection             `json:"features"`
 }
+
+// FeatureRule defines model for FeatureRule.
+type FeatureRule struct {
+	Created           *time.Time          `json:"created,omitempty"`
+	CreatedBy         *openapi_types.UUID `json:"created_by,omitempty"`
+	CreatedByUsername *string             `json:"created_by_username,omitempty"`
+
+	// Customers UUIDs of organizations; a member of any of them matches.
+	Customers        *[]openapi_types.UUID     `json:"customers,omitempty"`
+	CustomersSummary *[]UnderscoreNamedSummary `json:"customers_summary,omitempty"`
+	Description      *string                   `json:"description,omitempty"`
+
+	// FeatureKey Dotted key of a user-scoped feature flag, or micro_apps.<name> for a micro-app.
+	FeatureKey string `json:"feature_key"`
+	IsActive   *bool  `json:"is_active,omitempty"`
+
+	// IsOrphaned True when the rule targets a feature that is no longer user-scoped, or a micro-app without a setting: it then has no effect.
+	IsOrphaned *bool      `json:"is_orphaned,omitempty"`
+	Modified   *time.Time `json:"modified,omitempty"`
+
+	// OrganizationGroups UUIDs of organization groups; a member of an organization in any of them matches.
+	OrganizationGroups        *[]openapi_types.UUID     `json:"organization_groups,omitempty"`
+	OrganizationGroupsSummary *[]UnderscoreNamedSummary `json:"organization_groups_summary,omitempty"`
+
+	// Roles Role names; the user must hold one of them in any scope.
+	Roles               *[]string `json:"roles,omitempty"`
+	Url                 *string   `json:"url,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserClaims Identity provider claims the user must carry, as {"claim": ["accepted", "values"]}. All claims must match; within one claim any value matches. A value ending in '*' matches by prefix.
+	UserClaims            *map[string][]string `json:"user_claims,omitempty"`
+	UserEmailPatterns     *[]string            `json:"user_email_patterns,omitempty"`
+	UserIdentitySources   *[]string            `json:"user_identity_sources,omitempty"`
+	UserNationalities     *[]string            `json:"user_nationalities,omitempty"`
+	UserOrganizationTypes *[]string            `json:"user_organization_types,omitempty"`
+
+	// Users UUIDs of the users the rule lists.
+	Users        *[]openapi_types.UUID    `json:"users,omitempty"`
+	UsersSummary *[]UnderscoreUserSummary `json:"users_summary,omitempty"`
+	Uuid         *openapi_types.UUID      `json:"uuid,omitempty"`
+}
+
+// FeatureRuleCheck defines model for FeatureRuleCheck.
+type FeatureRuleCheck struct {
+	Configured bool                    `json:"configured"`
+	Matched    bool                    `json:"matched"`
+	Name       string                  `json:"name"`
+	Reason     string                  `json:"reason"`
+	RuleValue  *map[string]interface{} `json:"rule_value,omitempty"`
+	UserValue  *map[string]interface{} `json:"user_value,omitempty"`
+}
+
+// FeatureRuleMatchedUser defines model for FeatureRuleMatchedUser.
+type FeatureRuleMatchedUser struct {
+	Email    string             `json:"email"`
+	FullName string             `json:"full_name"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
+}
+
+// FeatureRuleMatchedUsersResponse defines model for FeatureRuleMatchedUsersResponse.
+type FeatureRuleMatchedUsersResponse struct {
+	// Checked Active users checked.
+	Checked int `json:"checked"`
+
+	// Complete False when the check stopped at its limit, so count is a lower bound.
+	Complete bool `json:"complete"`
+
+	// Count Active users the rule matches, among those checked.
+	Count int `json:"count"`
+
+	// Users The first matched users.
+	Users []FeatureRuleMatchedUser `json:"users"`
+}
+
+// FeatureRuleRequest defines model for FeatureRuleRequest.
+type FeatureRuleRequest struct {
+	// Customers UUIDs of organizations; a member of any of them matches.
+	Customers   *[]openapi_types.UUID `json:"customers,omitempty"`
+	Description *string               `json:"description,omitempty"`
+
+	// FeatureKey Dotted key of a user-scoped feature flag, or micro_apps.<name> for a micro-app.
+	FeatureKey string `json:"feature_key"`
+	IsActive   *bool  `json:"is_active,omitempty"`
+
+	// OrganizationGroups UUIDs of organization groups; a member of an organization in any of them matches.
+	OrganizationGroups *[]openapi_types.UUID `json:"organization_groups,omitempty"`
+
+	// Roles Role names; the user must hold one of them in any scope.
+	Roles               *[]string `json:"roles,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserClaims Identity provider claims the user must carry, as {"claim": ["accepted", "values"]}. All claims must match; within one claim any value matches. A value ending in '*' matches by prefix.
+	UserClaims            *map[string][]string `json:"user_claims,omitempty"`
+	UserEmailPatterns     *[]string            `json:"user_email_patterns,omitempty"`
+	UserIdentitySources   *[]string            `json:"user_identity_sources,omitempty"`
+	UserNationalities     *[]string            `json:"user_nationalities,omitempty"`
+	UserOrganizationTypes *[]string            `json:"user_organization_types,omitempty"`
+
+	// Users UUIDs of the users the rule lists.
+	Users *[]openapi_types.UUID `json:"users,omitempty"`
+}
+
+// FeatureRuleTestMatchRequestRequest defines model for FeatureRuleTestMatchRequestRequest.
+type FeatureRuleTestMatchRequestRequest struct {
+	// UserUuid UUID of the user to evaluate this rule against.
+	UserUuid openapi_types.UUID `json:"user_uuid"`
+}
+
+// FeatureRuleTestMatchResponse defines model for FeatureRuleTestMatchResponse.
+type FeatureRuleTestMatchResponse struct {
+	// EnabledGlobally Whether the feature is already on for everyone, so the rule changes nothing.
+	EnabledGlobally bool               `json:"enabled_globally"`
+	Filters         []FeatureRuleCheck `json:"filters"`
+	IsActive        bool               `json:"is_active"`
+
+	// Matched Whether the rule matches the user, active or not.
+	Matched      bool               `json:"matched"`
+	UserUsername string             `json:"user_username"`
+	UserUuid     openapi_types.UUID `json:"user_uuid"`
+}
+
+// FeatureScopeEnum defines model for FeatureScopeEnum.
+type FeatureScopeEnum string
 
 // FeatureSection defines model for FeatureSection.
 type FeatureSection struct {
@@ -47147,6 +47417,33 @@ type MetricSeriesResponseAggregateEnum string
 // MetricSeriesResponseGranularityEnum defines model for MetricSeriesResponseGranularityEnum.
 type MetricSeriesResponseGranularityEnum string
 
+// MicroAppModeEnum defines model for MicroAppModeEnum.
+type MicroAppModeEnum string
+
+// MicroAppSetting defines model for MicroAppSetting.
+type MicroAppSetting struct {
+	Created *time.Time `json:"created,omitempty"`
+
+	// FeatureKey The feature_key of the rules that pick this app's audience.
+	FeatureKey *string           `json:"feature_key,omitempty"`
+	Mode       *MicroAppModeEnum `json:"mode,omitempty"`
+	Modified   *time.Time        `json:"modified,omitempty"`
+
+	// Name The app's directory under apps/ and its path under the portal.
+	Name       string              `json:"name"`
+	RulesCount *int                `json:"rules_count,omitempty"`
+	Url        *string             `json:"url,omitempty"`
+	Uuid       *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// MicroAppSettingRequest defines model for MicroAppSettingRequest.
+type MicroAppSettingRequest struct {
+	Mode *MicroAppModeEnum `json:"mode,omitempty"`
+
+	// Name The app's directory under apps/ and its path under the portal.
+	Name string `json:"name"`
+}
+
 // MigrationCreate defines model for MigrationCreate.
 type MigrationCreate struct {
 	Mappings    *Mapping           `json:"mappings,omitempty"`
@@ -48502,6 +48799,22 @@ type OfferingComponentStat struct {
 	Type          *string `json:"type,omitempty"`
 	Usage         *int    `json:"usage,omitempty"`
 }
+
+// OfferingConfigurationFinding defines model for OfferingConfigurationFinding.
+type OfferingConfigurationFinding struct {
+	// Field Dotted path into the offering document, list items by index, such as components.0.type or agent_configuration.backend_settings.cluster_name.
+	Field   string `json:"field"`
+	Message string `json:"message"`
+
+	// Rule The rule that found it.
+	Rule RuleEnum `json:"rule"`
+
+	// Severity error: the agent cannot work as configured, and creating an offering from a template is refused. warning: worth a look.
+	Severity OfferingConfigurationFindingSeverityEnum `json:"severity"`
+}
+
+// OfferingConfigurationFindingSeverityEnum defines model for OfferingConfigurationFindingSeverityEnum.
+type OfferingConfigurationFindingSeverityEnum string
 
 // OfferingCost defines model for OfferingCost.
 type OfferingCost struct {
@@ -50019,9 +50332,11 @@ type OfferingTeamStep struct {
 
 // OfferingTemplate defines model for OfferingTemplate.
 type OfferingTemplate struct {
-	Created     *time.Time          `json:"created,omitempty"`
-	CreatedBy   *openapi_types.UUID `json:"created_by,omitempty"`
-	Description *string             `json:"description,omitempty"`
+	// ConfigurationFindings What the site-agent consistency rules find in the document. Paths a parameter fills are skipped. Staff only.
+	ConfigurationFindings *[]OfferingConfigurationFinding `json:"configuration_findings,omitempty"`
+	Created               *time.Time                      `json:"created,omitempty"`
+	CreatedBy             *openapi_types.UUID             `json:"created_by,omitempty"`
+	Description           *string                         `json:"description,omitempty"`
 
 	// Document Offering document in the export_offering format, as a mapping or a YAML string, with agent_configuration and parameters. It may not hold secret_options, organization groups, screenshots, files, a customer, resources or people. Non-staff see only the offering's name, description and type, its components, plans and parameters.
 	Document    map[string]interface{} `json:"document"`
@@ -53818,13 +54133,7 @@ type OrderDetails struct {
 	OfferingType      *string             `json:"offering_type,omitempty"`
 	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
-	// OldCostEstimate The old-limits estimate, snapshotted by init_cost() at creation.
-	//
-	// Must not recompute live: _compute_old_cost_estimate() prices from
-	// "today", which keeps advancing on every read while `cost` stays fixed
-	// from creation -- the shown cost change would grow the longer an order
-	// sits unread. Orders that predate this field have no snapshot, so they
-	// fall back to the live computation rather than a wrong zero.
+	// OldCostEstimate Cost estimate for the old limits, snapshotted when the order was created.
 	OldCostEstimate           *float64            `json:"old_cost_estimate,omitempty"`
 	OldPlanBillingMode        *string             `json:"old_plan_billing_mode,omitempty"`
 	OldPlanName               *string             `json:"old_plan_name,omitempty"`
@@ -55388,6 +55697,35 @@ type PatchedExternalLinkRequestMultipart struct {
 	Name        *string             `json:"name,omitempty"`
 }
 
+// PatchedFeatureRuleRequest defines model for PatchedFeatureRuleRequest.
+type PatchedFeatureRuleRequest struct {
+	// Customers UUIDs of organizations; a member of any of them matches.
+	Customers   *[]openapi_types.UUID `json:"customers,omitempty"`
+	Description *string               `json:"description,omitempty"`
+
+	// FeatureKey Dotted key of a user-scoped feature flag, or micro_apps.<name> for a micro-app.
+	FeatureKey *string `json:"feature_key,omitempty"`
+	IsActive   *bool   `json:"is_active,omitempty"`
+
+	// OrganizationGroups UUIDs of organization groups; a member of an organization in any of them matches.
+	OrganizationGroups *[]openapi_types.UUID `json:"organization_groups,omitempty"`
+
+	// Roles Role names; the user must hold one of them in any scope.
+	Roles               *[]string `json:"roles,omitempty"`
+	UserAffiliations    *[]string `json:"user_affiliations,omitempty"`
+	UserAssuranceLevels *[]string `json:"user_assurance_levels,omitempty"`
+
+	// UserClaims Identity provider claims the user must carry, as {"claim": ["accepted", "values"]}. All claims must match; within one claim any value matches. A value ending in '*' matches by prefix.
+	UserClaims            *map[string][]string `json:"user_claims,omitempty"`
+	UserEmailPatterns     *[]string            `json:"user_email_patterns,omitempty"`
+	UserIdentitySources   *[]string            `json:"user_identity_sources,omitempty"`
+	UserNationalities     *[]string            `json:"user_nationalities,omitempty"`
+	UserOrganizationTypes *[]string            `json:"user_organization_types,omitempty"`
+
+	// Users UUIDs of the users the rule lists.
+	Users *[]openapi_types.UUID `json:"users,omitempty"`
+}
+
 // PatchedFeedbackSurveyDetailRequest defines model for PatchedFeedbackSurveyDetailRequest.
 type PatchedFeedbackSurveyDetailRequest struct {
 	AudienceQuery *BroadcastMessageQueryRequest `json:"audience_query,omitempty"`
@@ -55693,6 +56031,14 @@ type PatchedMetricGoalRequest struct {
 	// Project Empty sets the offering's default goal.
 	Project *openapi_types.UUID `json:"project,omitempty"`
 	Value   *string             `json:"value,omitempty"`
+}
+
+// PatchedMicroAppSettingRequest defines model for PatchedMicroAppSettingRequest.
+type PatchedMicroAppSettingRequest struct {
+	Mode *MicroAppModeEnum `json:"mode,omitempty"`
+
+	// Name The app's directory under apps/ and its path under the portal.
+	Name *string `json:"name,omitempty"`
 }
 
 // PatchedNotificationRequest defines model for PatchedNotificationRequest.
@@ -67187,6 +67533,9 @@ type Rule struct {
 	Uuid                  *openapi_types.UUID  `json:"uuid,omitempty"`
 }
 
+// RuleEnum defines model for RuleEnum.
+type RuleEnum string
+
 // RuleRequest defines model for RuleRequest.
 type RuleRequest struct {
 	// CreateProject Create (or join) a project for the matched user. Disable to grant only the organization-level role.
@@ -67524,11 +67873,14 @@ type S3Quotas struct {
 	PerBucket *S3QuotaLimit `json:"per_bucket"`
 
 	// Scope What the total limit applies to: the RGW account (account mode) or the S3 user.
-	Scope ScopeEnum `json:"scope"`
+	Scope S3QuotasScopeEnum `json:"scope"`
 
 	// Total Limit across all buckets; null when unlimited.
 	Total *S3QuotaLimit `json:"total"`
 }
+
+// S3QuotasScopeEnum defines model for S3QuotasScopeEnum.
+type S3QuotasScopeEnum string
 
 // S3Tag defines model for S3Tag.
 type S3Tag struct {
@@ -67780,9 +68132,6 @@ type ScimPullAttributesResponse struct {
 type ScimSyncAllResponse struct {
 	Detail string `json:"detail"`
 }
-
-// ScopeEnum defines model for ScopeEnum.
-type ScopeEnum string
 
 // ScopedOffering defines model for ScopedOffering.
 type ScopedOffering struct {
@@ -71266,6 +71615,28 @@ type UserEmailChangeRequest struct {
 	Email openapi_types.Email `json:"email"`
 }
 
+// UserFeatureState defines model for UserFeatureState.
+type UserFeatureState struct {
+	Enabled bool                 `json:"enabled"`
+	Key     string               `json:"key"`
+	Rules   []openapi_types.UUID `json:"rules"`
+	Scope   FeatureScopeEnum     `json:"scope"`
+
+	// Source 'global': on for everyone. 'rule': on for this user through the listed rules. 'off': off for this user.
+	Source UserFeatureStateSourceEnum `json:"source"`
+}
+
+// UserFeatureStateSourceEnum defines model for UserFeatureStateSourceEnum.
+type UserFeatureStateSourceEnum string
+
+// UserFeaturesResponse defines model for UserFeaturesResponse.
+type UserFeaturesResponse struct {
+	Features []UserFeatureState `json:"features"`
+
+	// MicroApps Apps with an operator setting; the rest follow user.show_micro_apps.
+	MicroApps []UserMicroAppState `json:"micro_apps"`
+}
+
 // UserFieldEnum defines model for UserFieldEnum.
 type UserFieldEnum string
 
@@ -71361,8 +71732,11 @@ type UserMe struct {
 	Details            *map[string]interface{} `json:"details,omitempty"`
 	EdupersonAssurance *[]string               `json:"eduperson_assurance,omitempty"`
 	Email              *openapi_types.Email    `json:"email,omitempty"`
-	FirstName          *string                 `json:"first_name,omitempty"`
-	FullName           *string                 `json:"full_name,omitempty"`
+
+	// Features Effective values of the user-scoped feature flags for this user: the global value, or on when a feature rule matches the user. Same section -> key -> bool shape as FEATURES in the configuration.
+	Features  *map[string]map[string]bool `json:"features,omitempty"`
+	FirstName *string                     `json:"first_name,omitempty"`
+	FullName  *string                     `json:"full_name,omitempty"`
 
 	// Gender User's gender (male, female, or unknown)
 	Gender                        *UserMe_Gender `json:"gender,omitempty"`
@@ -71395,11 +71769,14 @@ type UserMe struct {
 	IsStaff *bool `json:"is_staff,omitempty"`
 
 	// IsSupport Designates whether the user is a global support user.
-	IsSupport     *bool     `json:"is_support,omitempty"`
-	JobTitle      *string   `json:"job_title,omitempty"`
-	LastName      *string   `json:"last_name,omitempty"`
-	ManagedIsds   *[]string `json:"managed_isds,omitempty"`
-	Nationalities *[]string `json:"nationalities,omitempty"`
+	IsSupport   *bool     `json:"is_support,omitempty"`
+	JobTitle    *string   `json:"job_title,omitempty"`
+	LastName    *string   `json:"last_name,omitempty"`
+	ManagedIsds *[]string `json:"managed_isds,omitempty"`
+
+	// MicroApps Whether each micro-app with an operator setting is offered to this user. An app that is absent has no setting and follows the user.show_micro_apps feature.
+	MicroApps     *map[string]bool `json:"micro_apps,omitempty"`
+	Nationalities *[]string        `json:"nationalities,omitempty"`
 
 	// Nationality Primary citizenship (ISO 3166-1 alpha-2 code)
 	Nationality *string `json:"nationality,omitempty"`
@@ -71463,6 +71840,14 @@ type UserMe_Gender struct {
 
 // UserMeFieldEnum defines model for UserMeFieldEnum.
 type UserMeFieldEnum string
+
+// UserMicroAppState defines model for UserMicroAppState.
+type UserMicroAppState struct {
+	Enabled bool                 `json:"enabled"`
+	Mode    MicroAppModeEnum     `json:"mode"`
+	Name    string               `json:"name"`
+	Rules   []openapi_types.UUID `json:"rules"`
+}
 
 // UserNationalityStats defines model for UserNationalityStats.
 type UserNationalityStats struct {
@@ -73328,12 +73713,25 @@ type YAxisEnum string
 // ZAMMADARTICLETYPEEnum defines model for ZAMMADARTICLETYPEEnum.
 type ZAMMADARTICLETYPEEnum string
 
+// UnderscoreNamedSummary defines model for _NamedSummary.
+type UnderscoreNamedSummary struct {
+	Name string             `json:"name"`
+	Uuid openapi_types.UUID `json:"uuid"`
+}
+
 // UnderscoreOfferingProfileRole defines model for _OfferingProfileRole.
 type UnderscoreOfferingProfileRole struct {
 	ContentType *string `json:"content_type"`
 	Description string  `json:"description"`
 	Name        string  `json:"name"`
 	Uuid        string  `json:"uuid"`
+}
+
+// UnderscoreUserSummary defines model for _UserSummary.
+type UnderscoreUserSummary struct {
+	FullName string             `json:"full_name"`
+	Username string             `json:"username"`
+	Uuid     openapi_types.UUID `json:"uuid"`
 }
 
 // Page defines model for Page.
@@ -77686,6 +78084,36 @@ type ExternalLinksCountParams struct {
 
 	// Query Filter by name, link or description
 	Query *string `form:"query,omitempty" json:"query,omitempty"`
+}
+
+// FeatureRulesListParams defines parameters for FeatureRulesList.
+type FeatureRulesListParams struct {
+	FeatureKey *string `form:"feature_key,omitempty" json:"feature_key,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Orphaned Only rules without effect: their feature is no longer user-scoped, or their micro-app has no setting.
+	Orphaned *bool `form:"orphaned,omitempty" json:"orphaned,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// FeatureRulesCountParams defines parameters for FeatureRulesCount.
+type FeatureRulesCountParams struct {
+	FeatureKey *string `form:"feature_key,omitempty" json:"feature_key,omitempty"`
+	IsActive   *bool   `form:"is_active,omitempty" json:"is_active,omitempty"`
+
+	// Orphaned Only rules without effect: their feature is no longer user-scoped, or their micro-app has no setting.
+	Orphaned *bool `form:"orphaned,omitempty" json:"orphaned,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
 // FeatureValuesJSONBody defines parameters for FeatureValues.
@@ -91295,6 +91723,24 @@ type MatrixRoomsMembersListParams struct {
 	State     *MatrixRoomStateEnum `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// MicroAppSettingsListParams defines parameters for MicroAppSettingsList.
+type MicroAppSettingsListParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
+// MicroAppSettingsCountParams defines parameters for MicroAppSettingsCount.
+type MicroAppSettingsCountParams struct {
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+}
+
 // MyAssignmentBatchesListParams defines parameters for MyAssignmentBatchesList.
 type MyAssignmentBatchesListParams struct {
 	// Status Effective batch status. Defaults to sent.
@@ -104590,6 +105036,18 @@ type ExternalLinksUpdateFormdataRequestBody = ExternalLinkRequestForm
 // ExternalLinksUpdateMultipartRequestBody defines body for ExternalLinksUpdate for multipart/form-data ContentType.
 type ExternalLinksUpdateMultipartRequestBody = ExternalLinkRequestMultipart
 
+// FeatureRulesCreateJSONRequestBody defines body for FeatureRulesCreate for application/json ContentType.
+type FeatureRulesCreateJSONRequestBody = FeatureRuleRequest
+
+// FeatureRulesPartialUpdateJSONRequestBody defines body for FeatureRulesPartialUpdate for application/json ContentType.
+type FeatureRulesPartialUpdateJSONRequestBody = PatchedFeatureRuleRequest
+
+// FeatureRulesUpdateJSONRequestBody defines body for FeatureRulesUpdate for application/json ContentType.
+type FeatureRulesUpdateJSONRequestBody = FeatureRuleRequest
+
+// FeatureRulesTestMatchJSONRequestBody defines body for FeatureRulesTestMatch for application/json ContentType.
+type FeatureRulesTestMatchJSONRequestBody = FeatureRuleTestMatchRequestRequest
+
 // FeatureValuesJSONRequestBody defines body for FeatureValues for application/json ContentType.
 type FeatureValuesJSONRequestBody FeatureValuesJSONBody
 
@@ -105884,6 +106342,15 @@ type MatrixRoomsDisableJSONRequestBody = MatrixRoomDisableRequest
 
 // MatrixTicketDraftsCreateIssueJSONRequestBody defines body for MatrixTicketDraftsCreateIssue for application/json ContentType.
 type MatrixTicketDraftsCreateIssueJSONRequestBody = MatrixTicketDraftCreateIssueRequest
+
+// MicroAppSettingsCreateJSONRequestBody defines body for MicroAppSettingsCreate for application/json ContentType.
+type MicroAppSettingsCreateJSONRequestBody = MicroAppSettingRequest
+
+// MicroAppSettingsPartialUpdateJSONRequestBody defines body for MicroAppSettingsPartialUpdate for application/json ContentType.
+type MicroAppSettingsPartialUpdateJSONRequestBody = PatchedMicroAppSettingRequest
+
+// MicroAppSettingsUpdateJSONRequestBody defines body for MicroAppSettingsUpdate for application/json ContentType.
+type MicroAppSettingsUpdateJSONRequestBody = MicroAppSettingRequest
 
 // NotificationMessagesTemplatesCreateJSONRequestBody defines body for NotificationMessagesTemplatesCreate for application/json ContentType.
 type NotificationMessagesTemplatesCreateJSONRequestBody = NotificationTemplateDetailSerializersRequest
@@ -131915,6 +132382,87 @@ type ClientInterface interface {
 	// Corresponds with PUT /api/external-links/{uuid}/ (the `ExternalLinksUpdate` operationId).
 	ExternalLinksUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// FeatureRulesList performs a GET /api/feature-rules/ (the `FeatureRulesList` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesList(ctx context.Context, params *FeatureRulesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesCount performs a HEAD /api/feature-rules/ (the `FeatureRulesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	FeatureRulesCount(ctx context.Context, params *FeatureRulesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesCreateWithBody performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesCreate performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesCreate(ctx context.Context, body FeatureRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesDestroy performs a DELETE /api/feature-rules/{uuid}/ (the `FeatureRulesDestroy` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesRetrieve performs a GET /api/feature-rules/{uuid}/ (the `FeatureRulesRetrieve` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesPartialUpdateWithBody performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesPartialUpdate performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesUpdateWithBody performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesUpdate performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesMatchedUsersRetrieve Users a feature rule matches
+	//
+	// Counts the active users this rule matches and lists the first of them. Identity attributes are checked for a bounded number of candidates; 'complete' is false when the count is a lower bound.
+	//
+	// Corresponds with GET /api/feature-rules/{uuid}/matched-users/ (the `FeatureRulesMatchedUsersRetrieve` operationId).
+	FeatureRulesMatchedUsersRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesTestMatchWithBody Evaluate a feature rule against a user
+	//
+	// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+	FeatureRulesTestMatchWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// FeatureRulesTestMatch Evaluate a feature rule against a user
+	//
+	// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+	FeatureRulesTestMatch(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// FeatureValuesWithBody Update feature flags
 	//
 	// Allows administrators to enable or disable specific feature flags in the system. The request should be a dictionary where keys are feature sections and values are dictionaries of feature keys and their boolean state.
@@ -136772,6 +137320,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/archive/ (the `MarketplaceProviderOfferingsArchive` operationId).
 	MarketplaceProviderOfferingsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsCheckConfigurationList Check a site agent offering against the consistency rules
+	//
+	// Rules that span the site agent's plugins, applied per role from the offering's agent configuration: SLURM components are TRES names, DWDI compute reporting has a node component, a node component SLURM limits and DWDI reports sets unit_factor_reporting, the offering's backend ID equals SLURM's cluster_name, every backend's required settings are set, and every active plan prices every component. Errors first. Site agent offerings only.
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/check_configuration/ (the `MarketplaceProviderOfferingsCheckConfigurationList` operationId).
+	MarketplaceProviderOfferingsCheckConfigurationList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderOfferingsCheckUniqueBackendIdWithBody Check if backend_id is unique
 	//
@@ -142357,6 +142912,62 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/metadata/settings/ (the `MetadataSettingsRetrieve` operationId).
 	MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsList performs a GET /api/micro-app-settings/ (the `MicroAppSettingsList` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsList(ctx context.Context, params *MicroAppSettingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsCount performs a HEAD /api/micro-app-settings/ (the `MicroAppSettingsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	MicroAppSettingsCount(ctx context.Context, params *MicroAppSettingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsCreateWithBody performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsCreate performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsCreate(ctx context.Context, body MicroAppSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsDestroy performs a DELETE /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsDestroy` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsRetrieve performs a GET /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsRetrieve` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsPartialUpdateWithBody performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsPartialUpdate performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsUpdateWithBody performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MicroAppSettingsUpdate performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MyAssignmentBatchesList performs a GET /api/my-assignment-batches/ (the `MyAssignmentBatchesList` operationId) request.
 	//
@@ -153654,6 +154265,13 @@ type ClientInterface interface {
 	//
 	// Corresponds with GET /api/users/{uuid}/data_access_history/ (the `UsersDataAccessHistoryList` operationId).
 	UsersDataAccessHistoryList(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// UsersFeaturesRetrieve Effective feature flags of a user
+	//
+	// Each feature flag's value for this user and where it comes from: the global value, the feature rules that match the user, or neither. Also lists the micro-apps that have an operator setting.
+	//
+	// Corresponds with GET /api/users/{uuid}/features/ (the `UsersFeaturesRetrieve` operationId).
+	UsersFeaturesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// UsersHistoryList Get version history
 	//
@@ -165430,6 +166048,217 @@ func (c *Client) ExternalLinksUpdate(ctx context.Context, uuid openapi_types.UUI
 // Corresponds with PUT /api/external-links/{uuid}/ (the `ExternalLinksUpdate` operationId).
 func (c *Client) ExternalLinksUpdateWithFormdataBody(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewExternalLinksUpdateRequestWithFormdataBody(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesList performs a GET /api/feature-rules/ (the `FeatureRulesList` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesList(ctx context.Context, params *FeatureRulesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesCount performs a HEAD /api/feature-rules/ (the `FeatureRulesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) FeatureRulesCount(ctx context.Context, params *FeatureRulesCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesCreateWithBody performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesCreate performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesCreate(ctx context.Context, body FeatureRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesDestroy performs a DELETE /api/feature-rules/{uuid}/ (the `FeatureRulesDestroy` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesRetrieve performs a GET /api/feature-rules/{uuid}/ (the `FeatureRulesRetrieve` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesPartialUpdateWithBody performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesPartialUpdate performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesUpdateWithBody performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesUpdate performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *Client) FeatureRulesUpdate(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesMatchedUsersRetrieve Users a feature rule matches
+//
+// Counts the active users this rule matches and lists the first of them. Identity attributes are checked for a bounded number of candidates; 'complete' is false when the count is a lower bound.
+//
+// Corresponds with GET /api/feature-rules/{uuid}/matched-users/ (the `FeatureRulesMatchedUsersRetrieve` operationId).
+func (c *Client) FeatureRulesMatchedUsersRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesMatchedUsersRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesTestMatchWithBody Evaluate a feature rule against a user
+//
+// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+func (c *Client) FeatureRulesTestMatchWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesTestMatchRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// FeatureRulesTestMatch Evaluate a feature rule against a user
+//
+// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+func (c *Client) FeatureRulesTestMatch(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewFeatureRulesTestMatchRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -178032,6 +178861,23 @@ func (c *Client) MarketplaceProviderOfferingsAddUser(ctx context.Context, uuid o
 // Corresponds with POST /api/marketplace-provider-offerings/{uuid}/archive/ (the `MarketplaceProviderOfferingsArchive` operationId).
 func (c *Client) MarketplaceProviderOfferingsArchive(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderOfferingsArchiveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsCheckConfigurationList Check a site agent offering against the consistency rules
+//
+// Rules that span the site agent's plugins, applied per role from the offering's agent configuration: SLURM components are TRES names, DWDI compute reporting has a node component, a node component SLURM limits and DWDI reports sets unit_factor_reporting, the offering's backend ID equals SLURM's cluster_name, every backend's required settings are set, and every active plan prices every component. Errors first. Site agent offerings only.
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/check_configuration/ (the `MarketplaceProviderOfferingsCheckConfigurationList` operationId).
+func (c *Client) MarketplaceProviderOfferingsCheckConfigurationList(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsCheckConfigurationListRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -191511,6 +192357,162 @@ func (c *Client) MetadataPermissionsRetrieve(ctx context.Context, reqEditors ...
 // Corresponds with GET /api/metadata/settings/ (the `MetadataSettingsRetrieve` operationId).
 func (c *Client) MetadataSettingsRetrieve(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMetadataSettingsRetrieveRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsList performs a GET /api/micro-app-settings/ (the `MicroAppSettingsList` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsList(ctx context.Context, params *MicroAppSettingsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsCount performs a HEAD /api/micro-app-settings/ (the `MicroAppSettingsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) MicroAppSettingsCount(ctx context.Context, params *MicroAppSettingsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsCreateWithBody performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsCreateWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsCreateRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsCreate performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsCreate(ctx context.Context, body MicroAppSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsDestroy performs a DELETE /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsDestroy` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsDestroy(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsDestroyRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsRetrieve performs a GET /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsRetrieve` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsPartialUpdateWithBody performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsPartialUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsPartialUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsPartialUpdate performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsPartialUpdate(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsPartialUpdateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsUpdateWithBody performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsUpdateWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsUpdateRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MicroAppSettingsUpdate performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *Client) MicroAppSettingsUpdate(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMicroAppSettingsUpdateRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -222150,6 +223152,23 @@ func (c *Client) UsersDataAccessRetrieve(ctx context.Context, uuid openapi_types
 // Corresponds with GET /api/users/{uuid}/data_access_history/ (the `UsersDataAccessHistoryList` operationId).
 func (c *Client) UsersDataAccessHistoryList(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewUsersDataAccessHistoryListRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// UsersFeaturesRetrieve Effective feature flags of a user
+//
+// Each feature flag's value for this user and where it comes from: the global value, the feature rules that match the user, or neither. Also lists the micro-apps that have an operator setting.
+//
+// Corresponds with GET /api/users/{uuid}/features/ (the `UsersFeaturesRetrieve` operationId).
+func (c *Client) UsersFeaturesRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewUsersFeaturesRetrieveRequest(c.Server, uuid)
 	if err != nil {
 		return nil, err
 	}
@@ -263728,6 +264747,493 @@ func NewExternalLinksUpdateRequestWithBody(server string, uuid openapi_types.UUI
 	}
 
 	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeatureRulesListRequest constructs an http.Request for the FeatureRulesList method
+func NewFeatureRulesListRequest(server string, params *FeatureRulesListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.FeatureKey != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "feature_key", *params.FeatureKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Orphaned != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "orphaned", *params.Orphaned, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeatureRulesCountRequest constructs an http.Request for the FeatureRulesCount method
+func NewFeatureRulesCountRequest(server string, params *FeatureRulesCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.FeatureKey != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "feature_key", *params.FeatureKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsActive != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_active", *params.IsActive, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Orphaned != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "orphaned", *params.Orphaned, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeatureRulesCreateRequest calls the generic FeatureRulesCreate builder with application/json body
+func NewFeatureRulesCreateRequest(server string, body FeatureRulesCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeatureRulesCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewFeatureRulesCreateRequestWithBody constructs an http.Request for the FeatureRulesCreate method, with any body, and a specified content type
+func NewFeatureRulesCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeatureRulesDestroyRequest constructs an http.Request for the FeatureRulesDestroy method
+func NewFeatureRulesDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeatureRulesRetrieveRequest constructs an http.Request for the FeatureRulesRetrieve method
+func NewFeatureRulesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeatureRulesPartialUpdateRequest calls the generic FeatureRulesPartialUpdate builder with application/json body
+func NewFeatureRulesPartialUpdateRequest(server string, uuid openapi_types.UUID, body FeatureRulesPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeatureRulesPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeatureRulesPartialUpdateRequestWithBody constructs an http.Request for the FeatureRulesPartialUpdate method, with any body, and a specified content type
+func NewFeatureRulesPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeatureRulesUpdateRequest calls the generic FeatureRulesUpdate builder with application/json body
+func NewFeatureRulesUpdateRequest(server string, uuid openapi_types.UUID, body FeatureRulesUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeatureRulesUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeatureRulesUpdateRequestWithBody constructs an http.Request for the FeatureRulesUpdate method, with any body, and a specified content type
+func NewFeatureRulesUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewFeatureRulesMatchedUsersRetrieveRequest constructs an http.Request for the FeatureRulesMatchedUsersRetrieve method
+func NewFeatureRulesMatchedUsersRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/matched-users/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewFeatureRulesTestMatchRequest calls the generic FeatureRulesTestMatch builder with application/json body
+func NewFeatureRulesTestMatchRequest(server string, uuid openapi_types.UUID, body FeatureRulesTestMatchJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewFeatureRulesTestMatchRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewFeatureRulesTestMatchRequestWithBody constructs an http.Request for the FeatureRulesTestMatch method, with any body, and a specified content type
+func NewFeatureRulesTestMatchRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/feature-rules/%s/test-match/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
 	if err != nil {
 		return nil, err
 	}
@@ -308559,6 +310065,40 @@ func NewMarketplaceProviderOfferingsArchiveRequest(server string, uuid openapi_t
 	}
 
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceProviderOfferingsCheckConfigurationListRequest constructs an http.Request for the MarketplaceProviderOfferingsCheckConfigurationList method
+func NewMarketplaceProviderOfferingsCheckConfigurationListRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/check_configuration/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -365028,6 +366568,340 @@ func NewMetadataSettingsRetrieveRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMicroAppSettingsListRequest constructs an http.Request for the MicroAppSettingsList method
+func NewMicroAppSettingsListRequest(server string, params *MicroAppSettingsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMicroAppSettingsCountRequest constructs an http.Request for the MicroAppSettingsCount method
+func NewMicroAppSettingsCountRequest(server string, params *MicroAppSettingsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMicroAppSettingsCreateRequest calls the generic MicroAppSettingsCreate builder with application/json body
+func NewMicroAppSettingsCreateRequest(server string, body MicroAppSettingsCreateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMicroAppSettingsCreateRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewMicroAppSettingsCreateRequestWithBody constructs an http.Request for the MicroAppSettingsCreate method, with any body, and a specified content type
+func NewMicroAppSettingsCreateRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMicroAppSettingsDestroyRequest constructs an http.Request for the MicroAppSettingsDestroy method
+func NewMicroAppSettingsDestroyRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMicroAppSettingsRetrieveRequest constructs an http.Request for the MicroAppSettingsRetrieve method
+func NewMicroAppSettingsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMicroAppSettingsPartialUpdateRequest calls the generic MicroAppSettingsPartialUpdate builder with application/json body
+func NewMicroAppSettingsPartialUpdateRequest(server string, uuid openapi_types.UUID, body MicroAppSettingsPartialUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMicroAppSettingsPartialUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMicroAppSettingsPartialUpdateRequestWithBody constructs an http.Request for the MicroAppSettingsPartialUpdate method, with any body, and a specified content type
+func NewMicroAppSettingsPartialUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPatch, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMicroAppSettingsUpdateRequest calls the generic MicroAppSettingsUpdate builder with application/json body
+func NewMicroAppSettingsUpdateRequest(server string, uuid openapi_types.UUID, body MicroAppSettingsUpdateJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMicroAppSettingsUpdateRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMicroAppSettingsUpdateRequestWithBody constructs an http.Request for the MicroAppSettingsUpdate method, with any body, and a specified content type
+func NewMicroAppSettingsUpdateRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/micro-app-settings/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPut, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -472834,6 +474708,40 @@ func NewUsersDataAccessHistoryListRequest(server string, uuid openapi_types.UUID
 	return req, nil
 }
 
+// NewUsersFeaturesRetrieveRequest constructs an http.Request for the UsersFeaturesRetrieve method
+func NewUsersFeaturesRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/users/%s/features/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewUsersHistoryListRequest constructs an http.Request for the UsersHistoryList method
 func NewUsersHistoryListRequest(server string, uuid openapi_types.UUID, params *UsersHistoryListParams) (*http.Request, error) {
 	var err error
@@ -483323,6 +485231,103 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with PUT /api/external-links/{uuid}/ (the `ExternalLinksUpdate` operationId).
 	ExternalLinksUpdateWithFormdataBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, body ExternalLinksUpdateFormdataRequestBody, reqEditors ...RequestEditorFn) (*ExternalLinksUpdateResponse, error)
 
+	// FeatureRulesListWithResponse performs a GET /api/feature-rules/ (the `FeatureRulesList` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesListWithResponse(ctx context.Context, params *FeatureRulesListParams, reqEditors ...RequestEditorFn) (*FeatureRulesListResponse, error)
+
+	// FeatureRulesCountWithResponse performs a HEAD /api/feature-rules/ (the `FeatureRulesCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesCountWithResponse(ctx context.Context, params *FeatureRulesCountParams, reqEditors ...RequestEditorFn) (*FeatureRulesCountResponse, error)
+
+	// FeatureRulesCreateWithBodyWithResponse performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesCreateResponse, error)
+
+	// FeatureRulesCreateWithResponse performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesCreateWithResponse(ctx context.Context, body FeatureRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesCreateResponse, error)
+
+	// FeatureRulesDestroyWithResponse performs a DELETE /api/feature-rules/{uuid}/ (the `FeatureRulesDestroy` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesDestroyResponse, error)
+
+	// FeatureRulesRetrieveWithResponse performs a GET /api/feature-rules/{uuid}/ (the `FeatureRulesRetrieve` operationId) request.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesRetrieveResponse, error)
+
+	// FeatureRulesPartialUpdateWithBodyWithResponse performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesPartialUpdateResponse, error)
+
+	// FeatureRulesPartialUpdateWithResponse performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesPartialUpdateResponse, error)
+
+	// FeatureRulesUpdateWithBodyWithResponse performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	FeatureRulesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesUpdateResponse, error)
+
+	// FeatureRulesUpdateWithResponse performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+	FeatureRulesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesUpdateResponse, error)
+
+	// FeatureRulesMatchedUsersRetrieveWithResponse Users a feature rule matches
+	//
+	// Counts the active users this rule matches and lists the first of them. Identity attributes are checked for a bounded number of candidates; 'complete' is false when the count is a lower bound.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/feature-rules/{uuid}/matched-users/ (the `FeatureRulesMatchedUsersRetrieve` operationId).
+	FeatureRulesMatchedUsersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesMatchedUsersRetrieveResponse, error)
+
+	// FeatureRulesTestMatchWithBodyWithResponse Evaluate a feature rule against a user
+	//
+	// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+	FeatureRulesTestMatchWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesTestMatchResponse, error)
+
+	// FeatureRulesTestMatchWithResponse Evaluate a feature rule against a user
+	//
+	// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+	FeatureRulesTestMatchWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesTestMatchResponse, error)
+
 	// FeatureValuesWithBodyWithResponse Update feature flags
 	//
 	// Allows administrators to enable or disable specific feature flags in the system. The request should be a dictionary where keys are feature sections and values are dictionaries of feature keys and their boolean state.
@@ -489142,6 +491147,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/archive/ (the `MarketplaceProviderOfferingsArchive` operationId).
 	MarketplaceProviderOfferingsArchiveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsArchiveResponse, error)
+
+	// MarketplaceProviderOfferingsCheckConfigurationListWithResponse Check a site agent offering against the consistency rules
+	//
+	// Rules that span the site agent's plugins, applied per role from the offering's agent configuration: SLURM components are TRES names, DWDI compute reporting has a node component, a node component SLURM limits and DWDI reports sets unit_factor_reporting, the offering's backend ID equals SLURM's cluster_name, every backend's required settings are set, and every active plan prices every component. Errors first. Site agent offerings only.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/check_configuration/ (the `MarketplaceProviderOfferingsCheckConfigurationList` operationId).
+	MarketplaceProviderOfferingsCheckConfigurationListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckConfigurationListResponse, error)
 
 	// MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse Check if backend_id is unique
 	//
@@ -495607,6 +497621,76 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/metadata/settings/ (the `MetadataSettingsRetrieve` operationId).
 	MetadataSettingsRetrieveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*MetadataSettingsRetrieveResponse, error)
+
+	// MicroAppSettingsListWithResponse performs a GET /api/micro-app-settings/ (the `MicroAppSettingsList` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsListWithResponse(ctx context.Context, params *MicroAppSettingsListParams, reqEditors ...RequestEditorFn) (*MicroAppSettingsListResponse, error)
+
+	// MicroAppSettingsCountWithResponse performs a HEAD /api/micro-app-settings/ (the `MicroAppSettingsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsCountWithResponse(ctx context.Context, params *MicroAppSettingsCountParams, reqEditors ...RequestEditorFn) (*MicroAppSettingsCountResponse, error)
+
+	// MicroAppSettingsCreateWithBodyWithResponse performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsCreateResponse, error)
+
+	// MicroAppSettingsCreateWithResponse performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsCreateWithResponse(ctx context.Context, body MicroAppSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsCreateResponse, error)
+
+	// MicroAppSettingsDestroyWithResponse performs a DELETE /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsDestroy` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MicroAppSettingsDestroyResponse, error)
+
+	// MicroAppSettingsRetrieveWithResponse performs a GET /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsRetrieve` operationId) request.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MicroAppSettingsRetrieveResponse, error)
+
+	// MicroAppSettingsPartialUpdateWithBodyWithResponse performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsPartialUpdateResponse, error)
+
+	// MicroAppSettingsPartialUpdateWithResponse performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsPartialUpdateResponse, error)
+
+	// MicroAppSettingsUpdateWithBodyWithResponse performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	MicroAppSettingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsUpdateResponse, error)
+
+	// MicroAppSettingsUpdateWithResponse performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+	MicroAppSettingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsUpdateResponse, error)
 
 	// MyAssignmentBatchesListWithResponse performs a GET /api/my-assignment-batches/ (the `MyAssignmentBatchesList` operationId) request.
 	//
@@ -509362,6 +511446,15 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with GET /api/users/{uuid}/data_access_history/ (the `UsersDataAccessHistoryList` operationId).
 	UsersDataAccessHistoryListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *UsersDataAccessHistoryListParams, reqEditors ...RequestEditorFn) (*UsersDataAccessHistoryListResponse, error)
+
+	// UsersFeaturesRetrieveWithResponse Effective feature flags of a user
+	//
+	// Each feature flag's value for this user and where it comes from: the global value, the feature rules that match the user, or neither. Also lists the micro-apps that have an operator setting.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/users/{uuid}/features/ (the `UsersFeaturesRetrieve` operationId).
+	UsersFeaturesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersFeaturesRetrieveResponse, error)
 
 	// UsersHistoryListWithResponse Get version history
 	//
@@ -532326,6 +534419,368 @@ func (r ExternalLinksUpdateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ExternalLinksUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// FeatureRulesListResponse200Headers the declared response headers of an HTTP 200 response for FeatureRulesList
+type FeatureRulesListResponse200Headers struct {
+	XResultCount *int
+}
+
+type FeatureRulesListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]FeatureRule
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *FeatureRulesListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesListResponse) GetJSON200() *[]FeatureRule {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *FeatureRule
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r FeatureRulesCreateResponse) GetJSON201() *FeatureRule {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesCreateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeatureRule
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesRetrieveResponse) GetJSON200() *FeatureRule {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeatureRule
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesPartialUpdateResponse) GetJSON200() *FeatureRule {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesPartialUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeatureRule
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesUpdateResponse) GetJSON200() *FeatureRule {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesMatchedUsersRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeatureRuleMatchedUsersResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesMatchedUsersRetrieveResponse) GetJSON200() *FeatureRuleMatchedUsersResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesMatchedUsersRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesMatchedUsersRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesMatchedUsersRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesMatchedUsersRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type FeatureRulesTestMatchResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *FeatureRuleTestMatchResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r FeatureRulesTestMatchResponse) GetJSON200() *FeatureRuleTestMatchResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r FeatureRulesTestMatchResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r FeatureRulesTestMatchResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r FeatureRulesTestMatchResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r FeatureRulesTestMatchResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -555596,6 +558051,54 @@ func (r MarketplaceProviderOfferingsArchiveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderOfferingsArchiveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceProviderOfferingsCheckConfigurationListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderOfferingsCheckConfigurationList
+type MarketplaceProviderOfferingsCheckConfigurationListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceProviderOfferingsCheckConfigurationListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]OfferingConfigurationFinding
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceProviderOfferingsCheckConfigurationListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsCheckConfigurationListResponse) GetJSON200() *[]OfferingConfigurationFinding {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsCheckConfigurationListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsCheckConfigurationListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsCheckConfigurationListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsCheckConfigurationListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -579601,6 +582104,286 @@ func (r MetadataSettingsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MetadataSettingsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MicroAppSettingsListResponse200Headers the declared response headers of an HTTP 200 response for MicroAppSettingsList
+type MicroAppSettingsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MicroAppSettingsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]MicroAppSetting
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MicroAppSettingsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MicroAppSettingsListResponse) GetJSON200() *[]MicroAppSetting {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsCreateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON201 the response for an HTTP 201 `application/json` response
+	JSON201 *MicroAppSetting
+}
+
+// GetJSON201 returns the response for an HTTP 201 `application/json` response
+func (r MicroAppSettingsCreateResponse) GetJSON201() *MicroAppSetting {
+	return r.JSON201
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsCreateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsCreateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsCreateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsDestroyResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsDestroyResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsDestroyResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsDestroyResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsDestroyResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MicroAppSetting
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MicroAppSettingsRetrieveResponse) GetJSON200() *MicroAppSetting {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsPartialUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MicroAppSetting
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MicroAppSettingsPartialUpdateResponse) GetJSON200() *MicroAppSetting {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsPartialUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsPartialUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsPartialUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsPartialUpdateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MicroAppSettingsUpdateResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *MicroAppSetting
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MicroAppSettingsUpdateResponse) GetJSON200() *MicroAppSetting {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MicroAppSettingsUpdateResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MicroAppSettingsUpdateResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MicroAppSettingsUpdateResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MicroAppSettingsUpdateResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -636759,6 +639542,47 @@ func (r UsersDataAccessHistoryListResponse) ContentType() string {
 	return ""
 }
 
+type UsersFeaturesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *UserFeaturesResponse
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r UsersFeaturesRetrieveResponse) GetJSON200() *UserFeaturesResponse {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r UsersFeaturesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r UsersFeaturesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r UsersFeaturesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r UsersFeaturesRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // UsersHistoryListResponse200Headers the declared response headers of an HTTP 200 response for UsersHistoryList
 type UsersHistoryListResponse200Headers struct {
 	XResultCount *int
@@ -648944,6 +651768,181 @@ func (c *ClientWithResponses) ExternalLinksUpdateWithFormdataBodyWithResponse(ct
 	return ParseExternalLinksUpdateResponse(rsp)
 }
 
+// FeatureRulesListWithResponse performs a GET /api/feature-rules/ (the `FeatureRulesList` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesListWithResponse(ctx context.Context, params *FeatureRulesListParams, reqEditors ...RequestEditorFn) (*FeatureRulesListResponse, error) {
+	rsp, err := c.FeatureRulesList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesListResponse(rsp)
+}
+
+// FeatureRulesCountWithResponse performs a HEAD /api/feature-rules/ (the `FeatureRulesCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesCountWithResponse(ctx context.Context, params *FeatureRulesCountParams, reqEditors ...RequestEditorFn) (*FeatureRulesCountResponse, error) {
+	rsp, err := c.FeatureRulesCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesCountResponse(rsp)
+}
+
+// FeatureRulesCreateWithBodyWithResponse performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesCreateResponse, error) {
+	rsp, err := c.FeatureRulesCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesCreateResponse(rsp)
+}
+
+// FeatureRulesCreateWithResponse performs a POST /api/feature-rules/ (the `FeatureRulesCreate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *ClientWithResponses) FeatureRulesCreateWithResponse(ctx context.Context, body FeatureRulesCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesCreateResponse, error) {
+	rsp, err := c.FeatureRulesCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesCreateResponse(rsp)
+}
+
+// FeatureRulesDestroyWithResponse performs a DELETE /api/feature-rules/{uuid}/ (the `FeatureRulesDestroy` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesDestroyResponse, error) {
+	rsp, err := c.FeatureRulesDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesDestroyResponse(rsp)
+}
+
+// FeatureRulesRetrieveWithResponse performs a GET /api/feature-rules/{uuid}/ (the `FeatureRulesRetrieve` operationId) request.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesRetrieveResponse, error) {
+	rsp, err := c.FeatureRulesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesRetrieveResponse(rsp)
+}
+
+// FeatureRulesPartialUpdateWithBodyWithResponse performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesPartialUpdateResponse, error) {
+	rsp, err := c.FeatureRulesPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesPartialUpdateResponse(rsp)
+}
+
+// FeatureRulesPartialUpdateWithResponse performs a PATCH /api/feature-rules/{uuid}/ (the `FeatureRulesPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *ClientWithResponses) FeatureRulesPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesPartialUpdateResponse, error) {
+	rsp, err := c.FeatureRulesPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesPartialUpdateResponse(rsp)
+}
+
+// FeatureRulesUpdateWithBodyWithResponse performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) FeatureRulesUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesUpdateResponse, error) {
+	rsp, err := c.FeatureRulesUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesUpdateResponse(rsp)
+}
+
+// FeatureRulesUpdateWithResponse performs a PUT /api/feature-rules/{uuid}/ (the `FeatureRulesUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Rules that turn a user-scoped feature flag, or a micro-app, on for the users they match. Staff manage them; support may read them.
+func (c *ClientWithResponses) FeatureRulesUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesUpdateResponse, error) {
+	rsp, err := c.FeatureRulesUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesUpdateResponse(rsp)
+}
+
+// FeatureRulesMatchedUsersRetrieveWithResponse Users a feature rule matches
+//
+// Counts the active users this rule matches and lists the first of them. Identity attributes are checked for a bounded number of candidates; 'complete' is false when the count is a lower bound.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/feature-rules/{uuid}/matched-users/ (the `FeatureRulesMatchedUsersRetrieve` operationId).
+func (c *ClientWithResponses) FeatureRulesMatchedUsersRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*FeatureRulesMatchedUsersRetrieveResponse, error) {
+	rsp, err := c.FeatureRulesMatchedUsersRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesMatchedUsersRetrieveResponse(rsp)
+}
+
+// FeatureRulesTestMatchWithBodyWithResponse Evaluate a feature rule against a user
+//
+// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+func (c *ClientWithResponses) FeatureRulesTestMatchWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*FeatureRulesTestMatchResponse, error) {
+	rsp, err := c.FeatureRulesTestMatchWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesTestMatchResponse(rsp)
+}
+
+// FeatureRulesTestMatchWithResponse Evaluate a feature rule against a user
+//
+// Checks each criterion of this rule against the given user and reports whether the rule matches. Nothing is changed.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/feature-rules/{uuid}/test-match/ (the `FeatureRulesTestMatch` operationId).
+func (c *ClientWithResponses) FeatureRulesTestMatchWithResponse(ctx context.Context, uuid openapi_types.UUID, body FeatureRulesTestMatchJSONRequestBody, reqEditors ...RequestEditorFn) (*FeatureRulesTestMatchResponse, error) {
+	rsp, err := c.FeatureRulesTestMatch(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseFeatureRulesTestMatchResponse(rsp)
+}
+
 // FeatureValuesWithBodyWithResponse Update feature flags
 //
 // Allows administrators to enable or disable specific feature flags in the system. The request should be a dictionary where keys are feature sections and values are dictionaries of feature keys and their boolean state.
@@ -659398,6 +662397,21 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsArchiveWithResponse(ct
 		return nil, err
 	}
 	return ParseMarketplaceProviderOfferingsArchiveResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsCheckConfigurationListWithResponse Check a site agent offering against the consistency rules
+//
+// Rules that span the site agent's plugins, applied per role from the offering's agent configuration: SLURM components are TRES names, DWDI compute reporting has a node component, a node component SLURM limits and DWDI reports sets unit_factor_reporting, the offering's backend ID equals SLURM's cluster_name, every backend's required settings are set, and every active plan prices every component. Errors first. Site agent offerings only.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/check_configuration/ (the `MarketplaceProviderOfferingsCheckConfigurationList` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsCheckConfigurationListWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsCheckConfigurationListResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsCheckConfigurationList(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsCheckConfigurationListResponse(rsp)
 }
 
 // MarketplaceProviderOfferingsCheckUniqueBackendIdWithBodyWithResponse Check if backend_id is unique
@@ -670594,6 +673608,136 @@ func (c *ClientWithResponses) MetadataSettingsRetrieveWithResponse(ctx context.C
 		return nil, err
 	}
 	return ParseMetadataSettingsRetrieveResponse(rsp)
+}
+
+// MicroAppSettingsListWithResponse performs a GET /api/micro-app-settings/ (the `MicroAppSettingsList` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsListWithResponse(ctx context.Context, params *MicroAppSettingsListParams, reqEditors ...RequestEditorFn) (*MicroAppSettingsListResponse, error) {
+	rsp, err := c.MicroAppSettingsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsListResponse(rsp)
+}
+
+// MicroAppSettingsCountWithResponse performs a HEAD /api/micro-app-settings/ (the `MicroAppSettingsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsCountWithResponse(ctx context.Context, params *MicroAppSettingsCountParams, reqEditors ...RequestEditorFn) (*MicroAppSettingsCountResponse, error) {
+	rsp, err := c.MicroAppSettingsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsCountResponse(rsp)
+}
+
+// MicroAppSettingsCreateWithBodyWithResponse performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsCreateWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsCreateResponse, error) {
+	rsp, err := c.MicroAppSettingsCreateWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsCreateResponse(rsp)
+}
+
+// MicroAppSettingsCreateWithResponse performs a POST /api/micro-app-settings/ (the `MicroAppSettingsCreate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *ClientWithResponses) MicroAppSettingsCreateWithResponse(ctx context.Context, body MicroAppSettingsCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsCreateResponse, error) {
+	rsp, err := c.MicroAppSettingsCreate(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsCreateResponse(rsp)
+}
+
+// MicroAppSettingsDestroyWithResponse performs a DELETE /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsDestroy` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsDestroyWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MicroAppSettingsDestroyResponse, error) {
+	rsp, err := c.MicroAppSettingsDestroy(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsDestroyResponse(rsp)
+}
+
+// MicroAppSettingsRetrieveWithResponse performs a GET /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsRetrieve` operationId) request.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MicroAppSettingsRetrieveResponse, error) {
+	rsp, err := c.MicroAppSettingsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsRetrieveResponse(rsp)
+}
+
+// MicroAppSettingsPartialUpdateWithBodyWithResponse performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsPartialUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsPartialUpdateResponse, error) {
+	rsp, err := c.MicroAppSettingsPartialUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsPartialUpdateResponse(rsp)
+}
+
+// MicroAppSettingsPartialUpdateWithResponse performs a PATCH /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsPartialUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *ClientWithResponses) MicroAppSettingsPartialUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsPartialUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsPartialUpdateResponse, error) {
+	rsp, err := c.MicroAppSettingsPartialUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsPartialUpdateResponse(rsp)
+}
+
+// MicroAppSettingsUpdateWithBodyWithResponse performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request,
+// with any type of body and a specified content type.
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) MicroAppSettingsUpdateWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MicroAppSettingsUpdateResponse, error) {
+	rsp, err := c.MicroAppSettingsUpdateWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsUpdateResponse(rsp)
+}
+
+// MicroAppSettingsUpdateWithResponse performs a PUT /api/micro-app-settings/{uuid}/ (the `MicroAppSettingsUpdate` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Who each deployed micro-app is offered to. An app without a setting follows the user.show_micro_apps feature. Staff manage them; support may read them.
+func (c *ClientWithResponses) MicroAppSettingsUpdateWithResponse(ctx context.Context, uuid openapi_types.UUID, body MicroAppSettingsUpdateJSONRequestBody, reqEditors ...RequestEditorFn) (*MicroAppSettingsUpdateResponse, error) {
+	rsp, err := c.MicroAppSettingsUpdate(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMicroAppSettingsUpdateResponse(rsp)
 }
 
 // MyAssignmentBatchesListWithResponse performs a GET /api/my-assignment-batches/ (the `MyAssignmentBatchesList` operationId) request.
@@ -695963,6 +699107,21 @@ func (c *ClientWithResponses) UsersDataAccessHistoryListWithResponse(ctx context
 	return ParseUsersDataAccessHistoryListResponse(rsp)
 }
 
+// UsersFeaturesRetrieveWithResponse Effective feature flags of a user
+//
+// Each feature flag's value for this user and where it comes from: the global value, the feature rules that match the user, or neither. Also lists the micro-apps that have an operator setting.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/users/{uuid}/features/ (the `UsersFeaturesRetrieve` operationId).
+func (c *ClientWithResponses) UsersFeaturesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*UsersFeaturesRetrieveResponse, error) {
+	rsp, err := c.UsersFeaturesRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseUsersFeaturesRetrieveResponse(rsp)
+}
+
 // UsersHistoryListWithResponse Get version history
 //
 // Returns the version history for this object. Only accessible by staff and support users.
@@ -711113,6 +714272,233 @@ func ParseExternalLinksUpdateResponse(rsp *http.Response) (*ExternalLinksUpdateR
 	return response, nil
 }
 
+// ParseFeatureRulesListResponse parses an HTTP response from a FeatureRulesListWithResponse call
+func ParseFeatureRulesListResponse(rsp *http.Response) (*FeatureRulesListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []FeatureRule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers FeatureRulesListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesCountResponse parses an HTTP response from a FeatureRulesCountWithResponse call
+func ParseFeatureRulesCountResponse(rsp *http.Response) (*FeatureRulesCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesCreateResponse parses an HTTP response from a FeatureRulesCreateWithResponse call
+func ParseFeatureRulesCreateResponse(rsp *http.Response) (*FeatureRulesCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest FeatureRule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesDestroyResponse parses an HTTP response from a FeatureRulesDestroyWithResponse call
+func ParseFeatureRulesDestroyResponse(rsp *http.Response) (*FeatureRulesDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesRetrieveResponse parses an HTTP response from a FeatureRulesRetrieveWithResponse call
+func ParseFeatureRulesRetrieveResponse(rsp *http.Response) (*FeatureRulesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeatureRule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesPartialUpdateResponse parses an HTTP response from a FeatureRulesPartialUpdateWithResponse call
+func ParseFeatureRulesPartialUpdateResponse(rsp *http.Response) (*FeatureRulesPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeatureRule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesUpdateResponse parses an HTTP response from a FeatureRulesUpdateWithResponse call
+func ParseFeatureRulesUpdateResponse(rsp *http.Response) (*FeatureRulesUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeatureRule
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesMatchedUsersRetrieveResponse parses an HTTP response from a FeatureRulesMatchedUsersRetrieveWithResponse call
+func ParseFeatureRulesMatchedUsersRetrieveResponse(rsp *http.Response) (*FeatureRulesMatchedUsersRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesMatchedUsersRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeatureRuleMatchedUsersResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseFeatureRulesTestMatchResponse parses an HTTP response from a FeatureRulesTestMatchWithResponse call
+func ParseFeatureRulesTestMatchResponse(rsp *http.Response) (*FeatureRulesTestMatchResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &FeatureRulesTestMatchResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest FeatureRuleTestMatchResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseFeatureValuesResponse parses an HTTP response from a FeatureValuesWithResponse call
 func ParseFeatureValuesResponse(rsp *http.Response) (*FeatureValuesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -725813,6 +729199,48 @@ func ParseMarketplaceProviderOfferingsArchiveResponse(rsp *http.Response) (*Mark
 		}
 		response.JSON200 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderOfferingsCheckConfigurationListResponse parses an HTTP response from a MarketplaceProviderOfferingsCheckConfigurationListWithResponse call
+func ParseMarketplaceProviderOfferingsCheckConfigurationListResponse(rsp *http.Response) (*MarketplaceProviderOfferingsCheckConfigurationListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsCheckConfigurationListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []OfferingConfigurationFinding
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 400:
+		break // No content-type
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceProviderOfferingsCheckConfigurationListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
@@ -741257,6 +744685,181 @@ func ParseMetadataSettingsRetrieveResponse(rsp *http.Response) (*MetadataSetting
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SettingsMetadataResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsListResponse parses an HTTP response from a MicroAppSettingsListWithResponse call
+func ParseMicroAppSettingsListResponse(rsp *http.Response) (*MicroAppSettingsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []MicroAppSetting
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MicroAppSettingsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsCountResponse parses an HTTP response from a MicroAppSettingsCountWithResponse call
+func ParseMicroAppSettingsCountResponse(rsp *http.Response) (*MicroAppSettingsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsCreateResponse parses an HTTP response from a MicroAppSettingsCreateWithResponse call
+func ParseMicroAppSettingsCreateResponse(rsp *http.Response) (*MicroAppSettingsCreateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsCreateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 201:
+		var dest MicroAppSetting
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON201 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsDestroyResponse parses an HTTP response from a MicroAppSettingsDestroyWithResponse call
+func ParseMicroAppSettingsDestroyResponse(rsp *http.Response) (*MicroAppSettingsDestroyResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsDestroyResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsRetrieveResponse parses an HTTP response from a MicroAppSettingsRetrieveWithResponse call
+func ParseMicroAppSettingsRetrieveResponse(rsp *http.Response) (*MicroAppSettingsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MicroAppSetting
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsPartialUpdateResponse parses an HTTP response from a MicroAppSettingsPartialUpdateWithResponse call
+func ParseMicroAppSettingsPartialUpdateResponse(rsp *http.Response) (*MicroAppSettingsPartialUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsPartialUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MicroAppSetting
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMicroAppSettingsUpdateResponse parses an HTTP response from a MicroAppSettingsUpdateWithResponse call
+func ParseMicroAppSettingsUpdateResponse(rsp *http.Response) (*MicroAppSettingsUpdateResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MicroAppSettingsUpdateResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest MicroAppSetting
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -777564,6 +781167,32 @@ func ParseUsersDataAccessHistoryListResponse(rsp *http.Response) (*UsersDataAcce
 			headers.XResultCount = &value
 		}
 		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseUsersFeaturesRetrieveResponse parses an HTTP response from a UsersFeaturesRetrieveWithResponse call
+func ParseUsersFeaturesRetrieveResponse(rsp *http.Response) (*UsersFeaturesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &UsersFeaturesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest UserFeaturesResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
