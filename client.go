@@ -19440,31 +19440,31 @@ func (e PolicyEnum) Valid() bool {
 
 // Defines values for PolicyGateEnum.
 const (
-	CostBelowLimit       PolicyGateEnum = "cost_below_limit"
-	CostOverLimit        PolicyGateEnum = "cost_over_limit"
-	CreditExhausted      PolicyGateEnum = "credit_exhausted"
-	CreditIgnored        PolicyGateEnum = "credit_ignored"
-	HeldByCustomerCredit PolicyGateEnum = "held_by_customer_credit"
-	HeldByProjectCredit  PolicyGateEnum = "held_by_project_credit"
-	NoCredit             PolicyGateEnum = "no_credit"
+	PolicyGateEnumCostBelowLimit       PolicyGateEnum = "cost_below_limit"
+	PolicyGateEnumCostOverLimit        PolicyGateEnum = "cost_over_limit"
+	PolicyGateEnumCreditExhausted      PolicyGateEnum = "credit_exhausted"
+	PolicyGateEnumCreditIgnored        PolicyGateEnum = "credit_ignored"
+	PolicyGateEnumHeldByCustomerCredit PolicyGateEnum = "held_by_customer_credit"
+	PolicyGateEnumHeldByProjectCredit  PolicyGateEnum = "held_by_project_credit"
+	PolicyGateEnumNoCredit             PolicyGateEnum = "no_credit"
 )
 
 // Valid indicates whether the value is a known member of the PolicyGateEnum enum.
 func (e PolicyGateEnum) Valid() bool {
 	switch e {
-	case CostBelowLimit:
+	case PolicyGateEnumCostBelowLimit:
 		return true
-	case CostOverLimit:
+	case PolicyGateEnumCostOverLimit:
 		return true
-	case CreditExhausted:
+	case PolicyGateEnumCreditExhausted:
 		return true
-	case CreditIgnored:
+	case PolicyGateEnumCreditIgnored:
 		return true
-	case HeldByCustomerCredit:
+	case PolicyGateEnumHeldByCustomerCredit:
 		return true
-	case HeldByProjectCredit:
+	case PolicyGateEnumHeldByProjectCredit:
 		return true
-	case NoCredit:
+	case PolicyGateEnumNoCredit:
 		return true
 	default:
 		return false
@@ -23182,6 +23182,42 @@ func (e RemoteResourceSyncStatusRemoteStateEnum) Valid() bool {
 	case RemoteResourceSyncStatusRemoteStateEnumN5:
 		return true
 	case RemoteResourceSyncStatusRemoteStateEnumN6:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RenewalLimitDecreasePolicyEnum.
+const (
+	RenewalLimitDecreasePolicyEnumNoCredit        RenewalLimitDecreasePolicyEnum = "no_credit"
+	RenewalLimitDecreasePolicyEnumStretchPaidTerm RenewalLimitDecreasePolicyEnum = "stretch_paid_term"
+)
+
+// Valid indicates whether the value is a known member of the RenewalLimitDecreasePolicyEnum enum.
+func (e RenewalLimitDecreasePolicyEnum) Valid() bool {
+	switch e {
+	case RenewalLimitDecreasePolicyEnumNoCredit:
+		return true
+	case RenewalLimitDecreasePolicyEnumStretchPaidTerm:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for RenewalTermEnum.
+const (
+	RenewalTermEnumCurrentTerm RenewalTermEnum = "current_term"
+	RenewalTermEnumExtension   RenewalTermEnum = "extension"
+)
+
+// Valid indicates whether the value is a known member of the RenewalTermEnum enum.
+func (e RenewalTermEnum) Valid() bool {
+	switch e {
+	case RenewalTermEnumCurrentTerm:
+		return true
+	case RenewalTermEnumExtension:
 		return true
 	default:
 		return false
@@ -46682,6 +46718,9 @@ type MergedPluginOptions struct {
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
 
+	// RenewalLimitDecreasePolicy What a renewal that only lowers prepaid limits does with the value already paid for the rest of the current term: 'no_credit' (the lower limits apply at once and the extension starts at the current end date, default) or 'stretch_paid_term' (the value is spread over the lower limits, so the paid-up period lasts longer, and the extension starts when it runs out). Neither refunds or credits anything.
+	RenewalLimitDecreasePolicy *MergedPluginOptions_RenewalLimitDecreasePolicy `json:"renewal_limit_decrease_policy,omitempty"`
+
 	// RequireEffectiveIdForHighlightedDisplay If set to True, highlighted backend ID display is only shown when the resource has an effective_id.
 	RequireEffectiveIdForHighlightedDisplay *bool `json:"require_effective_id_for_highlighted_display,omitempty"`
 
@@ -46806,6 +46845,11 @@ type MergedPluginOptions_AccountScope struct {
 
 // MergedPluginOptions_ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 type MergedPluginOptions_ActionOnUsageLimit struct {
+	union json.RawMessage
+}
+
+// MergedPluginOptions_RenewalLimitDecreasePolicy What a renewal that only lowers prepaid limits does with the value already paid for the rest of the current term: 'no_credit' (the lower limits apply at once and the extension starts at the current end date, default) or 'stretch_paid_term' (the value is spread over the lower limits, so the paid-up period lasts longer, and the extension starts when it runs out). Neither refunds or credits anything.
+type MergedPluginOptions_RenewalLimitDecreasePolicy struct {
 	union json.RawMessage
 }
 
@@ -47079,6 +47123,9 @@ type MergedPluginOptionsRequest struct {
 	// ProjectPermanentDirectory HEAppE project permanent directory
 	ProjectPermanentDirectory *string `json:"project_permanent_directory,omitempty"`
 
+	// RenewalLimitDecreasePolicy What a renewal that only lowers prepaid limits does with the value already paid for the rest of the current term: 'no_credit' (the lower limits apply at once and the extension starts at the current end date, default) or 'stretch_paid_term' (the value is spread over the lower limits, so the paid-up period lasts longer, and the extension starts when it runs out). Neither refunds or credits anything.
+	RenewalLimitDecreasePolicy *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy `json:"renewal_limit_decrease_policy,omitempty"`
+
 	// RequireEffectiveIdForHighlightedDisplay If set to True, highlighted backend ID display is only shown when the resource has an effective_id.
 	RequireEffectiveIdForHighlightedDisplay *bool `json:"require_effective_id_for_highlighted_display,omitempty"`
 
@@ -47203,6 +47250,11 @@ type MergedPluginOptionsRequest_AccountScope struct {
 
 // MergedPluginOptionsRequest_ActionOnUsageLimit If set to 'pause' or 'downscale', resources are automatically paused or downscaled when reported usage in the current period reaches a component's limit_amount, and the restriction is lifted when usage drops below the limit again (e.g. a new billing period or a raised limit).
 type MergedPluginOptionsRequest_ActionOnUsageLimit struct {
+	union json.RawMessage
+}
+
+// MergedPluginOptionsRequest_RenewalLimitDecreasePolicy What a renewal that only lowers prepaid limits does with the value already paid for the rest of the current term: 'no_credit' (the lower limits apply at once and the extension starts at the current end date, default) or 'stretch_paid_term' (the value is spread over the lower limits, so the paid-up period lasts longer, and the extension starts when it runs out). Neither refunds or credits anything.
+type MergedPluginOptionsRequest_RenewalLimitDecreasePolicy struct {
 	union json.RawMessage
 }
 
@@ -65303,16 +65355,29 @@ type RemoveSoftwareCatalogRequest struct {
 
 // RenewalEstimateComponent defines model for RenewalEstimateComponent.
 type RenewalEstimateComponent struct {
-	BillingPeriod     *string `json:"billing_period"`
-	BillingType       string  `json:"billing_type"`
-	ComponentName     string  `json:"component_name"`
-	ComponentType     string  `json:"component_type"`
-	CurrentLimit      int     `json:"current_limit"`
-	MeasuredUnit      string  `json:"measured_unit"`
-	NewLimit          int     `json:"new_limit"`
-	PeriodDescription string  `json:"period_description"`
-	Total             string  `json:"total"`
-	UnitPrice         string  `json:"unit_price"`
+	BillingPeriod     *string             `json:"billing_period"`
+	BillingType       string              `json:"billing_type"`
+	ComponentName     string              `json:"component_name"`
+	ComponentType     string              `json:"component_type"`
+	CurrentLimit      float64             `json:"current_limit"`
+	MeasuredUnit      string              `json:"measured_unit"`
+	NewLimit          float64             `json:"new_limit"`
+	PeriodDescription string              `json:"period_description"`
+	PeriodEnd         *openapi_types.Date `json:"period_end"`
+	PeriodStart       *openapi_types.Date `json:"period_start"`
+
+	// Quantity For a prepaid line, the units charged: limit x months.
+	Quantity *string `json:"quantity"`
+
+	// Term For a prepaid line, the term it covers: the rest of the current term, charged for a raised limit, or the extension.
+	Term      *RenewalEstimateComponent_Term `json:"term"`
+	Total     string                         `json:"total"`
+	UnitPrice string                         `json:"unit_price"`
+}
+
+// RenewalEstimateComponent_Term For a prepaid line, the term it covers: the rest of the current term, charged for a raised limit, or the extension.
+type RenewalEstimateComponent_Term struct {
+	union json.RawMessage
 }
 
 // RenewalEstimateRequestRequest defines model for RenewalEstimateRequestRequest.
@@ -65323,13 +65388,22 @@ type RenewalEstimateRequestRequest struct {
 
 // RenewalEstimateResponse defines model for RenewalEstimateResponse.
 type RenewalEstimateResponse struct {
-	Components        []RenewalEstimateComponent `json:"components"`
-	LimitChangeTotal  string                     `json:"limit_change_total"`
-	NewEndDate        openapi_types.Date         `json:"new_end_date"`
-	RemainingDays     int                        `json:"remaining_days"`
-	SubscriptionTotal string                     `json:"subscription_total"`
-	Total             string                     `json:"total"`
+	Components       []RenewalEstimateComponent `json:"components"`
+	LimitChangeTotal string                     `json:"limit_change_total"`
+	NewEndDate       openapi_types.Date         `json:"new_end_date"`
+
+	// PaidUpEndDate Where the extension starts: the current end date, or later when the renewal only lowers limits and the offering's renewal_limit_decrease_policy spreads the value already paid for the rest of the current term over the lower limits.
+	PaidUpEndDate     openapi_types.Date `json:"paid_up_end_date"`
+	RemainingDays     int                `json:"remaining_days"`
+	SubscriptionTotal string             `json:"subscription_total"`
+	Total             string             `json:"total"`
 }
+
+// RenewalLimitDecreasePolicyEnum defines model for RenewalLimitDecreasePolicyEnum.
+type RenewalLimitDecreasePolicyEnum string
+
+// RenewalTermEnum defines model for RenewalTermEnum.
+type RenewalTermEnum string
 
 // ReopenContributionRequest defines model for ReopenContributionRequest.
 type ReopenContributionRequest struct {
@@ -66403,7 +66477,7 @@ type ResourceRenewRequest struct {
 	// ExtensionMonths Number of months to extend the subscription by.
 	ExtensionMonths int `json:"extension_months"`
 
-	// Limits Optional new limits for the resource. Supports upgrades only.
+	// Limits Optional new limits for the resource; components left out keep their current limits. A raised prepaid limit is also charged for the rest of the current term. A renewal that only lowers limits gets no credit; if the offering's renewal_limit_decrease_policy is stretch_paid_term, the value already paid for the rest of the term is spread over the lower limits and the extension starts when it runs out.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
 	// RequestComment Optional comment for the renewal request.
@@ -66418,7 +66492,7 @@ type ResourceRenewRequestForm struct {
 	// ExtensionMonths Number of months to extend the subscription by.
 	ExtensionMonths int `json:"extension_months"`
 
-	// Limits Optional new limits for the resource. Supports upgrades only.
+	// Limits Optional new limits for the resource; components left out keep their current limits. A raised prepaid limit is also charged for the rest of the current term. A renewal that only lowers limits gets no credit; if the offering's renewal_limit_decrease_policy is stretch_paid_term, the value already paid for the rest of the term is spread over the lower limits and the extension starts when it runs out.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
 	// RequestComment Optional comment for the renewal request.
@@ -66433,7 +66507,7 @@ type ResourceRenewRequestMultipart struct {
 	// ExtensionMonths Number of months to extend the subscription by.
 	ExtensionMonths int `json:"extension_months"`
 
-	// Limits Optional new limits for the resource. Supports upgrades only.
+	// Limits Optional new limits for the resource; components left out keep their current limits. A raised prepaid limit is also charged for the rest of the current term. A renewal that only lowers limits gets no credit; if the offering's renewal_limit_decrease_policy is stretch_paid_term, the value already paid for the rest of the term is spread over the lower limits and the extension starts when it runs out.
 	Limits *map[string]float64 `json:"limits,omitempty"`
 
 	// RequestComment Optional comment for the renewal request.
@@ -116961,6 +117035,68 @@ func (t *MergedPluginOptions_ActionOnUsageLimit) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsRenewalLimitDecreasePolicyEnum returns the union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy as a RenewalLimitDecreasePolicyEnum
+func (t MergedPluginOptions_RenewalLimitDecreasePolicy) AsRenewalLimitDecreasePolicyEnum() (RenewalLimitDecreasePolicyEnum, error) {
+	var body RenewalLimitDecreasePolicyEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRenewalLimitDecreasePolicyEnum overwrites any union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy as the provided RenewalLimitDecreasePolicyEnum
+func (t *MergedPluginOptions_RenewalLimitDecreasePolicy) FromRenewalLimitDecreasePolicyEnum(v RenewalLimitDecreasePolicyEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRenewalLimitDecreasePolicyEnum performs a merge with any union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy, using the provided RenewalLimitDecreasePolicyEnum
+func (t *MergedPluginOptions_RenewalLimitDecreasePolicy) MergeRenewalLimitDecreasePolicyEnum(v RenewalLimitDecreasePolicyEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy as a NullEnum
+func (t MergedPluginOptions_RenewalLimitDecreasePolicy) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy as the provided NullEnum
+func (t *MergedPluginOptions_RenewalLimitDecreasePolicy) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MergedPluginOptions_RenewalLimitDecreasePolicy, using the provided NullEnum
+func (t *MergedPluginOptions_RenewalLimitDecreasePolicy) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MergedPluginOptions_RenewalLimitDecreasePolicy) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MergedPluginOptions_RenewalLimitDecreasePolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsResourceProjectsLimitPolicyEnum returns the union data inside the MergedPluginOptions_ResourceProjectsLimitPolicy as a ResourceProjectsLimitPolicyEnum
 func (t MergedPluginOptions_ResourceProjectsLimitPolicy) AsResourceProjectsLimitPolicyEnum() (ResourceProjectsLimitPolicyEnum, error) {
 	var body ResourceProjectsLimitPolicyEnum
@@ -117319,6 +117455,68 @@ func (t MergedPluginOptionsRequest_ActionOnUsageLimit) MarshalJSON() ([]byte, er
 }
 
 func (t *MergedPluginOptionsRequest_ActionOnUsageLimit) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRenewalLimitDecreasePolicyEnum returns the union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy as a RenewalLimitDecreasePolicyEnum
+func (t MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) AsRenewalLimitDecreasePolicyEnum() (RenewalLimitDecreasePolicyEnum, error) {
+	var body RenewalLimitDecreasePolicyEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRenewalLimitDecreasePolicyEnum overwrites any union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy as the provided RenewalLimitDecreasePolicyEnum
+func (t *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) FromRenewalLimitDecreasePolicyEnum(v RenewalLimitDecreasePolicyEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRenewalLimitDecreasePolicyEnum performs a merge with any union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy, using the provided RenewalLimitDecreasePolicyEnum
+func (t *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) MergeRenewalLimitDecreasePolicyEnum(v RenewalLimitDecreasePolicyEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy as a NullEnum
+func (t MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy as the provided NullEnum
+func (t *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the MergedPluginOptionsRequest_RenewalLimitDecreasePolicy, using the provided NullEnum
+func (t *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *MergedPluginOptionsRequest_RenewalLimitDecreasePolicy) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -127001,6 +127199,68 @@ func (t RemoteResourceSyncStatus_RemoteState) MarshalJSON() ([]byte, error) {
 }
 
 func (t *RemoteResourceSyncStatus_RemoteState) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsRenewalTermEnum returns the union data inside the RenewalEstimateComponent_Term as a RenewalTermEnum
+func (t RenewalEstimateComponent_Term) AsRenewalTermEnum() (RenewalTermEnum, error) {
+	var body RenewalTermEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromRenewalTermEnum overwrites any union data inside the RenewalEstimateComponent_Term as the provided RenewalTermEnum
+func (t *RenewalEstimateComponent_Term) FromRenewalTermEnum(v RenewalTermEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeRenewalTermEnum performs a merge with any union data inside the RenewalEstimateComponent_Term, using the provided RenewalTermEnum
+func (t *RenewalEstimateComponent_Term) MergeRenewalTermEnum(v RenewalTermEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the RenewalEstimateComponent_Term as a NullEnum
+func (t RenewalEstimateComponent_Term) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the RenewalEstimateComponent_Term as the provided NullEnum
+func (t *RenewalEstimateComponent_Term) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the RenewalEstimateComponent_Term, using the provided NullEnum
+func (t *RenewalEstimateComponent_Term) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t RenewalEstimateComponent_Term) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *RenewalEstimateComponent_Term) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
