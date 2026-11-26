@@ -1945,6 +1945,7 @@ const (
 	BookingResourceFieldEnumOfferingThumbnail          BookingResourceFieldEnum = "offering_thumbnail"
 	BookingResourceFieldEnumOfferingType               BookingResourceFieldEnum = "offering_type"
 	BookingResourceFieldEnumOfferingUuid               BookingResourceFieldEnum = "offering_uuid"
+	BookingResourceFieldEnumOptionSecrets              BookingResourceFieldEnum = "option_secrets"
 	BookingResourceFieldEnumOptions                    BookingResourceFieldEnum = "options"
 	BookingResourceFieldEnumOrderInProgress            BookingResourceFieldEnum = "order_in_progress"
 	BookingResourceFieldEnumParentName                 BookingResourceFieldEnum = "parent_name"
@@ -2107,6 +2108,8 @@ func (e BookingResourceFieldEnum) Valid() bool {
 	case BookingResourceFieldEnumOfferingType:
 		return true
 	case BookingResourceFieldEnumOfferingUuid:
+		return true
+	case BookingResourceFieldEnumOptionSecrets:
 		return true
 	case BookingResourceFieldEnumOptions:
 		return true
@@ -3316,6 +3319,27 @@ func (e ChecklistTypeEnum) Valid() bool {
 	case ChecklistTypeEnumProposalCompliance:
 		return true
 	case ChecklistTypeEnumWorkflowStep:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for CidrIpVersionEnum.
+const (
+	CidrIpVersionEnumAny  CidrIpVersionEnum = "any"
+	CidrIpVersionEnumIpv4 CidrIpVersionEnum = "ipv4"
+	CidrIpVersionEnumIpv6 CidrIpVersionEnum = "ipv6"
+)
+
+// Valid indicates whether the value is a known member of the CidrIpVersionEnum enum.
+func (e CidrIpVersionEnum) Valid() bool {
+	switch e {
+	case CidrIpVersionEnumAny:
+		return true
+	case CidrIpVersionEnumIpv4:
+		return true
+	case CidrIpVersionEnumIpv6:
 		return true
 	default:
 		return false
@@ -6528,6 +6552,8 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestApproved    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_approved"
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestCreated     EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_created"
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestRejected    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_rejected"
+	EventMetadataResponseEventGroupsMarketplaceResourceOptionSecretRevealed          EventMetadataResponseEventGroups = "marketplace_resource_option_secret_revealed"
+	EventMetadataResponseEventGroupsMarketplaceResourceOptionSecretSet               EventMetadataResponseEventGroups = "marketplace_resource_option_secret_set"
 	EventMetadataResponseEventGroupsMarketplaceResourcePaused                        EventMetadataResponseEventGroups = "marketplace_resource_paused"
 	EventMetadataResponseEventGroupsMarketplaceResourcePlanSwitched                  EventMetadataResponseEventGroups = "marketplace_resource_plan_switched"
 	EventMetadataResponseEventGroupsMarketplaceResourceProjectCreated                EventMetadataResponseEventGroups = "marketplace_resource_project_created"
@@ -7138,6 +7164,10 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestCreated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestRejected:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceOptionSecretRevealed:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceOptionSecretSet:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourcePaused:
 		return true
@@ -7971,6 +8001,8 @@ const (
 	EventTypesEnumMarketplaceResourceLimitChangeRequestApproved    EventTypesEnum = "marketplace_resource_limit_change_request_approved"
 	EventTypesEnumMarketplaceResourceLimitChangeRequestCreated     EventTypesEnum = "marketplace_resource_limit_change_request_created"
 	EventTypesEnumMarketplaceResourceLimitChangeRequestRejected    EventTypesEnum = "marketplace_resource_limit_change_request_rejected"
+	EventTypesEnumMarketplaceResourceOptionSecretRevealed          EventTypesEnum = "marketplace_resource_option_secret_revealed"
+	EventTypesEnumMarketplaceResourceOptionSecretSet               EventTypesEnum = "marketplace_resource_option_secret_set"
 	EventTypesEnumMarketplaceResourcePaused                        EventTypesEnum = "marketplace_resource_paused"
 	EventTypesEnumMarketplaceResourcePlanSwitched                  EventTypesEnum = "marketplace_resource_plan_switched"
 	EventTypesEnumMarketplaceResourceProjectCreated                EventTypesEnum = "marketplace_resource_project_created"
@@ -8581,6 +8613,10 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceResourceLimitChangeRequestCreated:
 		return true
 	case EventTypesEnumMarketplaceResourceLimitChangeRequestRejected:
+		return true
+	case EventTypesEnumMarketplaceResourceOptionSecretRevealed:
+		return true
+	case EventTypesEnumMarketplaceResourceOptionSecretSet:
 		return true
 	case EventTypesEnumMarketplaceResourcePaused:
 		return true
@@ -10942,6 +10978,99 @@ func (e InvoiceStateEnum) Valid() bool {
 	case InvoiceStateEnumPending:
 		return true
 	case InvoiceStateEnumPendingFinalization:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IpsecDhGroupEnum.
+const (
+	IpsecDhGroupEnumN14 IpsecDhGroupEnum = 14
+	IpsecDhGroupEnumN15 IpsecDhGroupEnum = 15
+	IpsecDhGroupEnumN16 IpsecDhGroupEnum = 16
+	IpsecDhGroupEnumN19 IpsecDhGroupEnum = 19
+	IpsecDhGroupEnumN2  IpsecDhGroupEnum = 2
+	IpsecDhGroupEnumN20 IpsecDhGroupEnum = 20
+	IpsecDhGroupEnumN21 IpsecDhGroupEnum = 21
+	IpsecDhGroupEnumN31 IpsecDhGroupEnum = 31
+	IpsecDhGroupEnumN5  IpsecDhGroupEnum = 5
+)
+
+// Valid indicates whether the value is a known member of the IpsecDhGroupEnum enum.
+func (e IpsecDhGroupEnum) Valid() bool {
+	switch e {
+	case IpsecDhGroupEnumN14:
+		return true
+	case IpsecDhGroupEnumN15:
+		return true
+	case IpsecDhGroupEnumN16:
+		return true
+	case IpsecDhGroupEnumN19:
+		return true
+	case IpsecDhGroupEnumN2:
+		return true
+	case IpsecDhGroupEnumN20:
+		return true
+	case IpsecDhGroupEnumN21:
+		return true
+	case IpsecDhGroupEnumN31:
+		return true
+	case IpsecDhGroupEnumN5:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IpsecEncryptionEnum.
+const (
+	Aes128           IpsecEncryptionEnum = "aes128"
+	Aes128gcm16      IpsecEncryptionEnum = "aes128gcm16"
+	Aes192           IpsecEncryptionEnum = "aes192"
+	Aes256           IpsecEncryptionEnum = "aes256"
+	Aes256gcm16      IpsecEncryptionEnum = "aes256gcm16"
+	Chacha20poly1305 IpsecEncryptionEnum = "chacha20poly1305"
+)
+
+// Valid indicates whether the value is a known member of the IpsecEncryptionEnum enum.
+func (e IpsecEncryptionEnum) Valid() bool {
+	switch e {
+	case Aes128:
+		return true
+	case Aes128gcm16:
+		return true
+	case Aes192:
+		return true
+	case Aes256:
+		return true
+	case Aes256gcm16:
+		return true
+	case Chacha20poly1305:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IpsecIntegrityEnum.
+const (
+	Sha1   IpsecIntegrityEnum = "sha1"
+	Sha256 IpsecIntegrityEnum = "sha256"
+	Sha384 IpsecIntegrityEnum = "sha384"
+	Sha512 IpsecIntegrityEnum = "sha512"
+)
+
+// Valid indicates whether the value is a known member of the IpsecIntegrityEnum enum.
+func (e IpsecIntegrityEnum) Valid() bool {
+	switch e {
+	case Sha1:
+		return true
+	case Sha256:
+		return true
+	case Sha384:
+		return true
+	case Sha512:
 		return true
 	default:
 		return false
@@ -17251,6 +17380,7 @@ func (e OpenStackVolumeFieldEnum) Valid() bool {
 // Defines values for OptionFieldTypeEnum.
 const (
 	OptionFieldTypeEnumBoolean                          OptionFieldTypeEnum = "boolean"
+	OptionFieldTypeEnumCidr                             OptionFieldTypeEnum = "cidr"
 	OptionFieldTypeEnumComponentFormula                 OptionFieldTypeEnum = "component_formula"
 	OptionFieldTypeEnumComponentMultiplier              OptionFieldTypeEnum = "component_multiplier"
 	OptionFieldTypeEnumComponentSum                     OptionFieldTypeEnum = "component_sum"
@@ -17258,9 +17388,11 @@ const (
 	OptionFieldTypeEnumDate                             OptionFieldTypeEnum = "date"
 	OptionFieldTypeEnumHtmlText                         OptionFieldTypeEnum = "html_text"
 	OptionFieldTypeEnumInteger                          OptionFieldTypeEnum = "integer"
+	OptionFieldTypeEnumIpsecVpnConfig                   OptionFieldTypeEnum = "ipsec_vpn_config"
 	OptionFieldTypeEnumK8sEgressRules                   OptionFieldTypeEnum = "k8s_egress_rules"
 	OptionFieldTypeEnumMoney                            OptionFieldTypeEnum = "money"
 	OptionFieldTypeEnumMultiDatacenterK8sConfig         OptionFieldTypeEnum = "multi_datacenter_k8s_config"
+	OptionFieldTypeEnumSecret                           OptionFieldTypeEnum = "secret"
 	OptionFieldTypeEnumSelectMultipleOpenstackInstances OptionFieldTypeEnum = "select_multiple_openstack_instances"
 	OptionFieldTypeEnumSelectMultipleOpenstackTenants   OptionFieldTypeEnum = "select_multiple_openstack_tenants"
 	OptionFieldTypeEnumSelectOpenstackInstance          OptionFieldTypeEnum = "select_openstack_instance"
@@ -17279,6 +17411,8 @@ func (e OptionFieldTypeEnum) Valid() bool {
 	switch e {
 	case OptionFieldTypeEnumBoolean:
 		return true
+	case OptionFieldTypeEnumCidr:
+		return true
 	case OptionFieldTypeEnumComponentFormula:
 		return true
 	case OptionFieldTypeEnumComponentMultiplier:
@@ -17293,11 +17427,15 @@ func (e OptionFieldTypeEnum) Valid() bool {
 		return true
 	case OptionFieldTypeEnumInteger:
 		return true
+	case OptionFieldTypeEnumIpsecVpnConfig:
+		return true
 	case OptionFieldTypeEnumK8sEgressRules:
 		return true
 	case OptionFieldTypeEnumMoney:
 		return true
 	case OptionFieldTypeEnumMultiDatacenterK8sConfig:
+		return true
+	case OptionFieldTypeEnumSecret:
 		return true
 	case OptionFieldTypeEnumSelectMultipleOpenstackInstances:
 		return true
@@ -17320,6 +17458,24 @@ func (e OptionFieldTypeEnum) Valid() bool {
 	case OptionFieldTypeEnumText:
 		return true
 	case OptionFieldTypeEnumTime:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for OptionSecretSourceEnum.
+const (
+	OptionSecretSourceEnumCustomer OptionSecretSourceEnum = "customer"
+	OptionSecretSourceEnumProvider OptionSecretSourceEnum = "provider"
+)
+
+// Valid indicates whether the value is a known member of the OptionSecretSourceEnum enum.
+func (e OptionSecretSourceEnum) Valid() bool {
+	switch e {
+	case OptionSecretSourceEnumCustomer:
+		return true
+	case OptionSecretSourceEnumProvider:
 		return true
 	default:
 		return false
@@ -17457,6 +17613,7 @@ const (
 	OrderDetailsFieldEnumOldPlanBillingMode                OrderDetailsFieldEnum = "old_plan_billing_mode"
 	OrderDetailsFieldEnumOldPlanName                       OrderDetailsFieldEnum = "old_plan_name"
 	OrderDetailsFieldEnumOldPlanUuid                       OrderDetailsFieldEnum = "old_plan_uuid"
+	OrderDetailsFieldEnumOptionSecrets                     OrderDetailsFieldEnum = "option_secrets"
 	OrderDetailsFieldEnumOrderSubtype                      OrderDetailsFieldEnum = "order_subtype"
 	OrderDetailsFieldEnumOutput                            OrderDetailsFieldEnum = "output"
 	OrderDetailsFieldEnumOutputUpdatedAt                   OrderDetailsFieldEnum = "output_updated_at"
@@ -17624,6 +17781,8 @@ func (e OrderDetailsFieldEnum) Valid() bool {
 	case OrderDetailsFieldEnumOldPlanName:
 		return true
 	case OrderDetailsFieldEnumOldPlanUuid:
+		return true
+	case OrderDetailsFieldEnumOptionSecrets:
 		return true
 	case OrderDetailsFieldEnumOrderSubtype:
 		return true
@@ -23269,6 +23428,7 @@ const (
 	ResourceFieldEnumOfferingThumbnail          ResourceFieldEnum = "offering_thumbnail"
 	ResourceFieldEnumOfferingType               ResourceFieldEnum = "offering_type"
 	ResourceFieldEnumOfferingUuid               ResourceFieldEnum = "offering_uuid"
+	ResourceFieldEnumOptionSecrets              ResourceFieldEnum = "option_secrets"
 	ResourceFieldEnumOptions                    ResourceFieldEnum = "options"
 	ResourceFieldEnumOrderInProgress            ResourceFieldEnum = "order_in_progress"
 	ResourceFieldEnumParentName                 ResourceFieldEnum = "parent_name"
@@ -23418,6 +23578,8 @@ func (e ResourceFieldEnum) Valid() bool {
 	case ResourceFieldEnumOfferingType:
 		return true
 	case ResourceFieldEnumOfferingUuid:
+		return true
+	case ResourceFieldEnumOptionSecrets:
 		return true
 	case ResourceFieldEnumOptions:
 		return true
@@ -32755,25 +32917,28 @@ type BookingResource struct {
 	OfferingPluginOptions *map[string]interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool                   `json:"offering_shared,omitempty"`
-	OfferingSlug       *string                 `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingState          `json:"offering_state,omitempty"`
-	OfferingThumbnail  *string                 `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string                 `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID     `json:"offering_uuid,omitempty"`
-	Options            *map[string]interface{} `json:"options,omitempty"`
-	OrderInProgress    *OrderDetails           `json:"order_in_progress,omitempty"`
-	ParentName         *string                 `json:"parent_name,omitempty"`
-	ParentOfferingName *string                 `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug *string                 `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID     `json:"parent_offering_uuid,omitempty"`
-	ParentUuid         *openapi_types.UUID     `json:"parent_uuid,omitempty"`
-	Paused             *bool                   `json:"paused,omitempty"`
-	Plan               *string                 `json:"plan,omitempty"`
-	PlanDescription    *string                 `json:"plan_description,omitempty"`
-	PlanName           *string                 `json:"plan_name,omitempty"`
-	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
-	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
+	OfferingShared    *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug      *string             `json:"offering_slug,omitempty"`
+	OfferingState     *OfferingState      `json:"offering_state,omitempty"`
+	OfferingThumbnail *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType      *string             `json:"offering_type,omitempty"`
+	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// OptionSecrets Whether each secret option of the offering is set, by option name. Never the value; the reveal_option_secret action returns it to whom may read it.
+	OptionSecrets      *map[string]ResourceOptionSecretStatus `json:"option_secrets,omitempty"`
+	Options            *map[string]interface{}                `json:"options,omitempty"`
+	OrderInProgress    *OrderDetails                          `json:"order_in_progress,omitempty"`
+	ParentName         *string                                `json:"parent_name,omitempty"`
+	ParentOfferingName *string                                `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string                                `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID                    `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID                    `json:"parent_uuid,omitempty"`
+	Paused             *bool                                  `json:"paused,omitempty"`
+	Plan               *string                                `json:"plan,omitempty"`
+	PlanDescription    *string                                `json:"plan_description,omitempty"`
+	PlanName           *string                                `json:"plan_name,omitempty"`
+	PlanUnit           *BillingUnit                           `json:"plan_unit,omitempty"`
+	PlanUuid           *openapi_types.UUID                    `json:"plan_uuid,omitempty"`
 
 	// PrepaidTotalComponentTypes Component types whose limit_usage covers the whole subscription, so the UI shows their limit as the monthly limit times the months ordered. Empty unless the offering shows prepaid limits as a total (display_prepaid_limits_as_total).
 	PrepaidTotalComponentTypes *[]string `json:"prepaid_total_component_types,omitempty"`
@@ -35567,6 +35732,51 @@ type ChecklistTemplate struct {
 
 // ChecklistTypeEnum defines model for ChecklistTypeEnum.
 type ChecklistTypeEnum string
+
+// CidrIpVersionEnum defines model for CidrIpVersionEnum.
+type CidrIpVersionEnum string
+
+// CidrPolicy defines model for CidrPolicy.
+type CidrPolicy struct {
+	// AllowedRanges Networks the value must lie inside one of, such as the private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 and fc00::/7. Any network when empty.
+	AllowedRanges *[]string `json:"allowed_ranges,omitempty"`
+
+	// ExcludedRanges Networks the value must not overlap.
+	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
+
+	// IpVersion Which IP version the network may be. Any when omitted.
+	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
+
+	// MaxItems For a list: the most networks it may hold.
+	MaxItems *int `json:"max_items,omitempty"`
+
+	// PrefixLengthMax The largest prefix length allowed, that is the smallest network.
+	PrefixLengthMax *int `json:"prefix_length_max,omitempty"`
+
+	// PrefixLengthMin The smallest prefix length allowed, that is the largest network.
+	PrefixLengthMin *int `json:"prefix_length_min,omitempty"`
+}
+
+// CidrPolicyRequest defines model for CidrPolicyRequest.
+type CidrPolicyRequest struct {
+	// AllowedRanges Networks the value must lie inside one of, such as the private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 and fc00::/7. Any network when empty.
+	AllowedRanges *[]string `json:"allowed_ranges,omitempty"`
+
+	// ExcludedRanges Networks the value must not overlap.
+	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
+
+	// IpVersion Which IP version the network may be. Any when omitted.
+	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
+
+	// MaxItems For a list: the most networks it may hold.
+	MaxItems *int `json:"max_items,omitempty"`
+
+	// PrefixLengthMax The largest prefix length allowed, that is the smallest network.
+	PrefixLengthMax *int `json:"prefix_length_max,omitempty"`
+
+	// PrefixLengthMin The smallest prefix length allowed, that is the largest network.
+	PrefixLengthMin *int `json:"prefix_length_min,omitempty"`
+}
 
 // CircuitBreakerConfig defines model for CircuitBreakerConfig.
 type CircuitBreakerConfig struct {
@@ -44467,6 +44677,143 @@ type InvoiceStatsOffering struct {
 	ServiceProviderUuid  *openapi_types.UUID `json:"service_provider_uuid,omitempty"`
 }
 
+// IpsecDhGroupEnum defines model for IpsecDhGroupEnum.
+type IpsecDhGroupEnum int
+
+// IpsecEncryptionEnum defines model for IpsecEncryptionEnum.
+type IpsecEncryptionEnum string
+
+// IpsecIntegrityEnum defines model for IpsecIntegrityEnum.
+type IpsecIntegrityEnum string
+
+// IpsecPhase1 defines model for IpsecPhase1.
+type IpsecPhase1 struct {
+	DhGroup    *IpsecDhGroupEnum    `json:"dh_group,omitempty"`
+	Encryption *IpsecEncryptionEnum `json:"encryption,omitempty"`
+	Integrity  *IpsecIntegrityEnum  `json:"integrity,omitempty"`
+
+	// Lifetime In seconds.
+	Lifetime *int `json:"lifetime,omitempty"`
+}
+
+// IpsecPhase1Policy defines model for IpsecPhase1Policy.
+type IpsecPhase1Policy struct {
+	Defaults *IpsecPhase1 `json:"defaults,omitempty"`
+
+	// DhGroups Allowed. Every group but 2 and 5 when omitted.
+	DhGroups *[]IpsecDhGroupEnum `json:"dh_groups,omitempty"`
+
+	// Encryption Allowed. Every algorithm when omitted.
+	Encryption *[]IpsecEncryptionEnum `json:"encryption,omitempty"`
+
+	// Integrity Allowed. Every algorithm but sha1 when omitted.
+	Integrity   *[]IpsecIntegrityEnum `json:"integrity,omitempty"`
+	LifetimeMax *int                  `json:"lifetime_max,omitempty"`
+	LifetimeMin *int                  `json:"lifetime_min,omitempty"`
+}
+
+// IpsecPhase1PolicyRequest defines model for IpsecPhase1PolicyRequest.
+type IpsecPhase1PolicyRequest struct {
+	Defaults *IpsecPhase1Request `json:"defaults,omitempty"`
+
+	// DhGroups Allowed. Every group but 2 and 5 when omitted.
+	DhGroups *[]IpsecDhGroupEnum `json:"dh_groups,omitempty"`
+
+	// Encryption Allowed. Every algorithm when omitted.
+	Encryption *[]IpsecEncryptionEnum `json:"encryption,omitempty"`
+
+	// Integrity Allowed. Every algorithm but sha1 when omitted.
+	Integrity   *[]IpsecIntegrityEnum `json:"integrity,omitempty"`
+	LifetimeMax *int                  `json:"lifetime_max,omitempty"`
+	LifetimeMin *int                  `json:"lifetime_min,omitempty"`
+}
+
+// IpsecPhase1Request defines model for IpsecPhase1Request.
+type IpsecPhase1Request struct {
+	DhGroup    *IpsecDhGroupEnum    `json:"dh_group,omitempty"`
+	Encryption *IpsecEncryptionEnum `json:"encryption,omitempty"`
+	Integrity  *IpsecIntegrityEnum  `json:"integrity,omitempty"`
+
+	// Lifetime In seconds.
+	Lifetime *int `json:"lifetime,omitempty"`
+}
+
+// IpsecPhase2 defines model for IpsecPhase2.
+type IpsecPhase2 struct {
+	Encryption *IpsecEncryptionEnum `json:"encryption,omitempty"`
+	Integrity  *IpsecIntegrityEnum  `json:"integrity,omitempty"`
+
+	// Lifetime In seconds.
+	Lifetime *int `json:"lifetime,omitempty"`
+
+	// PfsGroup Null for no perfect forward secrecy.
+	PfsGroup *IpsecPhase2_PfsGroup `json:"pfs_group,omitempty"`
+}
+
+// IpsecPhase2_PfsGroup Null for no perfect forward secrecy.
+type IpsecPhase2_PfsGroup struct {
+	union json.RawMessage
+}
+
+// IpsecPhase2Policy defines model for IpsecPhase2Policy.
+type IpsecPhase2Policy struct {
+	Defaults *IpsecPhase2 `json:"defaults,omitempty"`
+
+	// Encryption Allowed. Every algorithm when omitted.
+	Encryption *[]IpsecEncryptionEnum `json:"encryption,omitempty"`
+
+	// Integrity Allowed. Every algorithm but sha1 when omitted.
+	Integrity   *[]IpsecIntegrityEnum `json:"integrity,omitempty"`
+	LifetimeMax *int                  `json:"lifetime_max,omitempty"`
+	LifetimeMin *int                  `json:"lifetime_min,omitempty"`
+
+	// PfsGroups Allowed. Every group but 2 and 5 when omitted. Null allows no perfect forward secrecy.
+	PfsGroups *[]*IpsecPhase2Policy_PfsGroups_Item `json:"pfs_groups,omitempty"`
+}
+
+// IpsecPhase2Policy_PfsGroups_Item defines model for IpsecPhase2Policy.pfs_groups.Item.
+type IpsecPhase2Policy_PfsGroups_Item struct {
+	union json.RawMessage
+}
+
+// IpsecPhase2PolicyRequest defines model for IpsecPhase2PolicyRequest.
+type IpsecPhase2PolicyRequest struct {
+	Defaults *IpsecPhase2Request `json:"defaults,omitempty"`
+
+	// Encryption Allowed. Every algorithm when omitted.
+	Encryption *[]IpsecEncryptionEnum `json:"encryption,omitempty"`
+
+	// Integrity Allowed. Every algorithm but sha1 when omitted.
+	Integrity   *[]IpsecIntegrityEnum `json:"integrity,omitempty"`
+	LifetimeMax *int                  `json:"lifetime_max,omitempty"`
+	LifetimeMin *int                  `json:"lifetime_min,omitempty"`
+
+	// PfsGroups Allowed. Every group but 2 and 5 when omitted. Null allows no perfect forward secrecy.
+	PfsGroups *[]*IpsecPhase2PolicyRequest_PfsGroups_Item `json:"pfs_groups,omitempty"`
+}
+
+// IpsecPhase2PolicyRequest_PfsGroups_Item defines model for IpsecPhase2PolicyRequest.pfs_groups.Item.
+type IpsecPhase2PolicyRequest_PfsGroups_Item struct {
+	union json.RawMessage
+}
+
+// IpsecPhase2Request defines model for IpsecPhase2Request.
+type IpsecPhase2Request struct {
+	Encryption *IpsecEncryptionEnum `json:"encryption,omitempty"`
+	Integrity  *IpsecIntegrityEnum  `json:"integrity,omitempty"`
+
+	// Lifetime In seconds.
+	Lifetime *int `json:"lifetime,omitempty"`
+
+	// PfsGroup Null for no perfect forward secrecy.
+	PfsGroup *IpsecPhase2Request_PfsGroup `json:"pfs_group,omitempty"`
+}
+
+// IpsecPhase2Request_PfsGroup Null for no perfect forward secrecy.
+type IpsecPhase2Request_PfsGroup struct {
+	union json.RawMessage
+}
+
 // Ipv6Mode defines model for Ipv6Mode.
 type Ipv6Mode string
 
@@ -44728,74 +45075,6 @@ type JiraIssueRequest struct {
 
 	// Key Jira issue key
 	Key string `json:"key"`
-}
-
-// K8sDefaultConfiguration defines model for K8sDefaultConfiguration.
-type K8sDefaultConfiguration struct {
-	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
-	AvailableKubernetesVersions   *string `json:"available_kubernetes_versions,omitempty"`
-	DefaultControllerEtcdDiskGb   *int    `json:"default_controller_etcd_disk_gb,omitempty"`
-	DefaultControllerRamGb        *int    `json:"default_controller_ram_gb,omitempty"`
-	DefaultControllerSystemDiskGb *int    `json:"default_controller_system_disk_gb,omitempty"`
-	DefaultControllerVcpus        *int    `json:"default_controller_vcpus,omitempty"`
-	DefaultLbLogsDiskGb           *int    `json:"default_lb_logs_disk_gb,omitempty"`
-	DefaultLbRamGb                *int    `json:"default_lb_ram_gb,omitempty"`
-	DefaultLbSystemDiskGb         *int    `json:"default_lb_system_disk_gb,omitempty"`
-	DefaultLbVcpus                *int    `json:"default_lb_vcpus,omitempty"`
-	DefaultStorageDataDiskGb      *int    `json:"default_storage_data_disk_gb,omitempty"`
-	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
-	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
-
-	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
-	EgressBaselineRules *[]K8sEgressRule `json:"egress_baseline_rules,omitempty"`
-
-	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
-	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
-
-	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
-	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
-
-	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
-	LoadBalancerMode   *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
-	MinimalWorkerRamGb *int                  `json:"minimal_worker_ram_gb,omitempty"`
-	MinimalWorkerVcpus *int                  `json:"minimal_worker_vcpus,omitempty"`
-
-	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
-	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
-}
-
-// K8sDefaultConfigurationRequest defines model for K8sDefaultConfigurationRequest.
-type K8sDefaultConfigurationRequest struct {
-	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
-	AvailableKubernetesVersions   *string `json:"available_kubernetes_versions,omitempty"`
-	DefaultControllerEtcdDiskGb   *int    `json:"default_controller_etcd_disk_gb,omitempty"`
-	DefaultControllerRamGb        *int    `json:"default_controller_ram_gb,omitempty"`
-	DefaultControllerSystemDiskGb *int    `json:"default_controller_system_disk_gb,omitempty"`
-	DefaultControllerVcpus        *int    `json:"default_controller_vcpus,omitempty"`
-	DefaultLbLogsDiskGb           *int    `json:"default_lb_logs_disk_gb,omitempty"`
-	DefaultLbRamGb                *int    `json:"default_lb_ram_gb,omitempty"`
-	DefaultLbSystemDiskGb         *int    `json:"default_lb_system_disk_gb,omitempty"`
-	DefaultLbVcpus                *int    `json:"default_lb_vcpus,omitempty"`
-	DefaultStorageDataDiskGb      *int    `json:"default_storage_data_disk_gb,omitempty"`
-	DefaultStorageSanDiskGb       *int    `json:"default_storage_san_disk_gb,omitempty"`
-	DefaultWorkerDataDiskGb       *int    `json:"default_worker_data_disk_gb,omitempty"`
-
-	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
-	EgressBaselineRules *[]K8sEgressRuleRequest `json:"egress_baseline_rules,omitempty"`
-
-	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
-	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
-
-	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
-	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
-
-	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
-	LoadBalancerMode   *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
-	MinimalWorkerRamGb *int                  `json:"minimal_worker_ram_gb,omitempty"`
-	MinimalWorkerVcpus *int                  `json:"minimal_worker_vcpus,omitempty"`
-
-	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
-	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
 }
 
 // K8sEgressRule defines model for K8sEgressRule.
@@ -53872,6 +54151,194 @@ type OpenStepDiscussionRequest struct {
 	RoundStepUuid *openapi_types.UUID `json:"round_step_uuid,omitempty"`
 }
 
+// OptionDefaultConfigs defines model for OptionDefaultConfigs.
+type OptionDefaultConfigs struct {
+	// AllowPrivatePeer Whether the customer's gateway may have a private, loopback, link-local, multicast, reserved or CGNAT address. Off when omitted.
+	AllowPrivatePeer *bool `json:"allow_private_peer,omitempty"`
+
+	// AllowedRanges Networks the value must lie inside one of, such as the private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 and fc00::/7. Any network when empty.
+	AllowedRanges *[]string `json:"allowed_ranges,omitempty"`
+
+	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
+	AvailableKubernetesVersions *string `json:"available_kubernetes_versions,omitempty"`
+
+	// CustomerCanReveal Whether users holding RESOURCE.REVEAL_API_KEY on the resource's project or organization may read the secret back. When omitted: no for a customer-set secret, yes for a provider-set one.
+	CustomerCanReveal             *bool `json:"customer_can_reveal,omitempty"`
+	DefaultControllerEtcdDiskGb   *int  `json:"default_controller_etcd_disk_gb,omitempty"`
+	DefaultControllerRamGb        *int  `json:"default_controller_ram_gb,omitempty"`
+	DefaultControllerSystemDiskGb *int  `json:"default_controller_system_disk_gb,omitempty"`
+	DefaultControllerVcpus        *int  `json:"default_controller_vcpus,omitempty"`
+	DefaultLbLogsDiskGb           *int  `json:"default_lb_logs_disk_gb,omitempty"`
+	DefaultLbRamGb                *int  `json:"default_lb_ram_gb,omitempty"`
+	DefaultLbSystemDiskGb         *int  `json:"default_lb_system_disk_gb,omitempty"`
+	DefaultLbVcpus                *int  `json:"default_lb_vcpus,omitempty"`
+	DefaultStorageDataDiskGb      *int  `json:"default_storage_data_disk_gb,omitempty"`
+	DefaultStorageSanDiskGb       *int  `json:"default_storage_san_disk_gb,omitempty"`
+	DefaultWorkerDataDiskGb       *int  `json:"default_worker_data_disk_gb,omitempty"`
+
+	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
+	EgressBaselineRules *[]K8sEgressRule `json:"egress_baseline_rules,omitempty"`
+
+	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
+	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
+
+	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
+	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
+
+	// ExcludedRanges Networks the value must not overlap.
+	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
+
+	// Ikev1Allowed Whether IKEv1 is accepted. Off when omitted.
+	Ikev1Allowed *bool `json:"ikev1_allowed,omitempty"`
+
+	// IpVersion Which IP version the network may be. Any when omitted.
+	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
+
+	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
+	LoadBalancerMode *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
+
+	// MaxItems For a list: the most networks it may hold.
+	MaxItems *int `json:"max_items,omitempty"`
+
+	// MaxLength 4096 when omitted; at most 65536.
+	MaxLength *int `json:"max_length,omitempty"`
+
+	// MinLength 1 when omitted.
+	MinLength          *int `json:"min_length,omitempty"`
+	MinimalWorkerRamGb *int `json:"minimal_worker_ram_gb,omitempty"`
+	MinimalWorkerVcpus *int `json:"minimal_worker_vcpus,omitempty"`
+
+	// Multiline Whether the secret may span lines, such as a PEM key or a kubeconfig. Off when omitted.
+	Multiline *bool `json:"multiline,omitempty"`
+
+	// Multiple Whether the value is a list of networks. Off when omitted.
+	Multiple *bool `json:"multiple,omitempty"`
+
+	// NoOverlapWith Names of cidr options whose networks the remote subnets must not overlap. A resource option may name order options too.
+	NoOverlapWith *[]string `json:"no_overlap_with,omitempty"`
+
+	// Phase1 Allowed IKE (phase 1) proposals and defaults.
+	Phase1 *IpsecPhase1Policy `json:"phase1,omitempty"`
+
+	// Phase2 Allowed ESP (phase 2) proposals and defaults.
+	Phase2 *IpsecPhase2Policy `json:"phase2,omitempty"`
+
+	// PrefixLengthMax The largest prefix length allowed, that is the smallest network.
+	PrefixLengthMax *int `json:"prefix_length_max,omitempty"`
+
+	// PrefixLengthMin The smallest prefix length allowed, that is the largest network.
+	PrefixLengthMin *int `json:"prefix_length_min,omitempty"`
+
+	// ProviderGatewayIp The provider's end of new tunnels: its gateway's IP address.
+	ProviderGatewayIp *string `json:"provider_gateway_ip,omitempty"`
+
+	// ProviderLocalSubnets The provider's end of new tunnels: the networks behind it.
+	ProviderLocalSubnets *[]string `json:"provider_local_subnets,omitempty"`
+
+	// RemoteSubnets Rules for the networks behind the customer's gateway.
+	RemoteSubnets *CidrPolicy `json:"remote_subnets,omitempty"`
+
+	// SecretSource Who sets the secret: the customer (when ordering, or later) or the provider and its site agent. customer when omitted.
+	SecretSource *OptionSecretSourceEnum `json:"secret_source,omitempty"`
+
+	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
+	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
+}
+
+// OptionDefaultConfigsRequest defines model for OptionDefaultConfigsRequest.
+type OptionDefaultConfigsRequest struct {
+	// AllowPrivatePeer Whether the customer's gateway may have a private, loopback, link-local, multicast, reserved or CGNAT address. Off when omitted.
+	AllowPrivatePeer *bool `json:"allow_private_peer,omitempty"`
+
+	// AllowedRanges Networks the value must lie inside one of, such as the private ranges 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 and fc00::/7. Any network when empty.
+	AllowedRanges *[]string `json:"allowed_ranges,omitempty"`
+
+	// AvailableKubernetesVersions Comma-separated list of Kubernetes versions (e.g., 1.32.0,1.33.0,1.34.0)
+	AvailableKubernetesVersions *string `json:"available_kubernetes_versions,omitempty"`
+
+	// CustomerCanReveal Whether users holding RESOURCE.REVEAL_API_KEY on the resource's project or organization may read the secret back. When omitted: no for a customer-set secret, yes for a provider-set one.
+	CustomerCanReveal             *bool `json:"customer_can_reveal,omitempty"`
+	DefaultControllerEtcdDiskGb   *int  `json:"default_controller_etcd_disk_gb,omitempty"`
+	DefaultControllerRamGb        *int  `json:"default_controller_ram_gb,omitempty"`
+	DefaultControllerSystemDiskGb *int  `json:"default_controller_system_disk_gb,omitempty"`
+	DefaultControllerVcpus        *int  `json:"default_controller_vcpus,omitempty"`
+	DefaultLbLogsDiskGb           *int  `json:"default_lb_logs_disk_gb,omitempty"`
+	DefaultLbRamGb                *int  `json:"default_lb_ram_gb,omitempty"`
+	DefaultLbSystemDiskGb         *int  `json:"default_lb_system_disk_gb,omitempty"`
+	DefaultLbVcpus                *int  `json:"default_lb_vcpus,omitempty"`
+	DefaultStorageDataDiskGb      *int  `json:"default_storage_data_disk_gb,omitempty"`
+	DefaultStorageSanDiskGb       *int  `json:"default_storage_san_disk_gb,omitempty"`
+	DefaultWorkerDataDiskGb       *int  `json:"default_worker_data_disk_gb,omitempty"`
+
+	// EgressBaselineRules Destinations every cluster of the offering may reach, such as DNS, NTP and image registries. Shown to customers read-only; once a cluster has any egress rule, outbound traffic is allowed to these and to the customer's destinations only.
+	EgressBaselineRules *[]K8sEgressRuleRequest `json:"egress_baseline_rules,omitempty"`
+
+	// EgressDomainRulesAllowed Whether customers' egress rules may name domains; otherwise only networks (CIDR). Off when omitted.
+	EgressDomainRulesAllowed *bool `json:"egress_domain_rules_allowed,omitempty"`
+
+	// EgressRulesEnabled Whether customers may restrict the cluster's outbound traffic to a list of destinations (egress_rules). Off when omitted.
+	EgressRulesEnabled *bool `json:"egress_rules_enabled,omitempty"`
+
+	// ExcludedRanges Networks the value must not overlap.
+	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
+
+	// Ikev1Allowed Whether IKEv1 is accepted. Off when omitted.
+	Ikev1Allowed *bool `json:"ikev1_allowed,omitempty"`
+
+	// IpVersion Which IP version the network may be. Any when omitted.
+	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
+
+	// LoadBalancerMode Whether clusters get a load balancer: always (required), at the customer's choice (optional) or never (disabled). Treated as required when omitted.
+	LoadBalancerMode *LoadBalancerModeEnum `json:"load_balancer_mode,omitempty"`
+
+	// MaxItems For a list: the most networks it may hold.
+	MaxItems *int `json:"max_items,omitempty"`
+
+	// MaxLength 4096 when omitted; at most 65536.
+	MaxLength *int `json:"max_length,omitempty"`
+
+	// MinLength 1 when omitted.
+	MinLength          *int `json:"min_length,omitempty"`
+	MinimalWorkerRamGb *int `json:"minimal_worker_ram_gb,omitempty"`
+	MinimalWorkerVcpus *int `json:"minimal_worker_vcpus,omitempty"`
+
+	// Multiline Whether the secret may span lines, such as a PEM key or a kubeconfig. Off when omitted.
+	Multiline *bool `json:"multiline,omitempty"`
+
+	// Multiple Whether the value is a list of networks. Off when omitted.
+	Multiple *bool `json:"multiple,omitempty"`
+
+	// NoOverlapWith Names of cidr options whose networks the remote subnets must not overlap. A resource option may name order options too.
+	NoOverlapWith *[]string `json:"no_overlap_with,omitempty"`
+
+	// Phase1 Allowed IKE (phase 1) proposals and defaults.
+	Phase1 *IpsecPhase1PolicyRequest `json:"phase1,omitempty"`
+
+	// Phase2 Allowed ESP (phase 2) proposals and defaults.
+	Phase2 *IpsecPhase2PolicyRequest `json:"phase2,omitempty"`
+
+	// PrefixLengthMax The largest prefix length allowed, that is the smallest network.
+	PrefixLengthMax *int `json:"prefix_length_max,omitempty"`
+
+	// PrefixLengthMin The smallest prefix length allowed, that is the largest network.
+	PrefixLengthMin *int `json:"prefix_length_min,omitempty"`
+
+	// ProviderGatewayIp The provider's end of new tunnels: its gateway's IP address.
+	ProviderGatewayIp *string `json:"provider_gateway_ip,omitempty"`
+
+	// ProviderLocalSubnets The provider's end of new tunnels: the networks behind it.
+	ProviderLocalSubnets *[]string `json:"provider_local_subnets,omitempty"`
+
+	// RemoteSubnets Rules for the networks behind the customer's gateway.
+	RemoteSubnets *CidrPolicyRequest `json:"remote_subnets,omitempty"`
+
+	// SecretSource Who sets the secret: the customer (when ordering, or later) or the provider and its site agent. customer when omitted.
+	SecretSource *OptionSecretSourceEnum `json:"secret_source,omitempty"`
+
+	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
+	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
+}
+
 // OptionField defines model for OptionField.
 type OptionField struct {
 	CascadeConfig             *CascadeConfig             `json:"cascade_config,omitempty"`
@@ -53880,7 +54347,7 @@ type OptionField struct {
 	ComponentMultiplierConfig *ComponentMultiplierConfig `json:"component_multiplier_config,omitempty"`
 	ComponentSumConfig        *ComponentSumConfig        `json:"component_sum_config,omitempty"`
 	Default                   *string                    `json:"default,omitempty"`
-	DefaultConfigs            *K8sDefaultConfiguration   `json:"default_configs,omitempty"`
+	DefaultConfigs            *OptionDefaultConfigs      `json:"default_configs,omitempty"`
 
 	// DisplayLimitConfig Show this option's value as the limit of a usage-based component. Only for integer resource options; the value is not billed or enforced.
 	DisplayLimitConfig *DisplayLimitConfig `json:"display_limit_config,omitempty"`
@@ -53920,7 +54387,7 @@ type OptionFieldRequest struct {
 	ComponentMultiplierConfig *ComponentMultiplierConfigRequest `json:"component_multiplier_config,omitempty"`
 	ComponentSumConfig        *ComponentSumConfigRequest        `json:"component_sum_config,omitempty"`
 	Default                   *string                           `json:"default,omitempty"`
-	DefaultConfigs            *K8sDefaultConfigurationRequest   `json:"default_configs,omitempty"`
+	DefaultConfigs            *OptionDefaultConfigsRequest      `json:"default_configs,omitempty"`
 
 	// DisplayLimitConfig Show this option's value as the limit of a usage-based component. Only for integer resource options; the value is not billed or enforced.
 	DisplayLimitConfig *DisplayLimitConfigRequest `json:"display_limit_config,omitempty"`
@@ -53951,6 +54418,9 @@ type OptionFieldRequest struct {
 
 // OptionFieldTypeEnum defines model for OptionFieldTypeEnum.
 type OptionFieldTypeEnum string
+
+// OptionSecretSourceEnum defines model for OptionSecretSourceEnum.
+type OptionSecretSourceEnum string
 
 // OptionTransform defines model for OptionTransform.
 type OptionTransform struct {
@@ -54241,30 +54711,33 @@ type OrderDetails struct {
 	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
 
 	// OldCostEstimate Cost estimate for the old limits, snapshotted when the order was created.
-	OldCostEstimate           *float64            `json:"old_cost_estimate,omitempty"`
-	OldPlanBillingMode        *string             `json:"old_plan_billing_mode,omitempty"`
-	OldPlanName               *string             `json:"old_plan_name,omitempty"`
-	OldPlanUuid               *openapi_types.UUID `json:"old_plan_uuid,omitempty"`
-	OrderSubtype              *string             `json:"order_subtype,omitempty"`
-	Output                    *string             `json:"output,omitempty"`
-	OutputUpdatedAt           *time.Time          `json:"output_updated_at,omitempty"`
-	Plan                      *string             `json:"plan,omitempty"`
-	PlanDescription           *string             `json:"plan_description,omitempty"`
-	PlanName                  *string             `json:"plan_name,omitempty"`
-	PlanUnit                  *BillingUnit        `json:"plan_unit,omitempty"`
-	PlanUuid                  *openapi_types.UUID `json:"plan_uuid,omitempty"`
-	ProjectDescription        *string             `json:"project_description,omitempty"`
-	ProjectName               *string             `json:"project_name,omitempty"`
-	ProjectSlug               *string             `json:"project_slug,omitempty"`
-	ProjectUuid               *openapi_types.UUID `json:"project_uuid,omitempty"`
-	ProviderDescription       *string             `json:"provider_description,omitempty"`
-	ProviderMessage           *string             `json:"provider_message,omitempty"`
-	ProviderMessageAttachment *string             `json:"provider_message_attachment,omitempty"`
-	ProviderMessageUpdatedAt  *time.Time          `json:"provider_message_updated_at,omitempty"`
-	ProviderMessageUrl        *string             `json:"provider_message_url,omitempty"`
-	ProviderName              *string             `json:"provider_name,omitempty"`
-	ProviderRejectionComment  *string             `json:"provider_rejection_comment,omitempty"`
-	ProviderReviewedAt        *time.Time          `json:"provider_reviewed_at,omitempty"`
+	OldCostEstimate    *float64            `json:"old_cost_estimate,omitempty"`
+	OldPlanBillingMode *string             `json:"old_plan_billing_mode,omitempty"`
+	OldPlanName        *string             `json:"old_plan_name,omitempty"`
+	OldPlanUuid        *openapi_types.UUID `json:"old_plan_uuid,omitempty"`
+
+	// OptionSecrets Of the order's resource: whether each secret option of the offering is set, by option name. Never the value.
+	OptionSecrets             *map[string]ResourceOptionSecretStatus `json:"option_secrets,omitempty"`
+	OrderSubtype              *string                                `json:"order_subtype,omitempty"`
+	Output                    *string                                `json:"output,omitempty"`
+	OutputUpdatedAt           *time.Time                             `json:"output_updated_at,omitempty"`
+	Plan                      *string                                `json:"plan,omitempty"`
+	PlanDescription           *string                                `json:"plan_description,omitempty"`
+	PlanName                  *string                                `json:"plan_name,omitempty"`
+	PlanUnit                  *BillingUnit                           `json:"plan_unit,omitempty"`
+	PlanUuid                  *openapi_types.UUID                    `json:"plan_uuid,omitempty"`
+	ProjectDescription        *string                                `json:"project_description,omitempty"`
+	ProjectName               *string                                `json:"project_name,omitempty"`
+	ProjectSlug               *string                                `json:"project_slug,omitempty"`
+	ProjectUuid               *openapi_types.UUID                    `json:"project_uuid,omitempty"`
+	ProviderDescription       *string                                `json:"provider_description,omitempty"`
+	ProviderMessage           *string                                `json:"provider_message,omitempty"`
+	ProviderMessageAttachment *string                                `json:"provider_message_attachment,omitempty"`
+	ProviderMessageUpdatedAt  *time.Time                             `json:"provider_message_updated_at,omitempty"`
+	ProviderMessageUrl        *string                                `json:"provider_message_url,omitempty"`
+	ProviderName              *string                                `json:"provider_name,omitempty"`
+	ProviderRejectionComment  *string                                `json:"provider_rejection_comment,omitempty"`
+	ProviderReviewedAt        *time.Time                             `json:"provider_reviewed_at,omitempty"`
 
 	// ProviderReviewedBy Required. 128 characters or fewer. Lowercase letters, numbers and @/./+/-/_ characters
 	ProviderReviewedBy         *string `json:"provider_reviewed_by,omitempty"`
@@ -65194,25 +65667,28 @@ type Resource struct {
 	OfferingPluginOptions *map[string]interface{} `json:"offering_plugin_options,omitempty"`
 
 	// OfferingShared Accessible to all customers.
-	OfferingShared     *bool                   `json:"offering_shared,omitempty"`
-	OfferingSlug       *string                 `json:"offering_slug,omitempty"`
-	OfferingState      *OfferingState          `json:"offering_state,omitempty"`
-	OfferingThumbnail  *string                 `json:"offering_thumbnail,omitempty"`
-	OfferingType       *string                 `json:"offering_type,omitempty"`
-	OfferingUuid       *openapi_types.UUID     `json:"offering_uuid,omitempty"`
-	Options            *map[string]interface{} `json:"options,omitempty"`
-	OrderInProgress    *OrderDetails           `json:"order_in_progress,omitempty"`
-	ParentName         *string                 `json:"parent_name,omitempty"`
-	ParentOfferingName *string                 `json:"parent_offering_name,omitempty"`
-	ParentOfferingSlug *string                 `json:"parent_offering_slug,omitempty"`
-	ParentOfferingUuid *openapi_types.UUID     `json:"parent_offering_uuid,omitempty"`
-	ParentUuid         *openapi_types.UUID     `json:"parent_uuid,omitempty"`
-	Paused             *bool                   `json:"paused,omitempty"`
-	Plan               *string                 `json:"plan,omitempty"`
-	PlanDescription    *string                 `json:"plan_description,omitempty"`
-	PlanName           *string                 `json:"plan_name,omitempty"`
-	PlanUnit           *BillingUnit            `json:"plan_unit,omitempty"`
-	PlanUuid           *openapi_types.UUID     `json:"plan_uuid,omitempty"`
+	OfferingShared    *bool               `json:"offering_shared,omitempty"`
+	OfferingSlug      *string             `json:"offering_slug,omitempty"`
+	OfferingState     *OfferingState      `json:"offering_state,omitempty"`
+	OfferingThumbnail *string             `json:"offering_thumbnail,omitempty"`
+	OfferingType      *string             `json:"offering_type,omitempty"`
+	OfferingUuid      *openapi_types.UUID `json:"offering_uuid,omitempty"`
+
+	// OptionSecrets Whether each secret option of the offering is set, by option name. Never the value; the reveal_option_secret action returns it to whom may read it.
+	OptionSecrets      *map[string]ResourceOptionSecretStatus `json:"option_secrets,omitempty"`
+	Options            *map[string]interface{}                `json:"options,omitempty"`
+	OrderInProgress    *OrderDetails                          `json:"order_in_progress,omitempty"`
+	ParentName         *string                                `json:"parent_name,omitempty"`
+	ParentOfferingName *string                                `json:"parent_offering_name,omitempty"`
+	ParentOfferingSlug *string                                `json:"parent_offering_slug,omitempty"`
+	ParentOfferingUuid *openapi_types.UUID                    `json:"parent_offering_uuid,omitempty"`
+	ParentUuid         *openapi_types.UUID                    `json:"parent_uuid,omitempty"`
+	Paused             *bool                                  `json:"paused,omitempty"`
+	Plan               *string                                `json:"plan,omitempty"`
+	PlanDescription    *string                                `json:"plan_description,omitempty"`
+	PlanName           *string                                `json:"plan_name,omitempty"`
+	PlanUnit           *BillingUnit                           `json:"plan_unit,omitempty"`
+	PlanUuid           *openapi_types.UUID                    `json:"plan_uuid,omitempty"`
 
 	// PrepaidTotalComponentTypes Component types whose limit_usage covers the whole subscription, so the UI shows their limit as the monthly limit times the months ordered. Empty unless the offering shows prepaid limits as a total (display_prepaid_limits_as_total).
 	PrepaidTotalComponentTypes *[]string `json:"prepaid_total_component_types,omitempty"`
@@ -65358,6 +65834,27 @@ type ResourceApiKeyCreateRequest struct {
 
 	// User Assignee. When set, only this user can reveal the key. It is held until the key is deleted.
 	User *openapi_types.UUID `json:"user,omitempty"`
+}
+
+// ResourceApiKeyInsights defines model for ResourceApiKeyInsights.
+type ResourceApiKeyInsights struct {
+	ActiveKeys int         `json:"active_keys"`
+	Charts     []ChartSpec `json:"charts"`
+
+	// DailyPace Average spend per day over the last 7 days.
+	DailyPace string `json:"daily_pace"`
+	Days      int    `json:"days"`
+
+	// ForecastThisMonth This month's spend if the recent pace holds to its end.
+	ForecastThisMonth string `json:"forecast_this_month"`
+
+	// MonthLimit The resource's own month limit as money; with resource_uuid only.
+	MonthLimit *string `json:"month_limit"`
+	PausedKeys int     `json:"paused_keys"`
+
+	// RunsOut When the month limit is reached at the recent pace, if this month.
+	RunsOut        *openapi_types.Date `json:"runs_out"`
+	SpentThisMonth string              `json:"spent_this_month"`
 }
 
 // ResourceApiKeyReportCreatedRequest defines model for ResourceApiKeyReportCreatedRequest.
@@ -65691,6 +66188,45 @@ type ResourceOEnum string
 type ResourceOffering struct {
 	Name string              `json:"name"`
 	Uuid *openapi_types.UUID `json:"uuid,omitempty"`
+}
+
+// ResourceOptionSecretNameRequest defines model for ResourceOptionSecretNameRequest.
+type ResourceOptionSecretNameRequest struct {
+	// OptionName Name of a secret option of the offering.
+	OptionName string `json:"option_name"`
+}
+
+// ResourceOptionSecretSetRequest defines model for ResourceOptionSecretSetRequest.
+type ResourceOptionSecretSetRequest struct {
+	// OptionName Name of a secret option of the offering.
+	OptionName string `json:"option_name"`
+
+	// Value The secret, checked against the option's length limits; on a single line unless the option is multiline. Never returned.
+	Value *string `json:"value,omitempty"`
+}
+
+// ResourceOptionSecretStatus defines model for ResourceOptionSecretStatus.
+type ResourceOptionSecretStatus struct {
+	IsSet bool `json:"is_set"`
+
+	// Modified When it was last set. Null when not set.
+	Modified *time.Time `json:"modified"`
+
+	// Source Who set it: the customer or the provider. Null when not set.
+	Source *ResourceOptionSecretStatus_Source `json:"source"`
+}
+
+// ResourceOptionSecretStatus_Source Who set it: the customer or the provider. Null when not set.
+type ResourceOptionSecretStatus_Source struct {
+	union json.RawMessage
+}
+
+// ResourceOptionSecretValue defines model for ResourceOptionSecretValue.
+type ResourceOptionSecretValue struct {
+	OptionName string `json:"option_name"`
+
+	// Value The secret in plain text.
+	Value string `json:"value"`
 }
 
 // ResourceOptionsRequest defines model for ResourceOptionsRequest.
@@ -86027,6 +86563,96 @@ type MarketplaceResourceApiKeysCountParams struct {
 	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
 }
 
+// MarketplaceResourceApiKeysInsightsRetrieveParams defines parameters for MarketplaceResourceApiKeysInsightsRetrieve.
+type MarketplaceResourceApiKeysInsightsRetrieveParams struct {
+	// CustomerUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Days How many days, up to today, the per-day charts cover.
+	Days *int `form:"days,omitempty" json:"days,omitempty"`
+
+	// HasPendingAction Has a pending command
+	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
+	// PendingAction Pending command
+	//
+	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ResourceUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State API key state
+	//
+	State *[]ResourceApiKeyState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUuid Assignee UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
+// MarketplaceResourceApiKeysInsightsCountParams defines parameters for MarketplaceResourceApiKeysInsightsCount.
+type MarketplaceResourceApiKeysInsightsCountParams struct {
+	// CustomerUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	CustomerUuid *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+
+	// Days How many days, up to today, the per-day charts cover.
+	Days *int `form:"days,omitempty" json:"days,omitempty"`
+
+	// HasPendingAction Has a pending command
+	HasPendingAction *bool `form:"has_pending_action,omitempty" json:"has_pending_action,omitempty"`
+
+	// ModifiedBefore Modified before
+	ModifiedBefore *time.Time `form:"modified_before,omitempty" json:"modified_before,omitempty"`
+
+	// O Ordering
+	//
+	O *[]ResourceApiKeyStatusOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// OfferingUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	OfferingUuid *openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+
+	// PausedByLimit Paused by a spending limit
+	PausedByLimit *bool `form:"paused_by_limit,omitempty" json:"paused_by_limit,omitempty"`
+
+	// PendingAction Pending command
+	//
+	PendingAction *[]ResourceApiKeyAction `form:"pending_action,omitempty" json:"pending_action,omitempty"`
+
+	// ProjectUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ProjectUuid *openapi_types.UUID `form:"project_uuid,omitempty" json:"project_uuid,omitempty"`
+
+	// ProviderUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ProviderUuid *openapi_types.UUID `form:"provider_uuid,omitempty" json:"provider_uuid,omitempty"`
+
+	// ResourceUuid One of resource_uuid, project_uuid, customer_uuid, offering_uuid and provider_uuid is required.
+	ResourceUuid *openapi_types.UUID `form:"resource_uuid,omitempty" json:"resource_uuid,omitempty"`
+
+	// State API key state
+	//
+	State *[]ResourceApiKeyState `form:"state,omitempty" json:"state,omitempty"`
+
+	// UserUuid Assignee UUID
+	UserUuid *openapi_types.UUID `form:"user_uuid,omitempty" json:"user_uuid,omitempty"`
+}
+
 // MarketplaceResourceApiKeysUsageTotalsRetrieveParams defines parameters for MarketplaceResourceApiKeysUsageTotalsRetrieve.
 type MarketplaceResourceApiKeysUsageTotalsRetrieveParams struct {
 	// CustomerUuid Consumer organization UUID
@@ -106003,6 +106629,9 @@ type MarketplaceProviderResourcesMoveResourceJSONRequestBody = MoveResourceReque
 // MarketplaceProviderResourcesRestoreJSONRequestBody defines body for MarketplaceProviderResourcesRestore for application/json ContentType.
 type MarketplaceProviderResourcesRestoreJSONRequestBody = ResourceRequest
 
+// MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody defines body for MarketplaceProviderResourcesRevealOptionSecret for application/json ContentType.
+type MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody = ResourceOptionSecretNameRequest
+
 // MarketplaceProviderResourcesSetAsErredJSONRequestBody defines body for MarketplaceProviderResourcesSetAsErred for application/json ContentType.
 type MarketplaceProviderResourcesSetAsErredJSONRequestBody = ResourceSetStateErredRequest
 
@@ -106039,6 +106668,9 @@ type MarketplaceProviderResourcesSetLimitsJSONRequestBody = ResourceSetLimitsReq
 
 // MarketplaceProviderResourcesSetMembershipSyncStatusesJSONRequestBody defines body for MarketplaceProviderResourcesSetMembershipSyncStatuses for application/json ContentType.
 type MarketplaceProviderResourcesSetMembershipSyncStatusesJSONRequestBody = MemberSyncStatusReportRequest
+
+// MarketplaceProviderResourcesSetOptionSecretJSONRequestBody defines body for MarketplaceProviderResourcesSetOptionSecret for application/json ContentType.
+type MarketplaceProviderResourcesSetOptionSecretJSONRequestBody = ResourceOptionSecretSetRequest
 
 // MarketplaceProviderResourcesSetPausedJSONRequestBody defines body for MarketplaceProviderResourcesSetPaused for application/json ContentType.
 type MarketplaceProviderResourcesSetPausedJSONRequestBody = ResourcePausedRequest
@@ -106193,6 +106825,9 @@ type MarketplaceResourcesRenewMultipartRequestBody = ResourceRenewRequestMultipa
 // MarketplaceResourcesRestoreJSONRequestBody defines body for MarketplaceResourcesRestore for application/json ContentType.
 type MarketplaceResourcesRestoreJSONRequestBody = ResourceRequest
 
+// MarketplaceResourcesRevealOptionSecretJSONRequestBody defines body for MarketplaceResourcesRevealOptionSecret for application/json ContentType.
+type MarketplaceResourcesRevealOptionSecretJSONRequestBody = ResourceOptionSecretNameRequest
+
 // MarketplaceResourcesSetDownscaledJSONRequestBody defines body for MarketplaceResourcesSetDownscaled for application/json ContentType.
 type MarketplaceResourcesSetDownscaledJSONRequestBody = ResourceDownscaledRequest
 
@@ -106203,6 +106838,9 @@ type MarketplaceResourcesSetEndDateJSONRequestBody = ResourceEndDateRequest
 //
 // Deprecated: this type has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 type MarketplaceResourcesSetEndDateByStaffJSONRequestBody = ResourceEndDateByProviderRequest
+
+// MarketplaceResourcesSetOptionSecretJSONRequestBody defines body for MarketplaceResourcesSetOptionSecret for application/json ContentType.
+type MarketplaceResourcesSetOptionSecretJSONRequestBody = ResourceOptionSecretSetRequest
 
 // MarketplaceResourcesSetPausedJSONRequestBody defines body for MarketplaceResourcesSetPaused for application/json ContentType.
 type MarketplaceResourcesSetPausedJSONRequestBody = ResourcePausedRequest
@@ -115595,6 +116233,254 @@ func (t IdentityBridgeRequestRequest_Gender) MarshalJSON() ([]byte, error) {
 }
 
 func (t *IdentityBridgeRequestRequest_Gender) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIpsecDhGroupEnum returns the union data inside the IpsecPhase2_PfsGroup as a IpsecDhGroupEnum
+func (t IpsecPhase2_PfsGroup) AsIpsecDhGroupEnum() (IpsecDhGroupEnum, error) {
+	var body IpsecDhGroupEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIpsecDhGroupEnum overwrites any union data inside the IpsecPhase2_PfsGroup as the provided IpsecDhGroupEnum
+func (t *IpsecPhase2_PfsGroup) FromIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIpsecDhGroupEnum performs a merge with any union data inside the IpsecPhase2_PfsGroup, using the provided IpsecDhGroupEnum
+func (t *IpsecPhase2_PfsGroup) MergeIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the IpsecPhase2_PfsGroup as a NullEnum
+func (t IpsecPhase2_PfsGroup) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the IpsecPhase2_PfsGroup as the provided NullEnum
+func (t *IpsecPhase2_PfsGroup) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the IpsecPhase2_PfsGroup, using the provided NullEnum
+func (t *IpsecPhase2_PfsGroup) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IpsecPhase2_PfsGroup) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IpsecPhase2_PfsGroup) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIpsecDhGroupEnum returns the union data inside the IpsecPhase2Policy_PfsGroups_Item as a IpsecDhGroupEnum
+func (t IpsecPhase2Policy_PfsGroups_Item) AsIpsecDhGroupEnum() (IpsecDhGroupEnum, error) {
+	var body IpsecDhGroupEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIpsecDhGroupEnum overwrites any union data inside the IpsecPhase2Policy_PfsGroups_Item as the provided IpsecDhGroupEnum
+func (t *IpsecPhase2Policy_PfsGroups_Item) FromIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIpsecDhGroupEnum performs a merge with any union data inside the IpsecPhase2Policy_PfsGroups_Item, using the provided IpsecDhGroupEnum
+func (t *IpsecPhase2Policy_PfsGroups_Item) MergeIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the IpsecPhase2Policy_PfsGroups_Item as a NullEnum
+func (t IpsecPhase2Policy_PfsGroups_Item) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the IpsecPhase2Policy_PfsGroups_Item as the provided NullEnum
+func (t *IpsecPhase2Policy_PfsGroups_Item) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the IpsecPhase2Policy_PfsGroups_Item, using the provided NullEnum
+func (t *IpsecPhase2Policy_PfsGroups_Item) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IpsecPhase2Policy_PfsGroups_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IpsecPhase2Policy_PfsGroups_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIpsecDhGroupEnum returns the union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item as a IpsecDhGroupEnum
+func (t IpsecPhase2PolicyRequest_PfsGroups_Item) AsIpsecDhGroupEnum() (IpsecDhGroupEnum, error) {
+	var body IpsecDhGroupEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIpsecDhGroupEnum overwrites any union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item as the provided IpsecDhGroupEnum
+func (t *IpsecPhase2PolicyRequest_PfsGroups_Item) FromIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIpsecDhGroupEnum performs a merge with any union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item, using the provided IpsecDhGroupEnum
+func (t *IpsecPhase2PolicyRequest_PfsGroups_Item) MergeIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item as a NullEnum
+func (t IpsecPhase2PolicyRequest_PfsGroups_Item) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item as the provided NullEnum
+func (t *IpsecPhase2PolicyRequest_PfsGroups_Item) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the IpsecPhase2PolicyRequest_PfsGroups_Item, using the provided NullEnum
+func (t *IpsecPhase2PolicyRequest_PfsGroups_Item) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IpsecPhase2PolicyRequest_PfsGroups_Item) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IpsecPhase2PolicyRequest_PfsGroups_Item) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIpsecDhGroupEnum returns the union data inside the IpsecPhase2Request_PfsGroup as a IpsecDhGroupEnum
+func (t IpsecPhase2Request_PfsGroup) AsIpsecDhGroupEnum() (IpsecDhGroupEnum, error) {
+	var body IpsecDhGroupEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIpsecDhGroupEnum overwrites any union data inside the IpsecPhase2Request_PfsGroup as the provided IpsecDhGroupEnum
+func (t *IpsecPhase2Request_PfsGroup) FromIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIpsecDhGroupEnum performs a merge with any union data inside the IpsecPhase2Request_PfsGroup, using the provided IpsecDhGroupEnum
+func (t *IpsecPhase2Request_PfsGroup) MergeIpsecDhGroupEnum(v IpsecDhGroupEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the IpsecPhase2Request_PfsGroup as a NullEnum
+func (t IpsecPhase2Request_PfsGroup) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the IpsecPhase2Request_PfsGroup as the provided NullEnum
+func (t *IpsecPhase2Request_PfsGroup) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the IpsecPhase2Request_PfsGroup, using the provided NullEnum
+func (t *IpsecPhase2Request_PfsGroup) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t IpsecPhase2Request_PfsGroup) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *IpsecPhase2Request_PfsGroup) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -126367,6 +127253,68 @@ func (t *ResourceApiKeyStatus_PendingAction) UnmarshalJSON(b []byte) error {
 	return err
 }
 
+// AsOptionSecretSourceEnum returns the union data inside the ResourceOptionSecretStatus_Source as a OptionSecretSourceEnum
+func (t ResourceOptionSecretStatus_Source) AsOptionSecretSourceEnum() (OptionSecretSourceEnum, error) {
+	var body OptionSecretSourceEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromOptionSecretSourceEnum overwrites any union data inside the ResourceOptionSecretStatus_Source as the provided OptionSecretSourceEnum
+func (t *ResourceOptionSecretStatus_Source) FromOptionSecretSourceEnum(v OptionSecretSourceEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeOptionSecretSourceEnum performs a merge with any union data inside the ResourceOptionSecretStatus_Source, using the provided OptionSecretSourceEnum
+func (t *ResourceOptionSecretStatus_Source) MergeOptionSecretSourceEnum(v OptionSecretSourceEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsNullEnum returns the union data inside the ResourceOptionSecretStatus_Source as a NullEnum
+func (t ResourceOptionSecretStatus_Source) AsNullEnum() (NullEnum, error) {
+	var body NullEnum
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromNullEnum overwrites any union data inside the ResourceOptionSecretStatus_Source as the provided NullEnum
+func (t *ResourceOptionSecretStatus_Source) FromNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeNullEnum performs a merge with any union data inside the ResourceOptionSecretStatus_Source, using the provided NullEnum
+func (t *ResourceOptionSecretStatus_Source) MergeNullEnum(v NullEnum) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t ResourceOptionSecretStatus_Source) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *ResourceOptionSecretStatus_Source) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
 // AsInvitationStatusEnum returns the union data inside the ReviewerSuggestion_PoolInvitationStatus as a InvitationStatusEnum
 func (t ReviewerSuggestion_PoolInvitationStatus) AsInvitationStatusEnum() (InvitationStatusEnum, error) {
 	var body InvitationStatusEnum
@@ -133058,7 +134006,7 @@ type ClientInterface interface {
 
 	// IdentityBridgeWithBody Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -133067,7 +134015,7 @@ type ClientInterface interface {
 
 	// IdentityBridge Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -138913,6 +139861,24 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	MarketplaceProviderResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderResourcesRevealOptionSecretWithBody Reveal the value of a secret option
+	//
+	// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+	MarketplaceProviderResourcesRevealOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesRevealOptionSecret Reveal the value of a secret option
+	//
+	// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+	MarketplaceProviderResourcesRevealOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderResourcesRobotAccountUsersList List users a robot account on this resource may link
 	//
 	// Returns the project and organization users of this resource that a robot account may link as users or as the responsible user. When ENFORCE_USER_CONSENT_FOR_OFFERINGS is enabled and the offering has active Terms of Service, only users with active consent are returned, for every caller.
@@ -139132,6 +140098,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_membership_sync_statuses/ (the `MarketplaceProviderResourcesSetMembershipSyncStatuses` operationId).
 	MarketplaceProviderResourcesSetMembershipSyncStatuses(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetMembershipSyncStatusesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetOptionSecretWithBody Set the value of a secret option
+	//
+	// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+	MarketplaceProviderResourcesSetOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderResourcesSetOptionSecret Set the value of a secret option
+	//
+	// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+	MarketplaceProviderResourcesSetOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceProviderResourcesSetPausedWithBody Set paused flag for resource
 	//
@@ -139474,6 +140458,20 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/ (the `MarketplaceResourceApiKeysCreate` operationId).
 	MarketplaceResourceApiKeysCreate(ctx context.Context, body MarketplaceResourceApiKeysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysInsightsRetrieve What API keys spent over time, with charts
+	//
+	// The keys' spend this month, its recent daily pace and a forecast to the month's end, how many keys are active and paused, and three charts: spend this month (against the resource's own month limit when resource_uuid is given), spend per day by key and usage per day of the components the plan does not price, such as tokens. Read from the keys' daily usage and costed at the resource plans' prices, as a key's estimated cost is. Deleted keys count. One of the scope parameters is required; the other list filters narrow the keys.
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsRetrieve` operationId).
+	MarketplaceResourceApiKeysInsightsRetrieve(ctx context.Context, params *MarketplaceResourceApiKeysInsightsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourceApiKeysInsightsCount What API keys spent over time, with charts
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Corresponds with HEAD /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsCount` operationId).
+	MarketplaceResourceApiKeysInsightsCount(ctx context.Context, params *MarketplaceResourceApiKeysInsightsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourceApiKeysReportCreatedWithBody Report a freshly-applied API key
 	//
@@ -140305,6 +141303,24 @@ type ClientInterface interface {
 	// Takes a body of the `application/json` content type.
 	MarketplaceResourcesRestore(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceResourcesRevealOptionSecretWithBody Reveal the value of a secret option
+	//
+	// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+	MarketplaceResourcesRevealOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesRevealOptionSecret Reveal the value of a secret option
+	//
+	// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+	MarketplaceResourcesRevealOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceResourcesSetDownscaledWithBody Set downscaled flag for resource
 	//
 	// Sets the 'downscaled' flag for a resource. Requires staff permissions.
@@ -140362,6 +141378,24 @@ type ClientInterface interface {
 	//
 	// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	MarketplaceResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetOptionSecretWithBody Set the value of a secret option
+	//
+	// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+	MarketplaceResourcesSetOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceResourcesSetOptionSecret Set the value of a secret option
+	//
+	// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+	MarketplaceResourcesSetOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceResourcesSetPausedWithBody Set paused flag for resource
 	//
@@ -167759,7 +168793,7 @@ func (c *Client) HpcWorkspacesUsageRetrieve(ctx context.Context, uuid openapi_ty
 
 // IdentityBridgeWithBody Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes any type of body and a specified content type.
 //
@@ -167778,7 +168812,7 @@ func (c *Client) IdentityBridgeWithBody(ctx context.Context, contentType string,
 
 // IdentityBridge Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes a body of the `application/json` content type.
 //
@@ -182314,6 +183348,44 @@ func (c *Client) MarketplaceProviderResourcesRestore(ctx context.Context, uuid o
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderResourcesRevealOptionSecretWithBody Reveal the value of a secret option
+//
+// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+func (c *Client) MarketplaceProviderResourcesRevealOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesRevealOptionSecretRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderResourcesRevealOptionSecret Reveal the value of a secret option
+//
+// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+func (c *Client) MarketplaceProviderResourcesRevealOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesRevealOptionSecretRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderResourcesRobotAccountUsersList List users a robot account on this resource may link
 //
 // Returns the project and organization users of this resource that a robot account may link as users or as the responsible user. When ENFORCE_USER_CONSENT_FOR_OFFERINGS is enabled and the offering has active Terms of Service, only users with active consent are returned, for every caller.
@@ -182760,6 +183832,44 @@ func (c *Client) MarketplaceProviderResourcesSetMembershipSyncStatusesWithBody(c
 // Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_membership_sync_statuses/ (the `MarketplaceProviderResourcesSetMembershipSyncStatuses` operationId).
 func (c *Client) MarketplaceProviderResourcesSetMembershipSyncStatuses(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetMembershipSyncStatusesJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceProviderResourcesSetMembershipSyncStatusesRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderResourcesSetOptionSecretWithBody Set the value of a secret option
+//
+// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+func (c *Client) MarketplaceProviderResourcesSetOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetOptionSecretRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderResourcesSetOptionSecret Set the value of a secret option
+//
+// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+func (c *Client) MarketplaceProviderResourcesSetOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderResourcesSetOptionSecretRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -183554,6 +184664,40 @@ func (c *Client) MarketplaceResourceApiKeysCreateWithBody(ctx context.Context, c
 // Corresponds with POST /api/marketplace-resource-api-keys/ (the `MarketplaceResourceApiKeysCreate` operationId).
 func (c *Client) MarketplaceResourceApiKeysCreate(ctx context.Context, body MarketplaceResourceApiKeysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourceApiKeysCreateRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysInsightsRetrieve What API keys spent over time, with charts
+//
+// The keys' spend this month, its recent daily pace and a forecast to the month's end, how many keys are active and paused, and three charts: spend this month (against the resource's own month limit when resource_uuid is given), spend per day by key and usage per day of the components the plan does not price, such as tokens. Read from the keys' daily usage and costed at the resource plans' prices, as a key's estimated cost is. Deleted keys count. One of the scope parameters is required; the other list filters narrow the keys.
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsRetrieve` operationId).
+func (c *Client) MarketplaceResourceApiKeysInsightsRetrieve(ctx context.Context, params *MarketplaceResourceApiKeysInsightsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysInsightsRetrieveRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourceApiKeysInsightsCount What API keys spent over time, with charts
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Corresponds with HEAD /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsCount` operationId).
+func (c *Client) MarketplaceResourceApiKeysInsightsCount(ctx context.Context, params *MarketplaceResourceApiKeysInsightsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourceApiKeysInsightsCountRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -185573,6 +186717,44 @@ func (c *Client) MarketplaceResourcesRestore(ctx context.Context, uuid openapi_t
 	return c.Client.Do(req)
 }
 
+// MarketplaceResourcesRevealOptionSecretWithBody Reveal the value of a secret option
+//
+// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+func (c *Client) MarketplaceResourcesRevealOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRevealOptionSecretRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesRevealOptionSecret Reveal the value of a secret option
+//
+// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+func (c *Client) MarketplaceResourcesRevealOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesRevealOptionSecretRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceResourcesSetDownscaledWithBody Set downscaled flag for resource
 //
 // Sets the 'downscaled' flag for a resource. Requires staff permissions.
@@ -185679,6 +186861,44 @@ func (c *Client) MarketplaceResourcesSetEndDateByStaffWithBody(ctx context.Conte
 // Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 func (c *Client) MarketplaceResourcesSetEndDateByStaff(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceResourcesSetEndDateByStaffRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesSetOptionSecretWithBody Set the value of a secret option
+//
+// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+func (c *Client) MarketplaceResourcesSetOptionSecretWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetOptionSecretRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceResourcesSetOptionSecret Set the value of a secret option
+//
+// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+func (c *Client) MarketplaceResourcesSetOptionSecret(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceResourcesSetOptionSecretRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -323285,6 +324505,53 @@ func NewMarketplaceProviderResourcesRestoreRequestWithBody(server string, uuid o
 	return req, nil
 }
 
+// NewMarketplaceProviderResourcesRevealOptionSecretRequest calls the generic MarketplaceProviderResourcesRevealOptionSecret builder with application/json body
+func NewMarketplaceProviderResourcesRevealOptionSecretRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesRevealOptionSecretRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesRevealOptionSecretRequestWithBody constructs an http.Request for the MarketplaceProviderResourcesRevealOptionSecret method, with any body, and a specified content type
+func NewMarketplaceProviderResourcesRevealOptionSecretRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/reveal_option_secret/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderResourcesRobotAccountUsersListRequest constructs an http.Request for the MarketplaceProviderResourcesRobotAccountUsersList method
 func NewMarketplaceProviderResourcesRobotAccountUsersListRequest(server string, uuid openapi_types.UUID, params *MarketplaceProviderResourcesRobotAccountUsersListParams) (*http.Request, error) {
 	var err error
@@ -323914,6 +325181,53 @@ func NewMarketplaceProviderResourcesSetMembershipSyncStatusesRequestWithBody(ser
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_membership_sync_statuses/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceProviderResourcesSetOptionSecretRequest calls the generic MarketplaceProviderResourcesSetOptionSecret builder with application/json body
+func NewMarketplaceProviderResourcesSetOptionSecretRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetOptionSecretJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderResourcesSetOptionSecretRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderResourcesSetOptionSecretRequestWithBody constructs an http.Request for the MarketplaceProviderResourcesSetOptionSecret method, with any body, and a specified content type
+func NewMarketplaceProviderResourcesSetOptionSecretRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-resources/%s/set_option_secret/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -327379,6 +328693,402 @@ func NewMarketplaceResourceApiKeysCreateRequestWithBody(server string, contentTy
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysInsightsRetrieveRequest constructs an http.Request for the MarketplaceResourceApiKeysInsightsRetrieve method
+func NewMarketplaceResourceApiKeysInsightsRetrieveRequest(server string, params *MarketplaceResourceApiKeysInsightsRetrieveParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/insights/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Days != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "days", *params.Days, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasPendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplaceResourceApiKeysInsightsCountRequest constructs an http.Request for the MarketplaceResourceApiKeysInsightsCount method
+func NewMarketplaceResourceApiKeysInsightsCountRequest(server string, params *MarketplaceResourceApiKeysInsightsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resource-api-keys/insights/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Days != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "days", *params.Days, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasPendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_pending_action", *params.HasPendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ModifiedBefore != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "modified_before", *params.ModifiedBefore, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "date-time"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PausedByLimit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "paused_by_limit", *params.PausedByLimit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PendingAction != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "pending_action", *params.PendingAction, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProjectUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "project_uuid", *params.ProjectUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "provider_uuid", *params.ProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ResourceUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "resource_uuid", *params.ResourceUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.UserUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "user_uuid", *params.UserUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -334999,6 +336709,53 @@ func NewMarketplaceResourcesRestoreRequestWithBody(server string, uuid openapi_t
 	return req, nil
 }
 
+// NewMarketplaceResourcesRevealOptionSecretRequest calls the generic MarketplaceResourcesRevealOptionSecret builder with application/json body
+func NewMarketplaceResourcesRevealOptionSecretRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesRevealOptionSecretJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesRevealOptionSecretRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesRevealOptionSecretRequestWithBody constructs an http.Request for the MarketplaceResourcesRevealOptionSecret method, with any body, and a specified content type
+func NewMarketplaceResourcesRevealOptionSecretRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/reveal_option_secret/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceResourcesSetDownscaledRequest calls the generic MarketplaceResourcesSetDownscaled builder with application/json body
 func NewMarketplaceResourcesSetDownscaledRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetDownscaledJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -335121,6 +336878,53 @@ func NewMarketplaceResourcesSetEndDateByStaffRequestWithBody(server string, uuid
 	}
 
 	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_end_date_by_staff/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceResourcesSetOptionSecretRequest calls the generic MarketplaceResourcesSetOptionSecret builder with application/json body
+func NewMarketplaceResourcesSetOptionSecretRequest(server string, uuid openapi_types.UUID, body MarketplaceResourcesSetOptionSecretJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceResourcesSetOptionSecretRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceResourcesSetOptionSecretRequestWithBody constructs an http.Request for the MarketplaceResourcesSetOptionSecret method, with any body, and a specified content type
+func NewMarketplaceResourcesSetOptionSecretRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-resources/%s/set_option_secret/", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -486216,7 +488020,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -486225,7 +488029,7 @@ type ClientWithResponsesInterface interface {
 
 	// IdentityBridgeWithResponse Push user attributes from an ISD
 	//
-	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+	// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -493039,6 +494843,24 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceProviderResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRestoreResponse, error)
 
+	// MarketplaceProviderResourcesRevealOptionSecretWithBodyWithResponse Reveal the value of a secret option
+	//
+	// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+	MarketplaceProviderResourcesRevealOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRevealOptionSecretResponse, error)
+
+	// MarketplaceProviderResourcesRevealOptionSecretWithResponse Reveal the value of a secret option
+	//
+	// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+	MarketplaceProviderResourcesRevealOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRevealOptionSecretResponse, error)
+
 	// MarketplaceProviderResourcesRobotAccountUsersListWithResponse List users a robot account on this resource may link
 	//
 	// Returns the project and organization users of this resource that a robot account may link as users or as the responsible user. When ENFORCE_USER_CONSENT_FOR_OFFERINGS is enabled and the offering has active Terms of Service, only users with active consent are returned, for every caller.
@@ -493262,6 +495084,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_membership_sync_statuses/ (the `MarketplaceProviderResourcesSetMembershipSyncStatuses` operationId).
 	MarketplaceProviderResourcesSetMembershipSyncStatusesWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetMembershipSyncStatusesJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetMembershipSyncStatusesResponse, error)
+
+	// MarketplaceProviderResourcesSetOptionSecretWithBodyWithResponse Set the value of a secret option
+	//
+	// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+	MarketplaceProviderResourcesSetOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetOptionSecretResponse, error)
+
+	// MarketplaceProviderResourcesSetOptionSecretWithResponse Set the value of a secret option
+	//
+	// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+	MarketplaceProviderResourcesSetOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetOptionSecretResponse, error)
 
 	// MarketplaceProviderResourcesSetPausedWithBodyWithResponse Set paused flag for resource
 	//
@@ -493646,6 +495486,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-resource-api-keys/ (the `MarketplaceResourceApiKeysCreate` operationId).
 	MarketplaceResourceApiKeysCreateWithResponse(ctx context.Context, body MarketplaceResourceApiKeysCreateJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysCreateResponse, error)
+
+	// MarketplaceResourceApiKeysInsightsRetrieveWithResponse What API keys spent over time, with charts
+	//
+	// The keys' spend this month, its recent daily pace and a forecast to the month's end, how many keys are active and paused, and three charts: spend this month (against the resource's own month limit when resource_uuid is given), spend per day by key and usage per day of the components the plan does not price, such as tokens. Read from the keys' daily usage and costed at the resource plans' prices, as a key's estimated cost is. Deleted keys count. One of the scope parameters is required; the other list filters narrow the keys.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsRetrieve` operationId).
+	MarketplaceResourceApiKeysInsightsRetrieveWithResponse(ctx context.Context, params *MarketplaceResourceApiKeysInsightsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysInsightsRetrieveResponse, error)
+
+	// MarketplaceResourceApiKeysInsightsCountWithResponse What API keys spent over time, with charts
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with HEAD /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsCount` operationId).
+	MarketplaceResourceApiKeysInsightsCountWithResponse(ctx context.Context, params *MarketplaceResourceApiKeysInsightsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysInsightsCountResponse, error)
 
 	// MarketplaceResourceApiKeysReportCreatedWithBodyWithResponse Report a freshly-applied API key
 	//
@@ -494593,6 +496451,24 @@ type ClientWithResponsesInterface interface {
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	MarketplaceResourcesRestoreWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRestoreJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRestoreResponse, error)
 
+	// MarketplaceResourcesRevealOptionSecretWithBodyWithResponse Reveal the value of a secret option
+	//
+	// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+	MarketplaceResourcesRevealOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRevealOptionSecretResponse, error)
+
+	// MarketplaceResourcesRevealOptionSecretWithResponse Reveal the value of a secret option
+	//
+	// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+	MarketplaceResourcesRevealOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRevealOptionSecretResponse, error)
+
 	// MarketplaceResourcesSetDownscaledWithBodyWithResponse Set downscaled flag for resource
 	//
 	// Sets the 'downscaled' flag for a resource. Requires staff permissions.
@@ -494650,6 +496526,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Deprecated: this operation has been marked as deprecated upstream, but no `x-deprecated-reason` was set
 	MarketplaceResourcesSetEndDateByStaffWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetEndDateByStaffJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetEndDateByStaffResponse, error)
+
+	// MarketplaceResourcesSetOptionSecretWithBodyWithResponse Set the value of a secret option
+	//
+	// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+	MarketplaceResourcesSetOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetOptionSecretResponse, error)
+
+	// MarketplaceResourcesSetOptionSecretWithResponse Set the value of a secret option
+	//
+	// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+	MarketplaceResourcesSetOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetOptionSecretResponse, error)
 
 	// MarketplaceResourcesSetPausedWithBodyWithResponse Set paused flag for resource
 	//
@@ -563291,6 +565185,47 @@ func (r MarketplaceProviderResourcesRestoreResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceProviderResourcesRevealOptionSecretResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceOptionSecretValue
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderResourcesRevealOptionSecretResponse) GetJSON200() *ResourceOptionSecretValue {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderResourcesRevealOptionSecretResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesRevealOptionSecretResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesRevealOptionSecretResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesRevealOptionSecretResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // MarketplaceProviderResourcesRobotAccountUsersListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceProviderResourcesRobotAccountUsersList
 type MarketplaceProviderResourcesRobotAccountUsersListResponse200Headers struct {
 	XResultCount *int
@@ -563797,6 +565732,47 @@ func (r MarketplaceProviderResourcesSetMembershipSyncStatusesResponse) StatusCod
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceProviderResourcesSetMembershipSyncStatusesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceProviderResourcesSetOptionSecretResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceOptionSecretStatus
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderResourcesSetOptionSecretResponse) GetJSON200() *ResourceOptionSecretStatus {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderResourcesSetOptionSecretResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderResourcesSetOptionSecretResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderResourcesSetOptionSecretResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderResourcesSetOptionSecretResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -565123,6 +567099,81 @@ func (r MarketplaceResourceApiKeysCreateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourceApiKeysCreateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysInsightsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceApiKeyInsights
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourceApiKeysInsightsRetrieveResponse) GetJSON200() *ResourceApiKeyInsights {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysInsightsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysInsightsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysInsightsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysInsightsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourceApiKeysInsightsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourceApiKeysInsightsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourceApiKeysInsightsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourceApiKeysInsightsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourceApiKeysInsightsCountResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -568554,6 +570605,47 @@ func (r MarketplaceResourcesRestoreResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceResourcesRevealOptionSecretResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceOptionSecretValue
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourcesRevealOptionSecretResponse) GetJSON200() *ResourceOptionSecretValue {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourcesRevealOptionSecretResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesRevealOptionSecretResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesRevealOptionSecretResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesRevealOptionSecretResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceResourcesSetDownscaledResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -568657,6 +570749,47 @@ func (r MarketplaceResourcesSetEndDateByStaffResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceResourcesSetEndDateByStaffResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceResourcesSetOptionSecretResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *ResourceOptionSecretStatus
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceResourcesSetOptionSecretResponse) GetJSON200() *ResourceOptionSecretStatus {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceResourcesSetOptionSecretResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceResourcesSetOptionSecretResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceResourcesSetOptionSecretResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceResourcesSetOptionSecretResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -653469,7 +655602,7 @@ func (c *ClientWithResponses) HpcWorkspacesUsageRetrieveWithResponse(ctx context
 
 // IdentityBridgeWithBodyWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -653484,7 +655617,7 @@ func (c *ClientWithResponses) IdentityBridgeWithBodyWithResponse(ctx context.Con
 
 // IdentityBridgeWithResponse Push user attributes from an ISD
 //
-// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
+// Allows Identity Service Domains (ISDs) to push user attributes to Waldur. Creates or updates a user based on username (CUID). When no user has the username and the push carries a civil_number the bridge may set, an existing user with that civil number (ignoring case) is returned unchanged instead of a second account being created: no attributes are written, no ISD is added and the pushed username is not stored. A caller without staff access is never given a staff, support or identity manager account this way. When the civil number does not resolve to exactly one active account it may be given, the push is refused with 400 and one generic message; the same answer is given when an update would set a civil number another account holds. The endpoint therefore resolves civil numbers to account UUIDs for its callers. Requires FEDERATED_IDENTITY_SYNC_ENABLED to be True. Caller must be staff or an identity manager with the declared source in managed_isds. Only staff may change staff, support or identity manager accounts: anyone else pushing an existing one gets it back unchanged (`created` false, no `updated_fields`).
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
@@ -665500,6 +667633,36 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesRestoreWithResponse(ct
 	return ParseMarketplaceProviderResourcesRestoreResponse(rsp)
 }
 
+// MarketplaceProviderResourcesRevealOptionSecretWithBodyWithResponse Reveal the value of a secret option
+//
+// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesRevealOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRevealOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesRevealOptionSecretWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesRevealOptionSecretResponse(rsp)
+}
+
+// MarketplaceProviderResourcesRevealOptionSecretWithResponse Reveal the value of a secret option
+//
+// Lets the service provider or its site agent read the value of one of the resource's secret options, such as a VPN pre-shared key to configure its end of a tunnel. The response must not be cached. Audited, naming any impersonator.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/reveal_option_secret/ (the `MarketplaceProviderResourcesRevealOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesRevealOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesRevealOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesRevealOptionSecret(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesRevealOptionSecretResponse(rsp)
+}
+
 // MarketplaceProviderResourcesRobotAccountUsersListWithResponse List users a robot account on this resource may link
 //
 // Returns the project and organization users of this resource that a robot account may link as users or as the responsible user. When ENFORCE_USER_CONSENT_FOR_OFFERINGS is enabled and the offering has active Terms of Service, only users with active consent are returned, for every caller.
@@ -665864,6 +668027,36 @@ func (c *ClientWithResponses) MarketplaceProviderResourcesSetMembershipSyncStatu
 		return nil, err
 	}
 	return ParseMarketplaceProviderResourcesSetMembershipSyncStatusesResponse(rsp)
+}
+
+// MarketplaceProviderResourcesSetOptionSecretWithBodyWithResponse Set the value of a secret option
+//
+// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetOptionSecretWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetOptionSecretResponse(rsp)
+}
+
+// MarketplaceProviderResourcesSetOptionSecretWithResponse Set the value of a secret option
+//
+// Lets the service provider or its site agent store, or replace, the value of one of the resource's secret options, encrypted, whoever the option's source. The value is never returned; the response says whether it is set. Audited.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-resources/{uuid}/set_option_secret/ (the `MarketplaceProviderResourcesSetOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceProviderResourcesSetOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderResourcesSetOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceProviderResourcesSetOptionSecret(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderResourcesSetOptionSecretResponse(rsp)
 }
 
 // MarketplaceProviderResourcesSetPausedWithBodyWithResponse Set paused flag for resource
@@ -666516,6 +668709,36 @@ func (c *ClientWithResponses) MarketplaceResourceApiKeysCreateWithResponse(ctx c
 		return nil, err
 	}
 	return ParseMarketplaceResourceApiKeysCreateResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysInsightsRetrieveWithResponse What API keys spent over time, with charts
+//
+// The keys' spend this month, its recent daily pace and a forecast to the month's end, how many keys are active and paused, and three charts: spend this month (against the resource's own month limit when resource_uuid is given), spend per day by key and usage per day of the components the plan does not price, such as tokens. Read from the keys' daily usage and costed at the resource plans' prices, as a key's estimated cost is. Deleted keys count. One of the scope parameters is required; the other list filters narrow the keys.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysInsightsRetrieveWithResponse(ctx context.Context, params *MarketplaceResourceApiKeysInsightsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysInsightsRetrieveResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysInsightsRetrieve(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysInsightsRetrieveResponse(rsp)
+}
+
+// MarketplaceResourceApiKeysInsightsCountWithResponse What API keys spent over time, with charts
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with HEAD /api/marketplace-resource-api-keys/insights/ (the `MarketplaceResourceApiKeysInsightsCount` operationId).
+func (c *ClientWithResponses) MarketplaceResourceApiKeysInsightsCountWithResponse(ctx context.Context, params *MarketplaceResourceApiKeysInsightsCountParams, reqEditors ...RequestEditorFn) (*MarketplaceResourceApiKeysInsightsCountResponse, error) {
+	rsp, err := c.MarketplaceResourceApiKeysInsightsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourceApiKeysInsightsCountResponse(rsp)
 }
 
 // MarketplaceResourceApiKeysReportCreatedWithBodyWithResponse Report a freshly-applied API key
@@ -668172,6 +670395,36 @@ func (c *ClientWithResponses) MarketplaceResourcesRestoreWithResponse(ctx contex
 	return ParseMarketplaceResourcesRestoreResponse(rsp)
 }
 
+// MarketplaceResourcesRevealOptionSecretWithBodyWithResponse Reveal the value of a secret option
+//
+// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesRevealOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRevealOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceResourcesRevealOptionSecretWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRevealOptionSecretResponse(rsp)
+}
+
+// MarketplaceResourcesRevealOptionSecretWithResponse Reveal the value of a secret option
+//
+// Returns the value of one of the resource's secret options, when the option's policy lets customers read it (customer_can_reveal). The response must not be cached. Audited, naming any impersonator.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/reveal_option_secret/ (the `MarketplaceResourcesRevealOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesRevealOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesRevealOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesRevealOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceResourcesRevealOptionSecret(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesRevealOptionSecretResponse(rsp)
+}
+
 // MarketplaceResourcesSetDownscaledWithBodyWithResponse Set downscaled flag for resource
 //
 // Sets the 'downscaled' flag for a resource. Requires staff permissions.
@@ -668263,6 +670516,36 @@ func (c *ClientWithResponses) MarketplaceResourcesSetEndDateByStaffWithResponse(
 		return nil, err
 	}
 	return ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp)
+}
+
+// MarketplaceResourcesSetOptionSecretWithBodyWithResponse Set the value of a secret option
+//
+// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesSetOptionSecretWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetOptionSecretWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetOptionSecretResponse(rsp)
+}
+
+// MarketplaceResourcesSetOptionSecretWithResponse Set the value of a secret option
+//
+// Stores, or replaces, the value of one of the resource's secret options, encrypted. Only for an option the customer sets (secret_source customer). The value is checked against the option's policy and never returned; the response says whether it is set. Audited.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-resources/{uuid}/set_option_secret/ (the `MarketplaceResourcesSetOptionSecret` operationId).
+func (c *ClientWithResponses) MarketplaceResourcesSetOptionSecretWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceResourcesSetOptionSecretJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceResourcesSetOptionSecretResponse, error) {
+	rsp, err := c.MarketplaceResourcesSetOptionSecret(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceResourcesSetOptionSecretResponse(rsp)
 }
 
 // MarketplaceResourcesSetPausedWithBodyWithResponse Set paused flag for resource
@@ -732761,6 +735044,35 @@ func ParseMarketplaceProviderResourcesRestoreResponse(rsp *http.Response) (*Mark
 	return response, nil
 }
 
+// ParseMarketplaceProviderResourcesRevealOptionSecretResponse parses an HTTP response from a MarketplaceProviderResourcesRevealOptionSecretWithResponse call
+func ParseMarketplaceProviderResourcesRevealOptionSecretResponse(rsp *http.Response) (*MarketplaceProviderResourcesRevealOptionSecretResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesRevealOptionSecretResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceOptionSecretValue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 409:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderResourcesRobotAccountUsersListResponse parses an HTTP response from a MarketplaceProviderResourcesRobotAccountUsersListWithResponse call
 func ParseMarketplaceProviderResourcesRobotAccountUsersListResponse(rsp *http.Response) (*MarketplaceProviderResourcesRobotAccountUsersListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -733063,6 +735375,32 @@ func ParseMarketplaceProviderResourcesSetMembershipSyncStatusesResponse(rsp *htt
 			return nil, err
 		}
 		response.JSON409 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceProviderResourcesSetOptionSecretResponse parses an HTTP response from a MarketplaceProviderResourcesSetOptionSecretWithResponse call
+func ParseMarketplaceProviderResourcesSetOptionSecretResponse(rsp *http.Response) (*MarketplaceProviderResourcesSetOptionSecretResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderResourcesSetOptionSecretResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceOptionSecretStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
 
 	}
 
@@ -733937,6 +736275,48 @@ func ParseMarketplaceResourceApiKeysCreateResponse(rsp *http.Response) (*Marketp
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysInsightsRetrieveResponse parses an HTTP response from a MarketplaceResourceApiKeysInsightsRetrieveWithResponse call
+func ParseMarketplaceResourceApiKeysInsightsRetrieveResponse(rsp *http.Response) (*MarketplaceResourceApiKeysInsightsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysInsightsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceApiKeyInsights
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourceApiKeysInsightsCountResponse parses an HTTP response from a MarketplaceResourceApiKeysInsightsCountWithResponse call
+func ParseMarketplaceResourceApiKeysInsightsCountResponse(rsp *http.Response) (*MarketplaceResourceApiKeysInsightsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourceApiKeysInsightsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
@@ -736160,6 +738540,35 @@ func ParseMarketplaceResourcesRestoreResponse(rsp *http.Response) (*MarketplaceR
 	return response, nil
 }
 
+// ParseMarketplaceResourcesRevealOptionSecretResponse parses an HTTP response from a MarketplaceResourcesRevealOptionSecretWithResponse call
+func ParseMarketplaceResourcesRevealOptionSecretResponse(rsp *http.Response) (*MarketplaceResourcesRevealOptionSecretResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesRevealOptionSecretResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceOptionSecretValue
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 409:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceResourcesSetDownscaledResponse parses an HTTP response from a MarketplaceResourcesSetDownscaledWithResponse call
 func ParseMarketplaceResourcesSetDownscaledResponse(rsp *http.Response) (*MarketplaceResourcesSetDownscaledResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -736213,6 +738622,32 @@ func ParseMarketplaceResourcesSetEndDateByStaffResponse(rsp *http.Response) (*Ma
 	response := &MarketplaceResourcesSetEndDateByStaffResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceResourcesSetOptionSecretResponse parses an HTTP response from a MarketplaceResourcesSetOptionSecretWithResponse call
+func ParseMarketplaceResourcesSetOptionSecretResponse(rsp *http.Response) (*MarketplaceResourcesSetOptionSecretResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceResourcesSetOptionSecretResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ResourceOptionSecretStatus
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
