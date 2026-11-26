@@ -6514,6 +6514,9 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceOfferingUpdated                       EventMetadataResponseEventGroups = "marketplace_offering_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserCreated                   EventMetadataResponseEventGroups = "marketplace_offering_user_created"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserDeleted                   EventMetadataResponseEventGroups = "marketplace_offering_user_deleted"
+	EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordCleared    EventMetadataResponseEventGroups = "marketplace_offering_user_initial_password_cleared"
+	EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordRevealed   EventMetadataResponseEventGroups = "marketplace_offering_user_initial_password_revealed"
+	EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordSet        EventMetadataResponseEventGroups = "marketplace_offering_user_initial_password_set"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserRestrictionUpdated        EventMetadataResponseEventGroups = "marketplace_offering_user_restriction_updated"
 	EventMetadataResponseEventGroupsMarketplaceOfferingUserUpdated                   EventMetadataResponseEventGroups = "marketplace_offering_user_updated"
 	EventMetadataResponseEventGroupsMarketplaceOrderApproved                         EventMetadataResponseEventGroups = "marketplace_order_approved"
@@ -7088,6 +7091,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceOfferingUserCreated:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingUserDeleted:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordCleared:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordRevealed:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceOfferingUserInitialPasswordSet:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceOfferingUserRestrictionUpdated:
 		return true
@@ -7963,6 +7972,9 @@ const (
 	EventTypesEnumMarketplaceOfferingUpdated                       EventTypesEnum = "marketplace_offering_updated"
 	EventTypesEnumMarketplaceOfferingUserCreated                   EventTypesEnum = "marketplace_offering_user_created"
 	EventTypesEnumMarketplaceOfferingUserDeleted                   EventTypesEnum = "marketplace_offering_user_deleted"
+	EventTypesEnumMarketplaceOfferingUserInitialPasswordCleared    EventTypesEnum = "marketplace_offering_user_initial_password_cleared"
+	EventTypesEnumMarketplaceOfferingUserInitialPasswordRevealed   EventTypesEnum = "marketplace_offering_user_initial_password_revealed"
+	EventTypesEnumMarketplaceOfferingUserInitialPasswordSet        EventTypesEnum = "marketplace_offering_user_initial_password_set"
 	EventTypesEnumMarketplaceOfferingUserRestrictionUpdated        EventTypesEnum = "marketplace_offering_user_restriction_updated"
 	EventTypesEnumMarketplaceOfferingUserUpdated                   EventTypesEnum = "marketplace_offering_user_updated"
 	EventTypesEnumMarketplaceOrderApproved                         EventTypesEnum = "marketplace_order_approved"
@@ -8537,6 +8549,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceOfferingUserCreated:
 		return true
 	case EventTypesEnumMarketplaceOfferingUserDeleted:
+		return true
+	case EventTypesEnumMarketplaceOfferingUserInitialPasswordCleared:
+		return true
+	case EventTypesEnumMarketplaceOfferingUserInitialPasswordRevealed:
+		return true
+	case EventTypesEnumMarketplaceOfferingUserInitialPasswordSet:
 		return true
 	case EventTypesEnumMarketplaceOfferingUserRestrictionUpdated:
 		return true
@@ -13322,9 +13340,6 @@ const (
 	OfferingFieldEnumSoftwareCatalogs           OfferingFieldEnum = "software_catalogs"
 	OfferingFieldEnumState                      OfferingFieldEnum = "state"
 	OfferingFieldEnumTags                       OfferingFieldEnum = "tags"
-	OfferingFieldEnumTemplateName               OfferingFieldEnum = "template_name"
-	OfferingFieldEnumTemplateUuid               OfferingFieldEnum = "template_uuid"
-	OfferingFieldEnumTemplateVersion            OfferingFieldEnum = "template_version"
 	OfferingFieldEnumThumbnail                  OfferingFieldEnum = "thumbnail"
 	OfferingFieldEnumTotalCost                  OfferingFieldEnum = "total_cost"
 	OfferingFieldEnumTotalCostEstimated         OfferingFieldEnum = "total_cost_estimated"
@@ -13499,12 +13514,6 @@ func (e OfferingFieldEnum) Valid() bool {
 	case OfferingFieldEnumState:
 		return true
 	case OfferingFieldEnumTags:
-		return true
-	case OfferingFieldEnumTemplateName:
-		return true
-	case OfferingFieldEnumTemplateUuid:
-		return true
-	case OfferingFieldEnumTemplateVersion:
 		return true
 	case OfferingFieldEnumThumbnail:
 		return true
@@ -13953,6 +13962,7 @@ const (
 	OfferingUserFieldEnumCustomerUuid                   OfferingUserFieldEnum = "customer_uuid"
 	OfferingUserFieldEnumHasComplianceChecklist         OfferingUserFieldEnum = "has_compliance_checklist"
 	OfferingUserFieldEnumHasConsent                     OfferingUserFieldEnum = "has_consent"
+	OfferingUserFieldEnumHasInitialPassword             OfferingUserFieldEnum = "has_initial_password"
 	OfferingUserFieldEnumHomeDirectory                  OfferingUserFieldEnum = "home_directory"
 	OfferingUserFieldEnumIsProfileComplete              OfferingUserFieldEnum = "is_profile_complete"
 	OfferingUserFieldEnumIsRestricted                   OfferingUserFieldEnum = "is_restricted"
@@ -14022,6 +14032,8 @@ func (e OfferingUserFieldEnum) Valid() bool {
 	case OfferingUserFieldEnumHasComplianceChecklist:
 		return true
 	case OfferingUserFieldEnumHasConsent:
+		return true
+	case OfferingUserFieldEnumHasInitialPassword:
 		return true
 	case OfferingUserFieldEnumHomeDirectory:
 		return true
@@ -17389,9 +17401,9 @@ const (
 	OptionFieldTypeEnumHtmlText                         OptionFieldTypeEnum = "html_text"
 	OptionFieldTypeEnumInteger                          OptionFieldTypeEnum = "integer"
 	OptionFieldTypeEnumIpsecVpnConfig                   OptionFieldTypeEnum = "ipsec_vpn_config"
+	OptionFieldTypeEnumK8sClusterConfig                 OptionFieldTypeEnum = "k8s_cluster_config"
 	OptionFieldTypeEnumK8sEgressRules                   OptionFieldTypeEnum = "k8s_egress_rules"
 	OptionFieldTypeEnumMoney                            OptionFieldTypeEnum = "money"
-	OptionFieldTypeEnumMultiDatacenterK8sConfig         OptionFieldTypeEnum = "multi_datacenter_k8s_config"
 	OptionFieldTypeEnumSecret                           OptionFieldTypeEnum = "secret"
 	OptionFieldTypeEnumSelectMultipleOpenstackInstances OptionFieldTypeEnum = "select_multiple_openstack_instances"
 	OptionFieldTypeEnumSelectMultipleOpenstackTenants   OptionFieldTypeEnum = "select_multiple_openstack_tenants"
@@ -17399,7 +17411,6 @@ const (
 	OptionFieldTypeEnumSelectOpenstackTenant            OptionFieldTypeEnum = "select_openstack_tenant"
 	OptionFieldTypeEnumSelectString                     OptionFieldTypeEnum = "select_string"
 	OptionFieldTypeEnumSelectStringMulti                OptionFieldTypeEnum = "select_string_multi"
-	OptionFieldTypeEnumSingleDatacenterK8sConfig        OptionFieldTypeEnum = "single_datacenter_k8s_config"
 	OptionFieldTypeEnumStorageFolderManager             OptionFieldTypeEnum = "storage_folder_manager"
 	OptionFieldTypeEnumString                           OptionFieldTypeEnum = "string"
 	OptionFieldTypeEnumText                             OptionFieldTypeEnum = "text"
@@ -17429,11 +17440,11 @@ func (e OptionFieldTypeEnum) Valid() bool {
 		return true
 	case OptionFieldTypeEnumIpsecVpnConfig:
 		return true
+	case OptionFieldTypeEnumK8sClusterConfig:
+		return true
 	case OptionFieldTypeEnumK8sEgressRules:
 		return true
 	case OptionFieldTypeEnumMoney:
-		return true
-	case OptionFieldTypeEnumMultiDatacenterK8sConfig:
 		return true
 	case OptionFieldTypeEnumSecret:
 		return true
@@ -17448,8 +17459,6 @@ func (e OptionFieldTypeEnum) Valid() bool {
 	case OptionFieldTypeEnumSelectString:
 		return true
 	case OptionFieldTypeEnumSelectStringMulti:
-		return true
-	case OptionFieldTypeEnumSingleDatacenterK8sConfig:
 		return true
 	case OptionFieldTypeEnumStorageFolderManager:
 		return true
@@ -21553,9 +21562,6 @@ const (
 	PublicOfferingDetailsFieldEnumSoftwareCatalogs           PublicOfferingDetailsFieldEnum = "software_catalogs"
 	PublicOfferingDetailsFieldEnumState                      PublicOfferingDetailsFieldEnum = "state"
 	PublicOfferingDetailsFieldEnumTags                       PublicOfferingDetailsFieldEnum = "tags"
-	PublicOfferingDetailsFieldEnumTemplateName               PublicOfferingDetailsFieldEnum = "template_name"
-	PublicOfferingDetailsFieldEnumTemplateUuid               PublicOfferingDetailsFieldEnum = "template_uuid"
-	PublicOfferingDetailsFieldEnumTemplateVersion            PublicOfferingDetailsFieldEnum = "template_version"
 	PublicOfferingDetailsFieldEnumThumbnail                  PublicOfferingDetailsFieldEnum = "thumbnail"
 	PublicOfferingDetailsFieldEnumTotalCost                  PublicOfferingDetailsFieldEnum = "total_cost"
 	PublicOfferingDetailsFieldEnumTotalCostEstimated         PublicOfferingDetailsFieldEnum = "total_cost_estimated"
@@ -21734,12 +21740,6 @@ func (e PublicOfferingDetailsFieldEnum) Valid() bool {
 	case PublicOfferingDetailsFieldEnumState:
 		return true
 	case PublicOfferingDetailsFieldEnumTags:
-		return true
-	case PublicOfferingDetailsFieldEnumTemplateName:
-		return true
-	case PublicOfferingDetailsFieldEnumTemplateUuid:
-		return true
-	case PublicOfferingDetailsFieldEnumTemplateVersion:
 		return true
 	case PublicOfferingDetailsFieldEnumThumbnail:
 		return true
@@ -42030,7 +42030,6 @@ type ExportFileDataRequest struct {
 type ExportOfferingData struct {
 	AccessUrl        string                  `json:"access_url"`
 	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId        *string                 `json:"backend_id,omitempty"`
 	Billable         bool                    `json:"billable"`
 	CategoryName     *string                 `json:"category_name"`
 	Country          string                  `json:"country"`
@@ -42053,7 +42052,6 @@ type ExportOfferingData struct {
 type ExportOfferingDataRequest struct {
 	AccessUrl        string                  `json:"access_url"`
 	Attributes       *map[string]interface{} `json:"attributes,omitempty"`
-	BackendId        *string                 `json:"backend_id,omitempty"`
 	Billable         bool                    `json:"billable"`
 	CategoryName     *string                 `json:"category_name"`
 	Country          string                  `json:"country"`
@@ -48891,9 +48889,6 @@ type Offering struct {
 	SoftwareCatalogs    *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State               *OfferingState           `json:"state,omitempty"`
 	Tags                *[]NestedTag             `json:"tags,omitempty"`
-	TemplateName        *string                  `json:"template_name,omitempty"`
-	TemplateUuid        *openapi_types.UUID      `json:"template_uuid,omitempty"`
-	TemplateVersion     *int                     `json:"template_version,omitempty"`
 	Thumbnail           *string                  `json:"thumbnail,omitempty"`
 	TotalCost           *int                     `json:"total_cost,omitempty"`
 	TotalCostEstimated  *int                     `json:"total_cost_estimated,omitempty"`
@@ -50741,7 +50736,7 @@ type OfferingTemplateCreateOfferingRequest struct {
 
 // OfferingTemplateCreateOfferingResponse defines model for OfferingTemplateCreateOfferingResponse.
 type OfferingTemplateCreateOfferingResponse struct {
-	// Document The template's document with the parameters filled in: what the offering is created from, in the import_offering format.
+	// Document The template's document with the parameters filled in: what the offering is created from, in the import_offering format. Its agent_configuration is left out for who may not see the organization's integration settings.
 	Document map[string]interface{} `json:"document"`
 	DryRun   bool                   `json:"dry_run"`
 
@@ -50764,10 +50759,14 @@ type OfferingTemplateCreateOfferingResponse struct {
 type OfferingTemplateDiff struct {
 	// CreatedVersionDifferences Differences from the version the offering was created from.
 	CreatedVersionDifferences []OfferingTemplateDifference `json:"created_version_differences"`
-	LatestVersion             int                          `json:"latest_version"`
-	LatestVersionDifferences  []OfferingTemplateDifference `json:"latest_version_differences"`
-	TemplateName              string                       `json:"template_name"`
-	TemplateUuid              openapi_types.UUID           `json:"template_uuid"`
+
+	// LatestVersion The template's latest version; null for who may not see the template, as it is unpublished.
+	LatestVersion *int `json:"latest_version"`
+
+	// LatestVersionDifferences Differences from the latest version; null with latest_version.
+	LatestVersionDifferences *[]OfferingTemplateDifference `json:"latest_version_differences"`
+	TemplateName             string                        `json:"template_name"`
+	TemplateUuid             openapi_types.UUID            `json:"template_uuid"`
 
 	// TemplateVersion The version the offering was created from.
 	TemplateVersion int `json:"template_version"`
@@ -51015,9 +51014,12 @@ type OfferingUser struct {
 	HasComplianceChecklist *bool `json:"has_compliance_checklist,omitempty"`
 
 	// HasConsent Check if the user has active consent for this offering.
-	HasConsent        *bool   `json:"has_consent,omitempty"`
-	HomeDirectory     *string `json:"home_directory,omitempty"`
-	IsProfileComplete *bool   `json:"is_profile_complete,omitempty"`
+	HasConsent *bool `json:"has_consent,omitempty"`
+
+	// HasInitialPassword Whether the site agent stored an initial password the user can reveal.
+	HasInitialPassword *bool   `json:"has_initial_password,omitempty"`
+	HomeDirectory      *string `json:"home_directory,omitempty"`
+	IsProfileComplete  *bool   `json:"is_profile_complete,omitempty"`
 
 	// IsRestricted Signal to service if the user account is restricted or not
 	IsRestricted             *bool               `json:"is_restricted,omitempty"`
@@ -51191,6 +51193,12 @@ type OfferingUserAttributeConfigRequest struct {
 // OfferingUserFieldEnum defines model for OfferingUserFieldEnum.
 type OfferingUserFieldEnum string
 
+// OfferingUserInitialPassword defines model for OfferingUserInitialPassword.
+type OfferingUserInitialPassword struct {
+	// Password The initial password of the user's account at the backend. It stops working once the user changes it there.
+	Password string `json:"password"`
+}
+
 // OfferingUserOEnum defines model for OfferingUserOEnum.
 type OfferingUserOEnum string
 
@@ -51265,6 +51273,15 @@ type OfferingUserServiceProviderComment struct {
 
 	// ServiceProviderCommentUrl URL link for additional information or actions related to service provider comment
 	ServiceProviderCommentUrl *string `json:"service_provider_comment_url,omitempty"`
+}
+
+// OfferingUserSetInitialPasswordRequest defines model for OfferingUserSetInitialPasswordRequest.
+type OfferingUserSetInitialPasswordRequest struct {
+	// Password The initial password of the user's account at the backend. It stops working once the user changes it there.
+	Password string `json:"password"`
+
+	// Username The offering user's username the password was created for. When given, the password is refused if the offering user no longer has it, so a password for a replaced account is never stored.
+	Username *string `json:"username,omitempty"`
 }
 
 // OfferingUserState defines model for OfferingUserState.
@@ -54293,7 +54310,7 @@ type OptionDefaultConfigs struct {
 	// SecretSource Who sets the secret: the customer (when ordering, or later) or the provider and its site agent. customer when omitted.
 	SecretSource *OptionSecretSourceEnum `json:"secret_source,omitempty"`
 
-	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
+	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). Treated as customer_choice when omitted.
 	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
 }
 
@@ -54387,7 +54404,7 @@ type OptionDefaultConfigsRequest struct {
 	// SecretSource Who sets the secret: the customer (when ordering, or later) or the provider and its site agent. customer when omitted.
 	SecretSource *OptionSecretSourceEnum `json:"secret_source,omitempty"`
 
-	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). When omitted, the option type decides: 1-datacenter for single_datacenter_k8s_config, 3-datacenter for multi_datacenter_k8s_config.
+	// TopologyMode Cluster topology: one site with three controllers (1-datacenter), three sites with one controller each (3-datacenter) or the customer's pick (customer_choice). Treated as customer_choice when omitted.
 	TopologyMode *TopologyModeEnum `json:"topology_mode,omitempty"`
 }
 
@@ -63147,9 +63164,6 @@ type PublicOfferingDetails struct {
 	SoftwareCatalogs    *[]NestedSoftwareCatalog `json:"software_catalogs,omitempty"`
 	State               *OfferingState           `json:"state,omitempty"`
 	Tags                *[]NestedTag             `json:"tags,omitempty"`
-	TemplateName        *string                  `json:"template_name,omitempty"`
-	TemplateUuid        *openapi_types.UUID      `json:"template_uuid,omitempty"`
-	TemplateVersion     *int                     `json:"template_version,omitempty"`
 	Thumbnail           *string                  `json:"thumbnail,omitempty"`
 	TotalCost           *int                     `json:"total_cost,omitempty"`
 	TotalCostEstimated  *int                     `json:"total_cost_estimated,omitempty"`
@@ -81847,6 +81861,9 @@ type MarketplaceOfferingUsersListParams struct {
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
+
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
 
@@ -81920,6 +81937,9 @@ type MarketplaceOfferingUsersCountParams struct {
 
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
 
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
@@ -82004,6 +82024,9 @@ type MarketplaceOfferingUsersFacetsListParams struct {
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
+
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
 
@@ -82071,6 +82094,9 @@ type MarketplaceOfferingUsersPosixIdentitiesListParams struct {
 
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
 
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
@@ -82143,6 +82169,9 @@ type MarketplaceOfferingUsersPosixIdentitiesCountParams struct {
 
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
 
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
@@ -82227,6 +82256,9 @@ type MarketplaceOfferingUsersPosixAllocationsListParams struct {
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
 
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
+
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
 
@@ -82300,6 +82332,9 @@ type MarketplaceOfferingUsersPosixGroupsListParams struct {
 
 	// HasConsent User Has Consent
 	HasConsent *bool `form:"has_consent,omitempty" json:"has_consent,omitempty"`
+
+	// HasInitialPassword Has an initial password stored
+	HasInitialPassword *bool `form:"has_initial_password,omitempty" json:"has_initial_password,omitempty"`
 
 	// IsProviderBacked Backed by a service provider account
 	IsProviderBacked *bool `form:"is_provider_backed,omitempty" json:"is_provider_backed,omitempty"`
@@ -106345,6 +106380,9 @@ type MarketplaceOfferingUsersPartialUpdateJSONRequestBody = PatchedOfferingUserR
 
 // MarketplaceOfferingUsersUpdateJSONRequestBody defines body for MarketplaceOfferingUsersUpdate for application/json ContentType.
 type MarketplaceOfferingUsersUpdateJSONRequestBody = OfferingUserRequest
+
+// MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody defines body for MarketplaceOfferingUsersSetInitialPassword for application/json ContentType.
+type MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody = OfferingUserSetInitialPasswordRequest
 
 // MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody defines body for MarketplaceOfferingUsersSetPendingAccountLinking for application/json ContentType.
 type MarketplaceOfferingUsersSetPendingAccountLinkingJSONRequestBody = OfferingUserStateTransitionRequest
@@ -137307,6 +137345,13 @@ type ClientInterface interface {
 	// Get checklist with questions and existing answers including review logic (reviewers only).
 	MarketplaceOfferingUsersChecklistReviewRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersClearInitialPassword Clear the user's initial password
+	//
+	// Removes the stored initial password, e.g. a wrong value or one for an account that was replaced. Succeeds when none is stored. The site agent stores the password again on its next pass if it still holds the account it created.
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/clear_initial_password/ (the `MarketplaceOfferingUsersClearInitialPassword` operationId).
+	MarketplaceOfferingUsersClearInitialPassword(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersCompletionReviewStatusRetrieve performs a GET /api/marketplace-offering-users/{uuid}/completion_review_status/ (the `MarketplaceOfferingUsersCompletionReviewStatusRetrieve` operationId) request.
 	//
 	// Get checklist completion status with review triggers (reviewers only).
@@ -137338,6 +137383,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/{uuid}/request_deletion/ (the `MarketplaceOfferingUsersRequestDeletion` operationId).
 	MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceOfferingUsersRevealInitialPasswordRetrieve Reveal the user's initial password
+	//
+	// Returns the password the site agent created the user's account with at the backend. Revealed only to the user it belongs to, signed in as themselves: refused with 403 to anyone else, to staff impersonating the user, and to a personal access token. Audit-logged. It is the initial password: once the user changes it at the backend, it no longer works.
+	//
+	// Corresponds with GET /api/marketplace-offering-users/{uuid}/reveal_initial_password/ (the `MarketplaceOfferingUsersRevealInitialPasswordRetrieve` operationId).
+	MarketplaceOfferingUsersRevealInitialPasswordRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceOfferingUsersSetDeleted Set state to Deleted
 	//
 	// Transitions the offering user to the 'Deleted' state, marking the successful completion of the deletion process.
@@ -137365,6 +137417,24 @@ type ClientInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_error_deleting/ (the `MarketplaceOfferingUsersSetErrorDeleting` operationId).
 	MarketplaceOfferingUsersSetErrorDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetInitialPasswordWithBody Set the user's initial password
+	//
+	// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+	MarketplaceOfferingUsersSetInitialPasswordWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceOfferingUsersSetInitialPassword Set the user's initial password
+	//
+	// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+	MarketplaceOfferingUsersSetInitialPassword(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// MarketplaceOfferingUsersSetOk Set state to OK
 	//
@@ -139277,7 +139347,7 @@ type ClientInterface interface {
 
 	// MarketplaceProviderOfferingsTemplateDiffRetrieve Compare the offering with its offering template
 	//
-	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). The latest version is left out, as null, for who may not see the template: it is unpublished. Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
 	//
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
 	MarketplaceProviderOfferingsTemplateDiffRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -177074,6 +177144,23 @@ func (c *Client) MarketplaceOfferingUsersChecklistReviewRetrieve(ctx context.Con
 	return c.Client.Do(req)
 }
 
+// MarketplaceOfferingUsersClearInitialPassword Clear the user's initial password
+//
+// Removes the stored initial password, e.g. a wrong value or one for an account that was replaced. Succeeds when none is stored. The site agent stores the password again on its next pass if it still holds the account it created.
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/clear_initial_password/ (the `MarketplaceOfferingUsersClearInitialPassword` operationId).
+func (c *Client) MarketplaceOfferingUsersClearInitialPassword(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersClearInitialPasswordRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceOfferingUsersCompletionReviewStatusRetrieve performs a GET /api/marketplace-offering-users/{uuid}/completion_review_status/ (the `MarketplaceOfferingUsersCompletionReviewStatusRetrieve` operationId) request.
 //
 // Get checklist completion status with review triggers (reviewers only).
@@ -177155,6 +177242,23 @@ func (c *Client) MarketplaceOfferingUsersRequestDeletion(ctx context.Context, uu
 	return c.Client.Do(req)
 }
 
+// MarketplaceOfferingUsersRevealInitialPasswordRetrieve Reveal the user's initial password
+//
+// Returns the password the site agent created the user's account with at the backend. Revealed only to the user it belongs to, signed in as themselves: refused with 403 to anyone else, to staff impersonating the user, and to a personal access token. Audit-logged. It is the initial password: once the user changes it at the backend, it no longer works.
+//
+// Corresponds with GET /api/marketplace-offering-users/{uuid}/reveal_initial_password/ (the `MarketplaceOfferingUsersRevealInitialPasswordRetrieve` operationId).
+func (c *Client) MarketplaceOfferingUsersRevealInitialPasswordRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersRevealInitialPasswordRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceOfferingUsersSetDeleted Set state to Deleted
 //
 // Transitions the offering user to the 'Deleted' state, marking the successful completion of the deletion process.
@@ -177213,6 +177317,44 @@ func (c *Client) MarketplaceOfferingUsersSetErrorCreating(ctx context.Context, u
 // Corresponds with POST /api/marketplace-offering-users/{uuid}/set_error_deleting/ (the `MarketplaceOfferingUsersSetErrorDeleting` operationId).
 func (c *Client) MarketplaceOfferingUsersSetErrorDeleting(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceOfferingUsersSetErrorDeletingRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingUsersSetInitialPasswordWithBody Set the user's initial password
+//
+// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+func (c *Client) MarketplaceOfferingUsersSetInitialPasswordWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetInitialPasswordRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceOfferingUsersSetInitialPassword Set the user's initial password
+//
+// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+func (c *Client) MarketplaceOfferingUsersSetInitialPassword(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceOfferingUsersSetInitialPasswordRequest(c.Server, uuid, body)
 	if err != nil {
 		return nil, err
 	}
@@ -181696,7 +181838,7 @@ func (c *Client) MarketplaceProviderOfferingsSyncResources(ctx context.Context, 
 
 // MarketplaceProviderOfferingsTemplateDiffRetrieve Compare the offering with its offering template
 //
-// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). The latest version is left out, as null, for who may not see the template: it is unpublished. Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
 //
 // Corresponds with GET /api/marketplace-provider-offerings/{uuid}/template_diff/ (the `MarketplaceProviderOfferingsTemplateDiffRetrieve` operationId).
 func (c *Client) MarketplaceProviderOfferingsTemplateDiffRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
@@ -296646,6 +296788,18 @@ func NewMarketplaceOfferingUsersListRequest(server string, params *MarketplaceOf
 
 		}
 
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.IsProviderBacked != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_provider_backed", *params.IsProviderBacked, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -296967,6 +297121,18 @@ func NewMarketplaceOfferingUsersCountRequest(server string, params *MarketplaceO
 		if params.HasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -297382,6 +297548,18 @@ func NewMarketplaceOfferingUsersFacetsListRequest(server string, params *Marketp
 
 		}
 
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.IsProviderBacked != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_provider_backed", *params.IsProviderBacked, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -297679,6 +297857,18 @@ func NewMarketplaceOfferingUsersPosixIdentitiesListRequest(server string, params
 		if params.HasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -298005,6 +298195,18 @@ func NewMarketplaceOfferingUsersPosixIdentitiesCountRequest(server string, param
 		if params.HasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -298636,6 +298838,40 @@ func NewMarketplaceOfferingUsersChecklistReviewRetrieveRequest(server string, uu
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersClearInitialPasswordRequest constructs an http.Request for the MarketplaceOfferingUsersClearInitialPassword method
+func NewMarketplaceOfferingUsersClearInitialPasswordRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/clear_initial_password/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersCompletionReviewStatusRetrieveRequest constructs an http.Request for the MarketplaceOfferingUsersCompletionReviewStatusRetrieve method
 func NewMarketplaceOfferingUsersCompletionReviewStatusRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -298778,6 +299014,18 @@ func NewMarketplaceOfferingUsersPosixAllocationsListRequest(server string, uuid 
 		if params.HasConsent != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_consent", *params.HasConsent, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -299124,6 +299372,18 @@ func NewMarketplaceOfferingUsersPosixGroupsListRequest(server string, uuid opena
 
 		}
 
+		if params.HasInitialPassword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_initial_password", *params.HasInitialPassword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.IsProviderBacked != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_provider_backed", *params.IsProviderBacked, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -299412,6 +299672,40 @@ func NewMarketplaceOfferingUsersRequestDeletionRequest(server string, uuid opena
 	return req, nil
 }
 
+// NewMarketplaceOfferingUsersRevealInitialPasswordRetrieveRequest constructs an http.Request for the MarketplaceOfferingUsersRevealInitialPasswordRetrieve method
+func NewMarketplaceOfferingUsersRevealInitialPasswordRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/reveal_initial_password/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewMarketplaceOfferingUsersSetDeletedRequest constructs an http.Request for the MarketplaceOfferingUsersSetDeleted method
 func NewMarketplaceOfferingUsersSetDeletedRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
 	var err error
@@ -299544,6 +299838,53 @@ func NewMarketplaceOfferingUsersSetErrorDeletingRequest(server string, uuid open
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewMarketplaceOfferingUsersSetInitialPasswordRequest calls the generic MarketplaceOfferingUsersSetInitialPassword builder with application/json body
+func NewMarketplaceOfferingUsersSetInitialPasswordRequest(server string, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceOfferingUsersSetInitialPasswordRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceOfferingUsersSetInitialPasswordRequestWithBody constructs an http.Request for the MarketplaceOfferingUsersSetInitialPassword method, with any body, and a specified content type
+func NewMarketplaceOfferingUsersSetInitialPasswordRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-offering-users/%s/set_initial_password/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -491939,6 +492280,15 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	MarketplaceOfferingUsersChecklistReviewRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersChecklistReviewRetrieveResponse, error)
 
+	// MarketplaceOfferingUsersClearInitialPasswordWithResponse Clear the user's initial password
+	//
+	// Removes the stored initial password, e.g. a wrong value or one for an account that was replaced. Succeeds when none is stored. The site agent stores the password again on its next pass if it still holds the account it created.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/clear_initial_password/ (the `MarketplaceOfferingUsersClearInitialPassword` operationId).
+	MarketplaceOfferingUsersClearInitialPasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersClearInitialPasswordResponse, error)
+
 	// MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse performs a GET /api/marketplace-offering-users/{uuid}/completion_review_status/ (the `MarketplaceOfferingUsersCompletionReviewStatusRetrieve` operationId) request.
 	//
 	// Get checklist completion status with review triggers (reviewers only).
@@ -491980,6 +492330,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-offering-users/{uuid}/request_deletion/ (the `MarketplaceOfferingUsersRequestDeletion` operationId).
 	MarketplaceOfferingUsersRequestDeletionWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRequestDeletionResponse, error)
 
+	// MarketplaceOfferingUsersRevealInitialPasswordRetrieveWithResponse Reveal the user's initial password
+	//
+	// Returns the password the site agent created the user's account with at the backend. Revealed only to the user it belongs to, signed in as themselves: refused with 403 to anyone else, to staff impersonating the user, and to a personal access token. Audit-logged. It is the initial password: once the user changes it at the backend, it no longer works.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-offering-users/{uuid}/reveal_initial_password/ (the `MarketplaceOfferingUsersRevealInitialPasswordRetrieve` operationId).
+	MarketplaceOfferingUsersRevealInitialPasswordRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse, error)
+
 	// MarketplaceOfferingUsersSetDeletedWithResponse Set state to Deleted
 	//
 	// Transitions the offering user to the 'Deleted' state, marking the successful completion of the deletion process.
@@ -492015,6 +492374,24 @@ type ClientWithResponsesInterface interface {
 	//
 	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_error_deleting/ (the `MarketplaceOfferingUsersSetErrorDeleting` operationId).
 	MarketplaceOfferingUsersSetErrorDeletingWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetErrorDeletingResponse, error)
+
+	// MarketplaceOfferingUsersSetInitialPasswordWithBodyWithResponse Set the user's initial password
+	//
+	// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+	MarketplaceOfferingUsersSetInitialPasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetInitialPasswordResponse, error)
+
+	// MarketplaceOfferingUsersSetInitialPasswordWithResponse Set the user's initial password
+	//
+	// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+	MarketplaceOfferingUsersSetInitialPasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetInitialPasswordResponse, error)
 
 	// MarketplaceOfferingUsersSetOkWithResponse Set state to OK
 	//
@@ -494193,7 +494570,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse Compare the offering with its offering template
 	//
-	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+	// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). The latest version is left out, as null, for who may not see the template: it is unpublished. Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
 	//
 	// Returns a wrapper object for the known response body format(s).
 	//
@@ -554958,6 +555335,40 @@ func (r MarketplaceOfferingUsersChecklistReviewRetrieveResponse) ContentType() s
 	return ""
 }
 
+type MarketplaceOfferingUsersClearInitialPasswordResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingUsersClearInitialPasswordResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersClearInitialPasswordResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersClearInitialPasswordResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersClearInitialPasswordResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -555198,6 +555609,47 @@ func (r MarketplaceOfferingUsersRequestDeletionResponse) ContentType() string {
 	return ""
 }
 
+type MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *OfferingUserInitialPassword
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse) GetJSON200() *OfferingUserInitialPassword {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceOfferingUsersSetDeletedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -555328,6 +555780,40 @@ func (r MarketplaceOfferingUsersSetErrorDeletingResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceOfferingUsersSetErrorDeletingResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplaceOfferingUsersSetInitialPasswordResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceOfferingUsersSetInitialPasswordResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceOfferingUsersSetInitialPasswordResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceOfferingUsersSetInitialPasswordResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceOfferingUsersSetInitialPasswordResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -662501,6 +662987,21 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersChecklistReviewRetrieveWit
 	return ParseMarketplaceOfferingUsersChecklistReviewRetrieveResponse(rsp)
 }
 
+// MarketplaceOfferingUsersClearInitialPasswordWithResponse Clear the user's initial password
+//
+// Removes the stored initial password, e.g. a wrong value or one for an account that was replaced. Succeeds when none is stored. The site agent stores the password again on its next pass if it still holds the account it created.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/clear_initial_password/ (the `MarketplaceOfferingUsersClearInitialPassword` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingUsersClearInitialPasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersClearInitialPasswordResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersClearInitialPassword(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersClearInitialPasswordResponse(rsp)
+}
+
 // MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse performs a GET /api/marketplace-offering-users/{uuid}/completion_review_status/ (the `MarketplaceOfferingUsersCompletionReviewStatusRetrieve` operationId) request.
 //
 // Get checklist completion status with review triggers (reviewers only).
@@ -662572,6 +663073,21 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersRequestDeletionWithRespons
 	return ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp)
 }
 
+// MarketplaceOfferingUsersRevealInitialPasswordRetrieveWithResponse Reveal the user's initial password
+//
+// Returns the password the site agent created the user's account with at the backend. Revealed only to the user it belongs to, signed in as themselves: refused with 403 to anyone else, to staff impersonating the user, and to a personal access token. Audit-logged. It is the initial password: once the user changes it at the backend, it no longer works.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-offering-users/{uuid}/reveal_initial_password/ (the `MarketplaceOfferingUsersRevealInitialPasswordRetrieve` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingUsersRevealInitialPasswordRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersRevealInitialPasswordRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse(rsp)
+}
+
 // MarketplaceOfferingUsersSetDeletedWithResponse Set state to Deleted
 //
 // Transitions the offering user to the 'Deleted' state, marking the successful completion of the deletion process.
@@ -662630,6 +663146,36 @@ func (c *ClientWithResponses) MarketplaceOfferingUsersSetErrorDeletingWithRespon
 		return nil, err
 	}
 	return ParseMarketplaceOfferingUsersSetErrorDeletingResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetInitialPasswordWithBodyWithResponse Set the user's initial password
+//
+// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetInitialPasswordWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetInitialPasswordResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetInitialPasswordWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetInitialPasswordResponse(rsp)
+}
+
+// MarketplaceOfferingUsersSetInitialPasswordWithResponse Set the user's initial password
+//
+// Stores the password the site agent created the user's account with at the backend (e.g. an Open WebUI chat account), so the user can reveal it in Waldur instead of being sent it. Stored encrypted; replaces any value stored before. Only the user reveals it. It is the initial password: a change the user makes at the backend never reaches Waldur. Wiped when the offering user is deleted or its username changes. Refused with 409 for a deleted offering user, and when `username` is given and the offering user no longer has it.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-offering-users/{uuid}/set_initial_password/ (the `MarketplaceOfferingUsersSetInitialPassword` operationId).
+func (c *ClientWithResponses) MarketplaceOfferingUsersSetInitialPasswordWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceOfferingUsersSetInitialPasswordJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceOfferingUsersSetInitialPasswordResponse, error) {
+	rsp, err := c.MarketplaceOfferingUsersSetInitialPassword(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceOfferingUsersSetInitialPasswordResponse(rsp)
 }
 
 // MarketplaceOfferingUsersSetOkWithResponse Set state to OK
@@ -666343,7 +666889,7 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsSyncResourcesWithRespo
 
 // MarketplaceProviderOfferingsTemplateDiffRetrieveWithResponse Compare the offering with its offering template
 //
-// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
+// Where the offering differs from the offering template it was created from: from the version it was created from, and from the template's latest version, both filled in with the parameter values the offering was created with (a parameter added since takes its default). The latest version is left out, as null, for who may not see the template: it is unpublished. Only what the template sets is compared, and the offering's name is not. The agent configuration is compared only for who may see the integration settings. Refused for an offering not created from a template, or whose template was deleted.
 //
 // Returns a wrapper object for the known response body format(s).
 //
@@ -728725,6 +729271,22 @@ func ParseMarketplaceOfferingUsersChecklistReviewRetrieveResponse(rsp *http.Resp
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersClearInitialPasswordResponse parses an HTTP response from a MarketplaceOfferingUsersClearInitialPasswordWithResponse call
+func ParseMarketplaceOfferingUsersClearInitialPasswordResponse(rsp *http.Response) (*MarketplaceOfferingUsersClearInitialPasswordResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersClearInitialPasswordResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersCompletionReviewStatusRetrieveWithResponse call
 func ParseMarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersCompletionReviewStatusRetrieveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -728899,6 +729461,32 @@ func ParseMarketplaceOfferingUsersRequestDeletionResponse(rsp *http.Response) (*
 	return response, nil
 }
 
+// ParseMarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse parses an HTTP response from a MarketplaceOfferingUsersRevealInitialPasswordRetrieveWithResponse call
+func ParseMarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse(rsp *http.Response) (*MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersRevealInitialPasswordRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OfferingUserInitialPassword
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceOfferingUsersSetDeletedResponse parses an HTTP response from a MarketplaceOfferingUsersSetDeletedWithResponse call
 func ParseMarketplaceOfferingUsersSetDeletedResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetDeletedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -728956,6 +729544,22 @@ func ParseMarketplaceOfferingUsersSetErrorDeletingResponse(rsp *http.Response) (
 	}
 
 	response := &MarketplaceOfferingUsersSetErrorDeletingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceOfferingUsersSetInitialPasswordResponse parses an HTTP response from a MarketplaceOfferingUsersSetInitialPasswordWithResponse call
+func ParseMarketplaceOfferingUsersSetInitialPasswordResponse(rsp *http.Response) (*MarketplaceOfferingUsersSetInitialPasswordResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceOfferingUsersSetInitialPasswordResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
