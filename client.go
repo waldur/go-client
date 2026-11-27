@@ -50741,6 +50741,9 @@ type OfferingTeamStep struct {
 
 // OfferingTemplate defines model for OfferingTemplate.
 type OfferingTemplate struct {
+	// AgentRoles The site agent's role backends and custom backends the document names: what an offering created from the template starts with. Shown to everyone who sees the template, unlike the rest of its agent configuration.
+	AgentRoles *OfferingTemplateAgentRoles `json:"agent_roles,omitempty"`
+
 	// ConfigurationFindings What the site-agent consistency rules find in the document. Paths a parameter fills are skipped. Staff only.
 	ConfigurationFindings *[]OfferingConfigurationFinding `json:"configuration_findings,omitempty"`
 	Created               *time.Time                      `json:"created,omitempty"`
@@ -50764,8 +50767,34 @@ type OfferingTemplate struct {
 	Version *int `json:"version,omitempty"`
 }
 
+// OfferingTemplateAgentRoles defines model for OfferingTemplateAgentRoles.
+type OfferingTemplateAgentRoles struct {
+	// CustomBackends Backends of the site's own, not in the plugin catalog, that the roles may name. Added to the template's.
+	CustomBackends            *[]string `json:"custom_backends,omitempty"`
+	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+}
+
+// OfferingTemplateAgentRolesRequest defines model for OfferingTemplateAgentRolesRequest.
+type OfferingTemplateAgentRolesRequest struct {
+	// CustomBackends Backends of the site's own, not in the plugin catalog, that the roles may name. Added to the template's.
+	CustomBackends            *[]string `json:"custom_backends,omitempty"`
+	MembershipSyncBackend     *string   `json:"membership_sync_backend,omitempty"`
+	OrderProcessingBackend    *string   `json:"order_processing_backend,omitempty"`
+	ReportingBackend          *string   `json:"reporting_backend,omitempty"`
+	UsernameManagementBackend *string   `json:"username_management_backend,omitempty"`
+}
+
 // OfferingTemplateCreateOfferingRequest defines model for OfferingTemplateCreateOfferingRequest.
 type OfferingTemplateCreateOfferingRequest struct {
+	// AgentRoles Backends for the site agent's roles, replacing the template's. A role left out keeps the template's backend; a blank one names none.
+	AgentRoles *OfferingTemplateAgentRolesRequest `json:"agent_roles,omitempty"`
+
+	// BackendSettings Backend settings of the site agent, by name, over the template's: what the chosen role backends need that the template does not set. A nested mapping is merged key by key. Checked as the agent configuration's backend_settings; secrets are refused, they stay in the agent configuration file on the agent host. Site agent templates only.
+	BackendSettings *map[string]interface{} `json:"backend_settings,omitempty"`
+
 	// Category The category the offering is listed in.
 	Category openapi_types.UUID `json:"category"`
 
@@ -137195,7 +137224,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTemplatesCreateOfferingWithBody Create an offering from the template
 	//
-	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 	//
 	// Takes any type of body and a specified content type.
 	//
@@ -137204,7 +137233,7 @@ type ClientInterface interface {
 
 	// MarketplaceOfferingTemplatesCreateOffering Create an offering from the template
 	//
-	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 	//
 	// Takes a body of the `application/json` content type.
 	//
@@ -176543,7 +176572,7 @@ func (c *Client) MarketplaceOfferingTemplatesUpdate(ctx context.Context, uuid op
 
 // MarketplaceOfferingTemplatesCreateOfferingWithBody Create an offering from the template
 //
-// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 //
 // Takes any type of body and a specified content type.
 //
@@ -176562,7 +176591,7 @@ func (c *Client) MarketplaceOfferingTemplatesCreateOfferingWithBody(ctx context.
 
 // MarketplaceOfferingTemplatesCreateOffering Create an offering from the template
 //
-// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 //
 // Takes a body of the `application/json` content type.
 //
@@ -492309,7 +492338,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse Create an offering from the template
 	//
-	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 	//
 	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -492318,7 +492347,7 @@ type ClientWithResponsesInterface interface {
 
 	// MarketplaceOfferingTemplatesCreateOfferingWithResponse Create an offering from the template
 	//
-	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+	// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 	//
 	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 	//
@@ -662799,7 +662828,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTemplatesUpdateWithResponse(ctx
 
 // MarketplaceOfferingTemplatesCreateOfferingWithBodyWithResponse Create an offering from the template
 //
-// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 //
 // Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
 //
@@ -662814,7 +662843,7 @@ func (c *ClientWithResponses) MarketplaceOfferingTemplatesCreateOfferingWithBody
 
 // MarketplaceOfferingTemplatesCreateOfferingWithResponse Create an offering from the template
 //
-// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding.
+// Create a draft offering for an organization from the template's current version: its document with the parameters filled in, imported as import_offering imports. Each parameter takes the value given or its default; a missing required value or a value that does not fit its declaration is refused, under parameters.<key>. The offering records the template, its version and the parameter values, and keeps no link to the template: a later edit of the template changes nothing in it. With dry_run, everything is checked and the filled-in document returned, and nothing is created. The site-agent consistency rules check the filled-in document: an error finding refuses the create, under findings; a dry run returns every finding. agent_roles replaces the template's role backends before the checks, and backend_settings is merged over the template's backend settings after them; a secret in it is refused, under backend_settings.
 //
 // Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
 //
