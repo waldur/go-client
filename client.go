@@ -10621,6 +10621,24 @@ func (e ImportPublicationsSourceEnum) Valid() bool {
 	}
 }
 
+// Defines values for InfrastructureModeEnum.
+const (
+	InfrastructureModeEnumCustomerChoice InfrastructureModeEnum = "customer_choice"
+	InfrastructureModeEnumProviderFixed  InfrastructureModeEnum = "provider_fixed"
+)
+
+// Valid indicates whether the value is a known member of the InfrastructureModeEnum enum.
+func (e InfrastructureModeEnum) Valid() bool {
+	switch e {
+	case InfrastructureModeEnumCustomerChoice:
+		return true
+	case InfrastructureModeEnumProviderFixed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for InjectionSeverityEnum.
 const (
 	InjectionSeverityEnumCritical InjectionSeverityEnum = "critical"
@@ -11398,6 +11416,24 @@ func (e K8sEgressRuleProtocolEnum) Valid() bool {
 	case K8sEgressRuleProtocolEnumTCP:
 		return true
 	case K8sEgressRuleProtocolEnumUDP:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for K8sSitesTopologyEnum.
+const (
+	K8sSitesTopologyEnumN1Datacenter K8sSitesTopologyEnum = "1-datacenter"
+	K8sSitesTopologyEnumN3Datacenter K8sSitesTopologyEnum = "3-datacenter"
+)
+
+// Valid indicates whether the value is a known member of the K8sSitesTopologyEnum enum.
+func (e K8sSitesTopologyEnum) Valid() bool {
+	switch e {
+	case K8sSitesTopologyEnumN1Datacenter:
+		return true
+	case K8sSitesTopologyEnumN3Datacenter:
 		return true
 	default:
 		return false
@@ -26505,19 +26541,19 @@ func (e TopologyEdgeKindEnum) Valid() bool {
 
 // Defines values for TopologyModeEnum.
 const (
-	CustomerChoice TopologyModeEnum = "customer_choice"
-	N1Datacenter   TopologyModeEnum = "1-datacenter"
-	N3Datacenter   TopologyModeEnum = "3-datacenter"
+	TopologyModeEnumCustomerChoice TopologyModeEnum = "customer_choice"
+	TopologyModeEnumN1Datacenter   TopologyModeEnum = "1-datacenter"
+	TopologyModeEnumN3Datacenter   TopologyModeEnum = "3-datacenter"
 )
 
 // Valid indicates whether the value is a known member of the TopologyModeEnum enum.
 func (e TopologyModeEnum) Valid() bool {
 	switch e {
-	case CustomerChoice:
+	case TopologyModeEnumCustomerChoice:
 		return true
-	case N1Datacenter:
+	case TopologyModeEnumN1Datacenter:
 		return true
-	case N3Datacenter:
+	case TopologyModeEnumN3Datacenter:
 		return true
 	default:
 		return false
@@ -44485,6 +44521,9 @@ type ImportedPolicy struct {
 	Reason *string `json:"reason"`
 }
 
+// InfrastructureModeEnum defines model for InfrastructureModeEnum.
+type InfrastructureModeEnum string
+
 // InheritedAccountSetting defines model for InheritedAccountSetting.
 type InheritedAccountSetting struct {
 	// Source Where the value comes from: the offering's own plugin option, the service provider's account options, or the built-in default.
@@ -45481,6 +45520,21 @@ type JiraIssueRequest struct {
 	Key string `json:"key"`
 }
 
+// K8sCommonFlavor defines model for K8sCommonFlavor.
+type K8sCommonFlavor struct {
+	Cores int `json:"cores"`
+
+	// Disk Root disk in MiB; the smallest among the sites.
+	Disk int    `json:"disk"`
+	Name string `json:"name"`
+
+	// Ram RAM in MiB.
+	Ram int `json:"ram"`
+
+	// Sites The flavor of every site, in site order.
+	Sites []K8sSiteFlavor `json:"sites"`
+}
+
 // K8sEgressRule defines model for K8sEgressRule.
 type K8sEgressRule struct {
 	Description *string `json:"description,omitempty"`
@@ -45537,6 +45591,35 @@ type K8sEgressRuleRequest struct {
 type K8sEgressRuleRequest_Protocol struct {
 	union json.RawMessage
 }
+
+// K8sSite defines model for K8sSite.
+type K8sSite struct {
+	Name string `json:"name"`
+
+	// Uuid UUID of the OpenStack tenant offering.
+	Uuid string `json:"uuid"`
+}
+
+// K8sSiteFlavor defines model for K8sSiteFlavor.
+type K8sSiteFlavor struct {
+	// FlavorUuid UUID of the flavor on that site.
+	FlavorUuid string `json:"flavor_uuid"`
+
+	// OfferingUuid UUID of the site's OpenStack tenant offering.
+	OfferingUuid string `json:"offering_uuid"`
+}
+
+// K8sSites defines model for K8sSites.
+type K8sSites struct {
+	// Flavors Flavors every site has under one name with the same vCPUs and RAM, smallest first.
+	Flavors []K8sCommonFlavor `json:"flavors"`
+
+	// Sites The sites, in order.
+	Sites []K8sSite `json:"sites"`
+}
+
+// K8sSitesTopologyEnum defines model for K8sSitesTopologyEnum.
+type K8sSitesTopologyEnum string
 
 // KeycloakGroup defines model for KeycloakGroup.
 type KeycloakGroup struct {
@@ -54668,8 +54751,14 @@ type OptionDefaultConfigs struct {
 	// ExcludedRanges Networks the value must not overlap.
 	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
 
+	// FixedOpenstackOfferings With provider_fixed: the UUIDs of the OpenStack tenant offerings a cluster is deployed to, per topology, in site order. "1-datacenter" takes one, "3-datacenter" three; every topology the option allows needs its list.
+	FixedOpenstackOfferings *map[string][]string `json:"fixed_openstack_offerings,omitempty"`
+
 	// Ikev1Allowed Whether IKEv1 is accepted. Off when omitted.
 	Ikev1Allowed *bool `json:"ikev1_allowed,omitempty"`
+
+	// InfrastructureMode Who picks the OpenStack infrastructure of each site: the customer, from the tenant offerings they can order (customer_choice), or the provider, in fixed_openstack_offerings (provider_fixed). Treated as customer_choice when omitted.
+	InfrastructureMode *InfrastructureModeEnum `json:"infrastructure_mode,omitempty"`
 
 	// IpVersion Which IP version the network may be. Any when omitted.
 	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
@@ -54762,8 +54851,14 @@ type OptionDefaultConfigsRequest struct {
 	// ExcludedRanges Networks the value must not overlap.
 	ExcludedRanges *[]string `json:"excluded_ranges,omitempty"`
 
+	// FixedOpenstackOfferings With provider_fixed: the UUIDs of the OpenStack tenant offerings a cluster is deployed to, per topology, in site order. "1-datacenter" takes one, "3-datacenter" three; every topology the option allows needs its list.
+	FixedOpenstackOfferings *map[string][]string `json:"fixed_openstack_offerings,omitempty"`
+
 	// Ikev1Allowed Whether IKEv1 is accepted. Off when omitted.
 	Ikev1Allowed *bool `json:"ikev1_allowed,omitempty"`
+
+	// InfrastructureMode Who picks the OpenStack infrastructure of each site: the customer, from the tenant offerings they can order (customer_choice), or the provider, in fixed_openstack_offerings (provider_fixed). Treated as customer_choice when omitted.
+	InfrastructureMode *InfrastructureModeEnum `json:"infrastructure_mode,omitempty"`
 
 	// IpVersion Which IP version the network may be. Any when omitted.
 	IpVersion *CidrIpVersionEnum `json:"ip_version,omitempty"`
@@ -87038,6 +87133,15 @@ type MarketplacePublicOfferingsFacetsListParams struct {
 // MarketplacePublicOfferingsRetrieveParams defines parameters for MarketplacePublicOfferingsRetrieve.
 type MarketplacePublicOfferingsRetrieveParams struct {
 	Field *[]PublicOfferingDetailsFieldEnum `form:"field,omitempty" json:"field,omitempty"`
+}
+
+// MarketplacePublicOfferingsK8sSitesRetrieveParams defines parameters for MarketplacePublicOfferingsK8sSitesRetrieve.
+type MarketplacePublicOfferingsK8sSitesRetrieveParams struct {
+	// Option Name of the offering's k8s_cluster_config order option.
+	Option string `form:"option" json:"option"`
+
+	// Topology The cluster topology whose sites to list.
+	Topology K8sSitesTopologyEnum `form:"topology" json:"topology"`
 }
 
 // MarketplaceRelatedCustomersListParams defines parameters for MarketplaceRelatedCustomersList.
@@ -141365,6 +141469,13 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-public-offerings/{uuid}/ (the `MarketplacePublicOfferingsRetrieve` operationId).
 	MarketplacePublicOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplacePublicOfferingsK8sSitesRetrieve List the sites and common flavors of a Kubernetes option
+	//
+	// For a k8s_cluster_config order option whose provider fixed the OpenStack sites (infrastructure_mode provider_fixed): the sites of a topology, in order, and the flavors every site has under one name with the same vCPUs and RAM. Each flavor lists every site's own flavor UUID. Works for any caller who can see the offering, whether or not they can see the OpenStack offerings.
+	//
+	// Corresponds with GET /api/marketplace-public-offerings/{uuid}/k8s_sites/ (the `MarketplacePublicOfferingsK8sSitesRetrieve` operationId).
+	MarketplacePublicOfferingsK8sSitesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsK8sSitesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplacePublicOfferingsPlansList List plans for an offering
 	//
 	// Returns a list of plans available for a specific offering. The plans are filtered based on the current user's permissions and organization group memberships.
@@ -185552,6 +185663,23 @@ func (c *Client) MarketplacePublicOfferingsFacetsList(ctx context.Context, param
 // Corresponds with GET /api/marketplace-public-offerings/{uuid}/ (the `MarketplacePublicOfferingsRetrieve` operationId).
 func (c *Client) MarketplacePublicOfferingsRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplacePublicOfferingsRetrieveRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplacePublicOfferingsK8sSitesRetrieve List the sites and common flavors of a Kubernetes option
+//
+// For a k8s_cluster_config order option whose provider fixed the OpenStack sites (infrastructure_mode provider_fixed): the sites of a topology, in order, and the flavors every site has under one name with the same vCPUs and RAM. Each flavor lists every site's own flavor UUID. Works for any caller who can see the offering, whether or not they can see the OpenStack offerings.
+//
+// Corresponds with GET /api/marketplace-public-offerings/{uuid}/k8s_sites/ (the `MarketplacePublicOfferingsK8sSitesRetrieve` operationId).
+func (c *Client) MarketplacePublicOfferingsK8sSitesRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsK8sSitesRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplacePublicOfferingsK8sSitesRetrieveRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -329303,6 +329431,71 @@ func NewMarketplacePublicOfferingsRetrieveRequest(server string, uuid openapi_ty
 				}
 			}
 
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewMarketplacePublicOfferingsK8sSitesRetrieveRequest constructs an http.Request for the MarketplacePublicOfferingsK8sSitesRetrieve method
+func NewMarketplacePublicOfferingsK8sSitesRetrieveRequest(server string, uuid openapi_types.UUID, params *MarketplacePublicOfferingsK8sSitesRetrieveParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-public-offerings/%s/k8s_sites/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "option", params.Option, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
+		}
+
+		if queryFrag, err := runtime.StyleParamWithOptions("form", true, "topology", params.Topology, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			return nil, err
+		} else {
+			for _, qp := range strings.Split(queryFrag, "&") {
+				rawQueryFragments = append(rawQueryFragments, qp)
+			}
 		}
 
 		if encoded := queryValues.Encode(); encoded != "" {
@@ -498003,6 +498196,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-public-offerings/{uuid}/ (the `MarketplacePublicOfferingsRetrieve` operationId).
 	MarketplacePublicOfferingsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsRetrieveResponse, error)
 
+	// MarketplacePublicOfferingsK8sSitesRetrieveWithResponse List the sites and common flavors of a Kubernetes option
+	//
+	// For a k8s_cluster_config order option whose provider fixed the OpenStack sites (infrastructure_mode provider_fixed): the sites of a topology, in order, and the flavors every site has under one name with the same vCPUs and RAM. Each flavor lists every site's own flavor UUID. Works for any caller who can see the offering, whether or not they can see the OpenStack offerings.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-public-offerings/{uuid}/k8s_sites/ (the `MarketplacePublicOfferingsK8sSitesRetrieve` operationId).
+	MarketplacePublicOfferingsK8sSitesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsK8sSitesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsK8sSitesRetrieveResponse, error)
+
 	// MarketplacePublicOfferingsPlansListWithResponse List plans for an offering
 	//
 	// Returns a list of plans available for a specific offering. The plans are filtered based on the current user's permissions and organization group memberships.
@@ -569362,6 +569564,47 @@ func (r MarketplacePublicOfferingsRetrieveResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplacePublicOfferingsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type MarketplacePublicOfferingsK8sSitesRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *K8sSites
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplacePublicOfferingsK8sSitesRetrieveResponse) GetJSON200() *K8sSites {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplacePublicOfferingsK8sSitesRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplacePublicOfferingsK8sSitesRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplacePublicOfferingsK8sSitesRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplacePublicOfferingsK8sSitesRetrieveResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -671755,6 +671998,21 @@ func (c *ClientWithResponses) MarketplacePublicOfferingsRetrieveWithResponse(ctx
 	return ParseMarketplacePublicOfferingsRetrieveResponse(rsp)
 }
 
+// MarketplacePublicOfferingsK8sSitesRetrieveWithResponse List the sites and common flavors of a Kubernetes option
+//
+// For a k8s_cluster_config order option whose provider fixed the OpenStack sites (infrastructure_mode provider_fixed): the sites of a topology, in order, and the flavors every site has under one name with the same vCPUs and RAM. Each flavor lists every site's own flavor UUID. Works for any caller who can see the offering, whether or not they can see the OpenStack offerings.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-public-offerings/{uuid}/k8s_sites/ (the `MarketplacePublicOfferingsK8sSitesRetrieve` operationId).
+func (c *ClientWithResponses) MarketplacePublicOfferingsK8sSitesRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplacePublicOfferingsK8sSitesRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplacePublicOfferingsK8sSitesRetrieveResponse, error) {
+	rsp, err := c.MarketplacePublicOfferingsK8sSitesRetrieve(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplacePublicOfferingsK8sSitesRetrieveResponse(rsp)
+}
+
 // MarketplacePublicOfferingsPlansListWithResponse List plans for an offering
 //
 // Returns a list of plans available for a specific offering. The plans are filtered based on the current user's permissions and organization group memberships.
@@ -739361,6 +739619,32 @@ func ParseMarketplacePublicOfferingsRetrieveResponse(rsp *http.Response) (*Marke
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest PublicOfferingDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseMarketplacePublicOfferingsK8sSitesRetrieveResponse parses an HTTP response from a MarketplacePublicOfferingsK8sSitesRetrieveWithResponse call
+func ParseMarketplacePublicOfferingsK8sSitesRetrieveResponse(rsp *http.Response) (*MarketplacePublicOfferingsK8sSitesRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplacePublicOfferingsK8sSitesRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest K8sSites
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
