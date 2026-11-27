@@ -1922,7 +1922,9 @@ const (
 	BookingResourceFieldEnumEndpoints                  BookingResourceFieldEnum = "endpoints"
 	BookingResourceFieldEnumErrorMessage               BookingResourceFieldEnum = "error_message"
 	BookingResourceFieldEnumErrorTraceback             BookingResourceFieldEnum = "error_traceback"
+	BookingResourceFieldEnumGracePeriodEndDate         BookingResourceFieldEnum = "grace_period_end_date"
 	BookingResourceFieldEnumHasApiKeys                 BookingResourceFieldEnum = "has_api_keys"
+	BookingResourceFieldEnumIsInGracePeriod            BookingResourceFieldEnum = "is_in_grace_period"
 	BookingResourceFieldEnumIsLimitBased               BookingResourceFieldEnum = "is_limit_based"
 	BookingResourceFieldEnumIsUsageBased               BookingResourceFieldEnum = "is_usage_based"
 	BookingResourceFieldEnumLastSync                   BookingResourceFieldEnum = "last_sync"
@@ -2063,7 +2065,11 @@ func (e BookingResourceFieldEnum) Valid() bool {
 		return true
 	case BookingResourceFieldEnumErrorTraceback:
 		return true
+	case BookingResourceFieldEnumGracePeriodEndDate:
+		return true
 	case BookingResourceFieldEnumHasApiKeys:
+		return true
+	case BookingResourceFieldEnumIsInGracePeriod:
 		return true
 	case BookingResourceFieldEnumIsLimitBased:
 		return true
@@ -6552,6 +6558,9 @@ const (
 	EventMetadataResponseEventGroupsMarketplaceResourceEndDateChangeRequestCreated   EventMetadataResponseEventGroups = "marketplace_resource_end_date_change_request_created"
 	EventMetadataResponseEventGroupsMarketplaceResourceEndDateChangeRequestRejected  EventMetadataResponseEventGroups = "marketplace_resource_end_date_change_request_rejected"
 	EventMetadataResponseEventGroupsMarketplaceResourceErredOnBackend                EventMetadataResponseEventGroups = "marketplace_resource_erred_on_backend"
+	EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodCancelled          EventMetadataResponseEventGroups = "marketplace_resource_grace_period_cancelled"
+	EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodEnded              EventMetadataResponseEventGroups = "marketplace_resource_grace_period_ended"
+	EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodStarted            EventMetadataResponseEventGroups = "marketplace_resource_grace_period_started"
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestApproved    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_approved"
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestCreated     EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_created"
 	EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestRejected    EventMetadataResponseEventGroups = "marketplace_resource_limit_change_request_rejected"
@@ -7167,6 +7176,12 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 	case EventMetadataResponseEventGroupsMarketplaceResourceEndDateChangeRequestRejected:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceErredOnBackend:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodCancelled:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodEnded:
+		return true
+	case EventMetadataResponseEventGroupsMarketplaceResourceGracePeriodStarted:
 		return true
 	case EventMetadataResponseEventGroupsMarketplaceResourceLimitChangeRequestApproved:
 		return true
@@ -8010,6 +8025,9 @@ const (
 	EventTypesEnumMarketplaceResourceEndDateChangeRequestCreated   EventTypesEnum = "marketplace_resource_end_date_change_request_created"
 	EventTypesEnumMarketplaceResourceEndDateChangeRequestRejected  EventTypesEnum = "marketplace_resource_end_date_change_request_rejected"
 	EventTypesEnumMarketplaceResourceErredOnBackend                EventTypesEnum = "marketplace_resource_erred_on_backend"
+	EventTypesEnumMarketplaceResourceGracePeriodCancelled          EventTypesEnum = "marketplace_resource_grace_period_cancelled"
+	EventTypesEnumMarketplaceResourceGracePeriodEnded              EventTypesEnum = "marketplace_resource_grace_period_ended"
+	EventTypesEnumMarketplaceResourceGracePeriodStarted            EventTypesEnum = "marketplace_resource_grace_period_started"
 	EventTypesEnumMarketplaceResourceLimitChangeRequestApproved    EventTypesEnum = "marketplace_resource_limit_change_request_approved"
 	EventTypesEnumMarketplaceResourceLimitChangeRequestCreated     EventTypesEnum = "marketplace_resource_limit_change_request_created"
 	EventTypesEnumMarketplaceResourceLimitChangeRequestRejected    EventTypesEnum = "marketplace_resource_limit_change_request_rejected"
@@ -8625,6 +8643,12 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumMarketplaceResourceEndDateChangeRequestRejected:
 		return true
 	case EventTypesEnumMarketplaceResourceErredOnBackend:
+		return true
+	case EventTypesEnumMarketplaceResourceGracePeriodCancelled:
+		return true
+	case EventTypesEnumMarketplaceResourceGracePeriodEnded:
+		return true
+	case EventTypesEnumMarketplaceResourceGracePeriodStarted:
 		return true
 	case EventTypesEnumMarketplaceResourceLimitChangeRequestApproved:
 		return true
@@ -23441,7 +23465,9 @@ const (
 	ResourceFieldEnumEndpoints                  ResourceFieldEnum = "endpoints"
 	ResourceFieldEnumErrorMessage               ResourceFieldEnum = "error_message"
 	ResourceFieldEnumErrorTraceback             ResourceFieldEnum = "error_traceback"
+	ResourceFieldEnumGracePeriodEndDate         ResourceFieldEnum = "grace_period_end_date"
 	ResourceFieldEnumHasApiKeys                 ResourceFieldEnum = "has_api_keys"
+	ResourceFieldEnumIsInGracePeriod            ResourceFieldEnum = "is_in_grace_period"
 	ResourceFieldEnumIsLimitBased               ResourceFieldEnum = "is_limit_based"
 	ResourceFieldEnumIsUsageBased               ResourceFieldEnum = "is_usage_based"
 	ResourceFieldEnumLastSync                   ResourceFieldEnum = "last_sync"
@@ -23569,7 +23595,11 @@ func (e ResourceFieldEnum) Valid() bool {
 		return true
 	case ResourceFieldEnumErrorTraceback:
 		return true
+	case ResourceFieldEnumGracePeriodEndDate:
+		return true
 	case ResourceFieldEnumHasApiKeys:
+		return true
+	case ResourceFieldEnumIsInGracePeriod:
 		return true
 	case ResourceFieldEnumIsLimitBased:
 		return true
@@ -32923,8 +32953,14 @@ type BookingResource struct {
 	ErrorMessage     *string           `json:"error_message,omitempty"`
 	ErrorTraceback   *string           `json:"error_traceback,omitempty"`
 
+	// GracePeriodEndDate The last day of this resource's grace window. Empty when the offering gives it no grace period.
+	GracePeriodEndDate *openapi_types.Date `json:"grace_period_end_date,omitempty"`
+
 	// HasApiKeys Whether the resource owns any API keys, so the portal can offer key management without knowing which backend serves the resource.
 	HasApiKeys *bool `json:"has_api_keys,omitempty"`
+
+	// IsInGracePeriod True when this resource is past a raw end date and still within the grace period its offering resolves. Independent of whether the resource is paused.
+	IsInGracePeriod *bool `json:"is_in_grace_period,omitempty"`
 
 	// IsLimitBased Returns True if the resource bills any component on user-adjustable limits under its plan.
 	IsLimitBased *bool `json:"is_limit_based,omitempty"`
@@ -32988,7 +33024,7 @@ type BookingResource struct {
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 
-	// ProjectIsInGracePeriod True if the project is past its end date but still within the grace period.
+	// ProjectIsInGracePeriod True if the project is past its end date but still within the organization and project grace period. This is the project clock. is_in_grace_period is the clock this resource's offering resolves.
 	ProjectIsInGracePeriod *bool                          `json:"project_is_in_grace_period,omitempty"`
 	ProjectName            *string                        `json:"project_name,omitempty"`
 	ProjectSlug            *string                        `json:"project_slug,omitempty"`
@@ -33001,7 +33037,7 @@ type BookingResource struct {
 	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
 	Report                 *[]ReportSection               `json:"report,omitempty"`
 
-	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project-driven termination date (the raw project end date if the offering disables the grace period, otherwise the effective with-grace end date).
+	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project end date, each plus the grace length the offering resolves. Unset offering grace keeps a resource end date as a hard stop and inherits the project grace. grace_period_days 0, and disable_grace_period, use the raw project end date.
 	ResourceEffectiveEndDate *openapi_types.Date `json:"resource_effective_end_date,omitempty"`
 	ResourceType             *string             `json:"resource_type,omitempty"`
 	ResourceUuid             *openapi_types.UUID `json:"resource_uuid,omitempty"`
@@ -46491,6 +46527,9 @@ type MergedPluginOptions struct {
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
 
+	// BillInactiveInstances Bill the cores, RAM and other compute of instances that are not running (SHUTOFF, SUSPENDED, SHELVED, SHELVED_OFFLOADED) under usage-based billing (default: true). Storage is billed either way.
+	BillInactiveInstances *bool `json:"bill_inactive_instances,omitempty"`
+
 	// BillingSource Source for OpenStack instance compute ComponentUsage: 'quota' (flavor-derived Nova quota, default) or 'placement' (Placement allocations; also bills VGPU/PCI/custom resource classes).
 	BillingSource *BillingSourceEnum `json:"billing_source,omitempty"`
 
@@ -46521,7 +46560,7 @@ type MergedPluginOptions struct {
 	// DisableAutoapprove If set to True, orders for this offering will always require manual consumer approval, overriding every other consumer-side auto-approve mechanism (auto_approve_in_service_provider_projects, auto_approve_for_roles, project auto-approval rules, and the ORDER.APPROVE permission). Termination orders, staff users and provider approval are not affected
 	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
 
-	// DisableGracePeriod If set to True, this offering's resources ignore the project grace period and are terminated on the project end date. Only staff can change this option.
+	// DisableGracePeriod Deprecated. If set to True, and grace_period_days is unset, this offering's resources ignore the project grace period and are terminated on the project end date. Prefer grace_period_days: 0. Only staff can change this option.
 	DisableGracePeriod *bool `json:"disable_grace_period,omitempty"`
 
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
@@ -46592,6 +46631,9 @@ type MergedPluginOptions struct {
 
 	// GidSource Where each offering user's primary GID comes from: the POSIX ID pool (default), or the user's primary_gid attribute.
 	GidSource *PosixIdSourceEnum `json:"gid_source,omitempty"`
+
+	// GracePeriodDays Days after a project or resource end date before this offering's resources are terminated. Unset inherits the organization and project grace period for the project end date, and keeps a resource's own end date a hard stop. 0 terminates on the raw end date. A value above 0 is that many days past either end date and overrides the organization and project length. Null clears the setting so the offering inherits again. Only staff can change it.
+	GracePeriodDays *int `json:"grace_period_days,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -46896,6 +46938,9 @@ type MergedPluginOptionsRequest struct {
 	// BackendIdDisplayLabel Label used by UI for showing value of the backend_id
 	BackendIdDisplayLabel *string `json:"backend_id_display_label,omitempty"`
 
+	// BillInactiveInstances Bill the cores, RAM and other compute of instances that are not running (SHUTOFF, SUSPENDED, SHELVED, SHELVED_OFFLOADED) under usage-based billing (default: true). Storage is billed either way.
+	BillInactiveInstances *bool `json:"bill_inactive_instances,omitempty"`
+
 	// BillingSource Source for OpenStack instance compute ComponentUsage: 'quota' (flavor-derived Nova quota, default) or 'placement' (Placement allocations; also bills VGPU/PCI/custom resource classes).
 	BillingSource *BillingSourceEnum `json:"billing_source,omitempty"`
 
@@ -46926,7 +46971,7 @@ type MergedPluginOptionsRequest struct {
 	// DisableAutoapprove If set to True, orders for this offering will always require manual consumer approval, overriding every other consumer-side auto-approve mechanism (auto_approve_in_service_provider_projects, auto_approve_for_roles, project auto-approval rules, and the ORDER.APPROVE permission). Termination orders, staff users and provider approval are not affected
 	DisableAutoapprove *bool `json:"disable_autoapprove,omitempty"`
 
-	// DisableGracePeriod If set to True, this offering's resources ignore the project grace period and are terminated on the project end date. Only staff can change this option.
+	// DisableGracePeriod Deprecated. If set to True, and grace_period_days is unset, this offering's resources ignore the project grace period and are terminated on the project end date. Prefer grace_period_days: 0. Only staff can change this option.
 	DisableGracePeriod *bool `json:"disable_grace_period,omitempty"`
 
 	// DisabledResourceActions List of disabled marketplace resource actions for this offering.
@@ -46997,6 +47042,9 @@ type MergedPluginOptionsRequest struct {
 
 	// GidSource Where each offering user's primary GID comes from: the POSIX ID pool (default), or the user's primary_gid attribute.
 	GidSource *PosixIdSourceEnum `json:"gid_source,omitempty"`
+
+	// GracePeriodDays Days after a project or resource end date before this offering's resources are terminated. Unset inherits the organization and project grace period for the project end date, and keeps a resource's own end date a hard stop. 0 terminates on the raw end date. A value above 0 is that many days past either end date and overrides the organization and project length. Null clears the setting so the offering inherits again. Only staff can change it.
+	GracePeriodDays *int `json:"grace_period_days,omitempty"`
 
 	// HeappeClusterId HEAppE cluster id
 	HeappeClusterId *string `json:"heappe_cluster_id,omitempty"`
@@ -60960,7 +61008,10 @@ type ProposalDocumentation struct {
 	Created *time.Time `json:"created,omitempty"`
 
 	// File Upload supporting documentation in PDF format.
-	File     string              `json:"file"`
+	File string `json:"file"`
+
+	// FileHash SHA-256 of the file's content, as the duplicate check compares it: a client can tell a file is already attached before uploading it.
+	FileHash *string             `json:"file_hash,omitempty"`
 	FileName *string             `json:"file_name,omitempty"`
 	FileSize *int                `json:"file_size,omitempty"`
 	Uuid     *openapi_types.UUID `json:"uuid,omitempty"`
@@ -62711,6 +62762,19 @@ type ProviderResourceTopOffering struct {
 	Count        int                `json:"count"`
 	OfferingName string             `json:"offering_name"`
 	OfferingUuid openapi_types.UUID `json:"offering_uuid"`
+}
+
+// ProviderSiteAgentOfferingConfig defines model for ProviderSiteAgentOfferingConfig.
+type ProviderSiteAgentOfferingConfig struct {
+	Offering     SiteAgentOfferingSettings `json:"offering"`
+	OfferingName string                    `json:"offering_name"`
+	OfferingUuid openapi_types.UUID        `json:"offering_uuid"`
+
+	// Secrets The backend secrets the offering's backends declare; none of them is in offering.
+	Secrets []SiteAgentOfferingSecret `json:"secrets"`
+
+	// Version sha256 of offering as canonical JSON (sorted keys, no whitespace); changes when, and only when, offering does.
+	Version string `json:"version"`
 }
 
 // ProviderStats defines model for ProviderStats.
@@ -65369,11 +65433,20 @@ type RemoveSoftwareCatalogRequest struct {
 
 // RenewalEstimateComponent defines model for RenewalEstimateComponent.
 type RenewalEstimateComponent struct {
-	BillingPeriod     *string             `json:"billing_period"`
-	BillingType       string              `json:"billing_type"`
-	ComponentName     string              `json:"component_name"`
-	ComponentType     string              `json:"component_type"`
-	CurrentLimit      float64             `json:"current_limit"`
+	BillingPeriod *string `json:"billing_period"`
+	BillingType   string  `json:"billing_type"`
+	ComponentName string  `json:"component_name"`
+	ComponentType string  `json:"component_type"`
+	CurrentLimit  float64 `json:"current_limit"`
+
+	// DiscountDeferred A volume discount may apply on the invoice that cannot be priced now, because it is aggregated over the organization's resources.
+	DiscountDeferred bool `json:"discount_deferred"`
+
+	// DiscountPercent The volume discount the invoice will give this line, in percent. 0 when there is none, or when it is deferred.
+	DiscountPercent string `json:"discount_percent"`
+
+	// DiscountTotal The volume discount on this line, as a positive amount.
+	DiscountTotal     string              `json:"discount_total"`
 	MeasuredUnit      string              `json:"measured_unit"`
 	NewLimit          float64             `json:"new_limit"`
 	PeriodDescription string              `json:"period_description"`
@@ -65384,9 +65457,11 @@ type RenewalEstimateComponent struct {
 	Quantity *string `json:"quantity"`
 
 	// Term For a prepaid line, the term it covers: the rest of the current term, charged for a raised limit, or the extension.
-	Term      *RenewalEstimateComponent_Term `json:"term"`
-	Total     string                         `json:"total"`
-	UnitPrice string                         `json:"unit_price"`
+	Term *RenewalEstimateComponent_Term `json:"term"`
+
+	// Total The line's price before any volume discount.
+	Total     string `json:"total"`
+	UnitPrice string `json:"unit_price"`
 }
 
 // RenewalEstimateComponent_Term For a prepaid line, the term it covers: the rest of the current term, charged for a raised limit, or the extension.
@@ -65402,15 +65477,23 @@ type RenewalEstimateRequestRequest struct {
 
 // RenewalEstimateResponse defines model for RenewalEstimateResponse.
 type RenewalEstimateResponse struct {
-	Components       []RenewalEstimateComponent `json:"components"`
-	LimitChangeTotal string                     `json:"limit_change_total"`
-	NewEndDate       openapi_types.Date         `json:"new_end_date"`
+	Components []RenewalEstimateComponent `json:"components"`
+
+	// DiscountDeferred A volume discount aggregated over the organization's resources may still lower the invoice.
+	DiscountDeferred bool `json:"discount_deferred"`
+
+	// DiscountTotal The volume discounts known now, as a positive amount.
+	DiscountTotal    string             `json:"discount_total"`
+	LimitChangeTotal string             `json:"limit_change_total"`
+	NewEndDate       openapi_types.Date `json:"new_end_date"`
 
 	// PaidUpEndDate Where the extension starts: the current end date, or later when the renewal only lowers limits and the offering's renewal_limit_decrease_policy spreads the value already paid for the rest of the current term over the lower limits.
 	PaidUpEndDate     openapi_types.Date `json:"paid_up_end_date"`
 	RemainingDays     int                `json:"remaining_days"`
 	SubscriptionTotal string             `json:"subscription_total"`
-	Total             string             `json:"total"`
+
+	// Total What the renewal is charged: the totals less discount_total.
+	Total string `json:"total"`
 }
 
 // RenewalLimitDecreasePolicyEnum defines model for RenewalLimitDecreasePolicyEnum.
@@ -65725,8 +65808,14 @@ type Resource struct {
 	ErrorMessage     *string           `json:"error_message,omitempty"`
 	ErrorTraceback   *string           `json:"error_traceback,omitempty"`
 
+	// GracePeriodEndDate The last day of this resource's grace window. Empty when the offering gives it no grace period.
+	GracePeriodEndDate *openapi_types.Date `json:"grace_period_end_date,omitempty"`
+
 	// HasApiKeys Whether the resource owns any API keys, so the portal can offer key management without knowing which backend serves the resource.
 	HasApiKeys *bool `json:"has_api_keys,omitempty"`
+
+	// IsInGracePeriod True when this resource is past a raw end date and still within the grace period its offering resolves. Independent of whether the resource is paused.
+	IsInGracePeriod *bool `json:"is_in_grace_period,omitempty"`
 
 	// IsLimitBased Returns True if the resource bills any component on user-adjustable limits under its plan.
 	IsLimitBased *bool `json:"is_limit_based,omitempty"`
@@ -65790,7 +65879,7 @@ type Resource struct {
 	ProjectEndDate            *openapi_types.Date `json:"project_end_date,omitempty"`
 	ProjectEndDateRequestedBy *string             `json:"project_end_date_requested_by,omitempty"`
 
-	// ProjectIsInGracePeriod True if the project is past its end date but still within the grace period.
+	// ProjectIsInGracePeriod True if the project is past its end date but still within the organization and project grace period. This is the project clock. is_in_grace_period is the clock this resource's offering resolves.
 	ProjectIsInGracePeriod *bool                          `json:"project_is_in_grace_period,omitempty"`
 	ProjectName            *string                        `json:"project_name,omitempty"`
 	ProjectSlug            *string                        `json:"project_slug,omitempty"`
@@ -65803,7 +65892,7 @@ type Resource struct {
 	RenewalDate            *map[string]openapi_types.Date `json:"renewal_date,omitempty"`
 	Report                 *[]ReportSection               `json:"report,omitempty"`
 
-	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project-driven termination date (the raw project end date if the offering disables the grace period, otherwise the effective with-grace end date).
+	// ResourceEffectiveEndDate The date this resource is scheduled to terminate: the earliest of its own end date and the project end date, each plus the grace length the offering resolves. Unset offering grace keeps a resource end date as a hard stop and inherits the project grace. grace_period_days 0, and disable_grace_period, use the raw project end date.
 	ResourceEffectiveEndDate *openapi_types.Date `json:"resource_effective_end_date,omitempty"`
 	ResourceType             *string             `json:"resource_type,omitempty"`
 	ResourceUuid             *openapi_types.UUID `json:"resource_uuid,omitempty"`
@@ -69581,14 +69670,20 @@ type SilenceActionResponse struct {
 
 // SiteAgentConfigGenerationRequest defines model for SiteAgentConfigGenerationRequest.
 type SiteAgentConfigGenerationRequest struct {
+	// BackendId Only the offering whose backend ID is exactly this.
+	BackendId *string `json:"backend_id,omitempty"`
+
+	// BackendIdStartswith Only offerings whose backend ID starts with this, such as every offering of one cluster.
+	BackendIdStartswith *string `json:"backend_id_startswith,omitempty"`
+
 	// ConfigurationSource Where the agent takes each offering's configuration from. 'local': the file holds all of it. 'waldur': the file holds only how to reach Waldur and the secrets, and the agent reads the rest from the offering's site_agent_config when it starts; include_policy_settings does not apply, as Waldur always serves them.
 	ConfigurationSource *ConfigurationSourceEnum `json:"configuration_source,omitempty"`
 
 	// IncludePolicySettings Include SLURM periodic usage policy settings in configuration
 	IncludePolicySettings *bool `json:"include_policy_settings,omitempty"`
 
-	// OfferingUuids List of SLURM offering UUIDs to include in configuration
-	OfferingUuids []openapi_types.UUID `json:"offering_uuids"`
+	// OfferingUuids Site agent offerings to include. With backend_id or backend_id_startswith, only those of them that match. At least one of the three is required.
+	OfferingUuids *[]openapi_types.UUID `json:"offering_uuids,omitempty"`
 
 	// SecretFormat How a secret is left for the operator. 'comment': an empty value with a '# SECRET:' comment. 'env': a ${VARIABLE} reference, for filling the file in with envsubst or a similar tool; the agent does not expand variables itself. Offerings with no agent roles set keep the earlier placeholders in 'comment' format.
 	SecretFormat *SecretFormatEnum `json:"secret_format,omitempty"`
@@ -75882,6 +75977,9 @@ type BookingResourcesListParams struct {
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -76025,6 +76123,9 @@ type BookingResourcesCountParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -85447,6 +85548,9 @@ type MarketplaceProviderResourcesListParams struct {
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -85592,6 +85696,9 @@ type MarketplaceProviderResourcesCountParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -85748,6 +85855,9 @@ type MarketplaceProviderResourcesFacetsListParams struct {
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -85895,6 +86005,9 @@ type MarketplaceProviderResourcesHistoryListParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -87192,6 +87305,9 @@ type MarketplaceResourcesListParams struct {
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -87337,6 +87453,9 @@ type MarketplaceResourcesCountParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -87493,6 +87612,9 @@ type MarketplaceResourcesFacetsListParams struct {
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
 
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
+
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
 
@@ -87640,6 +87762,9 @@ type MarketplaceResourcesHistoryListParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -87888,6 +88013,9 @@ type MarketplaceResourcesTeamMembersListParams struct {
 
 	// IsAttached Filter by attached state
 	IsAttached *bool `form:"is_attached,omitempty" json:"is_attached,omitempty"`
+
+	// IsInGracePeriod In the offering-resolved grace period
+	IsInGracePeriod *bool `form:"is_in_grace_period,omitempty" json:"is_in_grace_period,omitempty"`
 
 	// LexisLinksSupported LEXIS links supported
 	LexisLinksSupported *bool `form:"lexis_links_supported,omitempty" json:"lexis_links_supported,omitempty"`
@@ -90531,6 +90659,18 @@ type MarketplaceServiceProvidersRobotAccountProjectsListParams struct {
 
 	// ProjectName Filter by project name (case-insensitive partial match).
 	ProjectName *string `form:"project_name,omitempty" json:"project_name,omitempty"`
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigListParams defines parameters for MarketplaceServiceProvidersSiteAgentConfigList.
+type MarketplaceServiceProvidersSiteAgentConfigListParams struct {
+	// BackendId Only the offering whose backend ID is exactly this.
+	BackendId *string `form:"backend_id,omitempty" json:"backend_id,omitempty"`
+
+	// BackendIdStartswith Only offerings whose backend ID starts with this, such as every offering of one cluster.
+	BackendIdStartswith *string `form:"backend_id_startswith,omitempty" json:"backend_id_startswith,omitempty"`
+
+	// OfferingUuid Only these offerings; repeat the parameter for several.
+	OfferingUuid *[]openapi_types.UUID `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
 }
 
 // MarketplaceServiceProvidersSiteAgentConfigSecretsParams defines parameters for MarketplaceServiceProvidersSiteAgentConfigSecrets.
@@ -142872,6 +143012,13 @@ type ClientInterface interface {
 	// Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 	MarketplaceServiceProvidersSetOfferingsUsername(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceServiceProvidersSiteAgentConfigList Site agent configuration of the service provider's offerings
+	//
+	// For each site agent offering of the service provider that the filters select, the block the offering's own site_agent_config returns: its configuration without secrets, the backend secrets the agent keeps in its own configuration, and the version. backend_id matches exactly and backend_id_startswith by prefix, such as every offering of one cluster; archived offerings are left out of those. Without filters, every site agent offering. Who may generate the provider's configuration file gets every offering; anyone else, such as a site agent whose token is bound to some of the offerings, only those whose own site_agent_config they may read.
+	//
+	// Corresponds with GET /api/marketplace-service-providers/{uuid}/site_agent_config/ (the `MarketplaceServiceProvidersSiteAgentConfigList` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBody List the secrets of a generated site agent configuration
 	//
 	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
@@ -189961,6 +190108,23 @@ func (c *Client) MarketplaceServiceProvidersSetOfferingsUsernameWithBody(ctx con
 // Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 func (c *Client) MarketplaceServiceProvidersSetOfferingsUsername(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewMarketplaceServiceProvidersSetOfferingsUsernameRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigList Site agent configuration of the service provider's offerings
+//
+// For each site agent offering of the service provider that the filters select, the block the offering's own site_agent_config returns: its configuration without secrets, the backend secrets the agent keeps in its own configuration, and the version. backend_id matches exactly and backend_id_startswith by prefix, such as every offering of one cluster; archived offerings are left out of those. Without filters, every site agent offering. Who may generate the provider's configuration file gets every offering; anyone else, such as a site agent whose token is bound to some of the offerings, only those whose own site_agent_config they may read.
+//
+// Corresponds with GET /api/marketplace-service-providers/{uuid}/site_agent_config/ (the `MarketplaceServiceProvidersSiteAgentConfigList` operationId).
+func (c *Client) MarketplaceServiceProvidersSiteAgentConfigList(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceServiceProvidersSiteAgentConfigListRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -240932,6 +241096,18 @@ func NewBookingResourcesListRequest(server string, params *BookingResourcesListP
 
 		}
 
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lexis_links_supported", *params.LexisLinksSupported, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -241541,6 +241717,18 @@ func NewBookingResourcesCountRequest(server string, params *BookingResourcesCoun
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -321585,6 +321773,18 @@ func NewMarketplaceProviderResourcesListRequest(server string, params *Marketpla
 
 		}
 
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lexis_links_supported", *params.LexisLinksSupported, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -322194,6 +322394,18 @@ func NewMarketplaceProviderResourcesCountRequest(server string, params *Marketpl
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -322848,6 +323060,18 @@ func NewMarketplaceProviderResourcesFacetsListRequest(server string, params *Mar
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -323859,6 +324083,18 @@ func NewMarketplaceProviderResourcesHistoryListRequest(server string, uuid opena
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -333699,6 +333935,18 @@ func NewMarketplaceResourcesListRequest(server string, params *MarketplaceResour
 
 		}
 
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.LexisLinksSupported != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "lexis_links_supported", *params.LexisLinksSupported, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
@@ -334308,6 +334556,18 @@ func NewMarketplaceResourcesCountRequest(server string, params *MarketplaceResou
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -334962,6 +335222,18 @@ func NewMarketplaceResourcesFacetsListRequest(server string, params *Marketplace
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -335992,6 +336264,18 @@ func NewMarketplaceResourcesHistoryListRequest(server string, uuid openapi_types
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -338023,6 +338307,18 @@ func NewMarketplaceResourcesTeamMembersListRequest(server string, uuid openapi_t
 		if params.IsAttached != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_attached", *params.IsAttached, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.IsInGracePeriod != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "is_in_grace_period", *params.IsInGracePeriod, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -353041,6 +353337,91 @@ func NewMarketplaceServiceProvidersSetOfferingsUsernameRequestWithBody(server st
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewMarketplaceServiceProvidersSiteAgentConfigListRequest constructs an http.Request for the MarketplaceServiceProvidersSiteAgentConfigList method
+func NewMarketplaceServiceProvidersSiteAgentConfigListRequest(server string, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigListParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-service-providers/%s/site_agent_config/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.BackendId != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id", *params.BackendId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.BackendIdStartswith != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "backend_id_startswith", *params.BackendIdStartswith, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
 
 	return req, nil
 }
@@ -498485,6 +498866,15 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with POST /api/marketplace-service-providers/{uuid}/set_offerings_username/ (the `MarketplaceServiceProvidersSetOfferingsUsername` operationId).
 	MarketplaceServiceProvidersSetOfferingsUsernameWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceServiceProvidersSetOfferingsUsernameJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSetOfferingsUsernameResponse, error)
 
+	// MarketplaceServiceProvidersSiteAgentConfigListWithResponse Site agent configuration of the service provider's offerings
+	//
+	// For each site agent offering of the service provider that the filters select, the block the offering's own site_agent_config returns: its configuration without secrets, the backend secrets the agent keeps in its own configuration, and the version. backend_id matches exactly and backend_id_startswith by prefix, such as every offering of one cluster; archived offerings are left out of those. Without filters, every site agent offering. Who may generate the provider's configuration file gets every offering; anyone else, such as a site agent whose token is bound to some of the offerings, only those whose own site_agent_config they may read.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with GET /api/marketplace-service-providers/{uuid}/site_agent_config/ (the `MarketplaceServiceProvidersSiteAgentConfigList` operationId).
+	MarketplaceServiceProvidersSiteAgentConfigListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigListResponse, error)
+
 	// MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse List the secrets of a generated site agent configuration
 	//
 	// The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
@@ -576046,6 +576436,54 @@ func (r MarketplaceServiceProvidersSetOfferingsUsernameResponse) StatusCode() in
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r MarketplaceServiceProvidersSetOfferingsUsernameResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+// MarketplaceServiceProvidersSiteAgentConfigListResponse200Headers the declared response headers of an HTTP 200 response for MarketplaceServiceProvidersSiteAgentConfigList
+type MarketplaceServiceProvidersSiteAgentConfigListResponse200Headers struct {
+	XResultCount *int
+}
+
+type MarketplaceServiceProvidersSiteAgentConfigListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]ProviderSiteAgentOfferingConfig
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *MarketplaceServiceProvidersSiteAgentConfigListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceServiceProvidersSiteAgentConfigListResponse) GetJSON200() *[]ProviderSiteAgentOfferingConfig {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceServiceProvidersSiteAgentConfigListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceServiceProvidersSiteAgentConfigListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceServiceProvidersSiteAgentConfigListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceServiceProvidersSiteAgentConfigListResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -673564,6 +674002,21 @@ func (c *ClientWithResponses) MarketplaceServiceProvidersSetOfferingsUsernameWit
 	return ParseMarketplaceServiceProvidersSetOfferingsUsernameResponse(rsp)
 }
 
+// MarketplaceServiceProvidersSiteAgentConfigListWithResponse Site agent configuration of the service provider's offerings
+//
+// For each site agent offering of the service provider that the filters select, the block the offering's own site_agent_config returns: its configuration without secrets, the backend secrets the agent keeps in its own configuration, and the version. backend_id matches exactly and backend_id_startswith by prefix, such as every offering of one cluster; archived offerings are left out of those. Without filters, every site agent offering. Who may generate the provider's configuration file gets every offering; anyone else, such as a site agent whose token is bound to some of the offerings, only those whose own site_agent_config they may read.
+//
+// Returns a wrapper object for the known response body format(s).
+//
+// Corresponds with GET /api/marketplace-service-providers/{uuid}/site_agent_config/ (the `MarketplaceServiceProvidersSiteAgentConfigList` operationId).
+func (c *ClientWithResponses) MarketplaceServiceProvidersSiteAgentConfigListWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceServiceProvidersSiteAgentConfigListParams, reqEditors ...RequestEditorFn) (*MarketplaceServiceProvidersSiteAgentConfigListResponse, error) {
+	rsp, err := c.MarketplaceServiceProvidersSiteAgentConfigList(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceServiceProvidersSiteAgentConfigListResponse(rsp)
+}
+
 // MarketplaceServiceProvidersSiteAgentConfigSecretsWithBodyWithResponse List the secrets of a generated site agent configuration
 //
 // The secrets the operator adds to the configuration that generate_site_agent_config returns for the same request: the Waldur API token of each offering and the secret settings of its backends, with where each goes and whether the file holds a placeholder for it.
@@ -742441,6 +742894,45 @@ func ParseMarketplaceServiceProvidersSetOfferingsUsernameResponse(rsp *http.Resp
 	response := &MarketplaceServiceProvidersSetOfferingsUsernameResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseMarketplaceServiceProvidersSiteAgentConfigListResponse parses an HTTP response from a MarketplaceServiceProvidersSiteAgentConfigListWithResponse call
+func ParseMarketplaceServiceProvidersSiteAgentConfigListResponse(rsp *http.Response) (*MarketplaceServiceProvidersSiteAgentConfigListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceServiceProvidersSiteAgentConfigListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProviderSiteAgentOfferingConfig
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers MarketplaceServiceProvidersSiteAgentConfigListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
 	}
 
 	return response, nil
