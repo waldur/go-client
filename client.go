@@ -463,6 +463,33 @@ func (e AgentCompatibilityStatusEnum) Valid() bool {
 	}
 }
 
+// Defines values for AgentComponentFieldEnum.
+const (
+	AgentComponentFieldEnumAccountingType AgentComponentFieldEnum = "accounting_type"
+	AgentComponentFieldEnumLabel          AgentComponentFieldEnum = "label"
+	AgentComponentFieldEnumLimit          AgentComponentFieldEnum = "limit"
+	AgentComponentFieldEnumMeasuredUnit   AgentComponentFieldEnum = "measured_unit"
+	AgentComponentFieldEnumUnitFactor     AgentComponentFieldEnum = "unit_factor"
+)
+
+// Valid indicates whether the value is a known member of the AgentComponentFieldEnum enum.
+func (e AgentComponentFieldEnum) Valid() bool {
+	switch e {
+	case AgentComponentFieldEnumAccountingType:
+		return true
+	case AgentComponentFieldEnumLabel:
+		return true
+	case AgentComponentFieldEnumLimit:
+		return true
+	case AgentComponentFieldEnumMeasuredUnit:
+		return true
+	case AgentComponentFieldEnumUnitFactor:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for AgentServiceState.
 const (
 	AgentServiceStateActive AgentServiceState = "Active"
@@ -2356,6 +2383,78 @@ func (e BudgetEnforcementEnum) Valid() bool {
 	case Hard:
 		return true
 	case Soft:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BulkStepDecisionResultStatusEnum.
+const (
+	BulkStepDecisionResultStatusEnumDecided BulkStepDecisionResultStatusEnum = "decided"
+	BulkStepDecisionResultStatusEnumRefused BulkStepDecisionResultStatusEnum = "refused"
+)
+
+// Valid indicates whether the value is a known member of the BulkStepDecisionResultStatusEnum enum.
+func (e BulkStepDecisionResultStatusEnum) Valid() bool {
+	switch e {
+	case BulkStepDecisionResultStatusEnumDecided:
+		return true
+	case BulkStepDecisionResultStatusEnumRefused:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BulkStepDecisionStateEnum.
+const (
+	BulkStepDecisionStateEnumDone    BulkStepDecisionStateEnum = "done"
+	BulkStepDecisionStateEnumFailed  BulkStepDecisionStateEnum = "failed"
+	BulkStepDecisionStateEnumPending BulkStepDecisionStateEnum = "pending"
+	BulkStepDecisionStateEnumRunning BulkStepDecisionStateEnum = "running"
+)
+
+// Valid indicates whether the value is a known member of the BulkStepDecisionStateEnum enum.
+func (e BulkStepDecisionStateEnum) Valid() bool {
+	switch e {
+	case BulkStepDecisionStateEnumDone:
+		return true
+	case BulkStepDecisionStateEnumFailed:
+		return true
+	case BulkStepDecisionStateEnumPending:
+		return true
+	case BulkStepDecisionStateEnumRunning:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for BulkStepDecisionSummaryOEnum.
+const (
+	BulkStepDecisionSummaryOEnumCompletedAt      BulkStepDecisionSummaryOEnum = "completed_at"
+	BulkStepDecisionSummaryOEnumCreated          BulkStepDecisionSummaryOEnum = "created"
+	BulkStepDecisionSummaryOEnumMinusCompletedAt BulkStepDecisionSummaryOEnum = "-completed_at"
+	BulkStepDecisionSummaryOEnumMinusCreated     BulkStepDecisionSummaryOEnum = "-created"
+	BulkStepDecisionSummaryOEnumMinusState       BulkStepDecisionSummaryOEnum = "-state"
+	BulkStepDecisionSummaryOEnumState            BulkStepDecisionSummaryOEnum = "state"
+)
+
+// Valid indicates whether the value is a known member of the BulkStepDecisionSummaryOEnum enum.
+func (e BulkStepDecisionSummaryOEnum) Valid() bool {
+	switch e {
+	case BulkStepDecisionSummaryOEnumCompletedAt:
+		return true
+	case BulkStepDecisionSummaryOEnumCreated:
+		return true
+	case BulkStepDecisionSummaryOEnumMinusCompletedAt:
+		return true
+	case BulkStepDecisionSummaryOEnumMinusCreated:
+		return true
+	case BulkStepDecisionSummaryOEnumMinusState:
+		return true
+	case BulkStepDecisionSummaryOEnumState:
 		return true
 	default:
 		return false
@@ -6738,6 +6837,7 @@ const (
 	EventMetadataResponseEventGroupsProposalStepSkipped                              EventMetadataResponseEventGroups = "proposal_step_skipped"
 	EventMetadataResponseEventGroupsProposalStepStarted                              EventMetadataResponseEventGroups = "proposal_step_started"
 	EventMetadataResponseEventGroupsProposalStepWithdrawn                            EventMetadataResponseEventGroups = "proposal_step_withdrawn"
+	EventMetadataResponseEventGroupsProposalStepsDecidedInBulk                       EventMetadataResponseEventGroups = "proposal_steps_decided_in_bulk"
 	EventMetadataResponseEventGroupsProposalSubmitted                                EventMetadataResponseEventGroups = "proposal_submitted"
 	EventMetadataResponseEventGroupsProposalWorkflowAdvanced                         EventMetadataResponseEventGroups = "proposal_workflow_advanced"
 	EventMetadataResponseEventGroupsProposalWorkflowNotificationSent                 EventMetadataResponseEventGroups = "proposal_workflow_notification_sent"
@@ -7537,6 +7637,8 @@ func (e EventMetadataResponseEventGroups) Valid() bool {
 		return true
 	case EventMetadataResponseEventGroupsProposalStepWithdrawn:
 		return true
+	case EventMetadataResponseEventGroupsProposalStepsDecidedInBulk:
+		return true
 	case EventMetadataResponseEventGroupsProposalSubmitted:
 		return true
 	case EventMetadataResponseEventGroupsProposalWorkflowAdvanced:
@@ -8205,6 +8307,7 @@ const (
 	EventTypesEnumProposalStepSkipped                              EventTypesEnum = "proposal_step_skipped"
 	EventTypesEnumProposalStepStarted                              EventTypesEnum = "proposal_step_started"
 	EventTypesEnumProposalStepWithdrawn                            EventTypesEnum = "proposal_step_withdrawn"
+	EventTypesEnumProposalStepsDecidedInBulk                       EventTypesEnum = "proposal_steps_decided_in_bulk"
 	EventTypesEnumProposalSubmitted                                EventTypesEnum = "proposal_submitted"
 	EventTypesEnumProposalWorkflowAdvanced                         EventTypesEnum = "proposal_workflow_advanced"
 	EventTypesEnumProposalWorkflowNotificationSent                 EventTypesEnum = "proposal_workflow_notification_sent"
@@ -9003,6 +9106,8 @@ func (e EventTypesEnum) Valid() bool {
 	case EventTypesEnumProposalStepStarted:
 		return true
 	case EventTypesEnumProposalStepWithdrawn:
+		return true
+	case EventTypesEnumProposalStepsDecidedInBulk:
 		return true
 	case EventTypesEnumProposalSubmitted:
 		return true
@@ -30000,6 +30105,9 @@ type AgentCompatibility struct {
 // AgentCompatibilityStatusEnum defines model for AgentCompatibilityStatusEnum.
 type AgentCompatibilityStatusEnum string
 
+// AgentComponentFieldEnum defines model for AgentComponentFieldEnum.
+type AgentComponentFieldEnum string
+
 // AgentConfiguration defines model for AgentConfiguration.
 type AgentConfiguration struct {
 	AgentSettings     *AgentSettings                     `json:"agent_settings,omitempty"`
@@ -30013,6 +30121,57 @@ type AgentConfiguration struct {
 	OrderProcessingBackend    *string        `json:"order_processing_backend,omitempty"`
 	ReportingBackend          *string        `json:"reporting_backend,omitempty"`
 	UsernameManagementBackend *string        `json:"username_management_backend,omitempty"`
+}
+
+// AgentConfigurationChange defines model for AgentConfigurationChange.
+type AgentConfigurationChange struct {
+	Current  interface{} `json:"current"`
+	Imported interface{} `json:"imported"`
+	Path     string      `json:"path"`
+}
+
+// AgentConfigurationImportRequest defines model for AgentConfigurationImportRequest.
+type AgentConfigurationImportRequest struct {
+	// ApplyComponents Component differences to apply to the offering's components; each must be applicable.
+	ApplyComponents *[]ApplyComponentRequest `json:"apply_components,omitempty"`
+
+	// ApplyPolicy Create or update the offering's SLURM periodic usage policy from the block's policy_settings.
+	ApplyPolicy *bool `json:"apply_policy,omitempty"`
+
+	// Configuration The site agent configuration file, as YAML text.
+	Configuration string `json:"configuration"`
+
+	// DryRun Only show what would change; save nothing.
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// OfferingIndex Which entry of the file's offerings list to import. By default the one whose waldur_offering_uuid is this offering, else the only one.
+	OfferingIndex *int `json:"offering_index,omitempty"`
+
+	// PolicyActions What the SLURM periodic usage policy does when it fires, as action names from policy.action_choices. Required when apply_policy creates the policy; when it exists, given replaces its actions and left out keeps them.
+	PolicyActions *[]string `json:"policy_actions,omitempty"`
+
+	// Values Values for settings the file leaves to the agent host's environment (see unresolved) or does not set, by dotted path such as backend_settings.cscs_dwdi_api_url. Never a secret.
+	Values *map[string]*interface{} `json:"values,omitempty"`
+}
+
+// AgentConfigurationImportResult defines model for AgentConfigurationImportResult.
+type AgentConfigurationImportResult struct {
+	AgentConfiguration   AgentConfiguration         `json:"agent_configuration"`
+	Applied              bool                       `json:"applied"`
+	Changes              []AgentConfigurationChange `json:"changes"`
+	ComponentDifferences []ComponentDifference      `json:"component_differences"`
+	Current              AgentConfiguration         `json:"current"`
+	DroppedSecrets       []string                   `json:"dropped_secrets"`
+
+	// Errors Why the proposed configuration cannot be saved, in the shape of update_integration's agent_configuration errors, with apply_components and policy for the changes opted into; empty when it can.
+	Errors    map[string]interface{}  `json:"errors"`
+	Ignored   []IgnoredKey            `json:"ignored"`
+	Offerings []ImportedOfferingBlock `json:"offerings"`
+
+	// Policy The block's policy_settings against the offering's SLURM periodic usage policy; null when the block has none.
+	Policy        *ImportedPolicy     `json:"policy"`
+	SelectedIndex int                 `json:"selected_index"`
+	Unresolved    []UnresolvedSetting `json:"unresolved"`
 }
 
 // AgentConfigurationRequest defines model for AgentConfigurationRequest.
@@ -30952,6 +31111,12 @@ type AnswerSubmitRequest struct {
 type AnswerSubmitResponse struct {
 	Completion ChecklistCompletion `json:"completion"`
 	Detail     string              `json:"detail"`
+}
+
+// ApplyComponentRequest defines model for ApplyComponentRequest.
+type ApplyComponentRequest struct {
+	Component string                  `json:"component"`
+	Field     AgentComponentFieldEnum `json:"field"`
 }
 
 // ArchiveCallRequest defines model for ArchiveCallRequest.
@@ -33199,6 +33364,93 @@ type BulkSilenceResponse struct {
 	DurationDays *int   `json:"duration_days,omitempty"`
 	Status       string `json:"status"`
 }
+
+// BulkStepDecision defines model for BulkStepDecision.
+type BulkStepDecision struct {
+	CallName      string              `json:"call_name"`
+	CallStepUuid  *openapi_types.UUID `json:"call_step_uuid"`
+	CallUuid      openapi_types.UUID  `json:"call_uuid"`
+	CompletedAt   *time.Time          `json:"completed_at"`
+	Created       *time.Time          `json:"created"`
+	CreatedByName *string             `json:"created_by_name"`
+	CreatedByUuid *openapi_types.UUID `json:"created_by_uuid"`
+	DecidedCount  int                 `json:"decided_count"`
+
+	// DryRun A preview: nothing is decided, each result tells what would be.
+	DryRun       bool   `json:"dry_run"`
+	ErrorMessage string `json:"error_message"`
+
+	// Modified When the run last recorded a proposal.
+	Modified      *time.Time                `json:"modified"`
+	Outcome       string                    `json:"outcome"`
+	OutcomeReason string                    `json:"outcome_reason"`
+	Processed     int                       `json:"processed"`
+	RefusedCount  int                       `json:"refused_count"`
+	Results       *[]BulkStepDecisionResult `json:"results,omitempty"`
+	StartedAt     *time.Time                `json:"started_at"`
+	State         BulkStepDecisionStateEnum `json:"state"`
+	StepName      string                    `json:"step_name"`
+	Total         int                       `json:"total"`
+
+	// Uuid Null for a preview decided within the request: nothing is recorded.
+	Uuid *openapi_types.UUID `json:"uuid"`
+}
+
+// BulkStepDecisionResult defines model for BulkStepDecisionResult.
+type BulkStepDecisionResult struct {
+	// CurrentStepName Where the proposal stands now.
+	CurrentStepName string `json:"current_step_name"`
+
+	// Detail What deciding it did, or why it was refused.
+	Detail string `json:"detail"`
+
+	// ProposalName Empty for a proposal not found in the call, or one the run's user may not act on: of those only the id and the reason are told.
+	ProposalName  string `json:"proposal_name"`
+	ProposalState string `json:"proposal_state"`
+
+	// ProposalUuid The proposal named, as hex.
+	ProposalUuid string                           `json:"proposal_uuid"`
+	Status       BulkStepDecisionResultStatusEnum `json:"status"`
+}
+
+// BulkStepDecisionResultStatusEnum defines model for BulkStepDecisionResultStatusEnum.
+type BulkStepDecisionResultStatusEnum string
+
+// BulkStepDecisionStateEnum defines model for BulkStepDecisionStateEnum.
+type BulkStepDecisionStateEnum string
+
+// BulkStepDecisionSummary defines model for BulkStepDecisionSummary.
+type BulkStepDecisionSummary struct {
+	CallName      string              `json:"call_name"`
+	CallStepUuid  *openapi_types.UUID `json:"call_step_uuid"`
+	CallUuid      openapi_types.UUID  `json:"call_uuid"`
+	CompletedAt   *time.Time          `json:"completed_at"`
+	Created       *time.Time          `json:"created"`
+	CreatedByName *string             `json:"created_by_name"`
+	CreatedByUuid *openapi_types.UUID `json:"created_by_uuid"`
+	DecidedCount  int                 `json:"decided_count"`
+
+	// DryRun A preview: nothing is decided, each result tells what would be.
+	DryRun       bool   `json:"dry_run"`
+	ErrorMessage string `json:"error_message"`
+
+	// Modified When the run last recorded a proposal.
+	Modified      *time.Time                `json:"modified"`
+	Outcome       string                    `json:"outcome"`
+	OutcomeReason string                    `json:"outcome_reason"`
+	Processed     int                       `json:"processed"`
+	RefusedCount  int                       `json:"refused_count"`
+	StartedAt     *time.Time                `json:"started_at"`
+	State         BulkStepDecisionStateEnum `json:"state"`
+	StepName      string                    `json:"step_name"`
+	Total         int                       `json:"total"`
+
+	// Uuid Null for a preview decided within the request: nothing is recorded.
+	Uuid *openapi_types.UUID `json:"uuid"`
+}
+
+// BulkStepDecisionSummaryOEnum defines model for BulkStepDecisionSummaryOEnum.
+type BulkStepDecisionSummaryOEnum string
 
 // BulkUpdateIssueRequest defines model for BulkUpdateIssueRequest.
 type BulkUpdateIssueRequest struct {
@@ -36181,6 +36433,21 @@ type ComponentDailyUsageItemRequest struct {
 
 	// Type Type of the usage-based component
 	Type string `json:"type"`
+}
+
+// ComponentDifference defines model for ComponentDifference.
+type ComponentDifference struct {
+	// Applicable Whether apply_components may name this difference.
+	Applicable bool        `json:"applicable"`
+	Component  string      `json:"component"`
+	Field      string      `json:"field"`
+	Imported   interface{} `json:"imported"`
+
+	// Offering The offering component's value; null when it has none.
+	Offering interface{} `json:"offering"`
+
+	// Reason Why it cannot be applied, when it cannot.
+	Reason *string `json:"reason"`
 }
 
 // ComponentFormulaConfig defines model for ComponentFormulaConfig.
@@ -40212,6 +40479,40 @@ type DeadLetterQueue struct {
 	TotalDlqMessages *int `json:"total_dlq_messages,omitempty"`
 }
 
+// DecidableWorkflowStep defines model for DecidableWorkflowStep.
+type DecidableWorkflowStep struct {
+	AllowedOutcomes []string           `json:"allowed_outcomes"`
+	CallStepUuid    openapi_types.UUID `json:"call_step_uuid"`
+
+	// ProposalUuids The selected proposals standing on the step.
+	ProposalUuids []openapi_types.UUID `json:"proposal_uuids"`
+	StepName      string               `json:"step_name"`
+}
+
+// DecidableWorkflowStepsRequestRequest defines model for DecidableWorkflowStepsRequestRequest.
+type DecidableWorkflowStepsRequestRequest struct {
+	// ProposalUuids The selected proposals of the call.
+	ProposalUuids []openapi_types.UUID `json:"proposal_uuids"`
+}
+
+// DecideWorkflowStepsRequest defines model for DecideWorkflowStepsRequest.
+type DecideWorkflowStepsRequest struct {
+	// CallStepUuid UUID of the call step to decide: a decision step that is neither the allocation decision nor completed once per round.
+	CallStepUuid openapi_types.UUID `json:"call_step_uuid"`
+
+	// DryRun Check every proposal as the run would, and write nothing: the result tells which would be decided and why the others would be refused.
+	DryRun *bool `json:"dry_run,omitempty"`
+
+	// Outcome The outcome every proposal is decided with.
+	Outcome OutcomeEnum `json:"outcome"`
+
+	// OutcomeReason Explanation for the outcome, recorded on each proposal.
+	OutcomeReason *string `json:"outcome_reason,omitempty"`
+
+	// ProposalUuids The proposals of the call to decide the step for.
+	ProposalUuids []openapi_types.UUID `json:"proposal_uuids"`
+}
+
 // DeclineStepContributionRequest defines model for DeclineStepContributionRequest.
 type DeclineStepContributionRequest struct {
 	Comment          *string            `json:"comment,omitempty"`
@@ -44017,6 +44318,12 @@ type IdentityProviderRequest struct {
 	VerifySsl *bool   `json:"verify_ssl,omitempty"`
 }
 
+// IgnoredKey defines model for IgnoredKey.
+type IgnoredKey struct {
+	Path   string `json:"path"`
+	Reason string `json:"reason"`
+}
+
 // ImageCreateRequest defines model for ImageCreateRequest.
 type ImageCreateRequest struct {
 	ContainerFormat *ContainerFormatEnum `json:"container_format,omitempty"`
@@ -44149,6 +44456,33 @@ type ImportableResource struct {
 
 	// Type Type of the resource
 	Type string `json:"type"`
+}
+
+// ImportedOfferingBlock defines model for ImportedOfferingBlock.
+type ImportedOfferingBlock struct {
+	Index              int     `json:"index"`
+	MatchesOffering    bool    `json:"matches_offering"`
+	Name               *string `json:"name"`
+	WaldurOfferingUuid *string `json:"waldur_offering_uuid"`
+}
+
+// ImportedPolicy defines model for ImportedPolicy.
+type ImportedPolicy struct {
+	// ActionChoices The actions a SLURM periodic usage policy can take.
+	ActionChoices []PolicyActionChoice `json:"action_choices"`
+
+	// Applicable Whether apply_policy may be set.
+	Applicable bool           `json:"applicable"`
+	Changes    []PolicyChange `json:"changes"`
+
+	// Exists Whether the offering has a SLURM periodic usage policy.
+	Exists bool `json:"exists"`
+
+	// NeedsActions Whether applying would create the policy, so policy_actions must say what it does.
+	NeedsActions bool `json:"needs_actions"`
+
+	// Reason Why it cannot be applied, when it cannot.
+	Reason *string `json:"reason"`
 }
 
 // InheritedAccountSetting defines model for InheritedAccountSetting.
@@ -59336,6 +59670,19 @@ type PluginOfferingType struct {
 // PolarityEnum defines model for PolarityEnum.
 type PolarityEnum string
 
+// PolicyActionChoice defines model for PolicyActionChoice.
+type PolicyActionChoice struct {
+	Label string `json:"label"`
+	Value string `json:"value"`
+}
+
+// PolicyChange defines model for PolicyChange.
+type PolicyChange struct {
+	Current  interface{} `json:"current"`
+	Field    string      `json:"field"`
+	Imported interface{} `json:"imported"`
+}
+
 // PolicyCostBreakdown defines model for PolicyCostBreakdown.
 type PolicyCostBreakdown struct {
 	// CostBeforeCredit The invoiced cost within the policy's period before any credit, tax included.
@@ -71928,6 +72275,14 @@ type UndecidedAtRoundCompletionEnum string
 // UnlockableParts defines model for UnlockableParts.
 type UnlockableParts struct {
 	Parts []string `json:"parts"`
+}
+
+// UnresolvedSetting defines model for UnresolvedSetting.
+type UnresolvedSetting struct {
+	Path string `json:"path"`
+
+	// Placeholder The name inside ${...} that the agent host fills in.
+	Placeholder string `json:"placeholder"`
 }
 
 // UpdateActionsRequest defines model for UpdateActionsRequest.
@@ -98487,6 +98842,42 @@ type PromotionsCampaignsResourcesListParams struct {
 	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
 }
 
+// ProposalBulkStepDecisionsListParams defines parameters for ProposalBulkStepDecisionsList.
+type ProposalBulkStepDecisionsListParams struct {
+	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+	DryRun   *bool               `form:"dry_run,omitempty" json:"dry_run,omitempty"`
+
+	// O Ordering
+	//
+	O *[]BulkStepDecisionSummaryOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                    `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]BulkStepDecisionStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	Uuid     *openapi_types.UUID          `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
+// ProposalBulkStepDecisionsCountParams defines parameters for ProposalBulkStepDecisionsCount.
+type ProposalBulkStepDecisionsCountParams struct {
+	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
+	DryRun   *bool               `form:"dry_run,omitempty" json:"dry_run,omitempty"`
+
+	// O Ordering
+	//
+	O *[]BulkStepDecisionSummaryOEnum `form:"o,omitempty" json:"o,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize                    `form:"page_size,omitempty" json:"page_size,omitempty"`
+	State    *[]BulkStepDecisionStateEnum `form:"state,omitempty" json:"state,omitempty"`
+	Uuid     *openapi_types.UUID          `form:"uuid,omitempty" json:"uuid,omitempty"`
+}
+
 // ProposalMyRequestedResourcesListParams defines parameters for ProposalMyRequestedResourcesList.
 type ProposalMyRequestedResourcesListParams struct {
 	CallUuid *openapi_types.UUID `form:"call_uuid,omitempty" json:"call_uuid,omitempty"`
@@ -99839,13 +100230,80 @@ type ProposalProtectedCallsConflictsListParams struct {
 	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
 }
 
+// ProposalProtectedCallsDecidableWorkflowStepsParams defines parameters for ProposalProtectedCallsDecidableWorkflowSteps.
+type ProposalProtectedCallsDecidableWorkflowStepsParams struct {
+	Customer        *string             `form:"customer,omitempty" json:"customer,omitempty"`
+	CustomerKeyword *string             `form:"customer_keyword,omitempty" json:"customer_keyword,omitempty"`
+	CustomerUuid    *openapi_types.UUID `form:"customer_uuid,omitempty" json:"customer_uuid,omitempty"`
+	HasActiveRound  *bool               `form:"has_active_round,omitempty" json:"has_active_round,omitempty"`
+	Name            *string             `form:"name,omitempty" json:"name,omitempty"`
+
+	// O Ordering
+	//
+	O                     *[]ProtectedCallOEnum `form:"o,omitempty" json:"o,omitempty"`
+	OfferingUuid          *openapi_types.UUID   `form:"offering_uuid,omitempty" json:"offering_uuid,omitempty"`
+	OfferingsProviderUuid *openapi_types.UUID   `form:"offerings_provider_uuid,omitempty" json:"offerings_provider_uuid,omitempty"`
+
+	// OpenForOfferingUuid Calls the offering can be requested through right now
+	OpenForOfferingUuid *openapi_types.UUID `form:"open_for_offering_uuid,omitempty" json:"open_for_offering_uuid,omitempty"`
+
+	// Page A page number within the paginated result set.
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// PageSize Number of results to return per page.
+	PageSize *PageSize `form:"page_size,omitempty" json:"page_size,omitempty"`
+
+	// Slug Slug
+	Slug  *string       `form:"slug,omitempty" json:"slug,omitempty"`
+	State *[]CallStates `form:"state,omitempty" json:"state,omitempty"`
+}
+
+// ProposalProtectedCallsExportEvaluationsParams defines parameters for ProposalProtectedCallsExportEvaluations.
+type ProposalProtectedCallsExportEvaluationsParams struct {
+	// CallStepUuid Limit the export to one step of the call's workflow.
+	CallStepUuid *openapi_types.UUID `form:"call_step_uuid,omitempty" json:"call_step_uuid,omitempty"`
+
+	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
+	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
+	// PanelUuid Limit the export to the proposals routed to one panel of the call.
+	PanelUuid *openapi_types.UUID `form:"panel_uuid,omitempty" json:"panel_uuid,omitempty"`
+
+	// ProposalName Limit the export to proposals whose name contains this text — the list's search box. Named proposal_name because a bare `name` is read by the call's own filterset.
+	ProposalName *string `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
+
+	// ProposalUuid Limit the export to these proposals, such as those selected in the list; repeat the parameter for each.
+	ProposalUuid *[]openapi_types.UUID `form:"proposal_uuid,omitempty" json:"proposal_uuid,omitempty"`
+
+	// RoundUuid Limit the export to one round.
+	RoundUuid *openapi_types.UUID `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+}
+
+// ProposalProtectedCallsExportPanelSheetParams defines parameters for ProposalProtectedCallsExportPanelSheet.
+type ProposalProtectedCallsExportPanelSheetParams struct {
+	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
+	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
+	// PanelUuid Limit the export to the proposals routed to one panel of the call.
+	PanelUuid *openapi_types.UUID `form:"panel_uuid,omitempty" json:"panel_uuid,omitempty"`
+
+	// RoundUuid Limit the export to one round.
+	RoundUuid *openapi_types.UUID `form:"round_uuid,omitempty" json:"round_uuid,omitempty"`
+}
+
 // ProposalProtectedCallsExportProposalsParams defines parameters for ProposalProtectedCallsExportProposals.
 type ProposalProtectedCallsExportProposalsParams struct {
+	// CallStepUuid Limit the export to one step of the call's workflow.
+	CallStepUuid *openapi_types.UUID `form:"call_step_uuid,omitempty" json:"call_step_uuid,omitempty"`
+
 	// CreatedByUuid Limit the export to one applicant.
 	CreatedByUuid *openapi_types.UUID `form:"created_by_uuid,omitempty" json:"created_by_uuid,omitempty"`
 
 	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
 	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
+	// PanelUuid Limit the export to the proposals routed to one panel of the call.
+	PanelUuid *openapi_types.UUID `form:"panel_uuid,omitempty" json:"panel_uuid,omitempty"`
 
 	// ProposalName Limit the export to proposals whose name contains this text — the list's search box. Named proposal_name because a bare `name` is read by the call's own filterset.
 	ProposalName *string `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
@@ -99862,8 +100320,14 @@ type ProposalProtectedCallsExportProposalsParams struct {
 
 // ProposalProtectedCallsExportReviewsParams defines parameters for ProposalProtectedCallsExportReviews.
 type ProposalProtectedCallsExportReviewsParams struct {
+	// CallStepUuid Limit the export to one step of the call's workflow.
+	CallStepUuid *openapi_types.UUID `form:"call_step_uuid,omitempty" json:"call_step_uuid,omitempty"`
+
 	// FileFormat csv (the default) or xlsx, an Excel workbook of the same header and rows. Named file_format because a bare `format` is read by the API itself.
 	FileFormat *QueryFileFormatEnum `form:"file_format,omitempty" json:"file_format,omitempty"`
+
+	// PanelUuid Limit the export to the proposals routed to one panel of the call.
+	PanelUuid *openapi_types.UUID `form:"panel_uuid,omitempty" json:"panel_uuid,omitempty"`
 
 	// ProposalName Limit the export to proposals whose name contains this text — the list's search box. Named proposal_name because a bare `name` is read by the call's own filterset.
 	ProposalName *string `form:"proposal_name,omitempty" json:"proposal_name,omitempty"`
@@ -106736,6 +107200,9 @@ type MarketplaceProviderOfferingsDeleteUserJSONRequestBody = UserRoleDeleteReque
 // MarketplaceProviderOfferingsExportOfferingJSONRequestBody defines body for MarketplaceProviderOfferingsExportOffering for application/json ContentType.
 type MarketplaceProviderOfferingsExportOfferingJSONRequestBody = OfferingExportParametersRequest
 
+// MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody defines body for MarketplaceProviderOfferingsImportAgentConfiguration for application/json ContentType.
+type MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody = AgentConfigurationImportRequest
+
 // MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody defines body for MarketplaceProviderOfferingsImportMaintenanceReservations for application/json ContentType.
 type MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody = MaintenanceReservationImportRequest
 
@@ -108254,6 +108721,12 @@ type ProposalProtectedCallsCoiConfigurationPartialUpdateJSONRequestBody = Patche
 
 // ProposalProtectedCallsCreateManualAssignmentJSONRequestBody defines body for ProposalProtectedCallsCreateManualAssignment for application/json ContentType.
 type ProposalProtectedCallsCreateManualAssignmentJSONRequestBody = CreateManualAssignmentRequest
+
+// ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody defines body for ProposalProtectedCallsDecidableWorkflowSteps for application/json ContentType.
+type ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody = DecidableWorkflowStepsRequestRequest
+
+// ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody defines body for ProposalProtectedCallsDecideWorkflowSteps for application/json ContentType.
+type ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody = DecideWorkflowStepsRequest
 
 // ProposalProtectedCallsDeleteUserJSONRequestBody defines body for ProposalProtectedCallsDeleteUser for application/json ContentType.
 type ProposalProtectedCallsDeleteUserJSONRequestBody = UserRoleDeleteRequest
@@ -139122,6 +139595,24 @@ type ClientInterface interface {
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/history/at/ (the `MarketplaceProviderOfferingsHistoryAtRetrieve` operationId).
 	MarketplaceProviderOfferingsHistoryAtRetrieve(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// MarketplaceProviderOfferingsImportAgentConfigurationWithBody Import a site agent configuration file into the agent configuration
+	//
+	// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+	//
+	// Takes any type of body and a specified content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+	MarketplaceProviderOfferingsImportAgentConfigurationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// MarketplaceProviderOfferingsImportAgentConfiguration Import a site agent configuration file into the agent configuration
+	//
+	// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+	//
+	// Takes a body of the `application/json` content type.
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+	MarketplaceProviderOfferingsImportAgentConfiguration(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody Import the cluster's maintenance reservations as drafts
 	//
 	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
@@ -149974,6 +150465,17 @@ type ClientInterface interface {
 	// Terminate campaign.
 	PromotionsCampaignsTerminate(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalBulkStepDecisionsList performs a GET /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsList` operationId) request.
+	ProposalBulkStepDecisionsList(ctx context.Context, params *ProposalBulkStepDecisionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalBulkStepDecisionsCount performs a HEAD /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	ProposalBulkStepDecisionsCount(ctx context.Context, params *ProposalBulkStepDecisionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalBulkStepDecisionsRetrieve performs a GET /api/proposal-bulk-step-decisions/{uuid}/ (the `ProposalBulkStepDecisionsRetrieve` operationId) request.
+	ProposalBulkStepDecisionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalMyRequestedResourcesList performs a GET /api/proposal-my-requested-resources/ (the `ProposalMyRequestedResourcesList` operationId) request.
 	ProposalMyRequestedResourcesList(ctx context.Context, params *ProposalMyRequestedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -150991,6 +151493,30 @@ type ClientInterface interface {
 	// Create a manual assignment batch for a specific reviewer. This allows call managers to manually assign proposals to reviewers.
 	ProposalProtectedCallsCreateManualAssignment(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// ProposalProtectedCallsDecidableWorkflowStepsWithBody performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+	ProposalProtectedCallsDecidableWorkflowStepsWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsDecidableWorkflowSteps performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+	ProposalProtectedCallsDecidableWorkflowSteps(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, body ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsDecideWorkflowStepsWithBody performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+	ProposalProtectedCallsDecideWorkflowStepsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsDecideWorkflowSteps performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request.
+	// Takes a body of the `application/json` content type.
+	//
+	// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+	ProposalProtectedCallsDecideWorkflowSteps(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// ProposalProtectedCallsDeleteUserWithBody Revoke a role from a user
 	//
 	// Removes a specific role from a user within the current scope. This effectively revokes their permissions associated with that role.
@@ -151044,6 +151570,16 @@ type ClientInterface interface {
 	//
 	// Duplicate a call. The new call inherits the source call's configuration (offerings, rounds, workflow steps, resource templates, role mappings, documents, and COI/matching/assignment/applicant-visibility settings) and starts in draft state. Proposals, reviews, team permissions, and reviewer-pool memberships are not copied.
 	ProposalProtectedCallsDuplicate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsExportEvaluations performs a GET /api/proposal-protected-calls/{uuid}/export-evaluations/ (the `ProposalProtectedCallsExportEvaluations` operationId) request.
+	//
+	// Download the call's step contributions as CSV or as an Excel workbook, one row per proposal and contribution: individual and consolidated reports, technical assessments and every other contribution to a step, with its outcome, conditions, comment and one column per question of the step's form. Open to whoever may update the call, and to a panel's chair and members for that panel, named in panel_uuid. Each reads only the contributions the proposal pages show them: a blind step names its contributors by their anonymous label, and a panel member gets no row for a proposal they have a conflict of interest with.
+	ProposalProtectedCallsExportEvaluations(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportEvaluationsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// ProposalProtectedCallsExportPanelSheet performs a GET /api/proposal-protected-calls/{uuid}/export-panel-sheet/ (the `ProposalProtectedCallsExportPanelSheet` operationId) request.
+	//
+	// Download a panel's evaluation sheet: one row per proposal routed to the panel, with the amounts it requests, its review scores and their average per criterion, the outcome of each assessment step and the technical assessment of each requested offering. CSV or Excel for one panel, named in panel_uuid; an Excel workbook without panel_uuid holds one sheet per panel of the call. Open to whoever may update the call, and to a panel's chair and members for that panel, who read in it what the proposal pages show them.
+	ProposalProtectedCallsExportPanelSheet(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportPanelSheetParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// ProposalProtectedCallsExportProposals performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 	//
@@ -181140,6 +181676,44 @@ func (c *Client) MarketplaceProviderOfferingsHistoryAtRetrieve(ctx context.Conte
 	return c.Client.Do(req)
 }
 
+// MarketplaceProviderOfferingsImportAgentConfigurationWithBody Import a site agent configuration file into the agent configuration
+//
+// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+//
+// Takes any type of body and a specified content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+func (c *Client) MarketplaceProviderOfferingsImportAgentConfigurationWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportAgentConfigurationRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// MarketplaceProviderOfferingsImportAgentConfiguration Import a site agent configuration file into the agent configuration
+//
+// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+//
+// Takes a body of the `application/json` content type.
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+func (c *Client) MarketplaceProviderOfferingsImportAgentConfiguration(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewMarketplaceProviderOfferingsImportAgentConfigurationRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // MarketplaceProviderOfferingsImportMaintenanceReservationsWithBody Import the cluster's maintenance reservations as drafts
 //
 // Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
@@ -207882,6 +208456,47 @@ func (c *Client) PromotionsCampaignsTerminate(ctx context.Context, uuid openapi_
 	return c.Client.Do(req)
 }
 
+// ProposalBulkStepDecisionsList performs a GET /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsList` operationId) request.
+func (c *Client) ProposalBulkStepDecisionsList(ctx context.Context, params *ProposalBulkStepDecisionsListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalBulkStepDecisionsListRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalBulkStepDecisionsCount performs a HEAD /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+func (c *Client) ProposalBulkStepDecisionsCount(ctx context.Context, params *ProposalBulkStepDecisionsCountParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalBulkStepDecisionsCountRequest(c.Server, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalBulkStepDecisionsRetrieve performs a GET /api/proposal-bulk-step-decisions/{uuid}/ (the `ProposalBulkStepDecisionsRetrieve` operationId) request.
+func (c *Client) ProposalBulkStepDecisionsRetrieve(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalBulkStepDecisionsRetrieveRequest(c.Server, uuid)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalMyRequestedResourcesList performs a GET /api/proposal-my-requested-resources/ (the `ProposalMyRequestedResourcesList` operationId) request.
 func (c *Client) ProposalMyRequestedResourcesList(ctx context.Context, params *ProposalMyRequestedResourcesListParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalMyRequestedResourcesListRequest(c.Server, params)
@@ -210709,6 +211324,70 @@ func (c *Client) ProposalProtectedCallsCreateManualAssignment(ctx context.Contex
 	return c.Client.Do(req)
 }
 
+// ProposalProtectedCallsDecidableWorkflowStepsWithBody performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request,
+// with any type of body and a specified content type.
+//
+// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+func (c *Client) ProposalProtectedCallsDecidableWorkflowStepsWithBody(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDecidableWorkflowStepsRequestWithBody(c.Server, uuid, params, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsDecidableWorkflowSteps performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+func (c *Client) ProposalProtectedCallsDecidableWorkflowSteps(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, body ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDecidableWorkflowStepsRequest(c.Server, uuid, params, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsDecideWorkflowStepsWithBody performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request,
+// with any type of body and a specified content type.
+//
+// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+func (c *Client) ProposalProtectedCallsDecideWorkflowStepsWithBody(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDecideWorkflowStepsRequestWithBody(c.Server, uuid, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsDecideWorkflowSteps performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request.
+// Takes a body of the `application/json` content type.
+//
+// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+func (c *Client) ProposalProtectedCallsDecideWorkflowSteps(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsDecideWorkflowStepsRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 // ProposalProtectedCallsDeleteUserWithBody Revoke a role from a user
 //
 // Removes a specific role from a user within the current scope. This effectively revokes their permissions associated with that role.
@@ -210833,6 +211512,36 @@ func (c *Client) ProposalProtectedCallsDuplicateWithBody(ctx context.Context, uu
 // Duplicate a call. The new call inherits the source call's configuration (offerings, rounds, workflow steps, resource templates, role mappings, documents, and COI/matching/assignment/applicant-visibility settings) and starts in draft state. Proposals, reviews, team permissions, and reviewer-pool memberships are not copied.
 func (c *Client) ProposalProtectedCallsDuplicate(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewProposalProtectedCallsDuplicateRequest(c.Server, uuid, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsExportEvaluations performs a GET /api/proposal-protected-calls/{uuid}/export-evaluations/ (the `ProposalProtectedCallsExportEvaluations` operationId) request.
+//
+// Download the call's step contributions as CSV or as an Excel workbook, one row per proposal and contribution: individual and consolidated reports, technical assessments and every other contribution to a step, with its outcome, conditions, comment and one column per question of the step's form. Open to whoever may update the call, and to a panel's chair and members for that panel, named in panel_uuid. Each reads only the contributions the proposal pages show them: a blind step names its contributors by their anonymous label, and a panel member gets no row for a proposal they have a conflict of interest with.
+func (c *Client) ProposalProtectedCallsExportEvaluations(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportEvaluationsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsExportEvaluationsRequest(c.Server, uuid, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+// ProposalProtectedCallsExportPanelSheet performs a GET /api/proposal-protected-calls/{uuid}/export-panel-sheet/ (the `ProposalProtectedCallsExportPanelSheet` operationId) request.
+//
+// Download a panel's evaluation sheet: one row per proposal routed to the panel, with the amounts it requests, its review scores and their average per criterion, the outcome of each assessment step and the technical assessment of each requested offering. CSV or Excel for one panel, named in panel_uuid; an Excel workbook without panel_uuid holds one sheet per panel of the call. Open to whoever may update the call, and to a panel's chair and members for that panel, who read in it what the proposal pages show them.
+func (c *Client) ProposalProtectedCallsExportPanelSheet(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportPanelSheetParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewProposalProtectedCallsExportPanelSheetRequest(c.Server, uuid, params)
 	if err != nil {
 		return nil, err
 	}
@@ -315583,6 +316292,53 @@ func NewMarketplaceProviderOfferingsHistoryAtRetrieveRequest(server string, uuid
 	return req, nil
 }
 
+// NewMarketplaceProviderOfferingsImportAgentConfigurationRequest calls the generic MarketplaceProviderOfferingsImportAgentConfiguration builder with application/json body
+func NewMarketplaceProviderOfferingsImportAgentConfigurationRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewMarketplaceProviderOfferingsImportAgentConfigurationRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewMarketplaceProviderOfferingsImportAgentConfigurationRequestWithBody constructs an http.Request for the MarketplaceProviderOfferingsImportAgentConfiguration method, with any body, and a specified content type
+func NewMarketplaceProviderOfferingsImportAgentConfigurationRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/marketplace-provider-offerings/%s/import_agent_configuration/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequest calls the generic MarketplaceProviderOfferingsImportMaintenanceReservations builder with application/json body
 func NewMarketplaceProviderOfferingsImportMaintenanceReservationsRequest(server string, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportMaintenanceReservationsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -416484,6 +417240,292 @@ func NewPromotionsCampaignsTerminateRequest(server string, uuid openapi_types.UU
 	return req, nil
 }
 
+// NewProposalBulkStepDecisionsListRequest constructs an http.Request for the ProposalBulkStepDecisionsList method
+func NewProposalBulkStepDecisionsListRequest(server string, params *ProposalBulkStepDecisionsListParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-bulk-step-decisions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.DryRun != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "dry_run", *params.DryRun, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalBulkStepDecisionsCountRequest constructs an http.Request for the ProposalBulkStepDecisionsCount method
+func NewProposalBulkStepDecisionsCountRequest(server string, params *ProposalBulkStepDecisionsCountParams) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-bulk-step-decisions/")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_uuid", *params.CallUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.DryRun != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "dry_run", *params.DryRun, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Uuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "uuid", *params.Uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodHead, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalBulkStepDecisionsRetrieveRequest constructs an http.Request for the ProposalBulkStepDecisionsRetrieve method
+func NewProposalBulkStepDecisionsRetrieveRequest(server string, uuid openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-bulk-step-decisions/%s/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalMyRequestedResourcesListRequest constructs an http.Request for the ProposalMyRequestedResourcesList method
 func NewProposalMyRequestedResourcesListRequest(server string, params *ProposalMyRequestedResourcesListParams) (*http.Request, error) {
 	var err error
@@ -427917,6 +428959,271 @@ func NewProposalProtectedCallsCreateManualAssignmentRequestWithBody(server strin
 	return req, nil
 }
 
+// NewProposalProtectedCallsDecidableWorkflowStepsRequest calls the generic ProposalProtectedCallsDecidableWorkflowSteps builder with application/json body
+func NewProposalProtectedCallsDecidableWorkflowStepsRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, body ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsDecidableWorkflowStepsRequestWithBody(server, uuid, params, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsDecidableWorkflowStepsRequestWithBody constructs an http.Request for the ProposalProtectedCallsDecidableWorkflowSteps method, with any body, and a specified content type
+func NewProposalProtectedCallsDecidableWorkflowStepsRequestWithBody(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/decidable_workflow_steps/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Customer != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer", *params.Customer, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uri"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerKeyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_keyword", *params.CustomerKeyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CustomerUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "customer_uuid", *params.CustomerUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.HasActiveRound != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "has_active_round", *params.HasActiveRound, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "boolean", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.O != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", false, "o", *params.O, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offering_uuid", *params.OfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OfferingsProviderUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offerings_provider_uuid", *params.OfferingsProviderUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.OpenForOfferingUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "open_for_offering_uuid", *params.OpenForOfferingUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PageSize != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page_size", *params.PageSize, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Slug != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "slug", *params.Slug, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "state", *params.State, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsDecideWorkflowStepsRequest calls the generic ProposalProtectedCallsDecideWorkflowSteps builder with application/json body
+func NewProposalProtectedCallsDecideWorkflowStepsRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewProposalProtectedCallsDecideWorkflowStepsRequestWithBody(server, uuid, "application/json", bodyReader)
+}
+
+// NewProposalProtectedCallsDecideWorkflowStepsRequestWithBody constructs an http.Request for the ProposalProtectedCallsDecideWorkflowSteps method, with any body, and a specified content type
+func NewProposalProtectedCallsDecideWorkflowStepsRequestWithBody(server string, uuid openapi_types.UUID, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/decide_workflow_steps/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodPost, queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsDeleteUserRequest calls the generic ProposalProtectedCallsDeleteUser builder with application/json body
 func NewProposalProtectedCallsDeleteUserRequest(server string, uuid openapi_types.UUID, body ProposalProtectedCallsDeleteUserJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
@@ -428105,6 +429412,212 @@ func NewProposalProtectedCallsDuplicateRequestWithBody(server string, uuid opena
 	return req, nil
 }
 
+// NewProposalProtectedCallsExportEvaluationsRequest constructs an http.Request for the ProposalProtectedCallsExportEvaluations method
+func NewProposalProtectedCallsExportEvaluationsRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsExportEvaluationsParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/export-evaluations/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.CallStepUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_step_uuid", *params.CallStepUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.FileFormat != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PanelUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "panel_uuid", *params.PanelUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalName != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_name", *params.ProposalName, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.ProposalUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "proposal_uuid", *params.ProposalUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "array", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewProposalProtectedCallsExportPanelSheetRequest constructs an http.Request for the ProposalProtectedCallsExportPanelSheet method
+func NewProposalProtectedCallsExportPanelSheetRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsExportPanelSheetParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "uuid", uuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/api/proposal-protected-calls/%s/export-panel-sheet/", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.FileFormat != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PanelUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "panel_uuid", *params.PanelUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.RoundUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "round_uuid", *params.RoundUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewProposalProtectedCallsExportProposalsRequest constructs an http.Request for the ProposalProtectedCallsExportProposals method
 func NewProposalProtectedCallsExportProposalsRequest(server string, uuid openapi_types.UUID, params *ProposalProtectedCallsExportProposalsParams) (*http.Request, error) {
 	var err error
@@ -428140,6 +429653,18 @@ func NewProposalProtectedCallsExportProposalsRequest(server string, uuid openapi
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.CallStepUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_step_uuid", *params.CallStepUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.CreatedByUuid != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "created_by_uuid", *params.CreatedByUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
@@ -428155,6 +429680,18 @@ func NewProposalProtectedCallsExportProposalsRequest(server string, uuid openapi
 		if params.FileFormat != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PanelUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "panel_uuid", *params.PanelUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -428261,9 +429798,33 @@ func NewProposalProtectedCallsExportReviewsRequest(server string, uuid openapi_t
 		// per the OpenAPI spec (e.g. "color=blue,black,brown").
 		var rawQueryFragments []string
 
+		if params.CallStepUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "call_step_uuid", *params.CallStepUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
 		if params.FileFormat != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "file_format", *params.FileFormat, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PanelUuid != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "panel_uuid", *params.PanelUuid, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: "uuid"}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -494546,6 +496107,24 @@ type ClientWithResponsesInterface interface {
 	// Corresponds with GET /api/marketplace-provider-offerings/{uuid}/history/at/ (the `MarketplaceProviderOfferingsHistoryAtRetrieve` operationId).
 	MarketplaceProviderOfferingsHistoryAtRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, params *MarketplaceProviderOfferingsHistoryAtRetrieveParams, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsHistoryAtRetrieveResponse, error)
 
+	// MarketplaceProviderOfferingsImportAgentConfigurationWithBodyWithResponse Import a site agent configuration file into the agent configuration
+	//
+	// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+	//
+	// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+	MarketplaceProviderOfferingsImportAgentConfigurationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportAgentConfigurationResponse, error)
+
+	// MarketplaceProviderOfferingsImportAgentConfigurationWithResponse Import a site agent configuration file into the agent configuration
+	//
+	// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+	//
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+	MarketplaceProviderOfferingsImportAgentConfigurationWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportAgentConfigurationResponse, error)
+
 	// MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse Import the cluster's maintenance reservations as drafts
 	//
 	// Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
@@ -507208,6 +508787,23 @@ type ClientWithResponsesInterface interface {
 	// Returns a wrapper object for the known response body format(s).
 	PromotionsCampaignsTerminateWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*PromotionsCampaignsTerminateResponse, error)
 
+	// ProposalBulkStepDecisionsListWithResponse performs a GET /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsList` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalBulkStepDecisionsListWithResponse(ctx context.Context, params *ProposalBulkStepDecisionsListParams, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsListResponse, error)
+
+	// ProposalBulkStepDecisionsCountWithResponse performs a HEAD /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsCount` operationId) request.
+	//
+	// Get number of items in the collection matching the request parameters.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalBulkStepDecisionsCountWithResponse(ctx context.Context, params *ProposalBulkStepDecisionsCountParams, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsCountResponse, error)
+
+	// ProposalBulkStepDecisionsRetrieveWithResponse performs a GET /api/proposal-bulk-step-decisions/{uuid}/ (the `ProposalBulkStepDecisionsRetrieve` operationId) request.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalBulkStepDecisionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsRetrieveResponse, error)
+
 	// ProposalMyRequestedResourcesListWithResponse performs a GET /api/proposal-my-requested-resources/ (the `ProposalMyRequestedResourcesList` operationId) request.
 	//
 	// Returns a wrapper object for the known response body format(s).
@@ -508459,6 +510055,34 @@ type ClientWithResponsesInterface interface {
 	// Create a manual assignment batch for a specific reviewer. This allows call managers to manually assign proposals to reviewers.
 	ProposalProtectedCallsCreateManualAssignmentWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsCreateManualAssignmentJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsCreateManualAssignmentResponse, error)
 
+	// ProposalProtectedCallsDecidableWorkflowStepsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsDecidableWorkflowStepsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecidableWorkflowStepsResponse, error)
+
+	// ProposalProtectedCallsDecidableWorkflowStepsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+	ProposalProtectedCallsDecidableWorkflowStepsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, body ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecidableWorkflowStepsResponse, error)
+
+	// ProposalProtectedCallsDecideWorkflowStepsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request,
+	// with any type of body and a specified content type.
+	//
+	// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsDecideWorkflowStepsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecideWorkflowStepsResponse, error)
+
+	// ProposalProtectedCallsDecideWorkflowStepsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request.
+	// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+	//
+	// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+	ProposalProtectedCallsDecideWorkflowStepsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecideWorkflowStepsResponse, error)
+
 	// ProposalProtectedCallsDeleteUserWithBodyWithResponse Revoke a role from a user
 	//
 	// Removes a specific role from a user within the current scope. This effectively revokes their permissions associated with that role.
@@ -508518,6 +510142,20 @@ type ClientWithResponsesInterface interface {
 	//
 	// Duplicate a call. The new call inherits the source call's configuration (offerings, rounds, workflow steps, resource templates, role mappings, documents, and COI/matching/assignment/applicant-visibility settings) and starts in draft state. Proposals, reviews, team permissions, and reviewer-pool memberships are not copied.
 	ProposalProtectedCallsDuplicateWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDuplicateJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDuplicateResponse, error)
+
+	// ProposalProtectedCallsExportEvaluationsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-evaluations/ (the `ProposalProtectedCallsExportEvaluations` operationId) request.
+	//
+	// Download the call's step contributions as CSV or as an Excel workbook, one row per proposal and contribution: individual and consolidated reports, technical assessments and every other contribution to a step, with its outcome, conditions, comment and one column per question of the step's form. Open to whoever may update the call, and to a panel's chair and members for that panel, named in panel_uuid. Each reads only the contributions the proposal pages show them: a blind step names its contributors by their anonymous label, and a panel member gets no row for a proposal they have a conflict of interest with.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsExportEvaluationsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportEvaluationsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportEvaluationsResponse, error)
+
+	// ProposalProtectedCallsExportPanelSheetWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-panel-sheet/ (the `ProposalProtectedCallsExportPanelSheet` operationId) request.
+	//
+	// Download a panel's evaluation sheet: one row per proposal routed to the panel, with the amounts it requests, its review scores and their average per criterion, the outcome of each assessment step and the technical assessment of each requested offering. CSV or Excel for one panel, named in panel_uuid; an Excel workbook without panel_uuid holds one sheet per panel of the call. Open to whoever may update the call, and to a panel's chair and members for that panel, who read in it what the proposal pages show them.
+	//
+	// Returns a wrapper object for the known response body format(s).
+	ProposalProtectedCallsExportPanelSheetWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportPanelSheetParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportPanelSheetResponse, error)
 
 	// ProposalProtectedCallsExportProposalsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
 	//
@@ -562324,6 +563962,47 @@ func (r MarketplaceProviderOfferingsHistoryAtRetrieveResponse) ContentType() str
 	return ""
 }
 
+type MarketplaceProviderOfferingsImportAgentConfigurationResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *AgentConfigurationImportResult
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r MarketplaceProviderOfferingsImportAgentConfigurationResponse) GetJSON200() *AgentConfigurationImportResult {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r MarketplaceProviderOfferingsImportAgentConfigurationResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r MarketplaceProviderOfferingsImportAgentConfigurationResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r MarketplaceProviderOfferingsImportAgentConfigurationResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r MarketplaceProviderOfferingsImportAgentConfigurationResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type MarketplaceProviderOfferingsImportMaintenanceReservationsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -609945,6 +611624,129 @@ func (r PromotionsCampaignsTerminateResponse) ContentType() string {
 	return ""
 }
 
+// ProposalBulkStepDecisionsListResponse200Headers the declared response headers of an HTTP 200 response for ProposalBulkStepDecisionsList
+type ProposalBulkStepDecisionsListResponse200Headers struct {
+	XResultCount *int
+}
+
+type ProposalBulkStepDecisionsListResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]BulkStepDecisionSummary
+	// Headers200 the parsed response headers for an HTTP 200 response
+	Headers200 *ProposalBulkStepDecisionsListResponse200Headers
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalBulkStepDecisionsListResponse) GetJSON200() *[]BulkStepDecisionSummary {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalBulkStepDecisionsListResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalBulkStepDecisionsListResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalBulkStepDecisionsListResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalBulkStepDecisionsListResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalBulkStepDecisionsCountResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalBulkStepDecisionsCountResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalBulkStepDecisionsCountResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalBulkStepDecisionsCountResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalBulkStepDecisionsCountResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalBulkStepDecisionsRetrieveResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *BulkStepDecision
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalBulkStepDecisionsRetrieveResponse) GetJSON200() *BulkStepDecision {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalBulkStepDecisionsRetrieveResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalBulkStepDecisionsRetrieveResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalBulkStepDecisionsRetrieveResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalBulkStepDecisionsRetrieveResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // ProposalMyRequestedResourcesListResponse200Headers the declared response headers of an HTTP 200 response for ProposalMyRequestedResourcesList
 type ProposalMyRequestedResourcesListResponse200Headers struct {
 	XResultCount *int
@@ -615135,6 +616937,95 @@ func (r ProposalProtectedCallsCreateManualAssignmentResponse) ContentType() stri
 	return ""
 }
 
+type ProposalProtectedCallsDecidableWorkflowStepsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *[]DecidableWorkflowStep
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalProtectedCallsDecidableWorkflowStepsResponse) GetJSON200() *[]DecidableWorkflowStep {
+	return r.JSON200
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsDecidableWorkflowStepsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsDecidableWorkflowStepsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsDecidableWorkflowStepsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsDecidableWorkflowStepsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsDecideWorkflowStepsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	// JSON200 the response for an HTTP 200 `application/json` response
+	JSON200 *BulkStepDecision
+	// JSON202 the response for an HTTP 202 `application/json` response
+	JSON202 *BulkStepDecision
+}
+
+// GetJSON200 returns the response for an HTTP 200 `application/json` response
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) GetJSON200() *BulkStepDecision {
+	return r.JSON200
+}
+
+// GetJSON202 returns the response for an HTTP 202 `application/json` response
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) GetJSON202() *BulkStepDecision {
+	return r.JSON202
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsDecideWorkflowStepsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 type ProposalProtectedCallsDeleteUserResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -615279,6 +617170,74 @@ func (r ProposalProtectedCallsDuplicateResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r ProposalProtectedCallsDuplicateResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsExportEvaluationsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsExportEvaluationsResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsExportEvaluationsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsExportEvaluationsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsExportEvaluationsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type ProposalProtectedCallsExportPanelSheetResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// GetBody returns the raw response body bytes
+func (r ProposalProtectedCallsExportPanelSheetResponse) GetBody() []byte {
+	return r.Body
+}
+
+// Status returns HTTPResponse.Status
+func (r ProposalProtectedCallsExportPanelSheetResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r ProposalProtectedCallsExportPanelSheetResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r ProposalProtectedCallsExportPanelSheetResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -666634,6 +668593,36 @@ func (c *ClientWithResponses) MarketplaceProviderOfferingsHistoryAtRetrieveWithR
 	return ParseMarketplaceProviderOfferingsHistoryAtRetrieveResponse(rsp)
 }
 
+// MarketplaceProviderOfferingsImportAgentConfigurationWithBodyWithResponse Import a site agent configuration file into the agent configuration
+//
+// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+//
+// Takes any type of body and a specified content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportAgentConfigurationWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportAgentConfigurationResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportAgentConfigurationWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportAgentConfigurationResponse(rsp)
+}
+
+// MarketplaceProviderOfferingsImportAgentConfigurationWithResponse Import a site agent configuration file into the agent configuration
+//
+// Reads one offering block of an existing site agent configuration file (YAML) into this offering's agent configuration: role backends (backend_type fills the three agent roles when the block sets none), event and agent settings, backend_settings and the agent-only fields of backend_components. Secrets, including ${VARIABLE} placeholders, are left out and listed in dropped_secrets: they stay on the agent host. A ${VARIABLE} placeholder of a setting that is not secret is left out and listed in unresolved; values gives such settings, or ones the file lacks, their values. How the agent reaches Waldur and other keys Waldur does not hold are listed in ignored. Component fields the offering's components hold are not imported; where they differ they are listed in component_differences. The block is chosen by offering_index, else the one whose waldur_offering_uuid is this offering, else the only one; otherwise the 400 on offering_index lists the file's offerings. With dry_run (the default) nothing is saved, and a configuration that could not be saved is still previewed, with the reasons in errors; otherwise the configuration is saved as update_integration saves it, with the same validation, permission check and change record. By choice the import also sets component fields the file holds (apply_components, as update_offering_component would, with its permission) and creates or updates the offering's SLURM periodic usage policy from policy_settings (apply_policy, as that policy's own endpoint would); everything is saved together or not at all. Site agent offerings only.
+//
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Corresponds with POST /api/marketplace-provider-offerings/{uuid}/import_agent_configuration/ (the `MarketplaceProviderOfferingsImportAgentConfiguration` operationId).
+func (c *ClientWithResponses) MarketplaceProviderOfferingsImportAgentConfigurationWithResponse(ctx context.Context, uuid openapi_types.UUID, body MarketplaceProviderOfferingsImportAgentConfigurationJSONRequestBody, reqEditors ...RequestEditorFn) (*MarketplaceProviderOfferingsImportAgentConfigurationResponse, error) {
+	rsp, err := c.MarketplaceProviderOfferingsImportAgentConfiguration(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseMarketplaceProviderOfferingsImportAgentConfigurationResponse(rsp)
+}
+
 // MarketplaceProviderOfferingsImportMaintenanceReservationsWithBodyWithResponse Import the cluster's maintenance reservations as drafts
 //
 // Site agents report the MAINT reservations made on the cluster; each becomes a draft maintenance announcement for the provider to review and publish. Reservations named with the Waldur prefix are ignored. Only when maintenance sync is enabled on the offering.
@@ -688833,6 +690822,41 @@ func (c *ClientWithResponses) PromotionsCampaignsTerminateWithResponse(ctx conte
 	return ParsePromotionsCampaignsTerminateResponse(rsp)
 }
 
+// ProposalBulkStepDecisionsListWithResponse performs a GET /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsList` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalBulkStepDecisionsListWithResponse(ctx context.Context, params *ProposalBulkStepDecisionsListParams, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsListResponse, error) {
+	rsp, err := c.ProposalBulkStepDecisionsList(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalBulkStepDecisionsListResponse(rsp)
+}
+
+// ProposalBulkStepDecisionsCountWithResponse performs a HEAD /api/proposal-bulk-step-decisions/ (the `ProposalBulkStepDecisionsCount` operationId) request.
+//
+// Get number of items in the collection matching the request parameters.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalBulkStepDecisionsCountWithResponse(ctx context.Context, params *ProposalBulkStepDecisionsCountParams, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsCountResponse, error) {
+	rsp, err := c.ProposalBulkStepDecisionsCount(ctx, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalBulkStepDecisionsCountResponse(rsp)
+}
+
+// ProposalBulkStepDecisionsRetrieveWithResponse performs a GET /api/proposal-bulk-step-decisions/{uuid}/ (the `ProposalBulkStepDecisionsRetrieve` operationId) request.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalBulkStepDecisionsRetrieveWithResponse(ctx context.Context, uuid openapi_types.UUID, reqEditors ...RequestEditorFn) (*ProposalBulkStepDecisionsRetrieveResponse, error) {
+	rsp, err := c.ProposalBulkStepDecisionsRetrieve(ctx, uuid, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalBulkStepDecisionsRetrieveResponse(rsp)
+}
+
 // ProposalMyRequestedResourcesListWithResponse performs a GET /api/proposal-my-requested-resources/ (the `ProposalMyRequestedResourcesList` operationId) request.
 //
 // Returns a wrapper object for the known response body format(s).
@@ -691170,6 +693194,58 @@ func (c *ClientWithResponses) ProposalProtectedCallsCreateManualAssignmentWithRe
 	return ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp)
 }
 
+// ProposalProtectedCallsDecidableWorkflowStepsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request,
+// with any type of body and a specified content type.
+//
+// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsDecidableWorkflowStepsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecidableWorkflowStepsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDecidableWorkflowStepsWithBody(ctx, uuid, params, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDecidableWorkflowStepsResponse(rsp)
+}
+
+// ProposalProtectedCallsDecidableWorkflowStepsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decidable_workflow_steps/ (the `ProposalProtectedCallsDecidableWorkflowSteps` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// The decision steps the selected proposals of the call stand on that decide_workflow_steps takes, each with its outcomes and the proposals standing on it that the caller may act on, the largest group first. A proposal running steps side by side may stand in two groups.
+func (c *ClientWithResponses) ProposalProtectedCallsDecidableWorkflowStepsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsDecidableWorkflowStepsParams, body ProposalProtectedCallsDecidableWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecidableWorkflowStepsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDecidableWorkflowSteps(ctx, uuid, params, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDecidableWorkflowStepsResponse(rsp)
+}
+
+// ProposalProtectedCallsDecideWorkflowStepsWithBodyWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request,
+// with any type of body and a specified content type.
+//
+// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsDecideWorkflowStepsWithBodyWithResponse(ctx context.Context, uuid openapi_types.UUID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecideWorkflowStepsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDecideWorkflowStepsWithBody(ctx, uuid, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDecideWorkflowStepsResponse(rsp)
+}
+
+// ProposalProtectedCallsDecideWorkflowStepsWithResponse performs a POST /api/proposal-protected-calls/{uuid}/decide_workflow_steps/ (the `ProposalProtectedCallsDecideWorkflowSteps` operationId) request.
+// Takes a body of the `application/json` content type, and returns a wrapper object for the known response body format(s).
+//
+// Decide one decision step for many proposals of the call at once, with one outcome and reason. Each proposal is decided as complete_workflow_step decides it on its page -- it must stand on the step, the caller must be allowed to act on it, and the step's gates must let the outcome through -- each in its own transaction, so one refused does not undo the others. Each comes back decided, or refused with the reason, in the order named; of a proposal the caller may not act on only its id and the reason are told. Refused with 403, recording nothing, when the caller may act on none of the selected proposals standing on the step, and with 400 when none stands on it. With dry_run nothing is decided: every proposal is checked as the run would check it. A selection of up to 25 proposals is decided, or previewed, within the request (200; a preview is not recorded); a larger one is recorded and run in the background (202, state pending): read its progress and results from proposal-bulk-step-decisions. A real run is recorded with one event on the call. Only a decision step that is neither the allocation decision nor completed once per round is decided this way.
+func (c *ClientWithResponses) ProposalProtectedCallsDecideWorkflowStepsWithResponse(ctx context.Context, uuid openapi_types.UUID, body ProposalProtectedCallsDecideWorkflowStepsJSONRequestBody, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsDecideWorkflowStepsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsDecideWorkflowSteps(ctx, uuid, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsDecideWorkflowStepsResponse(rsp)
+}
+
 // ProposalProtectedCallsDeleteUserWithBodyWithResponse Revoke a role from a user
 //
 // Removes a specific role from a user within the current scope. This effectively revokes their permissions associated with that role.
@@ -691276,6 +693352,32 @@ func (c *ClientWithResponses) ProposalProtectedCallsDuplicateWithResponse(ctx co
 		return nil, err
 	}
 	return ParseProposalProtectedCallsDuplicateResponse(rsp)
+}
+
+// ProposalProtectedCallsExportEvaluationsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-evaluations/ (the `ProposalProtectedCallsExportEvaluations` operationId) request.
+//
+// Download the call's step contributions as CSV or as an Excel workbook, one row per proposal and contribution: individual and consolidated reports, technical assessments and every other contribution to a step, with its outcome, conditions, comment and one column per question of the step's form. Open to whoever may update the call, and to a panel's chair and members for that panel, named in panel_uuid. Each reads only the contributions the proposal pages show them: a blind step names its contributors by their anonymous label, and a panel member gets no row for a proposal they have a conflict of interest with.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsExportEvaluationsWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportEvaluationsParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportEvaluationsResponse, error) {
+	rsp, err := c.ProposalProtectedCallsExportEvaluations(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsExportEvaluationsResponse(rsp)
+}
+
+// ProposalProtectedCallsExportPanelSheetWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-panel-sheet/ (the `ProposalProtectedCallsExportPanelSheet` operationId) request.
+//
+// Download a panel's evaluation sheet: one row per proposal routed to the panel, with the amounts it requests, its review scores and their average per criterion, the outcome of each assessment step and the technical assessment of each requested offering. CSV or Excel for one panel, named in panel_uuid; an Excel workbook without panel_uuid holds one sheet per panel of the call. Open to whoever may update the call, and to a panel's chair and members for that panel, who read in it what the proposal pages show them.
+//
+// Returns a wrapper object for the known response body format(s).
+func (c *ClientWithResponses) ProposalProtectedCallsExportPanelSheetWithResponse(ctx context.Context, uuid openapi_types.UUID, params *ProposalProtectedCallsExportPanelSheetParams, reqEditors ...RequestEditorFn) (*ProposalProtectedCallsExportPanelSheetResponse, error) {
+	rsp, err := c.ProposalProtectedCallsExportPanelSheet(ctx, uuid, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseProposalProtectedCallsExportPanelSheetResponse(rsp)
 }
 
 // ProposalProtectedCallsExportProposalsWithResponse performs a GET /api/proposal-protected-calls/{uuid}/export-proposals/ (the `ProposalProtectedCallsExportProposals` operationId) request.
@@ -733857,6 +735959,35 @@ func ParseMarketplaceProviderOfferingsHistoryAtRetrieveResponse(rsp *http.Respon
 	return response, nil
 }
 
+// ParseMarketplaceProviderOfferingsImportAgentConfigurationResponse parses an HTTP response from a MarketplaceProviderOfferingsImportAgentConfigurationWithResponse call
+func ParseMarketplaceProviderOfferingsImportAgentConfigurationResponse(rsp *http.Response) (*MarketplaceProviderOfferingsImportAgentConfigurationResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &MarketplaceProviderOfferingsImportAgentConfigurationResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest AgentConfigurationImportResult
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case rsp.StatusCode == 400:
+		break // No content-type
+
+	}
+
+	return response, nil
+}
+
 // ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse parses an HTTP response from a MarketplaceProviderOfferingsImportMaintenanceReservationsWithResponse call
 func ParseMarketplaceProviderOfferingsImportMaintenanceReservationsResponse(rsp *http.Response) (*MarketplaceProviderOfferingsImportMaintenanceReservationsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -764201,6 +766332,87 @@ func ParsePromotionsCampaignsTerminateResponse(rsp *http.Response) (*PromotionsC
 	return response, nil
 }
 
+// ParseProposalBulkStepDecisionsListResponse parses an HTTP response from a ProposalBulkStepDecisionsListWithResponse call
+func ParseProposalBulkStepDecisionsListResponse(rsp *http.Response) (*ProposalBulkStepDecisionsListResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalBulkStepDecisionsListResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []BulkStepDecisionSummary
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	switch {
+	case rsp.StatusCode == 200:
+		var headers ProposalBulkStepDecisionsListResponse200Headers
+		if values := rsp.Header.Values("x-result-count"); len(values) > 0 {
+			var value int
+			if err := runtime.BindStyledParameterWithOptions("simple", "x-result-count", values[0], &value, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			}
+			headers.XResultCount = &value
+		}
+		response.Headers200 = &headers
+	}
+
+	return response, nil
+}
+
+// ParseProposalBulkStepDecisionsCountResponse parses an HTTP response from a ProposalBulkStepDecisionsCountWithResponse call
+func ParseProposalBulkStepDecisionsCountResponse(rsp *http.Response) (*ProposalBulkStepDecisionsCountResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalBulkStepDecisionsCountResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalBulkStepDecisionsRetrieveResponse parses an HTTP response from a ProposalBulkStepDecisionsRetrieveWithResponse call
+func ParseProposalBulkStepDecisionsRetrieveResponse(rsp *http.Response) (*ProposalBulkStepDecisionsRetrieveResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalBulkStepDecisionsRetrieveResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BulkStepDecision
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalMyRequestedResourcesListResponse parses an HTTP response from a ProposalMyRequestedResourcesListWithResponse call
 func ParseProposalMyRequestedResourcesListResponse(rsp *http.Response) (*ProposalMyRequestedResourcesListResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -767657,6 +769869,65 @@ func ParseProposalProtectedCallsCreateManualAssignmentResponse(rsp *http.Respons
 	return response, nil
 }
 
+// ParseProposalProtectedCallsDecidableWorkflowStepsResponse parses an HTTP response from a ProposalProtectedCallsDecidableWorkflowStepsWithResponse call
+func ParseProposalProtectedCallsDecidableWorkflowStepsResponse(rsp *http.Response) (*ProposalProtectedCallsDecidableWorkflowStepsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsDecidableWorkflowStepsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []DecidableWorkflowStep
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsDecideWorkflowStepsResponse parses an HTTP response from a ProposalProtectedCallsDecideWorkflowStepsWithResponse call
+func ParseProposalProtectedCallsDecideWorkflowStepsResponse(rsp *http.Response) (*ProposalProtectedCallsDecideWorkflowStepsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsDecideWorkflowStepsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest BulkStepDecision
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
+		var dest BulkStepDecision
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON202 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseProposalProtectedCallsDeleteUserResponse parses an HTTP response from a ProposalProtectedCallsDeleteUserWithResponse call
 func ParseProposalProtectedCallsDeleteUserResponse(rsp *http.Response) (*ProposalProtectedCallsDeleteUserResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -767736,6 +770007,38 @@ func ParseProposalProtectedCallsDuplicateResponse(rsp *http.Response) (*Proposal
 		}
 		response.JSON201 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsExportEvaluationsResponse parses an HTTP response from a ProposalProtectedCallsExportEvaluationsWithResponse call
+func ParseProposalProtectedCallsExportEvaluationsResponse(rsp *http.Response) (*ProposalProtectedCallsExportEvaluationsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsExportEvaluationsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	return response, nil
+}
+
+// ParseProposalProtectedCallsExportPanelSheetResponse parses an HTTP response from a ProposalProtectedCallsExportPanelSheetWithResponse call
+func ParseProposalProtectedCallsExportPanelSheetResponse(rsp *http.Response) (*ProposalProtectedCallsExportPanelSheetResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &ProposalProtectedCallsExportPanelSheetResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
