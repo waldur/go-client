@@ -6277,6 +6277,24 @@ func (e ElevatedAccessEnum) Valid() bool {
 	}
 }
 
+// Defines values for EligibilityReasonCodeEnum.
+const (
+	ApplicantCapacity EligibilityReasonCodeEnum = "applicant_capacity"
+	UserRestrictions  EligibilityReasonCodeEnum = "user_restrictions"
+)
+
+// Valid indicates whether the value is a known member of the EligibilityReasonCodeEnum enum.
+func (e EligibilityReasonCodeEnum) Valid() bool {
+	switch e {
+	case ApplicantCapacity:
+		return true
+	case UserRestrictions:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for EligibleFromEnum.
 const (
 	EligibleFromEnumAnyUser             EligibleFromEnum = "any_user"
@@ -41791,9 +41809,28 @@ type ElevatedAccessEnum string
 
 // EligibilityCheck defines model for EligibilityCheck.
 type EligibilityCheck struct {
-	IsEligible   bool     `json:"is_eligible"`
+	IsEligible bool                `json:"is_eligible"`
+	Reasons    []EligibilityReason `json:"reasons"`
+
+	// Restrictions The messages of every failed check; see reasons for which check each comes from.
 	Restrictions []string `json:"restrictions"`
 }
+
+// EligibilityReason defines model for EligibilityReason.
+type EligibilityReason struct {
+	// Code Which check failed: the call's user restrictions, or the managing organization's limit on proposals held per applicant.
+	Code EligibilityReasonCodeEnum `json:"code"`
+
+	// Held applicant_capacity only: how many places the caller holds.
+	Held *int `json:"held,omitempty"`
+
+	// Limit applicant_capacity only: how many places an applicant may hold.
+	Limit   *int   `json:"limit,omitempty"`
+	Message string `json:"message"`
+}
+
+// EligibilityReasonCodeEnum defines model for EligibilityReasonCodeEnum.
+type EligibilityReasonCodeEnum string
 
 // EligibleFromEnum defines model for EligibleFromEnum.
 type EligibleFromEnum string
@@ -48337,7 +48374,10 @@ type MoveResourceRequest struct {
 
 // MyAssignmentBatch defines model for MyAssignmentBatch.
 type MyAssignmentBatch struct {
-	CallName          string             `json:"call_name"`
+	CallName string `json:"call_name"`
+
+	// CallState The state of the call: an archived call is read-only.
+	CallState         CallStates         `json:"call_state"`
 	CallUuid          openapi_types.UUID `json:"call_uuid"`
 	ExpiresAt         *time.Time         `json:"expires_at"`
 	IsExpired         bool               `json:"is_expired"`
@@ -48352,7 +48392,10 @@ type MyAssignmentBatch struct {
 
 // MyAssignmentBatchDetail defines model for MyAssignmentBatchDetail.
 type MyAssignmentBatchDetail struct {
-	CallName          string             `json:"call_name"`
+	CallName string `json:"call_name"`
+
+	// CallState The state of the call: an archived call is read-only.
+	CallState         CallStates         `json:"call_state"`
 	CallUuid          openapi_types.UUID `json:"call_uuid"`
 	ExpiresAt         *time.Time         `json:"expires_at"`
 	IsExpired         bool               `json:"is_expired"`
@@ -61282,11 +61325,14 @@ type Proposal struct {
 	AwardedDurationMonths *int `json:"awarded_duration_months,omitempty"`
 
 	// CallAdoptionRequired Whether the call's round results are adopted, after which a held decision can no longer be reopened.
-	CallAdoptionRequired         *bool                      `json:"call_adoption_required,omitempty"`
-	CallManagingOrganisationUuid *openapi_types.UUID        `json:"call_managing_organisation_uuid,omitempty"`
-	CallName                     *string                    `json:"call_name,omitempty"`
-	CallUuid                     *openapi_types.UUID        `json:"call_uuid,omitempty"`
-	CanSubmit                    *ProposalCanSubmitResponse `json:"can_submit,omitempty"`
+	CallAdoptionRequired         *bool               `json:"call_adoption_required,omitempty"`
+	CallManagingOrganisationUuid *openapi_types.UUID `json:"call_managing_organisation_uuid,omitempty"`
+	CallName                     *string             `json:"call_name,omitempty"`
+
+	// CallState The state of the proposal's call: an archived call's proposals are read-only.
+	CallState *CallStates                `json:"call_state,omitempty"`
+	CallUuid  *openapi_types.UUID        `json:"call_uuid,omitempty"`
+	CanSubmit *ProposalCanSubmitResponse `json:"can_submit,omitempty"`
 
 	// CompletedAt When the project was completed: its final report accepted.
 	CompletedAt      *time.Time                `json:"completed_at,omitempty"`
@@ -61640,8 +61686,11 @@ type ProposalReview struct {
 	CallManagingOrganisationUuid *openapi_types.UUID `json:"call_managing_organisation_uuid,omitempty"`
 	CallName                     *string             `json:"call_name,omitempty"`
 	CallSlug                     *string             `json:"call_slug,omitempty"`
-	CallUuid                     *openapi_types.UUID `json:"call_uuid,omitempty"`
-	CoiConfirmationRequired      *bool               `json:"coi_confirmation_required,omitempty"`
+
+	// CallState The state of the call: an archived call is read-only.
+	CallState               *CallStates         `json:"call_state,omitempty"`
+	CallUuid                *openapi_types.UUID `json:"call_uuid,omitempty"`
+	CoiConfirmationRequired *bool               `json:"coi_confirmation_required,omitempty"`
 
 	// CoiConfirmed Reviewer confirmed absence of conflict of interest with this proposal.
 	CoiConfirmed   *bool      `json:"coi_confirmed,omitempty"`
@@ -61799,10 +61848,13 @@ type ProposalRoleAssignRequest struct {
 
 // ProposalRoleAssignment defines model for ProposalRoleAssignment.
 type ProposalRoleAssignment struct {
-	AssignedByFullName      *string             `json:"assigned_by_full_name,omitempty"`
-	AssignedInStepName      *string             `json:"assigned_in_step_name,omitempty"`
-	AwaitsCoiConfirmation   *bool               `json:"awaits_coi_confirmation,omitempty"`
-	CallName                *string             `json:"call_name,omitempty"`
+	AssignedByFullName    *string `json:"assigned_by_full_name,omitempty"`
+	AssignedInStepName    *string `json:"assigned_in_step_name,omitempty"`
+	AwaitsCoiConfirmation *bool   `json:"awaits_coi_confirmation,omitempty"`
+	CallName              *string `json:"call_name,omitempty"`
+
+	// CallState The state of the call: an archived call is read-only.
+	CallState               *CallStates         `json:"call_state,omitempty"`
 	CallUuid                *openapi_types.UUID `json:"call_uuid,omitempty"`
 	CoiConfirmationRequired *bool               `json:"coi_confirmation_required,omitempty"`
 	CoiConfirmedAt          *time.Time          `json:"coi_confirmed_at,omitempty"`
